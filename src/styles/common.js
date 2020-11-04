@@ -1,9 +1,12 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {Platform} from 'react-native';
 import colors from '../config/colors';
 
 export default {
 =======
+=======
+>>>>>>> Stashed changes
 export default {
   colors: {
     primary: '#1E90FF',
@@ -29,5 +32,8 @@ export default {
     padding: 5,
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
   },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 };
