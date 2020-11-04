@@ -1,9 +1,11 @@
 import React from 'react';
-import {ImageBackground} from 'react-native';
+import { ImageBackground, Dimensions } from 'react-native';
+
+const {width, height} = Dimensions.get('window')
 
 export default AppBackground = ({children, image}) => {
   return (
-    <ImageBackground style={{flex: 1}} source={image}>
+    <ImageBackground style={{width, height}} source={require('../../assets/images/appBackground.png')}>
       {children}
     </ImageBackground>
   );

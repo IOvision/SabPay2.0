@@ -4,11 +4,15 @@ import {
   Text, 
   StyleSheet
 } from 'react-native';
+import AppBackground from './src/components/atoms/AppBackground'
+import Appbar from './src/components/atoms/Appbar'
 
 function App() {
   return (
     <View>
-      <Text>Hello World</Text>
+      <AppBackground>
+        <Appbar image={require('./src/assets/images/logo.png')}/>
+      </AppBackground>
     </View>
   )
 }
