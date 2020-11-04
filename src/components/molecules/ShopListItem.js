@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Image, Text } from 'react-native';
-import { shopListItemstyles } from '../../styles/FlatListItem.js'
+import { shopListItemstyles } from '../../styles/FlatListItemStyle.js'
 import { HeaderText, BodyText } from '../atoms/Text'
 
 function ShopListItem() {

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-export default TextStyle = StyleSheet.create({
+export default TextStyles = StyleSheet.create({
     headerText: {
         fontWeight: 'bold',
         fontSize: 16,
