@@ -13,9 +13,9 @@ function ShopListItem() {
                 />   
             </View>
             <View style={shopListItemstyles.shopInfo}>
-                <HeaderText style={shopListItemstyles.shopName}>Abhishek General Store</Text>
-                <BodyText style={shopListItemstyles.shopAddress}>Hari Mandir, Park Market, Hirapur, Dhanbad</Text>
-                <Text style={shopListItemstyles.stars}>*****</Text>
+                <HeaderText>Abhishek General Store</HeaderText>
+                <BodyText>Hari Mandir, Park Market, Hirapur, Dhanbad</BodyText>
+                <Text>*****</Text>
             </View>
         </View>
     )

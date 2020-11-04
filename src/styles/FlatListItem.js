@@ -20,16 +20,6 @@ export const shopListItemstyles = StyleSheet.create({
         justifyContent: "center",
         marginStart: 15
     },
-    shopName: {
-        fontSize: 16,
-        marginBottom: 2
-    },
-    shopAddress: {
-        fontSize: 14,
-        fontWeight: "400",
-        maxWidth: 250,
-        marginBottom: 4
-    },
     stars: {
 
     }
