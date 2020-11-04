@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-  View,
-  Text, 
-  StyleSheet
+  View, Text, StyleSheet
 } from 'react-native';
 
 function App() {
@@ -14,11 +12,7 @@ function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: 50,
-    height: 50,
-    backgroundColor: "aqua"
-  }
+  
 });
 
 export default App;
