@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { shopListItemstyles } from '../../styles/FlatListItem.js'
+import { HeaderText, BodyText } from '../atoms/Text'
 
 function ShopListItem() {
     return (
@@ -12,9 +13,9 @@ function ShopListItem() {
                 />   
             </View>
             <View style={shopListItemstyles.shopInfo}>
-                <Text style={shopListItemstyles.shopName}>Abhishek General Store</Text>
-                <Text style={shopListItemstyles.shopAddress}>Hari Mandir, Park Market, Hirapur, Dhanbad</Text>
-                <Text style={shopListItemstyles.stars}>*****</Text>
+                <HeaderText>Abhishek General Store</HeaderText>
+                <BodyText>Hari Mandir, Park Market, Hirapur, Dhanbad</BodyText>
+                <Text>*****</Text>
             </View>
         </View>
     )
