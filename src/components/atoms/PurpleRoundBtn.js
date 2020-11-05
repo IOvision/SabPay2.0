@@ -4,9 +4,9 @@ import { HeaderText } from '../atoms/Text.js'
 
 function PurpleRoundBtn(props) {
     return (
-        <View>
+        <View style={props.style}>
             <View style={styles.container}>
-                <HeaderText>{props.text}</HeaderText>
+                <HeaderText style={{color: "white"}}>{props.text}</HeaderText>
             </View >
         </View>
     )
@@ -17,10 +17,10 @@ export default PurpleRoundBtn
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "purple",
-        borderRadius: 20,
+        borderRadius: 25,
         padding: 10,
-        paddingHorizontal: 25,
+        paddingHorizontal: 30,
         display: "flex",
-        alignSelf: 'baseline'
+        alignSelf: 'baseline',
     }
 })

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-export default InputStyle = StyleSheet.create({
+const InputStyle = StyleSheet.create({
     background: {
         backgroundColor: '#E8E8E8',
         height: 50,
@@ -17,3 +17,5 @@ export default InputStyle = StyleSheet.create({
         fontWeight: 'bold'
     }
 })
+
+export default InputStyle
