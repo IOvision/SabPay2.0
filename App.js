@@ -4,6 +4,9 @@ import {
 } from 'react-native';
 import AppBackground from './src/components/atoms/AppBackground'
 import Appbar from './src/components/atoms/Appbar'
+import PurpleRoundBtn from './src/components/atoms/PurpleRoundBtn';
+import ShopListItem from './src/components/molecules/ShopListItem';
+import StoreItemListItem from './src/components/molecules/StoreItemListItem';
 
 function App() {
   return (
@@ -14,9 +17,5 @@ function App() {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  
-});
 
 export default App;

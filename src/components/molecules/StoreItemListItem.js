@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Image } from 'react-native';
-import RoundView from './RoundView.js'
+import RoundView from '../atoms/RoundView.js'
 import { HeaderText, BodyText } from '../atoms/Text.js'
 import { storeListItemStyle } from '../../styles/FlatListItemStyle.js'
 
