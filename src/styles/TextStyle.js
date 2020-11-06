@@ -13,6 +13,6 @@ export default TextStyle = StyleSheet.create({
         marginBottom: 4
     },
     captionText: {
-        
+        //pg8
     }
 })
