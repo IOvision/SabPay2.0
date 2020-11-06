@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 
 function RoundView(props) {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
             {props.children}
         </View>
     )
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "white",
         borderRadius: 20,
-        padding: 10
+        padding: 20
     }
 })
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
-import { HomePageCategoryListItemStyles } from '../../styles/FlatListItem'
+import { HomePageCategoryListItemStyles } from '../../styles/FlatListItemStyle'
 import { BodyText } from '../atoms/Text';
 
 function HomePageCategoryListItem({image, title}) {

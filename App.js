@@ -42,10 +42,10 @@ export default App = () => {
   return (
     <Background image={require('./src/assets/images/appBackground.png')}>
       <Header image={require('./src/assets/images/logo.png')} />
-      {/* <View style={{padding: 10}}>
-        <HomePageCategoryList data={data} style={{marginTop: 45}} />
-        <CategoryPageCategoryList data={data} />
-      </View> */}
+      <View style={{padding: 10}}>
+        {/* <HomePageCategoryList data={data} style={{marginTop: 45}} />
+        <CategoryPageCategoryList data={data} /> */}
+      </View>
     </Background>
   );
 };

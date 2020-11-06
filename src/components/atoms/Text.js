@@ -1,21 +1,21 @@
 import React from 'react'
 import { Text } from 'react-native'
-import TextStyle from '../../styles/TextStyle'
+import TextStyles from '../../styles/TextStyle'
 
-export const HeaderText = ({children}) => {
+export const HeaderText = ({children, style}) => {
     return (
-        <Text style={TextStyle.headerText}>{children}</Text>
+        <Text style={[TextStyles.headerText, style]}>{children}</Text>
     )
 }
 
 export const BodyText = ({children}) => {
     return (
-        <Text style={TextStyle.bodyText}>{children}</Text>
+        <Text style={TextStyles.bodyText}>{children}</Text>
     )
 }
 
 export const CaptionText = ({children}) => {
     return (
-        <Text style={TextStyle.captionText}>{children}</Text>
+        <Text style={TextStyles.captionText}>{children}</Text>
     )
 }

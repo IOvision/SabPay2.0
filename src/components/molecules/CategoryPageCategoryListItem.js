@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import { CaptionText } from '../atoms/Text'
-import { CategoryPageCategoryItemStyles } from '../../styles/FlatListItem'
+import { CategoryPageCategoryItemStyles } from '../../styles/FlatListItemStyle'
 
 function CategoryPageCategoryListItem({image, title}) {
     return (
