@@ -19,3 +19,9 @@ export const CaptionText = ({children}) => {
         <Text style={TextStyles.captionText}>{children}</Text>
     )
 }
+
+export const OfferText = ({children}) => {
+    return (
+        <Text style={TextStyles.offerText}>{children}</Text>
+    )
+}

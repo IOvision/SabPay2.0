@@ -5,6 +5,7 @@ const InputStyle = StyleSheet.create({
         backgroundColor: '#E8E8E8',
         height: 50,
         borderRadius: 10,
+        marginTop: 10
     },
     placeholder: {
         padding: 10,

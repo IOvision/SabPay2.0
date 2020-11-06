@@ -1,6 +1,12 @@
 import { StyleSheet } from 'react-native'
+import colors from '../assets/colors'
 
 export const styles = StyleSheet.create({
+    container:{
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: colors.medium
+    },
     subViews: {
         display: "flex",
         flexDirection: "row"
