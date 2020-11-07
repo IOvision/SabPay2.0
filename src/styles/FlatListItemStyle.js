@@ -162,3 +162,78 @@ export const HomePageCategoryListItemStyles = StyleSheet.create({
     color: colors.medium,
   },
 })
+
+export const CartItemListItemStyles = StyleSheet.create({
+  container: {
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: colors.medium,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  infoView: {
+      display: "flex",
+      flex: 1
+  },
+  subView: {
+      display: "flex",
+      flexDirection: "row",
+  },
+  discountView: {
+      display: "flex", 
+      flexDirection: "row",
+      alignItems: "center"
+  },
+  originalPrice: {
+      fontSize: 10,
+      fontWeight: "400",
+      color: "black",
+      textDecorationLine: 'line-through', 
+      textDecorationStyle: 'solid',
+      marginHorizontal: 10
+  },
+  img: {
+      display: "flex",
+      width: 90, 
+      height: 90, 
+      backgroundColor: "blue",
+      borderRadius: 10
+  },
+  itemQtyView: {
+      display: "flex",
+      flexDirection: "row",
+      marginRight: 30
+  },
+  itemQty: {
+      borderRadius: 10,
+      width: 30,
+      height: 35,
+      padding: 0,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#f6f6f6"
+  },
+  itemQtyIncrease: {
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: '#bbbbbb',
+      width: 30,
+      height: 35,
+      padding: 0,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "purple"
+  },
+  itemQtyDecrease: {
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: '#bbbbbb',
+      width: 30,
+      height: 35,
+      padding: 0,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "purple"
+  } 
+})

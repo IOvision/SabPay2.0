@@ -14,6 +14,13 @@ const TextStyles = StyleSheet.create({
     },
     captionText: {
         //pg8
+    },
+    offerText: {
+        fontSize: 12,
+        fontWeight: "400",
+        maxWidth: 250,
+        marginBottom: 4,
+        color: "green"
     }
 })
 export default TextStyles

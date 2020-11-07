@@ -1,12 +1,12 @@
 import React from 'react'
 import { View } from 'react-native'
-import RoundView from './RoundView.js'
+import RoundView from '../atoms/RoundView'
 import { HeaderText, BodyText } from '../atoms/Text.js'
 import { styles } from '../../styles/CartPriceDetailsStyle.js'
 
 function CartPriceDetails({price, discount, total}) {
     return (
-        <RoundView>
+        <RoundView style={styles.container}>
             <HeaderText>Price Details</HeaderText>
             <View style={styles.horizontalLine}></View>
             <View style={styles.subViews}>
