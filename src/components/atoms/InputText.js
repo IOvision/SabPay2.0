@@ -1,16 +1,18 @@
 import React from 'react'
 import { View, TextInput } from 'react-native'
-import InputStyle from '../../styles/InputStyle'
+import InputStyle from '../../styles/InputStyle.js'
 
-export default InputText = ({placeholder, value, backgroundStyle, onChangeText}) => {
+function InputText({placeholder, value, backgroundStyle, onChangeText, style}) {
     return (
-        <View style={[InputStyle.background, backgroundStyle]}>
+        <View style={[InputStyle.background, backgroundStyle, style]}>
             <TextInput 
                 style={value == "" || typeof value == 'undefined' ? InputStyle.placeholder : InputStyle.text } 
                 value={value}
                 placeholder={placeholder}
                 onChangeText={(text) => onChangeText(text)}
             />
-        </View>
+         </View>
     )
 }
+
+export default InputText
