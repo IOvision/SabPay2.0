@@ -1,21 +1,30 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+
+//UI
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
 import CustomDrawerContent from './HomeDrawer/CustomDrawerContent'
-
 import Header from '../components/atoms/Header'
 
+//Navigation Imports
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 
+//Colors
 import Colors from '../assets/colors'
 
+//Navigation Components
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createMaterialBottomTabNavigator();
+
+//Tab Screens
+import HomeTab from '../screens/TabNavigator/HomeTab'
+import CartTab from '../screens/TabNavigator/CartTab'
+import CategoriesTab from '../screens/TabNavigator/CategoriesTab'
+import OffersTab from '../screens/TabNavigator/OffersTab'
 
 const CenterText = ({route}) => {
     return (
@@ -39,7 +48,7 @@ const HomeRoot = () => {
         >
             <Tab.Screen 
                 name="Home" 
-                component={CenterText}
+                component={HomeTab}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="home" color={color} size={24} />
@@ -48,7 +57,7 @@ const HomeRoot = () => {
             />
             <Tab.Screen 
                 name="Categories" 
-                component={CenterText} 
+                component={CategoriesTab} 
                 options={{
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="view-grid" color={color} size={24} />
@@ -57,7 +66,7 @@ const HomeRoot = () => {
             />
             <Tab.Screen 
                 name="Offers" 
-                component={CenterText} 
+                component={OffersTab} 
                 options={{
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="percent" color={color} size={24} />
