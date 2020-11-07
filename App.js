@@ -2,19 +2,12 @@ import React from 'react';
 import {
   View, Text, StyleSheet
 } from 'react-native';
-import SearchBar from './src/components/molecules/SearchBar'
+import Root from './src/navigation/Root'
 
 function App() {
-  const [test, setTest] = React.useState("")
-  console.log(test)
   return (
     <View style={{flex: 1, backgroundColor: 'grey'}}>
-      <Text>Hello World</Text>
-      <SearchBar 
-        width={300} 
-        value={test} 
-        onChangeText={setTest}
-      />
+      <Root />
     </View>
   )
 }
