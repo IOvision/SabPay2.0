@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {
   View,
   Text, 
@@ -22,15 +23,47 @@ export default App = () => {
     <View style={styles.container}>
       <Text>App</Text>
 >>>>>>> Stashed changes
+=======
+import {View, StyleSheet, Text, FlatList} from 'react-native';
+import {HeaderText} from './src/components/atoms/Text';
+import ListItem from './src/components/molecules/lists/ListItem';
+import ListItemSeparator from './src/components/molecules/lists/ListItemSeparator';
+const data = [
+  {id: '1', title: 'John Snow'},
+  {id: '2', title: 'Arya Stark'},
+  {id: '3', title: 'Sansa Stark'},
+  {id: '4', title: 'Fucking Lanisters'},
+];
+export default App = () => {
+  return (
+    <View style={styles.container}>
+      <HeaderText>Welcome to Game of thrones</HeaderText>
+      <FlatList
+        data={data}
+        keyExtractor={(item, index) => {
+          index.toString();
+        }}
+        ItemSeparatorComponent={ListItemSeparator}
+        renderItem={({item}) => {
+          return (
+            <ListItem title={item.title} materialIconName="chevron-right" />
+          );
+        }}
+      />
+>>>>>>> Stashed changes
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+<<<<<<< Updated upstream
     width: `100%`,
     height: `100%`,
     justifyContent: `center`,
     alignItems: `center`,
+=======
+    padding: 10,
+>>>>>>> Stashed changes
   },
 });
