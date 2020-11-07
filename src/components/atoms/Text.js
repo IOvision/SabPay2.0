@@ -8,14 +8,14 @@ export const HeaderText = ({children, style}) => {
     )
 }
 
-export const BodyText = ({children}) => {
+export const BodyText = ({children, style}) => {
     return (
-        <Text style={TextStyles.bodyText}>{children}</Text>
+        <Text style={[TextStyles.bodyText, style]}>{children}</Text>
     )
 }
 
-export const CaptionText = ({children}) => {
+export const CaptionText = ({children, style}) => {
     return (
-        <Text style={TextStyles.captionText}>{children}</Text>
+        <Text style={[TextStyles.captionText, style]}>{children}</Text>
     )
 }
