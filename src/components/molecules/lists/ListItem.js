@@ -3,7 +3,6 @@ import {View, StyleSheet, Image, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../../assets/colors';
 import {BodyText, HeaderText} from './../../atoms/Text';
-// import { Icon } from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ListItem = ({
   materialIconName,
@@ -76,18 +75,3 @@ const styles = StyleSheet.create({
 export default ListItem;
 
 //Testing the List on Page 4
-
-{
-  /* <FlatList
-        data={data}
-        keyExtractor={(item, index) => {
-          index.toString();
-        }}
-        ItemSeparatorComponent={ListItemSeparator}
-        renderItem={({item}) => {
-          return (
-            <ListItem title={item.title} materialIconName="chevron-right" />
-          );
-        }}
-      /> */
-}
