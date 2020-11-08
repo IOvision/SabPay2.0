@@ -25,6 +25,7 @@ import HomeTab from '../screens/TabNavigator/HomeTab'
 import CartTab from '../screens/TabNavigator/CartTab'
 import CategoriesTab from '../screens/TabNavigator/CategoriesTab'
 import OffersTab from '../screens/TabNavigator/OffersTab'
+import ProfileScreen from '../screens/ProfileScreen'
 
 const CenterText = ({route}) => {
     return (
@@ -48,7 +49,7 @@ const HomeRoot = () => {
         >
             <Tab.Screen 
                 name="Home" 
-                component={HomeTab}
+                component={ProfileScreen}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="home" color={color} size={24} />
