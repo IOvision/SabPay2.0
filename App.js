@@ -1,52 +1,65 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import Animated from 'react-native-reanimated';
+import { StyleSheet, ImageBackground, View } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
+import ProfileEdit from './src/components/molecules/ProfileEdit'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Colors from './src/assets/colors'
+import Header from './src/components/atoms/Header'
+import { Button, Menu, Divider, Provider } from 'react-native-paper';
 
 export default function App() {
-  const renderContent = () => (
-    <View
-      style={{
-        backgroundColor: 'purple',
-        padding: 16,
-        height: 450,
-      }}
-    >
-      <Text style={{
-        fontSize: 24, 
-        fontWeight: 'bold', 
-        alignSelf: 'center',
-        color: 'white'
-        }}
-      >Profile</Text>
-    </View>
-  );
+
+  const [visible, setVisible] = React.useState(false);
+
+  const openMenu = () => setVisible(true);
+
+  const closeMenu = () => setVisible(false);
 
   const sheetRef = React.useRef(null);
-
+  const image = { uri: "https://cdn.amoanimals.com/809a6b6a6e3acc8ccf36d746bf45f7c45758241597977449.jpeg?width=2000&height=3000" };
   return (
-    <>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'papayawhip',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Button
-          title="Open Bottom Sheet"
-          //snap to works on indedx of array, here snapTo(0) = snapTo 450
-          onPress={() => sheetRef.current.snapTo(0)}
-        />
-      </View>
+    <Provider>
+      <ImageBackground source={image} style={styles.image}>
+        <Header image={require('./src/assets/images/logo.png')} menu={"false"} />
+        <View style={styles.menuView}>
+        <Menu
+          visible={visible}
+          onDismiss={closeMenu}
+          theme="white"
+          contentStyle={styles.menu}
+          anchor={<Icon style={styles.icon} name="dots-vertical" color={Colors.primary} size={54} onPress={openMenu}/>}>
+          <Menu.Item titleStyle={{color: Colors.darkgrey}} onPress={() => {}} title="Change Profile Image" />
+        </Menu>
+        </View>
+      </ImageBackground>
       <BottomSheet
         ref={sheetRef}
         //height of bottom sheet, need to be in decreasing order
-        snapPoints={[450, 100, 100]}
+        snapPoints={[400, 100, 100]}
         borderRadius={20}
-        renderContent={renderContent}
+        renderContent={ProfileEdit}
       />
-    </>
+    </Provider>
   );
 }
+
+const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+  },
+  icon: {
+    display: "flex",
+    alignSelf: "flex-end",
+    justifyContent: "flex-start"
+  }, 
+  menuView: {
+    display: "flex",
+    alignSelf: "flex-end",
+  },
+  menu: {
+    backgroundColor: Colors.white,
+    display: "flex",
+    marginEnd: 30
+  }
+})
