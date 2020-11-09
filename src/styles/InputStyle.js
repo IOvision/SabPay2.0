@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native'
+import colors from '../assets/colors'
 
 const InputStyle = StyleSheet.create({
     background: {
-        backgroundColor: '#E8E8E8',
+        backgroundColor: colors.lightGrey,
         height: 50,
         borderRadius: 10,
         marginTop: 10
@@ -14,7 +15,7 @@ const InputStyle = StyleSheet.create({
     },
     text: {
         padding: 10,
-        color: 'purple',
+        color: colors.primary,
         fontWeight: 'bold'
     }
 })

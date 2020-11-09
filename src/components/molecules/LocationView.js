@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import InputText from '../atoms/InputText'
 import { CaptionText, HeaderText, BodyText } from '../atoms/Text'
 import PurpleRoundButton from '../atoms/PurpleRoundBtn'
+import colors from '../../assets/colors'
  
 function AddressInputView() {
     return (
@@ -30,7 +31,7 @@ export default AddressInputView
 
 const styles = StyleSheet.create({
     text: {
-        color: "purple",
+        color: colors.primary,
         fontSize: 20,
         marginTop: 15
     },
