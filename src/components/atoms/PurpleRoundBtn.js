@@ -1,12 +1,13 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import colors from '../../assets/colors.js'
 import { HeaderText } from '../atoms/Text.js'
 
 function PurpleRoundBtn(props) {
     return (
-        <View style={props.style}>
-            <View style={styles.container}>
-                <HeaderText style={{color: "white"}}>{props.text}</HeaderText>
+        <View>
+            <View style={[styles.container, props.style]}>
+                <HeaderText style={{color: "white", ...props.textStyle}}>{props.text}</HeaderText>
             </View >
         </View>
     )
@@ -16,7 +17,7 @@ export default PurpleRoundBtn
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "purple",
+        backgroundColor: colors.primary,
         borderRadius: 25,
         padding: 10,
         paddingHorizontal: 30,

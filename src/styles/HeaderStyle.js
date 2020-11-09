@@ -12,8 +12,8 @@ const HeaderStyle = StyleSheet.create({
     overflow: 'hidden',
   },
   logo: {
-    height: 50,
-    width: 80,
+    height: 100,
+    width: 100,
     resizeMode: 'contain',
     padding: 20,
     margin: 10,

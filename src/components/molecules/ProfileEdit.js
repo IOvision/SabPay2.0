@@ -1,19 +1,40 @@
-import React from 'react';
-import {
-  View, Text, StyleSheet
-} from 'react-native';
-import Root from './src/navigation/Root'
+import React from 'react'
+import RoundView from '../atoms/RoundView'
+import InputText from '../atoms/InputText'
+import PurpleRoundBtn from '../atoms/PurpleRoundBtn'
+import { StyleSheet, View } from 'react-native'
+import { HeaderText } from '../atoms/Text'
 
-function App() {
-  return (
-    <View style={{flex: 1, backgroundColor: 'grey'}}>
-      <Root />
-    </View>
-  )
+function ProfileEdit() {
+    return (
+        <RoundView>
+            <View style={styles.headerTextView}>
+                <HeaderText style={styles.headerText}>Your Profile</HeaderText>
+            </View>
+            <InputText placeholder="Enter Name" />
+            <InputText placeholder="Enter Email" />
+            <InputText placeholder="Enter Phone Number" />
+            <InputText placeholder="Enter Address" />
+            <PurpleRoundBtn style={styles.btnView} text="Save" />
+        </RoundView>
+    )
 }
 
-const styles = StyleSheet.create({
-  
-});
+export default ProfileEdit
 
-export default App
+const styles = StyleSheet.create({
+    headerTextView: {
+      margin: 20,
+      marginTop: 0,
+      alignItems: "center",
+    },
+    headerText: {
+      fontSize: 24,
+      color: 'grey'
+    },
+    btnView: {
+      marginTop: 20,
+      marginBottom: 50,
+      alignSelf: "center",
+    }
+})

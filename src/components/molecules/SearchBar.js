@@ -3,9 +3,9 @@ import { TextInput, View } from 'react-native'
 import SearchBarStyle from '../../styles/SearchBarStyle'
 import Magnify from '../../assets/icons/Magnify'
 
-const SearchBar = ({width, placeholder, value, onChangeText}) => {
+const SearchBar = ({style, placeholder, value, onChangeText}) => {
     return (
-        <View style={{ ...SearchBarStyle.background, width }}>
+        <View style={{ ...SearchBarStyle.background, ...style }}>
             <Magnify />
             <TextInput 
                 placeholder={placeholder} 

@@ -25,7 +25,11 @@ import HomeTab from '../screens/TabNavigator/HomeTab'
 import CartTab from '../screens/TabNavigator/CartTab'
 import CategoriesTab from '../screens/TabNavigator/CategoriesTab'
 import OffersTab from '../screens/TabNavigator/OffersTab'
-import ProfileScreen from '../screens/ProfileScreen'
+
+//Drawer Screens
+import ProfileScreen from '../screens/DrawerNavigator/ProfileScreen'
+
+import colors from '../assets/colors'
 
 const CenterText = ({route}) => {
     return (
@@ -49,7 +53,7 @@ const HomeRoot = () => {
         >
             <Tab.Screen 
                 name="Home" 
-                component={ProfileScreen}
+                component={HomeTab}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="home" color={color} size={24} />
@@ -74,6 +78,15 @@ const HomeRoot = () => {
                     )
                 }}
             />
+            <Tab.Screen 
+                name="Cart" 
+                component={CartTab} 
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons name="cart" color={color} size={24} />
+                    )
+                }}
+            />
         </Tab.Navigator> 
     )
 }
@@ -83,7 +96,7 @@ const RootDrawer = () => {
         <Drawer.Navigator initialRouteName="Tab Navigator" drawerContent={(props) => <CustomDrawerContent {...props} /> }>
             <Drawer.Screen name="Dashboard" component={HomeRoot} />
             <Drawer.Screen name="My Cart" component={CenterText} />
-            <Drawer.Screen name="My Account" component={CenterText} />
+            <Drawer.Screen name="My Account" component={ProfileScreen} />
             <Drawer.Screen name="Offer Zone" component={CenterText} />
             <Drawer.Screen name="Change Store" component={CenterText} />
             <Drawer.Screen name="User Agreement" component={CenterText} />
@@ -99,7 +112,7 @@ const MainStack = () => {
                 screenOptions={{
                     header: ({ scene, previous, navigation}) => {
                         return (
-                            <Header navigation={navigation} image={require('../assets/images/logo.png')} />
+                            <View style={{backgroundColor: colors.primary}}><Header navigation={navigation} image={require('../assets/images/logo.png')} /></View>
                         )
                     }
                 }}
