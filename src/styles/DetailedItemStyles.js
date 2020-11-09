@@ -1,16 +1,24 @@
 import {StyleSheet} from 'react-native';
 import colors from '../assets/colors';
 export const DetailedItemStyle = StyleSheet.create({
-  container: {flex: 1},
+  container: 
+  {
+    flex: 1,
+    padding: 10,
+    marginTop: 10
+  },
   imageContainer: {
-    width: '100%',
+    display: "flex",
+    flex: 1,
+    width: '90%',
     height: 300,
     borderRadius: 20,
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
-    borderColor: colors.silverGrey,
+    alignSelf: "center",
+    padding: 13,
+    borderColor: colors.silverGrey
   },
   image: {
     width: '100%',
