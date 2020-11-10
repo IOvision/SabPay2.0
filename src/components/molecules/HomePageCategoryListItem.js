@@ -1,14 +1,15 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
+import { color } from 'react-native-reanimated';
 import { HomePageCategoryListItemStyles } from '../../styles/FlatListItemStyle'
-import { BodyText } from '../atoms/Text';
+import { HeaderText } from '../atoms/Text';
 
-function HomePageCategoryListItem({image, title}) {
+function HomePageCategoryListItem({image, title, colour}) {
     return (
         <View style={HomePageCategoryListItemStyles.container}>
-            <Image source={image} style={HomePageCategoryListItemStyles.image} />
+            <Image source={image} onPress={() => console.log(colour)} style={{...HomePageCategoryListItemStyles.image, backgroundColor: colour}} />
             <View style={HomePageCategoryListItemStyles.textView}>
-                <BodyText style={HomePageCategoryListItemStyles.text}>{title}</BodyText>
+                <HeaderText>{title}</HeaderText>
             </View>
         </View>
     )

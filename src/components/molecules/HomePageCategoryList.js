@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, FlatList } from 'react-native'
 import HomePageCategoryItem from './HomePageCategoryListItem.js' 
+import randomColor, { colorLength } from '../../assets/randomColor'
 
 function HomePageCategoryList({data, style}) {
     return (
@@ -9,8 +10,8 @@ function HomePageCategoryList({data, style}) {
                 horizontal
                 data={data}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({item}) => {
-                return <HomePageCategoryItem image={item.image} title={item.title} />;
+                renderItem={({item, index}) => {
+                return <HomePageCategoryItem image={item.image} title={item.title} colour={randomColor[(index % colorLength) + 1]} />;
                 }}
             />
         </View>

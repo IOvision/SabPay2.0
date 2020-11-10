@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native'
+import Colors from '../assets/colors'
 
 const TextStyles = StyleSheet.create({
     headerText: {
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 15,
         marginBottom: 2          
     },
     bodyText: {
@@ -13,7 +14,10 @@ const TextStyles = StyleSheet.create({
         marginBottom: 4
     },
     captionText: {
-        //pg8
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginBottom: 2,
+        color: Colors.darkgrey
     },
     offerText: {
         fontSize: 12,

@@ -156,11 +156,6 @@ export const HomePageCategoryListItemStyles = StyleSheet.create({
       display: "flex",
       alignItems: "center"
   },
-  text: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    color: colors.medium,
-  },
 })
 
 export const CartItemListItemStyles = StyleSheet.create({
