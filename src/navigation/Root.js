@@ -112,7 +112,7 @@ const MainStack = () => {
                 screenOptions={{
                     header: ({ scene, previous, navigation}) => {
                         return (
-                            <View style={{backgroundColor: colors.primary}}><Header navigation={navigation} image={require('../assets/images/logo.png')} /></View>
+                            <View style={{backgroundColor: colors.background}}><Header navigation={navigation} image={require('../assets/images/logo.png')} /></View>
                         )
                     }
                 }}
