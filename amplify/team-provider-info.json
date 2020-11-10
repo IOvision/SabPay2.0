@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sabpay20-dev-05417-authRole",
+      "UnauthRoleArn": "arn:aws:iam::843829705417:role/amplify-sabpay20-dev-05417-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::843829705417:role/amplify-sabpay20-dev-05417-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-sabpay20-dev-05417-deployment",
+      "UnauthRoleName": "amplify-sabpay20-dev-05417-unauthRole",
+      "StackName": "amplify-sabpay20-dev-05417",
+      "StackId": "arn:aws:cloudformation:ap-south-1:843829705417:stack/amplify-sabpay20-dev-05417/2ac6db80-22c1-11eb-a1b9-0a445c80cb04",
+      "AmplifyAppId": "d1ue62zpfho60v"
+    },
+    "categories": {
+      "auth": {
+        "sabpay2079c806e1": {}
+      }
+    }
+  }
+}

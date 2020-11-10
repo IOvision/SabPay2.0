@@ -121,7 +121,7 @@ export const CategoryPageCategoryItemStyles = StyleSheet.create({
       text: {
         fontWeight: 'bold',
         fontSize: 18,
-        color: colors.medium,
+        color: colors.darkgrey,
       },
       textContainer: {
         alignItems: 'center',
@@ -131,8 +131,8 @@ export const CategoryPageCategoryItemStyles = StyleSheet.create({
         bottom: -20,
         width: '100%',
         borderRadius: 15,
-        borderWidth: 2,
-        borderColor: colors.medium,
+        borderWidth: 1,
+        borderColor: colors.grey,
       },
 })
 
