@@ -1,7 +1,7 @@
 export default {
   primary: '#8021EB', //purple
   white: "#ffffff",
-  background: "F9F9F9",
+  background: "#F9F9F9",
   grey: "#A7A7A7", //inactive navigation color
   lightGrey: "#E8E8E8", //textboxs/input fiels
   mediumGrey: "#CDCDCD", //orders color

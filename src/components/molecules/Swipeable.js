@@ -16,9 +16,10 @@ export default function Swipeable() {
 
 const styles = StyleSheet.create({
     container: {
-        height: "25%",
+        height: 150,
         borderRadius: 10,
-        flex: 1
+        flex: 1,
+        marginBottom: 40
     },
     children: {
         flex: 1, 

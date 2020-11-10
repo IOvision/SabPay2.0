@@ -138,7 +138,7 @@ export const HomePageCategoryListItemStyles = StyleSheet.create({
   container: {
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
-    marginBottom: 40,
+    marginBottom: 30,
     alignItems: 'center',
     marginEnd: 10,
   },
@@ -233,34 +233,33 @@ export const CartItemListItemStyles = StyleSheet.create({
 
 export const StoreSpecialListItemStyles = StyleSheet.create({
   container: {
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
     marginBottom: 40,
     alignItems: 'center',
-    marginEnd: 10,
+    marginEnd: 30,
+    borderWidth: 2,
+    borderColor: colors.lightGrey,
+    borderRadius: 10,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     resizeMode: 'cover',
     borderRadius: 10,
+    marginBottom:  5
   },
   containerView: {
     width: 100,
     display: 'flex',
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: colors.medium,
-    borderRadius: 10,
   },
   text: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 13,
     color: colors.medium,
   },
   price: {
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: 11,
     color: colors.medium,
   },
 });

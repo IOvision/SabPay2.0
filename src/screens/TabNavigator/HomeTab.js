@@ -1,10 +1,30 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, ScrollView, FlatList } from 'react-native'
 import Swipeable from '../../components/molecules/Swipeable'
 import { CaptionText } from '../../components/atoms/Text'
 import HomePageCategoryList from '../../components/molecules/HomePageCategoryList'
+import StoreSpecialList from '../../components/molecules/StoreSpecialList'
+import HomePageOffers from '../../components/molecules/HomePageOffers'
+import SearchBar from '../../components/molecules/SearchBar'
 
 const HomeTab = () => {
+    const object = [
+        {
+            title:"Dry Fruits (Diwali Special)",
+            image: require('../../assets/images/dryFruits.png'),
+            price: "Rs. 1000"
+        },
+        {
+            title:"Skin Care Kit",
+            image: require('../../assets/images/Skin_Care_Kit.png'),
+            price: "Rs. 650"
+        },
+        {
+            title:"Spices Special Combo",
+            image: require('../../assets/images/Spices_Special_Combo.png'),
+            price: "Rs. 210"
+        }
+    ]
     const data = [
         {
             title: "Groceries & Staples",
@@ -32,16 +52,20 @@ const HomeTab = () => {
         }
     ]
     return (
-        <View style={{display: "flex", flex: 1, padding: 15}}>
-            <CaptionText style={{marginBottom: 10}}>Shop By Category</CaptionText>
+        <ScrollView style={{display: "flex", flex: 1, padding: 15}}>
+            <SearchBar />
+            <CaptionText style={{marginBottom: 10, marginTop: 30}}>Shop By Category</CaptionText>
             <HomePageCategoryList data={data} />
             <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
             <Swipeable />
+            <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
+            <StoreSpecialList object={object} />
             <Swipeable />
-        </View>
+            <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
+            <HomePageOffers />
+            <View style={{height: 30}}></View>
+        </ScrollView>
     )
 }
 
 export default HomeTab
-
-

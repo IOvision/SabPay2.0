@@ -7,7 +7,7 @@ import { HeaderText } from '../atoms/Text';
 function HomePageCategoryListItem({image, title, colour}) {
     return (
         <View style={HomePageCategoryListItemStyles.container}>
-            <Image source={image} onPress={() => console.log(colour)} style={{...HomePageCategoryListItemStyles.image, backgroundColor: colour}} />
+            <Image source={image} style={{...HomePageCategoryListItemStyles.image, backgroundColor: colour}} />
             <View style={HomePageCategoryListItemStyles.textView}>
                 <HeaderText>{title}</HeaderText>
             </View>
