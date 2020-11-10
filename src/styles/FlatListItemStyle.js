@@ -235,7 +235,7 @@ export const StoreSpecialListItemStyles = StyleSheet.create({
   container: {
     marginBottom: 40,
     alignItems: 'center',
-    marginEnd: 30,
+    marginEnd: 20,
     borderWidth: 2,
     borderColor: colors.lightGrey,
     borderRadius: 10,
@@ -248,7 +248,7 @@ export const StoreSpecialListItemStyles = StyleSheet.create({
     marginBottom:  5
   },
   containerView: {
-    width: 100,
+    width: 120,
     display: 'flex',
     alignItems: 'center',
   },

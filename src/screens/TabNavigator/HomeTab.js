@@ -52,7 +52,7 @@ const HomeTab = () => {
         }
     ]
     return (
-        <ScrollView style={{display: "flex", flex: 1, padding: 15}}>
+        <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
             <SearchBar />
             <CaptionText style={{marginBottom: 10, marginTop: 30}}>Shop By Category</CaptionText>
             <HomePageCategoryList data={data} />
