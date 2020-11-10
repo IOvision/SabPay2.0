@@ -102,37 +102,37 @@ export const storeListItemStyle = StyleSheet.create({
 });
 
 export const CategoryPageCategoryItemStyles = StyleSheet.create({
-  container: {
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
-    width: '100%',
-    height: 200,
-    marginBottom: 40,
-  },
-  image: {
-    width: `100%`,
-    height: 200,
-    resizeMode: 'cover',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  text: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: colors.medium,
-  },
-  textContainer: {
-    alignItems: 'center',
-    backgroundColor: colors.white,
-    position: 'absolute',
-    padding: 13,
-    bottom: -20,
-    width: '100%',
-    borderRadius: 15,
-    borderWidth: 2,
-    borderColor: colors.medium,
-  },
-});
+    container: {
+        borderTopLeftRadius: 22,
+        borderTopRightRadius: 22,
+        width: '100%',
+        height: 200,
+        marginBottom: 40,
+      },
+      image: {
+        width: `100%`,
+        height: 200,
+        resizeMode: 'cover',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+      },
+      text: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: colors.darkgrey,
+      },
+      textContainer: {
+        alignItems: 'center',
+        backgroundColor: colors.white,
+        position: 'absolute',
+        padding: 13,
+        bottom: -20,
+        width: '100%',
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: colors.grey,
+      },
+})
 
 export const HomePageCategoryListItemStyles = StyleSheet.create({
   container: {

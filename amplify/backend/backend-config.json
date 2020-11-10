@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "sabpay2079c806e1": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
