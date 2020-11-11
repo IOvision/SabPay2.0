@@ -160,10 +160,12 @@ export const CartItemListItemStyles = StyleSheet.create({
   container: {
     borderStyle: 'solid',
     borderWidth: 1,
-    borderColor: colors.medium,
+    borderColor: colors.mediumGrey,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    margin: 20,
+    marginBottom: -10
   },
   infoView: {
     display: 'flex',
