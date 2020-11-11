@@ -28,7 +28,7 @@ import OffersTab from '../screens/TabNavigator/OffersTab'
 
 //Drawer Screens
 import ProfileScreen from '../screens/DrawerNavigator/ProfileScreen'
-
+import ItemsScreen from '../screens/StackNavigator/ItemsScreen'
 import colors from '../assets/colors'
 
 const CenterText = ({route}) => {
@@ -118,6 +118,7 @@ const MainStack = () => {
                 }}
             >   
                 <Stack.Screen name="Main" component={RootDrawer} />
+                <Stack.Screen name="Items" component={ItemsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )

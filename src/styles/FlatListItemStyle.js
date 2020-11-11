@@ -28,6 +28,9 @@ export const storeListItemStyle = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: colors.mediumGrey,
+    marginVertical: 10
   },
   itemImageView: {
     width: 90,
