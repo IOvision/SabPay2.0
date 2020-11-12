@@ -135,7 +135,7 @@ export const CategoryPageCategoryItemStyles = StyleSheet.create({
         width: '100%',
         borderRadius: 15,
         borderWidth: 1,
-        borderColor: colors.grey,
+        borderColor: colors.mediumGrey,
       },
 })
 

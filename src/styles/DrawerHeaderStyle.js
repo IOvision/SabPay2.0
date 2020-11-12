@@ -7,6 +7,7 @@ const DrawerHeaderStyle = StyleSheet.create({
         marginTop: -10,
         backgroundColor: Colors.primary,
         justifyContent: 'flex-start',
+        padding: 10
     },
     image: {
         height: 60,

@@ -3,6 +3,7 @@ import { View, Text, Dimensions, FlatList } from 'react-native'
 import colors from '../../assets/colors'
 import SearchBar from '../../components/molecules/SearchBar'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { BodyText } from '../../components/atoms/Text'
 
 const { width, height } = Dimensions.get('window')
 const data = [
@@ -71,7 +72,7 @@ const CategoryListTab = () => {
                 renderItem={({item}) => {
                     return (
                         <View style={{padding: 15, flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <Text style={{fontSize: 22}}>{item.name}</Text>
+                            <BodyText>{item.name}</BodyText>
                             <Icon name='chevron-right' size={24} color='black' />
                         </View>
                     )
