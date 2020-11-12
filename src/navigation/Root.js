@@ -30,6 +30,7 @@ import OffersTab from '../screens/TabNavigator/OffersTab'
 import ProfileScreen from '../screens/DrawerNavigator/ProfileScreen'
 
 import colors from '../assets/colors'
+import CategoryList from '../screens/StackNavigator/CategoryList'
 
 const CenterText = ({route}) => {
     return (
@@ -93,7 +94,17 @@ const HomeRoot = () => {
 
 const RootDrawer = () => {
     return (
-        <Drawer.Navigator initialRouteName="Tab Navigator" drawerContent={(props) => <CustomDrawerContent {...props} /> }>
+        <Drawer.Navigator 
+            initialRouteName="Tab Navigator" 
+            drawerContent={(props) => <CustomDrawerContent {...props} /> }
+            screenOptions={{
+                header: ({ scene, previous, navigation}) => {
+                    return (
+                        <View style={{backgroundColor: colors.primary}}><Header navigation={navigation} image={require('../assets/images/logo.png')} /></View>
+                    )
+                }
+            }}
+        >
             <Drawer.Screen name="Dashboard" component={HomeRoot} />
             <Drawer.Screen name="My Cart" component={CenterText} />
             <Drawer.Screen name="My Account" component={ProfileScreen} />
@@ -112,12 +123,23 @@ const MainStack = () => {
                 screenOptions={{
                     header: ({ scene, previous, navigation}) => {
                         return (
-                            <View style={{backgroundColor: colors.background}}><Header navigation={navigation} image={require('../assets/images/logo.png')} /></View>
+                            <Header navigation={navigation} image={require('../assets/images/logo.png')} />
                         )
                     }
                 }}
             >   
                 <Stack.Screen name="Main" component={RootDrawer} />
+                <Stack.Screen 
+                    name="CategoryList" 
+                    component={CategoryList}
+                    options={{
+                        header: ({ scene, previous, navigation}) => {
+                            return (
+                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                            )
+                        }
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     )

@@ -13,6 +13,7 @@ function HomePageCategoryList({data, style}) {
                 renderItem={({item, index}) => {
                 return <HomePageCategoryItem image={item.image} title={item.title} colour={randomColor[(index % colorLength) + 1]} />;
                 }}
+                showsHorizontalScrollIndicator={false}
             />
         </View>
     )

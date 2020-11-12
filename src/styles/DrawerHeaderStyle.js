@@ -3,11 +3,10 @@ import Colors from '../assets/colors'
 
 const DrawerHeaderStyle = StyleSheet.create({
     container: {
-        height: 110,
+        flexDirection: 'row',
         marginTop: -10,
         backgroundColor: Colors.primary,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'flex-start',
     },
     image: {
         height: 60,

@@ -8,18 +8,18 @@ export default function HomePageOffers() {
         <View>
             <View style={styles.container1}>
                 <View style={styles.view1}>
-                    <Image source={require('../../assets/images/maggi.png')} style={styles.image}/>
+                    <Image resizeMode='contain' source={require('../../assets/images/maggi.png')} style={styles.image}/>
                 </View>
                 <View style={styles.view2}>
-                    <Image source={require('../../assets/images/ice-cream.png')} style={styles.image}/>
+                    <Image resizeMode='contain' source={require('../../assets/images/ice-cream.png')} style={styles.image}/>
                 </View>
             </View>
             <View style={styles.container2}>
-            <View style={styles.view3}>
-                <Image source={require('../../assets/images/pads.png')} style={styles.image}/>
-            </View>
+                <View style={styles.view3}>
+                    <Image resizeMode='contain' source={require('../../assets/images/pads.png')} style={styles.image}/>
+                </View>
                 <View style={styles.view4}>
-                    <Image source={require('../../assets/images/jam.png')} style={styles.image}/>
+                    <Image resizeMode='contain' source={require('../../assets/images/jam.png')} style={styles.image}/>
                 </View>
             </View>
             <View style={styles.circleView}>

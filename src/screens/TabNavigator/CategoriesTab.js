@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Dimensions } from 'react-native'
+import { View, Dimensions, TouchableOpacity } from 'react-native'
 import colors from '../../assets/colors'
 import SearchBar from '../../components/molecules/SearchBar'
 
@@ -7,24 +7,21 @@ import CategoryPageCategoryList from '../../components/molecules/CategoryPageCat
 
 const data = [
     {
-        image: require('../../assets/images/Cauliflower.jpg'),
-        title: "Cauliflower"
+        image: require('../../assets/images/grocery.png'),
+        title: "Groceries and Staples"
     },
     {
-        image: require('../../assets/images/Cauliflower.jpg'),
-        title: "Cauliflower"
+        image: require('../../assets/images/PackagedFoods.png'),
+        title: "Packaged Food"
     },
     {
-        image: require('../../assets/images/Cauliflower.jpg'),
-        title: "Cauliflower"
+        image: require('../../assets/images/HouseholdCare.png'),
+        title: "Household Care"
     }
 ]
 
 const { width, height } = Dimensions.get('window')
 const CategoriesTab = ({navigation}) => {
-
-    const [search, setSearch] = React.useState(false)
-
     return (
         <View style={{flex: 1}}>
             <View style={{
@@ -39,19 +36,17 @@ const CategoriesTab = ({navigation}) => {
                     {scaleX: 2.5}
                 ]
             }} />
-            <SearchBar
-                placeholder="Search"
-                style={{marginTop: 50, marginHorizontal: 20}}
-                onFocus={() => setSearch(true)}
-            />
-            {
-                search ? (
-                    null
-                ) : <CategoryPageCategoryList 
+            <TouchableOpacity onPress={() => navigation.push('CategoryList')}>
+                <SearchBar
+                    placeholder="Search"
+                    style={{marginTop: 50, marginHorizontal: 20}}
+                    editable={false}
+                />
+            </TouchableOpacity>
+            <CategoryPageCategoryList 
                 data={data}
                 style={{margin: 10, marginTop: 20, marginBottom: 0, flex: 1}}
             />
-            }
         </View>
     )
 }

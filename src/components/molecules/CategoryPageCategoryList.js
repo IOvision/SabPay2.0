@@ -8,8 +8,8 @@ function CategoryPageCategoryList({data, style}) {
             <FlatList
                 data={data}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({item}) => {
-                return <CategoryPageCategoryListItem image={item.image} title={item.title} />;
+                renderItem={({item, index}) => {
+                return <CategoryPageCategoryListItem index={index} image={item.image} title={item.title} />;
                 }}
             />
         </View>

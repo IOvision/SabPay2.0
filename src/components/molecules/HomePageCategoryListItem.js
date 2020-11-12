@@ -9,7 +9,7 @@ function HomePageCategoryListItem({image, title, colour}) {
         <View style={HomePageCategoryListItemStyles.container}>
             <Image source={image} style={{...HomePageCategoryListItemStyles.image, backgroundColor: colour}} />
             <View style={HomePageCategoryListItemStyles.textView}>
-                <HeaderText>{title}</HeaderText>
+                <HeaderText style={{textAlign: 'center', fontSize: 14}}>{title}</HeaderText>
             </View>
         </View>
     )

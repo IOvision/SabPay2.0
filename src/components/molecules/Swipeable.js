@@ -1,11 +1,13 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image} from 'react-native'
+import { View, Text, StyleSheet, Image, Dimensions} from 'react-native'
 import { Pages } from 'react-native-pages'
+
+const {width} = Dimensions.get('window')
 
 export default function Swipeable() {
     return (
         <View style={styles.container}>
-            <Pages style={styles.children}>
+            <Pages>
                 <Image style={styles.children} source={require("../../assets/images/Cauliflower.jpg")}/>
                 <Image style={styles.children} source={require("../../assets/images/Cauliflower.jpg")} />
                 <Image style={styles.children} source={require("../../assets/images/Cauliflower.jpg")} />
@@ -17,13 +19,14 @@ export default function Swipeable() {
 const styles = StyleSheet.create({
     container: {
         height: 150,
-        borderRadius: 10,
         flex: 1,
-        marginBottom: 40
+        marginBottom: 40,
     },
     children: {
         flex: 1, 
-        backgroundColor: 'red', 
-        borderRadius: 10
+        backgroundColor: 'red',
+        borderRadius: 10,
+        height: 150,
+        width: width-30,
     }
 })

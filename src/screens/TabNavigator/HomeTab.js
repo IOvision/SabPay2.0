@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, StyleSheet, ScrollView, FlatList } from 'react-native'
+import { View, StyleSheet, ScrollView, FlatList, Dimensions } from 'react-native'
 import Swipeable from '../../components/molecules/Swipeable'
-import { CaptionText } from '../../components/atoms/Text'
+import { BodyText, CaptionText, HeaderText } from '../../components/atoms/Text'
 import HomePageCategoryList from '../../components/molecules/HomePageCategoryList'
 import StoreSpecialList from '../../components/molecules/StoreSpecialList'
 import HomePageOffers from '../../components/molecules/HomePageOffers'
 import SearchBar from '../../components/molecules/SearchBar'
+import colors from '../../assets/colors'
 
+const {width} = Dimensions.get('window')
 const HomeTab = () => {
     const object = [
         {
@@ -52,19 +54,33 @@ const HomeTab = () => {
         }
     ]
     return (
-        <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
-            <SearchBar />
-            <CaptionText style={{marginBottom: 10, marginTop: 30}}>Shop By Category</CaptionText>
-            <HomePageCategoryList data={data} />
-            <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
-            <Swipeable />
-            <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
-            <StoreSpecialList object={object} />
-            <Swipeable />
-            <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
-            <HomePageOffers />
-            <View style={{height: 30}}></View>
-        </ScrollView>
+        <View style={{flex: 1, backgroundColor: 'white'}}>
+            <View style={{
+                backgroundColor: colors.primary, 
+                width: width/2,
+                height: 130,
+                marginTop: -75,
+                borderRadius: 50,
+                position: 'absolute',
+                alignSelf:'center',
+                transform: [
+                    {scaleX: 2.5}
+                ]
+            }} />
+            <SearchBar placeholder="What are you looking for?" style={{marginHorizontal: 20, marginTop: 30, marginBottom: 5}} onChangeText={(text) => console.log(text)} />
+            <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
+                <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
+                <HomePageCategoryList data={data} />
+                <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
+                <Swipeable />
+                <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
+                <StoreSpecialList object={object} />
+                <Swipeable />
+                <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
+                <HomePageOffers />
+                <View style={{height: 30}}></View>
+            </ScrollView>
+        </View>
     )
 }
 
