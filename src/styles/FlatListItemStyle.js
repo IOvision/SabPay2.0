@@ -111,6 +111,8 @@ export const CategoryPageCategoryItemStyles = StyleSheet.create({
         width: '100%',
         height: 200,
         marginBottom: 40,
+        borderWidth: 1,
+        borderColor: colors.mediumGrey
       },
       image: {
         width: `100%`,

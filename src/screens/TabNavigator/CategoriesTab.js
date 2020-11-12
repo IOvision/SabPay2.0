@@ -23,7 +23,7 @@ const data = [
 const { width, height } = Dimensions.get('window')
 const CategoriesTab = ({navigation}) => {
     return (
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: "white"}}>
             <View style={{
                 backgroundColor: colors.primary, 
                 width: width/2,
