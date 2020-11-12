@@ -7,7 +7,7 @@ function PurpleRoundBtn(props) {
     return (
         <View>
             <View style={[styles.container, props.style]}>
-                <HeaderText style={{color: "white", ...props.textStyle}}>{props.text}</HeaderText>
+                <HeaderText style={{color: props.color ? props.color :"white", ...props.textStyle}}>{props.text}</HeaderText>
             </View >
         </View>
     )

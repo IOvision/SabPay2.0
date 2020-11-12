@@ -18,12 +18,12 @@ const OffersTab = () => {
                     <Swiper
                         cards={data}
                         backgroundColor={'#ffffff'}
-                        disableTopSwipe={true}
-                        disableBottomSwipe={true}
                         animateCardOpacity={true}
                         onSwipedLeft={() => console.log("Left")}
                         onSwipedRight={() => console.log("Right")}
                         onSwipedAll={() => setEmpty(true)}
+                        verticalSwipe={false}
+                        outputRotationRange={["10deg", "0deg", "-10deg"]}
                         overlayLabels={{
                             left: {
                               title: 'DISCARD',

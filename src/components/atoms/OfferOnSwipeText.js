@@ -7,7 +7,7 @@ export default function OfferOnSwipeText(props) {
     if(props.text == "CONFIRM") {
         return (
             <View style={styles.containerConfirm}> 
-            <CaptionText style={{color: "#00A445"}}>{props.text}</CaptionText>
+            <CaptionText style={{color: "#006400"}}>{props.text}</CaptionText>
             </View>
         )
     }
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     containerConfirm: {
         padding: 10, 
         borderRadius: 10,
-        borderColor: "#00A445",
+        borderColor: "#006400",
         borderWidth: 2,
         margin: 10,
         backgroundColor: colors.background

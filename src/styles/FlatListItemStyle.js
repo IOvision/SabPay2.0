@@ -28,6 +28,9 @@ export const storeListItemStyle = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: colors.mediumGrey,
+    marginVertical: 10
   },
   itemImageView: {
     width: 90,
@@ -160,10 +163,12 @@ export const CartItemListItemStyles = StyleSheet.create({
   container: {
     borderStyle: 'solid',
     borderWidth: 1,
-    borderColor: colors.medium,
+    borderColor: colors.mediumGrey,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    margin: 20,
+    marginBottom: -10
   },
   infoView: {
     display: 'flex',

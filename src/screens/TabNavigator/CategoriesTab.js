@@ -46,6 +46,7 @@ const CategoriesTab = ({navigation}) => {
             <CategoryPageCategoryList 
                 data={data}
                 style={{margin: 10, marginTop: 20, marginBottom: 0, flex: 1}}
+                navigation={navigation}
             />
         </View>
     )

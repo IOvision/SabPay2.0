@@ -10,6 +10,7 @@ function HomePageCategoryList({data, style}) {
                 horizontal
                 data={data}
                 keyExtractor={(item, index) => index.toString()}
+                showsHorizontalScrollIndicator={false}
                 renderItem={({item, index}) => {
                 return <HomePageCategoryItem image={item.image} title={item.title} colour={randomColor[(index % colorLength) + 1]} />;
                 }}
