@@ -1,12 +1,11 @@
 import React from 'react'
-import { View, StyleSheet, ScrollView, FlatList, Dimensions } from 'react-native'
+import { View, ScrollView, Dimensions } from 'react-native'
 import Swipeable from '../../components/molecules/Swipeable'
-import { BodyText, CaptionText, HeaderText } from '../../components/atoms/Text'
+import { CaptionText } from '../../components/atoms/Text'
 import HomePageCategoryList from '../../components/molecules/HomePageCategoryList'
 import StoreSpecialList from '../../components/molecules/StoreSpecialList'
 import HomePageOffers from '../../components/molecules/HomePageOffers'
-import SearchBar from '../../components/molecules/SearchBar'
-import colors from '../../assets/colors'
+import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
 const {width} = Dimensions.get('window')
 const HomeTab = ({navigation}) => {
@@ -55,19 +54,7 @@ const HomeTab = ({navigation}) => {
     ]
     return (
         <View style={{flex: 1, backgroundColor: 'white'}}>
-            <View style={{
-                backgroundColor: colors.primary, 
-                width: width/2,
-                height: 130,
-                marginTop: -75,
-                borderRadius: 50,
-                position: 'absolute',
-                alignSelf:'center',
-                transform: [
-                    {scaleX: 2.5}
-                ]
-            }} />
-            <SearchBar placeholder="What are you looking for?" style={{marginHorizontal: 20, marginTop: 30, marginBottom: 5}} onChangeText={(text) => console.log(text)} />
+            <SearchWithBackground />
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
                 <HomePageCategoryList data={data} navigation={navigation}/>

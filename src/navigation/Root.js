@@ -108,9 +108,9 @@ const RootDrawer = () => {
             }}
         >
             <Drawer.Screen name="Dashboard" component={HomeRoot} />
-            <Drawer.Screen name="My Cart" component={CenterText} />
+            <Drawer.Screen name="My Cart" component={CartTab} />
             <Drawer.Screen name="My Account" component={ProfileScreen} />
-            <Drawer.Screen name="Offer Zone" component={CenterText} />
+            <Drawer.Screen name="Offer Zone" component={OffersTab} />
             <Drawer.Screen name="Change Store" component={ShopScreen} />
             <Drawer.Screen name="User Agreement" component={CenterText} />
             <Drawer.Screen name="Return Policy" component={CenterText} />

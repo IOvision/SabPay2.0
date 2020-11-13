@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { View, TouchableOpacity, StyleSheet, Dimensions, FlatList, Button, Text } from 'react-native'
-import SearchBar from '../../components/molecules/SearchBar'
 import { HeaderText, BodyText } from '../../components/atoms/Text'
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
 import colors from '../../assets/colors'
@@ -10,6 +9,7 @@ import CartPriceDetails from '../../components/molecules/CartPriceDetails'
 import Login from '../../components/molecules/Login'
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
+import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
 const {width, height} = Dimensions.get('window')
 const CartTab = (props) => {
@@ -41,19 +41,7 @@ const CartTab = (props) => {
       ];
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
-            <View style={{
-                backgroundColor: colors.primary, 
-                width: width/2,
-                height: 150,
-                marginTop: -75,
-                borderRadius: 50,
-                position: 'absolute',
-                alignSelf:'center',
-                transform: [
-                    {scaleX: 2.5}
-                ]
-            }} />
-            <SearchBar placeholder="Search" style={{marginTop: 50, marginHorizontal: 15 }} />
+            <SearchWithBackground />
             <FlatList 
                 data={DATA}
                 ListEmptyComponent={() => {

@@ -4,6 +4,7 @@ import Swiper from 'react-native-deck-swiper'
 import randomColor, { colorLength } from '../../assets/randomColor'
 import { CaptionText } from '../../components/atoms/Text'
 import OfferOnSwipeText from '../../components/atoms/OfferOnSwipeText'
+import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
 const OffersTab = () => {
     const data = [require('../../assets/images/jam.png'), require('../../assets/images/pads.png'), require('../../assets/images/jam.png'), require('../../assets/images/pads.png')]
@@ -11,9 +12,10 @@ const OffersTab = () => {
     const [empty, setEmpty] = useState(data ? false : true) 
     return (
         <View style={styles.container}>
+            <View style={{zIndex: 1}}><SearchWithBackground /></View>
             {
                 empty ? (
-                    <CaptionText style={{margin: 10}}>There are no offers</CaptionText>
+                    <View style={styles.textContainer}><CaptionText style={{margin: 10}}>Currently there are no offers :(</CaptionText></View>
                 ) : (
                     <Swiper
                         cards={data}
@@ -72,7 +74,13 @@ const styles = StyleSheet.create({
         borderColor: "#E8E8E8",
         justifyContent: "center",
         backgroundColor: randomColor[Math.floor(Math.random() * colorLength)],
-        marginBottom: 100
+        marginBottom: 120,
+        marginTop: 50
       },
-      image: {display: "flex", justifyContent: "center", alignSelf: "center"}
+      image: {display: "flex", justifyContent: "center", alignSelf: "center"},
+      textContainer: {
+          flex: 1,
+          alignItems : 'center',
+          justifyContent : 'center'
+      }
   });

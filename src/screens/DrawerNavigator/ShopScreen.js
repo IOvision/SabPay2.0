@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, FlatList } from 'react-native'
 import ShopListItem from '../../components/molecules/ShopListItem'
+import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
 export default function ShopScreen() {
     const data = [
@@ -25,6 +26,8 @@ export default function ShopScreen() {
     ]
     return (
         <View style={{backgroundColor: "white", flex: 1}}>
+            <SearchWithBackground />
+            <View style={{height: 20}}></View>
             <FlatList
                 data={data}
                 keyExtractor={(item, index) => index.toString()}

@@ -112,6 +112,7 @@ export const CategoryPageCategoryItemStyles = StyleSheet.create({
         borderTopRightRadius: 22,
         width: '100%',
         height: 200,
+        // marginBottom: 10,
         marginBottom: 40,
         borderWidth: 1,
         borderColor: colors.mediumGrey

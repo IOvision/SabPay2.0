@@ -8,9 +8,10 @@ function CategoryPageCategoryList({data, style, navigation}) {
             <FlatList
                 data={data}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({item}) => {
-                return <CategoryPageCategoryListItem image={item.image} title={item.title} onPress={() => navigation.navigate("Items")}/>;
+                renderItem={({item, index}) => {
+                return <CategoryPageCategoryListItem index={index} image={item.image} title={item.title} onPress={() => navigation.navigate("Items")}/>;
                 }}
+                showsVerticalScrollIndicator={false}
             />
         </View>
     )
