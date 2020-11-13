@@ -2,17 +2,23 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import InputText from '../../components/atoms/InputText'
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
-import EmptyCartSvg from '../../assets/svg/EmptyCartSvg'
+import ProfilePageSvg from '../../assets/svg/ProfilePageSvg'
+import Background from '../../components/atoms/Background'
 
 
 export default function ProfileScreen() {
   return (
     <View style={styles.container}>
-      <EmptyCartSvg />
-      <InputText placeholder="name" />
-      <InputText placeholder="phone" />
-      <InputText placeholder="address" />
-      <PurpleRoundBtn text="Save" style={styles.btn}/>
+      <Background />
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <ProfilePageSvg />
+      </View>
+      <View style={{flex: 1}}>
+        <InputText placeholder="name" error={true} />
+        <InputText placeholder="phone" />
+        <InputText placeholder="address" />
+        <PurpleRoundBtn text="Save" style={styles.btn}/>
+      </View>
     </View>
   )
 }
@@ -22,7 +28,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "white",
     display: "flex",
-    flex: 1
+    flex: 1,
   },
   btn: {
     margin: 20,

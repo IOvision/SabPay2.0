@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Dimensions, FlatList } from 'react-native'
 import colors from '../../assets/colors'
-import SearchBar from '../../components/molecules/SearchBar'
+import SearchBar from '../../components/atoms/SearchBar'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { BodyText } from '../../components/atoms/Text'
 

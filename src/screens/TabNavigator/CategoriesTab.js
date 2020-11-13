@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, Dimensions, TouchableOpacity } from 'react-native'
 import colors from '../../assets/colors'
-import SearchBar from '../../components/molecules/SearchBar'
+import SearchBar from '../../components/atoms/SearchBar'
 
 import CategoryPageCategoryList from '../../components/molecules/CategoryPageCategoryList'
+import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
 const data = [
     {
@@ -24,25 +25,7 @@ const { width, height } = Dimensions.get('window')
 const CategoriesTab = ({navigation}) => {
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
-            <View style={{
-                backgroundColor: colors.primary, 
-                width: width/2,
-                height: 150,
-                marginTop: -75,
-                borderRadius: 50,
-                position: 'absolute',
-                alignSelf:'center',
-                transform: [
-                    {scaleX: 2.5}
-                ]
-            }} />
-            <TouchableOpacity onPress={() => navigation.push('CategoryList')}>
-                <SearchBar
-                    placeholder="Search"
-                    style={{marginTop: 50, marginHorizontal: 20}}
-                    editable={false}
-                />
-            </TouchableOpacity>
+            <SearchWithBackground />
             <CategoryPageCategoryList 
                 data={data}
                 style={{margin: 10, marginTop: 20, marginBottom: 0, flex: 1}}

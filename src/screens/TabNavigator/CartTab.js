@@ -1,12 +1,13 @@
 import React from 'react'
 import { View, Image, StyleSheet, Dimensions, FlatList, Text } from 'react-native'
-import SearchBar from '../../components/molecules/SearchBar'
+import SearchBar from '../../components/atoms/SearchBar'
 import { HeaderText } from '../../components/atoms/Text'
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
 import colors from '../../assets/colors'
 import EmptyCartSvg from '../../assets/svg/EmptyCartSvg'
 import CartItemListItem from '../../components/molecules/CartItemListItem'
 import CartPriceDetails from '../../components/molecules/CartPriceDetails'
+import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
 const {width, height} = Dimensions.get('window')
 const CartTab = (props) => {
@@ -26,19 +27,7 @@ const CartTab = (props) => {
       ];
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
-            <View style={{
-                backgroundColor: colors.primary, 
-                width: width/2,
-                height: 150,
-                marginTop: -75,
-                borderRadius: 50,
-                position: 'absolute',
-                alignSelf:'center',
-                transform: [
-                    {scaleX: 2.5}
-                ]
-            }} />
-            <SearchBar placeholder="Search" style={{marginTop: 50, marginHorizontal: 15 }} />
+            <SearchWithBackground />
             <FlatList 
                 data={DATA}
                 ListEmptyComponent={() => {
