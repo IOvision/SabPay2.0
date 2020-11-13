@@ -9,7 +9,7 @@ import SearchBar from '../../components/molecules/SearchBar'
 import colors from '../../assets/colors'
 
 const {width} = Dimensions.get('window')
-const HomeTab = () => {
+const HomeTab = ({navigation}) => {
     const object = [
         {
             title:"Dry Fruits (Diwali Special)",
@@ -70,7 +70,7 @@ const HomeTab = () => {
             <SearchBar placeholder="What are you looking for?" style={{marginHorizontal: 20, marginTop: 30, marginBottom: 5}} onChangeText={(text) => console.log(text)} />
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
-                <HomePageCategoryList data={data} />
+                <HomePageCategoryList data={data} navigation={navigation}/>
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
                 <Swipeable />
                 <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>

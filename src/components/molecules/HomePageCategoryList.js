@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native'
 import HomePageCategoryItem from './HomePageCategoryListItem.js' 
 import randomColor, { colorLength } from '../../assets/randomColor'
 
-function HomePageCategoryList({data, style}) {
+function HomePageCategoryList({data, style, navigation}) {
     return (
         <View style={style}>
             <FlatList
@@ -12,7 +12,7 @@ function HomePageCategoryList({data, style}) {
                 keyExtractor={(item, index) => index.toString()}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item, index}) => {
-                return <HomePageCategoryItem image={item.image} title={item.title} colour={randomColor[(index % colorLength) + 1]} />;
+                return <HomePageCategoryItem image={item.image} title={item.title} colour={randomColor[(index % colorLength) + 1]} onPress={() => navigation.navigate("Items")} />;
                 }}
                 showsHorizontalScrollIndicator={false}
             />
