@@ -36,7 +36,8 @@ const CategoriesTab = ({navigation}) => {
                     {scaleX: 2.5}
                 ]
             }} />
-            <TouchableOpacity onPress={() => navigation.push('CategoryList')}>
+            <TouchableOpacity onPress={() => navigation.push('CategoryList')}
+                activeOpacity={0.9}>
                 <SearchBar
                     placeholder="Search"
                     style={{marginTop: 50, marginHorizontal: 20}}

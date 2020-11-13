@@ -50,7 +50,7 @@ const DetailedItem = ({data, renderItem}) => {
       />
       <View style={DetailedItemStyle.line} />
       {
-        itemDetail ? (
+        data.itemDetail ? (
           <View>
             <HeaderText style={DetailedItemStyle.name}>About the Product</HeaderText>
             <Text style={DetailedItemStyle.detail}>{data.itemDetail}</Text>

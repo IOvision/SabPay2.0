@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
         borderStyle: "solid",
         borderWidth: 1,
         borderColor: colors.mediumGrey,
-        margin: 20
+        margin: 20,
+        borderRadius: 10
     },
     subViews: {
         display: "flex",
@@ -17,10 +18,11 @@ export const styles = StyleSheet.create({
         flex: 1
     },
     horizontalLine: {
-        height: 2,
-        backgroundColor: "grey",
+        height: 1,
+        backgroundColor: colors.mediumGrey,
         display: "flex",
         marginTop: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        marginHorizontal: -20
     }
 }) 

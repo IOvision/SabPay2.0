@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, Image, StyleSheet, Text } from 'react-native'
 import Swiper from 'react-native-deck-swiper'
-import randomColor from '../../assets/randomColor'
+import randomColor, { colorLength } from '../../assets/randomColor'
 import { CaptionText } from '../../components/atoms/Text'
 import OfferOnSwipeText from '../../components/atoms/OfferOnSwipeText'
 
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "#E8E8E8",
         justifyContent: "center",
-        backgroundColor: randomColor[Math.floor(Math.random() * 10)],
+        backgroundColor: randomColor[Math.floor(Math.random() * colorLength)],
         marginBottom: 100
       },
       image: {display: "flex", justifyContent: "center", alignSelf: "center"}

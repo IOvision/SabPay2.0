@@ -72,16 +72,15 @@ export const storeListItemStyle = StyleSheet.create({
     marginRight: 30,
   },
   itemQty: {
-    borderRadius: 10,
+    borderRadius: 5,
     width: 30,
     height: 35,
-    padding: 0,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f6f6f6',
   },
   itemQtyIncrease: {
-    borderRadius: 10,
+    borderRadius: 5,
     borderWidth: 1,
     borderColor: colors.mediumGrey,
     width: 30,
@@ -92,7 +91,7 @@ export const storeListItemStyle = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   itemQtyDecrease: {
-    borderRadius: 10,
+    borderRadius: 5,
     borderWidth: 1,
     borderColor: colors.mediumGrey,
     width: 30,
@@ -163,14 +162,15 @@ export const HomePageCategoryListItemStyles = StyleSheet.create({
 
 export const CartItemListItemStyles = StyleSheet.create({
   container: {
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: colors.mediumGrey,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     margin: 20,
-    marginBottom: -10
+    marginBottom: -10,
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: colors.mediumGrey,
+    borderRadius: 10
   },
   infoView: {
     display: 'flex',
@@ -193,6 +193,9 @@ export const CartItemListItemStyles = StyleSheet.create({
     textDecorationStyle: 'solid',
     marginHorizontal: 10,
   },
+  weight: {
+    backgroundColor: colors.lightGrey, padding: 5, borderRadius: 10, width: 40, alignItems: "center", borderColor: colors.mediumGrey
+  },
   img: {
     display: 'flex',
     width: 90,
@@ -203,39 +206,29 @@ export const CartItemListItemStyles = StyleSheet.create({
   itemQtyView: {
     display: 'flex',
     flexDirection: 'row',
-    marginRight: 30,
+    marginTop: 5
   },
   itemQty: {
-    borderRadius: 10,
-    width: 30,
-    height: 35,
+    borderColor: colors.grey,
     padding: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f6f6f6',
   },
   itemQtyIncrease: {
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#bbbbbb',
-    width: 30,
-    height: 35,
-    padding: 0,
+    borderColor: colors.grey,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.primary,
+    padding: 0,
   },
   itemQtyDecrease: {
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#bbbbbb',
-    width: 30,
-    height: 35,
-    padding: 0,
+    borderColor: colors.grey,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.primary,
+    padding: 0,
   },
+  touchableForIncDec: {
+    width: 25, height: 32, backgroundColor: colors.primary, justifyContent: "center", alignItems: "center"
+  }
 });
 
 export const StoreSpecialListItemStyles = StyleSheet.create({

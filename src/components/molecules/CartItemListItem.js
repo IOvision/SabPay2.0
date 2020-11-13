@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import RoundView from '../atoms/RoundView'
-import { View, Image, Text } from 'react-native'
+import { View, Image, Text, FlatList } from 'react-native'
 import { HeaderText, BodyText, OfferText } from '../atoms/Text'
 import { CartItemListItemStyles } from '../../styles/FlatListItemStyle'
+import CartPriceDetails from './CartPriceDetails'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import colors from '../../assets/colors'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 function CartItemListItem() {
+    const [qty, setQty] = useState(1)
     return (
         <RoundView style={CartItemListItemStyles.container}>
             <View style={CartItemListItemStyles.infoView}>
-                <HeaderText>Breyers Buttersrcoth Ripple</HeaderText>
+                <HeaderText>Breyers Butterscotch Ripple</HeaderText>
 
                 <View style={CartItemListItemStyles.subView}>
                     <BodyText>Rs. 360</BodyText>
@@ -18,27 +23,34 @@ function CartItemListItem() {
                     </View>
                 </View>
 
-                <OfferText>1 Offer Apllied</OfferText>
+                <OfferText>1 Offer Applied</OfferText>
 
-                <View style={CartItemListItemStyles.itemQtyView}>
-                    <RoundView style={CartItemListItemStyles.itemQtyIncrease}>
-                        <BodyText>+</BodyText>
-                    </RoundView>
-                    <RoundView style={CartItemListItemStyles.itemQty}>
-                        <BodyText>11</BodyText>
-                    </RoundView>
-                    <RoundView style={CartItemListItemStyles.itemQtyDecrease}>
-                        <BodyText>-</BodyText>
-                    </RoundView>
-                </View>
-                
+                <RoundView style={CartItemListItemStyles.weight}><BodyText>5Kg</BodyText></RoundView>
+
             </View>
             
-            <View>
+            <View style={{alignItems: "center"}}>
                 <Image
                     style={CartItemListItemStyles.img}
-                    source={{uri: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fsproutsocial.com%2Finsights%2Fsocial-media-image-sizes-guide%2F&psig=AOvVaw1YzM-RjPTcgQGMXHXbVTtv&ust=1604558173182000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKiwjZKj6OwCFQAAAAAdAAAAABAD'}}
+                    source={require('../../assets/images/Cauliflower.jpg')}
                 />
+                <View style={CartItemListItemStyles.itemQtyView}>
+                    <View style={CartItemListItemStyles.itemQtyIncrease}>
+                        <TouchableOpacity style={CartItemListItemStyles.touchableForIncDec} onPress={() => setQty(qty + 1)} activeOpacity={0.9}>
+                            <MaterialCommunityIcons name="plus" color={colors.white} size={16} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={CartItemListItemStyles.itemQty}>
+                        <TouchableOpacity style={{...CartItemListItemStyles.touchableForIncDec, backgroundColor: colors.lightGrey}} activeOpacity={0.9}>
+                            <BodyText>{qty}</BodyText>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={CartItemListItemStyles.itemQtyDecrease}>
+                    <TouchableOpacity style={CartItemListItemStyles.touchableForIncDec} onPress={() => setQty(qty - 1)} activeOpacity={0.9}>
+                        <MaterialCommunityIcons name="minus" color={colors.white} size={16} />
+                    </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         </RoundView>
     )

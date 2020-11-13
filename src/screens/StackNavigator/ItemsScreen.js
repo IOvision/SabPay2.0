@@ -22,7 +22,7 @@ export default function ItemsScreen({navigation}) {
             <FlatList 
                 data={DATA}
                 renderItem={({item, index}) => {
-                return <StoreItemListItem />
+                return <StoreItemListItem navigation={navigation} />
                 }}
             />
         </View>

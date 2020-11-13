@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     inputView: {
         display: "flex",
         flexDirection: "row",
-        justifyContent: "center"
+        justifyContent: "center",
+        marginBottom: 20
     },
     input: {
         marginTop: 20,

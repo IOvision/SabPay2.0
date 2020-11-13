@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Image, TouchableOpacity } from 'react-native';
 import RoundView from '../atoms/RoundView.js'
 import { HeaderText, BodyText } from '../atoms/Text.js'
 import { storeListItemStyle } from '../../styles/FlatListItemStyle.js'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import colors from '../../assets/colors'
 
-function StoreItemListItem() {
+function StoreItemListItem({navigation}) {
+    const [qty, setQty] = useState(1)
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Details")} activeOpacity={0.9}>
             <RoundView style={storeListItemStyle.container}>
                 <View style={storeListItemStyle.itemImageView}>
                     <Image 
@@ -21,7 +24,30 @@ function StoreItemListItem() {
                         <RoundView style={storeListItemStyle.itemSize}>
                             <BodyText>5 Kg</BodyText>
                         </RoundView>
+                        
+
+
                         <View style={storeListItemStyle.itemQtyView}>
+                            <View style={storeListItemStyle.itemQtyIncrease}>
+                                <TouchableOpacity onPress={() => setQty(qty + 1)} activeOpacity={0.9}>
+                                    <MaterialCommunityIcons name="plus" color={colors.white} size={16} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={storeListItemStyle.itemQty}>
+                                <TouchableOpacity activeOpacity={0.9}>
+                                    <BodyText>{qty}</BodyText>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={storeListItemStyle.itemQtyDecrease}>
+                            <TouchableOpacity  onPress={() => setQty(qty - 1)} activeOpacity={0.9}>
+                                <MaterialCommunityIcons name="minus" color={colors.white} size={16} />
+                            </TouchableOpacity>
+                            </View>
+                        </View>
+
+
+
+                        {/* <View style={storeListItemStyle.itemQtyView}>
                             <RoundView style={storeListItemStyle.itemQtyIncrease}>
                                 <BodyText>+</BodyText>
                             </RoundView>
@@ -31,7 +57,7 @@ function StoreItemListItem() {
                             <RoundView style={storeListItemStyle.itemQtyDecrease}>
                                 <BodyText>-</BodyText>
                             </RoundView>
-                        </View>
+                        </View> */}
                     </View>
                 </View>
             </RoundView>

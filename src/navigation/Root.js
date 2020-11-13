@@ -29,6 +29,7 @@ import OffersTab from '../screens/TabNavigator/OffersTab'
 //Drawer Screens
 import ProfileScreen from '../screens/DrawerNavigator/ProfileScreen'
 import ItemsScreen from '../screens/StackNavigator/ItemsScreen'
+import ItemDetailScreen from '../screens/StackNavigator/ItemDetailScreen'
 import colors from '../assets/colors'
 import CategoryList from '../screens/StackNavigator/CategoryList'
 
@@ -143,6 +144,17 @@ const MainStack = () => {
                 <Stack.Screen 
                     name="Items" 
                     component={ItemsScreen}
+                    options={{
+                        header: ({ scene, previous, navigation}) => {
+                            return (
+                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                            )
+                        }
+                    }}
+                />
+                <Stack.Screen 
+                    name="Details" 
+                    component={ItemDetailScreen}
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
