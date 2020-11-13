@@ -25,8 +25,6 @@ function StoreItemListItem({navigation}) {
                             <BodyText>5 Kg</BodyText>
                         </RoundView>
                         
-
-
                         <View style={storeListItemStyle.itemQtyView}>
                             <View style={storeListItemStyle.itemQtyIncrease}>
                                 <TouchableOpacity onPress={() => setQty(qty + 1)} activeOpacity={0.9}>
@@ -44,8 +42,6 @@ function StoreItemListItem({navigation}) {
                             </TouchableOpacity>
                             </View>
                         </View>
-
-
 
                         {/* <View style={storeListItemStyle.itemQtyView}>
                             <RoundView style={storeListItemStyle.itemQtyIncrease}>

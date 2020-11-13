@@ -2,6 +2,8 @@ import React from 'react'
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { shopListItemstyles } from '../../styles/FlatListItemStyle.js'
 import { HeaderText, BodyText } from '../atoms/Text'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import colors from '../../assets/colors'
 
 function ShopListItem() {
     return (
@@ -15,7 +17,13 @@ function ShopListItem() {
             <View style={shopListItemstyles.shopInfo}>
                 <HeaderText>Abhishek General Store</HeaderText>
                 <BodyText>Hari Mandir, Park Market, Hirapur, Dhanbad</BodyText>
-                <Text>*****</Text>
+                <View style={{flexDirection: "row"}}>
+                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
+                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
+                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
+                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
+                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
+                </View>
             </View>
         </View>
     )

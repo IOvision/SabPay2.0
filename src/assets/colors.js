@@ -7,7 +7,8 @@ export default {
   mediumGrey: "#CDCDCD", //orders color
   darkgrey: "#6D6D6D", //font color
   blue: "#04035C",
-  danger: '#ff5252'
+  danger: '#ff5252',
+  gold: "#FFD700"
   // secondary: '#4ecdc4',
   // black: '#000',
   // white: '#fff',

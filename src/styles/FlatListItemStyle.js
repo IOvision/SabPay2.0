@@ -8,6 +8,9 @@ export const shopListItemstyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     padding: 14,
+    borderWidth: 1,
+    borderColor: colors.mediumGrey,
+    marginTop: 5
   },
   shopImage: {
     display: 'flex',
