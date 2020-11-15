@@ -29,6 +29,7 @@ import OffersTab from '../screens/TabNavigator/OffersTab'
 //Drawer Screens
 import ProfileScreen from '../screens/DrawerNavigator/ProfileScreen'
 import ShopScreen from '../screens/DrawerNavigator/ShopScreen'
+import OrderHistory from '../screens/DrawerNavigator/OrderHistoryScreen'
 import ItemsScreen from '../screens/StackNavigator/ItemsScreen'
 import ItemDetailScreen from '../screens/StackNavigator/ItemDetailScreen'
 import colors from '../assets/colors'
@@ -109,6 +110,7 @@ const RootDrawer = () => {
         >
             <Drawer.Screen name="Dashboard" component={HomeRoot} />
             <Drawer.Screen name="My Cart" component={CartTab} />
+            <Drawer.Screen name="Order History" component={OrderHistory} />
             <Drawer.Screen name="My Account" component={ProfileScreen} />
             <Drawer.Screen name="Offer Zone" component={OffersTab} />
             <Drawer.Screen name="Change Store" component={ShopScreen} />
