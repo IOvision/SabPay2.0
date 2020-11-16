@@ -14,7 +14,7 @@ import SearchWithBackground from '../../components/molecules/SearchWithBackgroun
 const {width, height} = Dimensions.get('window')
 const CartTab = (props) => {
     const sheetRef = React.useRef(null);
-    const [isLogin, setIsLogin] = useState(true)
+    const [isLogin, setIsLogin] = useState(false)
     const handleContinue = () => (
         <Login />
     )
@@ -62,9 +62,9 @@ const CartTab = (props) => {
                 }}
                 ListFooterComponent={() => {
                     return (
-                        <View>
+                        <View style={{margin: 20}}>
                             <CartPriceDetails />
-                            <HeaderText style={{marginLeft: 20}}>Delivery Options</HeaderText>
+                            <HeaderText style={{marginLeft: 20, marginTop: 10}}>Delivery Options</HeaderText>
                             <View style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: 10, marginBottom: 10}}>
                                 <View style={{flex: 1,
                                     flexDirection: 'row',

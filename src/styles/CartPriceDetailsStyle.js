@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
         borderStyle: "solid",
         borderWidth: 1,
         borderColor: colors.mediumGrey,
-        margin: 20,
         borderRadius: 10
     },
     subViews: {

@@ -33,7 +33,7 @@ import ItemsScreen from '../screens/StackNavigator/ItemsScreen'
 import ItemDetailScreen from '../screens/StackNavigator/ItemDetailScreen'
 import colors from '../assets/colors'
 import CategoryList from '../screens/StackNavigator/CategoryList'
-import OrderDetails from '../screens/StackNavigator/PlaceOrder'
+import PlaceOrder from '../screens/StackNavigator/PlaceOrder'
 
 const CenterText = ({route}) => {
     return (
