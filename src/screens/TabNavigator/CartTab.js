@@ -14,17 +14,10 @@ import SearchWithBackground from '../../components/molecules/SearchWithBackgroun
 const {width, height} = Dimensions.get('window')
 const CartTab = (props) => {
     const sheetRef = React.useRef(null);
-    const [isLogin, setIsLogin] = useState(false)
-    const handleContinue = () => {
-        if(!isLogin) {
-            return (
-                <Login />
-            )
-        } else {
-            //TODO: fill below
-            props.navigation.navigate("")
-        }
-    }
+    const [isLogin, setIsLogin] = useState(true)
+    const handleContinue = () => (
+        <Login />
+    )
     const DATA = [
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -41,14 +34,14 @@ const CartTab = (props) => {
       ];
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
-            <SearchWithBackground />
+            <SearchWithBackground navigation={props.navigation} />
             <FlatList 
                 data={DATA}
                 ListEmptyComponent={() => {
                     return (
                         <View style={{height: 400, width: 400, marginTop: 20, alignItems: "center"}}>
                             <EmptyCartSvg />
-                            <PurpleRoundBtn 
+                            <PurpleRoundBtn
                                 style={{
                                     alignSelf: 'center', 
                                     marginBottom: 80,
@@ -99,7 +92,7 @@ const CartTab = (props) => {
                 }}
             />
             <View style={styles.continueBtn}>
-                <PurpleRoundBtn text="Continue" style={{borderRadius: 10}} onPress={() => sheetRef.current.snapTo(0)}/>
+                <PurpleRoundBtn gradient text="Continue" style={{borderRadius: 10}} onPress={() => isLogin ? props.navigation.navigate("PlaceOrder") : sheetRef.current.snapTo(0)}/>
             </View>
             <BottomSheet
                 initialSnap={2}

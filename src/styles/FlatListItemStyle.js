@@ -214,6 +214,7 @@ export const CartItemListItemStyles = StyleSheet.create({
   },
   itemQty: {
     borderColor: colors.grey,
+    width: 25,
     padding: 0,
     alignItems: 'center',
     justifyContent: 'center',
@@ -231,7 +232,11 @@ export const CartItemListItemStyles = StyleSheet.create({
     padding: 0,
   },
   touchableForIncDec: {
-    width: 25, height: 32, backgroundColor: colors.primary, justifyContent: "center", alignItems: "center"
+    borderRadius: 5,
+    width: 25, 
+    height: 32, 
+    justifyContent: "center", 
+    alignItems: "center"
   }
 });
 

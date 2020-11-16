@@ -3,9 +3,10 @@ import Colors from '../assets/colors'
 
 const TextStyles = StyleSheet.create({
     headerText: {
-        fontWeight: 'bold',
         fontSize: 15,
-        marginBottom: 2          
+        marginBottom: 2,
+        fontFamily: 'OpenSans-SemiBold',
+        letterSpacing: 0.1
     },
     bodyText: {
         fontSize: 14,
@@ -14,10 +15,10 @@ const TextStyles = StyleSheet.create({
         marginBottom: 4
     },
     captionText: {
-        fontWeight: 'bold',
         fontSize: 18,
         marginBottom: 2,
-        color: Colors.darkgrey
+        color: Colors.darkgrey,
+        fontFamily: 'OpenSans-Bold',
     },
     offerText: {
         fontSize: 12,
