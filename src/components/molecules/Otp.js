@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text } from 'react-native';
 import InputText from '../atoms/InputText';
-import OtpInput from 'react-otp-input';
 
 function Otp() {
     const [otp, setOtp] = useState("")
@@ -11,14 +10,6 @@ function Otp() {
             <InputText placeholder="s" style={styles.input} />
             <InputText placeholder="s" style={styles.input} />
             <InputText placeholder="s" style={styles.input} />
-            {/* <OtpInput
-                value={otp}
-                onChange={() => console.log("testing")}
-                numInputs={4}
-                separator={<span>-</span>}
-                shouldAutoFocus={true}
-                isInputNum={true}
-            /> */}
         </View>
     )
 }
