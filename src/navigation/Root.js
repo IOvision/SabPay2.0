@@ -36,6 +36,7 @@ import colors from '../assets/colors'
 import CategoryList from '../screens/StackNavigator/CategoryList'
 import PlaceOrder from '../screens/StackNavigator/PlaceOrder'
 import OrderDetail from '../screens/StackNavigator/OrderDetail'
+import OrderPlacedScreen from '../screens/StackNavigator/OrderPlacedScreen'
 
 const CenterText = ({route}) => {
     return (
@@ -182,6 +183,17 @@ const MainStack = () => {
                 <Stack.Screen 
                     name="OrderDetail" 
                     component={OrderDetail}
+                    options={{
+                        header: ({ scene, previous, navigation}) => {
+                            return (
+                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                            )
+                        }
+                    }}
+                />
+                <Stack.Screen 
+                    name="OrderPlacedScreen" 
+                    component={OrderPlacedScreen}
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
