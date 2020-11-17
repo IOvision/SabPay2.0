@@ -3,15 +3,15 @@ import RoundView from '../atoms/RoundView'
 import { View, Image, Text, FlatList } from 'react-native'
 import { HeaderText, BodyText, OfferText } from '../atoms/Text'
 import { CartItemListItemStyles } from '../../styles/FlatListItemStyle'
-import CartPriceDetails from './CartPriceDetails'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../../assets/colors'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
-function CartItemListItem() {
+
+function CartItemListItem({style}) {
     const [qty, setQty] = useState(1)
     return (
-        <RoundView style={CartItemListItemStyles.container}>
+        <RoundView style={[CartItemListItemStyles.container, style]}>
             <View style={CartItemListItemStyles.infoView}>
                 <HeaderText>Breyers Butterscotch Ripple</HeaderText>
 

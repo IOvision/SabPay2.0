@@ -2,7 +2,7 @@ import React from 'react'
 import {View, StyleSheet, Text, FlatList} from 'react-native';
 import MyOrderListItem from './MyOrderListItem';
 
-export default function MyOrderList() {
+export default function MyOrderList({navigation}) {
     const data = [
         {
           id: 1,
@@ -35,7 +35,7 @@ export default function MyOrderList() {
                 data={data}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) => {
-                return <MyOrderListItem data={item} />;
+                return <MyOrderListItem data={item} navigation={navigation} />;
                 }}
             />
         </View>

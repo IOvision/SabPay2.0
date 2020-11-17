@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import colors from '../../assets/colors';
 import {HeaderText, CustomText} from './../atoms/Text';
 
-export default function MyOrderListItem({data}) {
+export default function MyOrderListItem({data, navigation}) {
     return (
-<View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("OrderDetail")} activeOpacity={0.9} >
       <Image
         source={data.image}
         style={{
@@ -27,7 +27,7 @@ export default function MyOrderListItem({data}) {
         size={24}
         color="grey"
       />
-    </View>
+    </TouchableOpacity>
     )
 }
 

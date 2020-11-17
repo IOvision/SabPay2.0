@@ -14,7 +14,7 @@ import SearchWithBackground from '../../components/molecules/SearchWithBackgroun
 const {width, height} = Dimensions.get('window')
 const CartTab = (props) => {
     const sheetRef = React.useRef(null);
-    const [isLogin, setIsLogin] = useState(false)
+    const [isLogin, setIsLogin] = useState(true)
     const handleContinue = () => (
         <Login />
     )
