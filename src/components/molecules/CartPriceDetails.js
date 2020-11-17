@@ -6,7 +6,7 @@ import { styles } from '../../styles/CartPriceDetailsStyle.js'
 
 function CartPriceDetails({price, discount, total, style}) {
     return (
-        <RoundView style={{...styles.container, style}}>
+        <RoundView style={[styles.container, style]}>
             <HeaderText style={{fontWeight: "normal"}}>Price Details</HeaderText>
             <View style={styles.horizontalLine}></View>
             <View style={styles.subViews}>

@@ -6,13 +6,12 @@ import RoundView from '../../components/atoms/RoundView'
 import { BodyText, HeaderText, CaptionText } from '../../components/atoms/Text'
 import { RadioButton } from 'react-native-paper'
 import CartPriceDetails from '../../components/molecules/CartPriceDetails'
-import BottomSheet from 'reanimated-bottom-sheet'
 import { PanGestureHandler } from 'react-native-gesture-handler'
 import Animated from 'react-native-reanimated'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import PlaceOrderDrag from '../../components/molecules/PlaceOrderDrag'
 
-const OrderDetails = () => {
+const OrderDetails = ({navigation}) => {
     
     const [paymentMethod, setPaymentMethod] = React.useState("upi")
     const sheetRef = React.useRef(null)
@@ -28,7 +27,7 @@ const OrderDetails = () => {
     )
 
     return (
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: "white"}}>
         <ScrollView style={{padding: 10}}>
             <RoundView style={[OrderDetailsStyle.roundView, OrderDetailsStyle.addressContainer]}>
                 <View>
@@ -69,9 +68,9 @@ const OrderDetails = () => {
                     </View>
                 </RadioButton.Group>
             </RoundView>
-            <CartPriceDetails />
+            <CartPriceDetails style={{marginBottom: 20}}/>
         </ScrollView>
-            <PlaceOrderDrag />
+            <PlaceOrderDrag navigation={navigation}/>
         </View>
     )
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
 import Animated, { call, interpolate } from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -54,7 +54,7 @@ export default class PlaceOrderDrag extends React.Component {
     }
     onDrop([x]) {
         if (x >= this.left){
-            alert('hello')
+            this.props.navigation.navigate("OrderPlacedScreen")
         }
     }
   render() {

@@ -13,7 +13,7 @@ export default function OrderPlacedScreen() {
     ];
     return (
         <ScrollView style={styles.container}>
-            <LinearGradient style={styles.gradient} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#04035C','#8021EB']} useAngle={true} angle={-20} angleCenter={{ x: 0.5, y: 0.5}}>
+            <LinearGradient style={styles.gradient} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#04035C','#8021EB']} useAngle={true} angle={0} angleCenter={{ x: 0.5, y: 0.5}}>
                 <HeaderText style={{color: colors.white, fontSize: 25}}>Order Placed!</HeaderText>
                 <HeaderText style={{color: colors.white}}>Total Price for 2 items Rs. 285</HeaderText>
             </LinearGradient>
