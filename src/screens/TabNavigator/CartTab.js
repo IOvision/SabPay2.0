@@ -15,16 +15,9 @@ const {width, height} = Dimensions.get('window')
 const CartTab = (props) => {
     const sheetRef = React.useRef(null);
     const [isLogin, setIsLogin] = useState(false)
-    const handleContinue = () => {
-        if(!isLogin) {
-            return (
-                <Login />
-            )
-        } else {
-            //TODO: fill below
-            props.navigation.navigate("")
-        }
-    }
+    const handleContinue = () => (
+        <Login />
+    )
     const DATA = [
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -41,14 +34,14 @@ const CartTab = (props) => {
       ];
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
-            <SearchWithBackground />
+            <SearchWithBackground navigation={props.navigation} />
             <FlatList 
                 data={DATA}
                 ListEmptyComponent={() => {
                     return (
                         <View style={{height: 400, width: 400, marginTop: 20, alignItems: "center"}}>
                             <EmptyCartSvg />
-                            <PurpleRoundBtn 
+                            <PurpleRoundBtn
                                 style={{
                                     alignSelf: 'center', 
                                     marginBottom: 80,
@@ -69,9 +62,9 @@ const CartTab = (props) => {
                 }}
                 ListFooterComponent={() => {
                     return (
-                        <View>
+                        <View style={{margin: 20}}>
                             <CartPriceDetails />
-                            <HeaderText style={{marginLeft: 20}}>Delivery Options</HeaderText>
+                            <HeaderText style={{marginLeft: 20, marginTop: 10}}>Delivery Options</HeaderText>
                             <View style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: 10, marginBottom: 10}}>
                                 <View style={{flex: 1,
                                     flexDirection: 'row',
@@ -99,7 +92,7 @@ const CartTab = (props) => {
                 }}
             />
             <View style={styles.continueBtn}>
-                <PurpleRoundBtn text="Continue" style={{borderRadius: 10}} onPress={() => sheetRef.current.snapTo(0)}/>
+                <PurpleRoundBtn gradient text="Continue" style={{borderRadius: 10}} onPress={() => isLogin ? props.navigation.navigate("PlaceOrder") : sheetRef.current.snapTo(0)}/>
             </View>
             <BottomSheet
                 initialSnap={2}

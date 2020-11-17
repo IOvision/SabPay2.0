@@ -4,9 +4,9 @@ import RoundView from '../atoms/RoundView'
 import { HeaderText, BodyText } from '../atoms/Text.js'
 import { styles } from '../../styles/CartPriceDetailsStyle.js'
 
-function CartPriceDetails({price, discount, total}) {
+function CartPriceDetails({price, discount, total, style}) {
     return (
-        <RoundView style={styles.container}>
+        <RoundView style={{...styles.container, style}}>
             <HeaderText style={{fontWeight: "normal"}}>Price Details</HeaderText>
             <View style={styles.horizontalLine}></View>
             <View style={styles.subViews}>

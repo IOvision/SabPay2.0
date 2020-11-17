@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Dimensions } from 'react-native'
+import { View, Dimensions, TouchableOpacity } from 'react-native'
 import colors from '../../assets/colors'
 
 import SearchBar from '../atoms/SearchBar'
 
 const {width} = Dimensions.get('window')
-const SearchWithBackground = () => {
+const SearchWithBackground = ({navigation}) => {
     return (
         <View>
             <View style={{
@@ -20,7 +20,9 @@ const SearchWithBackground = () => {
                     {scaleX: 2.5}
                 ]
             }} />
-            <SearchBar placeholder="What are you looking for?" style={{marginHorizontal: 20, marginTop: 30, marginBottom: 5}} onChangeText={(text) => console.log(text)} />
+            <TouchableOpacity onPress={() => navigation.navigate('CategoryList')}>
+                <SearchBar editable={false} placeholder="What are you looking for?" style={{marginHorizontal: 20, marginTop: 30, marginBottom: 5}} />
+            </TouchableOpacity>
         </View>
     )
 }

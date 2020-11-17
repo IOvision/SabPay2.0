@@ -2,12 +2,36 @@ import React from 'react'
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import colors from '../../assets/colors.js'
 import { HeaderText } from '../atoms/Text.js'
+import LinearGradient from 'react-native-linear-gradient'
 
-function PurpleRoundBtn(props) {
+function PurpleRoundBtn({onPress, text, style, color, textStyle, gradient, mode}) {
+
+    if (gradient) {
+        return (
+        <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
+            <LinearGradient style={[styles.container, style]} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#8021EB', '#04035C']}>
+                <HeaderText style={{color: color ? color :"white", ...textStyle}}>{text}</HeaderText>
+            </LinearGradient>
+        </TouchableOpacity>
+    )
+    }
+
+    if (mode==="outlined") {
+        return (
+            <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
+                <View style={[styles.outline, style]}>
+                    <HeaderText style={{color: colors.primary, ...textStyle}}>{text}</HeaderText>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
     return (
-        <TouchableOpacity onPress={props.onPress} activeOpacity={0.9}>
-            <View style={[styles.container, props.style]}>
-                <HeaderText style={{color: props.color ? props.color :"white", ...props.textStyle}}>{props.text}</HeaderText>
+        <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
+            <View style={[styles.container, style]}>
+                {/* <LinearGradient style={[styles.container, props.style]} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#8021EB', '#04035C']}> */}
+                    <HeaderText style={{color: color ? color :"white", ...textStyle}}>{text}</HeaderText>
+                {/* </LinearGradient> */}
             </View >
         </TouchableOpacity>
     )
@@ -23,5 +47,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         display: "flex",
         alignSelf: 'baseline',
+    },
+    outline: {
+        borderWidth: 1,
+        paddingHorizontal: 15,
+        paddingVertical: 8,
+        borderColor: colors.primary,
+        borderRadius: 8
     }
 })

@@ -9,7 +9,7 @@ import colors from '../../assets/colors'
 function StoreItemListItem({navigation}) {
     const [qty, setQty] = useState(1)
     return (
-        <TouchableOpacity onPress={() => navigation.navigate("Details")} activeOpacity={0.9}>
+        <TouchableOpacity onPress={() => navigation.navigate("ItemDetails")} activeOpacity={0.9}>
             <RoundView style={storeListItemStyle.container}>
                 <View style={storeListItemStyle.itemImageView}>
                     <Image 
