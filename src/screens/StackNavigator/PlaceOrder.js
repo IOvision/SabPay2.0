@@ -6,10 +6,29 @@ import RoundView from '../../components/atoms/RoundView'
 import { BodyText, HeaderText, CaptionText } from '../../components/atoms/Text'
 import { RadioButton } from 'react-native-paper'
 import CartPriceDetails from '../../components/molecules/CartPriceDetails'
+import BottomSheet from 'reanimated-bottom-sheet'
+import { PanGestureHandler } from 'react-native-gesture-handler'
+import Animated from 'react-native-reanimated'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import PlaceOrderDrag from '../../components/molecules/PlaceOrderDrag'
 
 const OrderDetails = () => {
+    
     const [paymentMethod, setPaymentMethod] = React.useState("upi")
+    const sheetRef = React.useRef(null)
+
+    const renderContinue = () => (
+        <View style={{backgroundColor: 'white'}}>
+            <PanGestureHandler maxPointers={1}>
+                <Animated.View>
+                    <Icon name="cart" color={colors.primary} size={24} />
+                </Animated.View>
+            </PanGestureHandler>
+        </View>
+    )
+
     return (
+        <View style={{flex: 1}}>
         <ScrollView style={{padding: 10}}>
             <RoundView style={[OrderDetailsStyle.roundView, OrderDetailsStyle.addressContainer]}>
                 <View>
@@ -51,28 +70,9 @@ const OrderDetails = () => {
                 </RadioButton.Group>
             </RoundView>
             <CartPriceDetails />
-            {/* <RoundView style={[OrderDetailsStyle.roundView, OrderDetailsStyle.pricingContainer]}>
-                <View style={OrderDetailsStyle.pricingText}>
-                    <CaptionText style={{fontSize: 16}}>Price Details</CaptionText>
-                </View>
-                <View style={{width: '100%', height: 1, backgroundColor: colors.mediumGrey}} />
-                <View style={{paddingVertical: 10}}>
-                    <View style={{ ...OrderDetailsStyle.pricingText, paddingVertical: 0}}>
-                        <BodyText>Price</BodyText>
-                        <BodyText>Rs. 300</BodyText>
-                    </View>
-                    <View style={{ ...OrderDetailsStyle.pricingText, paddingVertical: 0}}>
-                        <BodyText>Discount</BodyText>
-                        <BodyText>Rs. 15</BodyText>
-                    </View>
-                </View>
-                <View style={{width: '100%', height: 1, backgroundColor: colors.mediumGrey}} />
-                <View style={OrderDetailsStyle.pricingText}>
-                    <HeaderText>Total</HeaderText>
-                    <HeaderText>Rs. 285</HeaderText>
-                </View>
-            </RoundView> */}
         </ScrollView>
+            <PlaceOrderDrag />
+        </View>
     )
 }
 

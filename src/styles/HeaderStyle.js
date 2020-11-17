@@ -10,6 +10,14 @@ const HeaderStyle = StyleSheet.create({
     borderBottomEndRadius: 20,
     borderBottomStartRadius: 20,
     overflow: 'hidden',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.00,
+    elevation: 24,
   },
   logo: {
     height: 100,
