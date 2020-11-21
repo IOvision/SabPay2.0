@@ -11,10 +11,13 @@ import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
+//Redux
+import { connect } from 'react-redux'
+
 const {width, height} = Dimensions.get('window')
 const CartTab = (props) => {
+    console.log(props.isSignedIn)
     const sheetRef = React.useRef(null);
-    const [isLogin, setIsLogin] = useState(true)
     const handleContinue = () => (
         <Login />
     )
@@ -92,12 +95,12 @@ const CartTab = (props) => {
                 }}
             />
             <View style={styles.continueBtn}>
-                <PurpleRoundBtn gradient text="Continue" style={{borderRadius: 10}} onPress={() => isLogin ? props.navigation.navigate("PlaceOrder") : sheetRef.current.snapTo(0)}/>
+                <PurpleRoundBtn gradient text="Continue" style={{borderRadius: 10}} onPress={() => props.isSignedIn ? props.navigation.navigate("PlaceOrder") : sheetRef.current.snapTo(0)}/>
             </View>
             <BottomSheet
                 initialSnap={2}
                 ref={sheetRef}
-                snapPoints={[220, 300, 0]}
+                snapPoints={[220, 220, 0]}
                 borderRadius={10}
                 renderContent={handleContinue}
             />
@@ -105,7 +108,13 @@ const CartTab = (props) => {
     )
 }
 
-export default CartTab
+const mapStateToProps = (state) => {
+    return {
+        isSignedIn: state.userReducer.signedIn
+    }
+}
+
+export default connect(mapStateToProps)(CartTab)
 
 const styles = StyleSheet.create({
     continueBtn: {
@@ -126,5 +135,4 @@ const styles = StyleSheet.create({
         padding: 10,
         alignItems: "center"
     },
-
 })
