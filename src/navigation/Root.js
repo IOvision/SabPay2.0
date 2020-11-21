@@ -175,7 +175,7 @@ const MainStack = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header color="white" back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
                             )
                         }
                     }}

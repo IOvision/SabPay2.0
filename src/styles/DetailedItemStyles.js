@@ -21,8 +21,8 @@ export const DetailedItemStyle = StyleSheet.create({
     borderColor: colors.silverGrey
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: 100,
+    height: 100,
     borderRadius: 20,
   },
   name: {color: colors.medium, fontWeight: 'bold', marginVertical: 10},

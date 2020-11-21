@@ -5,11 +5,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Colors from '../../assets/colors'
 import { DrawerActions, TabActions } from '@react-navigation/native'
 
-const Header = ({marginTop, image, navigation, back, title}) => {
-  
+const Header = ({marginTop, image, navigation, back, title, color}) => {
   if (title) 
   return (
-    <View style={{backgroundColor: Colors.primary}}>
+    <View style={{backgroundColor: color ? color : Colors.primary}}>
       <View style={{ ...HeaderStyle.container, justifyContent: 'flex-start'}}>
         {
             !back ? (
@@ -28,7 +27,7 @@ const Header = ({marginTop, image, navigation, back, title}) => {
   )
   
   return (
-    <View style={{backgroundColor: Colors.primary}}>
+    <View style={{backgroundColor: color ? "white" : Colors.primary}}>
       <View style={[HeaderStyle.container]}>
         {
             !back ? (

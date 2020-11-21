@@ -109,7 +109,13 @@ export default CartTab
 
 const styles = StyleSheet.create({
     continueBtn: {
-        display: "flex", margin: 10, alignItems: "flex-end", borderWidth: 1, borderColor: "white", borderTopColor: colors.mediumGrey, padding: 10
+        display: "flex", 
+        margin: 10, 
+        alignItems: "flex-end", 
+        borderWidth: 1, 
+        borderColor: "white", 
+        borderTopColor: colors.mediumGrey, 
+        padding: 10
     },
     deliveryOption: {
         flex: 1,

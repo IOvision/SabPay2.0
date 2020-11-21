@@ -36,17 +36,19 @@ export const storeListItemStyle = StyleSheet.create({
     marginVertical: 10
   },
   itemImageView: {
-    width: 90,
+    width: 100,
     height: 100,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#b1b1b1',
-    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   itemImage: {
-    display: 'flex',
-    backgroundColor: 'red',
-    flex: 1,
+    width: 90,
+    height: 90,
+    backgroundColor: 'white',
+    borderRadius: 9
   },
   itemDetailsView: {
     marginLeft: 15,
@@ -164,6 +166,40 @@ export const HomePageCategoryListItemStyles = StyleSheet.create({
   },
 })
 
+export const ItemQuantityButtonStyle = StyleSheet.create({
+  itemQtyView: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 5
+  },
+  itemQty: {
+    width: 25,
+    paddingVertical: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  itemQtyIncrease: {
+    borderColor: colors.grey,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 0,
+  },
+  itemQtyDecrease: {
+    borderColor: colors.grey,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 0,
+  },
+  touchableForIncDec: {
+    borderRadius: 5,
+    width: 25, 
+    height: 32, 
+    justifyContent: "center", 
+    alignItems: "center"
+  }
+})
+
 export const CartItemListItemStyles = StyleSheet.create({
   container: {
     display: 'flex',
@@ -206,37 +242,6 @@ export const CartItemListItemStyles = StyleSheet.create({
     height: 90,
     backgroundColor: 'blue',
     borderRadius: 10,
-  },
-  itemQtyView: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginTop: 5
-  },
-  itemQty: {
-    borderColor: colors.grey,
-    width: 25,
-    padding: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  itemQtyIncrease: {
-    borderColor: colors.grey,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
-  },
-  itemQtyDecrease: {
-    borderColor: colors.grey,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
-  },
-  touchableForIncDec: {
-    borderRadius: 5,
-    width: 25, 
-    height: 32, 
-    justifyContent: "center", 
-    alignItems: "center"
   }
 });
 

@@ -12,19 +12,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import PlaceOrderDrag from '../../components/molecules/PlaceOrderDrag'
 
 const OrderDetails = ({navigation}) => {
-    
-    const [paymentMethod, setPaymentMethod] = React.useState("upi")
-    const sheetRef = React.useRef(null)
 
-    const renderContinue = () => (
-        <View style={{backgroundColor: 'white'}}>
-            <PanGestureHandler maxPointers={1}>
-                <Animated.View>
-                    <Icon name="cart" color={colors.primary} size={24} />
-                </Animated.View>
-            </PanGestureHandler>
-        </View>
-    )
+    const [paymentMethod, setPaymentMethod] = React.useState("upi")
 
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
@@ -68,9 +57,9 @@ const OrderDetails = ({navigation}) => {
                     </View>
                 </RadioButton.Group>
             </RoundView>
-            <CartPriceDetails style={{marginBottom: 20}}/>
+            <CartPriceDetails price={300} discount={15} total={285} style={{marginBottom: 20}}/>
         </ScrollView>
-            <PlaceOrderDrag navigation={navigation}/>
+            <PlaceOrderDrag navigation={navigation} />
         </View>
     )
 }
@@ -80,7 +69,7 @@ export default OrderDetails
 const OrderDetailsStyle = StyleSheet.create({
     roundView: {
         borderWidth: 1, 
-        borderRadius: 8, 
+        borderRadius: 8,
         borderColor: colors.mediumGrey, 
     },
     addressContainer: {

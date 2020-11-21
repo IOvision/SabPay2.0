@@ -12,14 +12,16 @@ export default function DeliveryStatus({data, counter, style}) {
     stepStrokeCurrentColor: colors.primary,
     separatorFinishedColor: colors.primary,
     stepIndicatorFinishedColor: colors.primary,
-    stepIndicatorLabelFontSize: 15,
+    stepIndicatorLabelFontSize: 12,
+    stepIndicatorLabelFinishedColor: "#FFF",
     currentStepIndicatorLabelFontSize: 15,
     stepIndicatorUnFinishedColor: colors.mediumGrey,
     labelSize: 15,
     separatorUnFinishedColor: colors.mediumGrey,
     stepIndicatorLabelUnFinishedColor: colors.white,
-    labelColor: colors.primary,
+    labelColor: colors.mediumGrey,
     currentStepLabelColor: colors.primary,
+    labelFontFamily: 'OpenSans-Regular',
   };
   return (
     <View style={[styles.container, style]}>

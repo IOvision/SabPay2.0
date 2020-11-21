@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
+import SearchWithBackground from '../../components/molecules/SearchWithBackground';
 import StoreItemListItem from '../../components/molecules/StoreItemListItem'
 
 export default function ItemsScreen({navigation}) {
@@ -19,6 +20,7 @@ export default function ItemsScreen({navigation}) {
       ];
     return (
         <View style={{padding: 10, backgroundColor: "white", display: "flex", flex: 1}}>
+          <SearchWithBackground />
             <FlatList 
                 data={DATA}
                 renderItem={({item, index}) => {

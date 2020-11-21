@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Dimensions } from "react-native";
-import Animated, { call, interpolate } from "react-native-reanimated";
+import Animated, { call, greaterOrEq, interpolate, lessOrEq } from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from "../../assets/colors";
 import { HeaderText } from "../atoms/Text";
+import LinearGradient from "react-native-linear-gradient";
 
 const { width, height } = Dimensions.get("window");
 const { cond, eq, add, set, Value, event } = Animated;
@@ -24,7 +25,7 @@ export default class PlaceOrderDrag extends React.Component {
             }
         ])
         const addX = add(this.offsetX, this.dragX)
-        this.transX = cond(eq(this.gestureState, State.ACTIVE), addX, [
+        this.transX = cond(eq(this.gestureState, State.ACTIVE), cond(greaterOrEq(addX, 0), addX), [
             cond(eq(this.gestureState, State.END), call([addX], this.onDrop))
         ])
         this.opacity = interpolate(this.transX, {
@@ -43,12 +44,15 @@ export default class PlaceOrderDrag extends React.Component {
             inputRange: [0, width],
             outputRange: [0, -width+80]
         })
+        this.centerTextOpacity = cond(
+            eq(this.gestureState, State.ACTIVE),
+            0,
+            1
+        )
     }
     
     saveDropZone = e => {
-        const { width, height, x, y } = e.nativeEvent.layout
-        this.top = y
-        this.bottom = y + height
+        const { width, x } = e.nativeEvent.layout
         this.left = x
         this.right = x + width
     }
@@ -65,7 +69,7 @@ export default class PlaceOrderDrag extends React.Component {
             <Animated.View style={{opacity: this.textOpacity, transform: [{translateX: this.textY}]}}><HeaderText style={{fontSize: 18}}>Order Placed!</HeaderText></Animated.View>
         </View>
         <View style={{marginTop: 10}}>
-            <View style={{backgroundColor: colors.primary, padding: 5, borderRadius: 10}}>
+            <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#8021EB', '#04035C']} style={{backgroundColor: colors.primary, padding: 5, borderRadius: 10, justifyContent: 'center'}}>
                 <PanGestureHandler
                 maxPointers={1}
                 onGestureEvent={this.onGestureEvent}
@@ -86,8 +90,9 @@ export default class PlaceOrderDrag extends React.Component {
                     <Icon name='cart' size={35} color='white' />
                 </Animated.View>
                 </PanGestureHandler>
-                <View onLayout={this.saveDropZone} style={{width: 80, height: 45, alignSelf: 'flex-end', position: 'absolute'}} />
-            </View>
+                <Animated.View style={{position: 'absolute', alignSelf:'center', opacity: this.centerTextOpacity}}><HeaderText style={{color: 'white'}}>Drag cart to place order!</HeaderText></Animated.View>
+                <View onLayout={this.saveDropZone} style={{width: '20%', height: 45, alignSelf: 'flex-end', position: 'absolute'}} />
+            </LinearGradient>
         </View>
       </View>
     );
