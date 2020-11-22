@@ -20,7 +20,7 @@ export default function ItemsScreen({navigation}) {
       ];
     return (
         <View style={{padding: 10, backgroundColor: "white", display: "flex", flex: 1}}>
-          <SearchWithBackground />
+          <SearchWithBackground navigation={navigation}/>
             <FlatList 
                 data={DATA}
                 renderItem={({item, index}) => {

@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native'
 import ShopListItem from '../../components/molecules/ShopListItem'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
-export default function ShopScreen() {
+export default function ShopScreen({navigation}) {
     const data = [
         {
             image: require('../../assets/images/dryFruits.png'),
@@ -26,7 +26,7 @@ export default function ShopScreen() {
     ]
     return (
         <View style={{backgroundColor: "white", flex: 1}}>
-            <SearchWithBackground />
+            <SearchWithBackground navigation={navigation} />
             <View style={{height: 20}}></View>
             <FlatList
                 data={data}

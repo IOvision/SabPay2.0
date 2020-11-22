@@ -7,7 +7,7 @@ import SearchWithBackground from '../../components/molecules/SearchWithBackgroun
 export default function OrderHistoryScreen({navigation}) {
     return (
         <View style={styles.container}>
-            <SearchWithBackground />
+            <SearchWithBackground navigation={navigation} />
             <MyOrderList navigation={navigation}/>
         </View>
     )
