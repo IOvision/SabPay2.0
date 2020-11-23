@@ -7,6 +7,11 @@ import InputText from '../atoms/InputText';
 import Otp from './Otp';
 import { Platform, TouchableOpacity } from "react-native";
 import { TouchableOpacity as RNGHTouchableOpacity } from "react-native-gesture-handler";
+import { Auth } from 'aws-amplify'
+import colors from '../../assets/colors';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import { test } from '../../requests'
 
 function Touch({onPress, children}) {
     if (Platform.OS === "android") {
@@ -20,42 +25,71 @@ function Touch({onPress, children}) {
 
 
 function Login() {
-    const [state, setState] = useState("phone")
+    const [state, setState] = useState(0)
+    const [phone, setPhone] = useState(null)
+    const [code, setCode] = useState(null)
+
+    const signIn = async () => {
+        try {
+            const { user } = await Auth.signUp({
+                username: "+917084552191",
+                password: "226012rak",
+                attributes: {
+                    phone_number: "+917084552191",
+                    email: "rakshit.lko@gmail.com"
+                }
+            })
+            console.log(user)
+        } catch (error) {
+            console.log("Error signing up", error)
+        }
+    }
+
+    const confirmSignUp = async () => {
+        try {
+            await Auth.confirmSignUp(phone, code);
+        } catch (error) {
+            console.log('error', error)
+        }
+    }
+
     return (
         <RoundView style={styles.container}>
-            <HeaderText>Sign-Up/Log-in</HeaderText>
             {
-                state === "phone" ? (
-                    <Touch onPress={() => setState("otp")}>
+                state === 0 ? (
+                    <View>
                         <View>
-                            <InputText style={styles.input} placeholder="Enter Mobile Number"/>
-                            <PurpleRoundBtn text="Next" />
+                            
+                            <HeaderText>Enter Phone number to continue: </HeaderText>
                         </View>
-                    </Touch>
+                        <InputText style={styles.input} placeholder="Enter Mobile Number"/>
+                        <PurpleRoundBtn text="Next" onPress={test} />
+                    </View>
                 ) : (
                     null
                 )
             }
             {
-                state === "otp" ? (
-                    <Touch onPress={() => setState("name")}>
+                state === 1 ? (
+                    <View>
                         <View>
-                            <Otp />
-                            <PurpleRoundBtn text="Next" />
+                            <Icons name="arrow-left" color="black" size={18} />
+                            <HeaderText>Enter the otp: </HeaderText>
                         </View>
-                    </Touch>
+                        <Otp />
+                        <PurpleRoundBtn text="Next" />
+                    </View>
                 ) : (
                     null
                 )
             }
             {
-                state === "name" ? (
-                    <Touch onPress={() => console.log("testing")}>
-                        <View>
-                            <InputText style={styles.input} placeholder="Enter Name"/>
-                            <PurpleRoundBtn text="Confirm" style={styles.btn} />
-                        </View>
-                    </Touch>
+                state === 2 ? (
+                    <View>
+                        <HeaderText>Enter your name: </HeaderText>
+                        <InputText style={styles.input} placeholder="Enter Name"/>
+                        <PurpleRoundBtn text="Confirm" style={styles.btn} />
+                    </View>
                 ) : (
                     null
                 )
@@ -69,13 +103,14 @@ export default Login
 const styles = StyleSheet.create({
     container: {
         padding: 40,
-        borderRadius: 20,
         shadowColor: 'rgba(0,0,0, .4)', // IOS
         shadowOffset: { height: 1, width: 1 }, // IOS
         shadowOpacity: 1, // IOS
         shadowRadius: 1, //IOS
         backgroundColor: '#fff',
-        elevation: 2, // Android
+        elevation: 11, // Android,
+        borderWidth: 1,
+        borderColor: colors.mediumGrey
     },
     input: {
         marginTop: 20,
