@@ -10,8 +10,10 @@ import { TouchableOpacity as RNGHTouchableOpacity } from "react-native-gesture-h
 import { Auth } from 'aws-amplify'
 import colors from '../../assets/colors';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
+import SmsRetriever from 'react-native-sms-retriever'
 
 import { test } from '../../requests'
+import { ActivityIndicator } from 'react-native-paper';
 
 function Touch({onPress, children}) {
     if (Platform.OS === "android") {
@@ -27,30 +29,70 @@ function Touch({onPress, children}) {
 function Login() {
     const [state, setState] = useState(0)
     const [phone, setPhone] = useState(null)
-    const [code, setCode] = useState(null)
-
-    const signIn = async () => {
+    const [user, setUser] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+    var temp
+    //Hash - Xq5ZQIU2b5de
+    const signUp = async () => {
         try {
             const { user } = await Auth.signUp({
-                username: "+917084552191",
-                password: "226012rak",
-                attributes: {
-                    phone_number: "+917084552191",
-                    email: "rakshit.lko@gmail.com"
-                }
+                username: `+91${phone}`,
+                password: Date.now().toString()
             })
             console.log(user)
         } catch (error) {
-            console.log("Error signing up", error)
+            if (error.code === "UsernameExistsException")
+            startSmsListener()
         }
     }
 
-    const confirmSignUp = async () => {
+    const startSmsListener = async () => {
         try {
-            await Auth.confirmSignUp(phone, code);
+            const registered = await SmsRetriever.startSmsRetriever()
+            if (registered) {
+                signIn()
+                console.log("gg", user)
+                SmsRetriever.addSmsListener(event => {
+                    const a = /(\d{4})/g.exec(event.message)[1]
+                    SmsRetriever.removeSmsListener()
+                    confirmSignUp(a)
+                })
+            }
+        } catch (error) {
+            setIsLoading(false)
+            console.log(JSON.stringify(error))
+        }  
+    }
+
+    const signIn = async () => {
+        setIsLoading(true)
+        try {
+            temp = await Auth.signIn(`+91${phone}`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const confirmSignUp = async (otp) => {
+        try {
+            console.log("user", temp)
+            console.log("otp", otp)
+            const data = await Auth.sendCustomChallengeAnswer(temp, otp);
+            console.log("Logged in", data)
         } catch (error) {
             console.log('error', error)
         }
+    }
+
+    
+
+    if(isLoading) {
+        return (
+            <RoundView style={{ ...styles.container, justifyContent: 'center' }}>
+                <ActivityIndicator />
+                <HeaderText style={{alignSelf: 'center', marginTop: 10}}>Reading OTP</HeaderText>
+            </RoundView>
+        )
     }
 
     return (
@@ -59,11 +101,10 @@ function Login() {
                 state === 0 ? (
                     <View>
                         <View>
-                            
                             <HeaderText>Enter Phone number to continue: </HeaderText>
                         </View>
-                        <InputText style={styles.input} placeholder="Enter Mobile Number"/>
-                        <PurpleRoundBtn text="Next" onPress={test} />
+                        <InputText preText="+91" style={styles.input} placeholder="Enter Mobile Number" value={phone} onChangeText={setPhone} />
+                        <PurpleRoundBtn text="Next" onPress={signUp} />
                     </View>
                 ) : (
                     null
@@ -102,6 +143,7 @@ export default Login
 
 const styles = StyleSheet.create({
     container: {
+        height: 250,
         padding: 40,
         shadowColor: 'rgba(0,0,0, .4)', // IOS
         shadowOffset: { height: 1, width: 1 }, // IOS

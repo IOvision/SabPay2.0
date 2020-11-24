@@ -1,12 +1,10 @@
 {
-    "identityPoolName": "sabpay2079c806e1_identitypool_79c806e1",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "sabpay79c806e1",
-    "userPoolName": "sabpay2079c806e1_userpool_79c806e1",
+    "resourceNameTruncated": "sabpay5819dcc3",
+    "userPoolName": "SabpayAmplifyUserPool",
     "autoVerifiedAttributes": [
-        "email"
+        "phone_number"
     ],
-    "mfaConfiguration": "OFF",
+    "mfaConfiguration": "ON",
     "mfaTypes": [
         "SMS Text Message"
     ],
@@ -18,7 +16,7 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email"
+        "phone_number"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -28,11 +26,11 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "sabpay79c806e1_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "Sabpay5819dcc3_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "79c806e1",
-    "resourceName": "sabpay2079c806e1",
-    "authSelections": "identityPoolAndUserPool",
+    "sharedId": "5819dcc3",
+    "resourceName": "SabpayAmplify",
+    "authSelections": "userPoolOnly",
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -45,11 +43,22 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "useDefault": "manual",
     "usernameAttributes": [
         "phone_number"
     ],
-    "userPoolGroupList": [],
+    "userPoolGroups": true,
+    "adminQueries": false,
+    "triggers": "{}",
+    "hostedUI": false,
+    "userPoolGroupList": [
+        "users",
+        "merchant"
+    ],
     "serviceName": "Cognito",
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
     "dependsOn": []
 }

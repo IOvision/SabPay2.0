@@ -10,6 +10,7 @@ import SplashScreen from 'react-native-splash-screen'
 //Amplify
 import Amplify from 'aws-amplify'
 import awsConfig from './aws-exports'
+
 Amplify.configure(awsConfig)
 
 function App() {

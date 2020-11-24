@@ -2743,6 +2743,17 @@ amazon-cognito-identity-js@4.5.4:
     isomorphic-unfetch "^3.0.0"
     js-cookie "^2.2.1"
 
+amazon-cognito-identity-js@^4.5.5:
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-4.5.5.tgz#23c5d99de633efb56033d80ce581349bd02509e9"
+  integrity sha512-8Sy74oOGzfs/ZivH1kzeCvbYHQh81etSGD8wheSxfNEmD5xav015Cj/V0F9tTw8cI7jiilZcbCcS73j4UbMEXA==
+  dependencies:
+    buffer "4.9.1"
+    crypto-js "^3.3.0"
+    fast-base64-decode "^1.0.0"
+    isomorphic-unfetch "^3.0.0"
+    js-cookie "^2.2.1"
+
 anser@^1.4.9:
   version "1.4.10"
   resolved "https://registry.yarnpkg.com/anser/-/anser-1.4.10.tgz#befa3eddf282684bd03b63dcda3927aef8c2e35b"
@@ -7312,6 +7323,11 @@ react-native-linear-gradient@^2.5.6:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
   integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
 
+react-native-otp-verify@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-otp-verify/-/react-native-otp-verify-1.0.3.tgz#a205521bf19f1e448e563ddfa462559469fa8662"
+  integrity sha512-BIKP89H5a6ItAcRXJBxQkc2uzA4jazaEHTRWZxqnUUb6njHKHOevKrtzfhUOoAXQGq3evCRldEot5EaNWTDq9g==
+
 react-native-pages@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/react-native-pages/-/react-native-pages-0.9.0.tgz#1e673eda2e8b64419e69a3dd6688ba4ca3255689"
@@ -7351,6 +7367,11 @@ react-native-screens@^2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.13.0.tgz#6360dfd65d51f73479bea14373a8e289cd58a327"
   integrity sha512-B0kPYq5ZK/2G7pPhcAFLflDfm+HXktdVEeLFHnP/+oPnao+b28hXsOBCi0IgK72gxbdPtnpZME8KONRIKOBDug==
+
+react-native-sms-retriever@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-sms-retriever/-/react-native-sms-retriever-1.1.1.tgz#e87225836b394560c63db4c106552a0b9247d9b3"
+  integrity sha512-WRwiITfssx59+TB1iEMmjB7w4OTkatR34js5+4a4pP2jMXJ4aLdXK0hOtHxl8ciS8aIejdd49Sz8AXonlvtdRw==
 
 react-native-splash-screen@^3.2.0:
   version "3.2.0"

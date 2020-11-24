@@ -5,10 +5,10 @@
   "javascript": {
     "framework": "react-native",
     "config": {
-      "SourceDir": "./",
-      "DistributionDir": "./",
-      "BuildCommand": "npm run-script build",
-      "StartCommand": "npm run-script start"
+      "SourceDir": "/",
+      "DistributionDir": "/",
+      "BuildCommand": "npm.cmd run-script build",
+      "StartCommand": "npm.cmd run-script start"
     }
   },
   "providers": [
