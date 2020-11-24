@@ -39,6 +39,7 @@ function Login() {
                 username: `+91${phone}`,
                 password: Date.now().toString()
             })
+            startSmsListener()
             console.log(user)
         } catch (error) {
             if (error.code === "UsernameExistsException")
