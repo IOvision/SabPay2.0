@@ -27,7 +27,7 @@ const CategoriesTab = ({navigation}) => {
         <View style={{flex: 1, backgroundColor: "white"}}>
             <TouchableOpacity onPress={() => navigation.push('CategoryList')}
                 activeOpacity={0.9}>
-                <SearchWithBackground />
+                <SearchWithBackground navigation={navigation}/>
             </TouchableOpacity>
             <CategoryPageCategoryList 
                 data={data}

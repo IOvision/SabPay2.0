@@ -6,13 +6,13 @@ import { CaptionText } from '../../components/atoms/Text'
 import OfferOnSwipeText from '../../components/atoms/OfferOnSwipeText'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
-const OffersTab = () => {
+const OffersTab = ({navigation}) => {
     const data = [require('../../assets/images/jam.png'), require('../../assets/images/pads.png'), require('../../assets/images/jam.png'), require('../../assets/images/pads.png')]
     // const data = []
     const [empty, setEmpty] = useState(data ? false : true) 
     return (
         <View style={styles.container}>
-            <View style={{zIndex: 1}}><SearchWithBackground /></View>
+            <View style={{zIndex: 1}}><SearchWithBackground navigation={navigation}/></View>
             {
                 empty ? (
                     <View style={styles.textContainer}><CaptionText style={{margin: 10}}>Currently there are no offers :(</CaptionText></View>

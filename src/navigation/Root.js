@@ -5,6 +5,7 @@ import { View, Text } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import CustomDrawerContent from './HomeDrawer/CustomDrawerContent'
 import Header from '../components/atoms/Header'
+import LinearGradient from 'react-native-linear-gradient'
 
 //Navigation Imports
 import { NavigationContainer } from '@react-navigation/native'
@@ -99,10 +100,31 @@ const HomeRoot = () => {
 }
 
 const RootDrawer = () => {
+    const gradient = () => {
+        return (
+            <LinearGradient style={[styles.container, style]} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#8021EB', '#04035C']}></LinearGradient>
+        )
+    }
     return (
         <Drawer.Navigator 
+            drawerStyle={{
+                width: 240,
+            }}
             initialRouteName="Tab Navigator" 
-            drawerContent={(props) => <CustomDrawerContent {...props} /> }
+            drawerContent={(props) => 
+                (
+                    <LinearGradient 
+                        style={{
+                            padding: 10,
+                            paddingHorizontal: 30,
+                            display: "flex",
+                            alignSelf: 'baseline'}} 
+                        start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                        colors={['#8021EB', '#04035C']}>
+                        <CustomDrawerContent {...props} />
+                    </LinearGradient>
+                )
+            }
             screenOptions={{
                 header: ({ scene, previous, navigation}) => {
                     return (
@@ -110,8 +132,8 @@ const RootDrawer = () => {
                     )
                 }
             }}
-        >
-            <Drawer.Screen name="Dashboard" component={HomeRoot} />
+        >   
+            <Drawer.Screen style={{color: "white"}} name="Dashboard" component={HomeRoot} />
             <Drawer.Screen name="My Cart" component={CartTab} />
             <Drawer.Screen name="Order History" component={OrderHistory} />
             <Drawer.Screen name="My Account" component={ProfileScreen} />
@@ -136,6 +158,17 @@ const MainStack = () => {
                 }}
             >   
                 <Stack.Screen name="Main" component={RootDrawer} />
+                <Stack.Screen 
+                    name="Change Store" 
+                    component={ShopScreen}
+                    options={{
+                        header: ({ scene, previous, navigation}) => {
+                            return (
+                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                            )
+                        }
+                    }}
+                />
                 <Stack.Screen 
                     name="CategoryList" 
                     component={CategoryList}

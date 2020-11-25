@@ -54,7 +54,7 @@ const HomeTab = ({navigation}) => {
     ]
     return (
         <View style={{flex: 1, backgroundColor: 'white'}}>
-            <SearchWithBackground />
+            <SearchWithBackground home={true} navigation={navigation}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
                 <HomePageCategoryList data={data} navigation={navigation}/>
