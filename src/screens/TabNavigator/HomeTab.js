@@ -7,6 +7,8 @@ import StoreSpecialList from '../../components/molecules/StoreSpecialList'
 import HomePageOffers from '../../components/molecules/HomePageOffers'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
+import inventory from '../../models/testInventory'
+
 const {width} = Dimensions.get('window')
 const HomeTab = ({navigation}) => {
     const object = [
@@ -26,40 +28,14 @@ const HomeTab = ({navigation}) => {
             price: "Rs. 210"
         }
     ]
-    const data = [
-        {
-            title: "Groceries & Staples",
-            image: require('../../assets/images/grocery.png')
-        },
-        {
-            title: "Packaged Food",
-            image: require('../../assets/images/PackagedFoods.png')
-        },
-        {
-            title: "Groceries & Staples",
-            image: require('../../assets/images/HouseholdCare.png')
-        },
-        {
-            title: "Groceries & Staples",
-            image: require('../../assets/images/HouseholdCare.png')
-        },
-        {
-            title: "Groceries & Staples",
-            image: require('../../assets/images/HouseholdCare.png')
-        },
-        {
-            title: "Groceries & Staples",
-            image: require('../../assets/images/HouseholdCare.png')
-        }
-    ]
     return (
         <View style={{flex: 1, backgroundColor: 'white'}}>
-            <SearchWithBackground home={true} navigation={navigation}/>
+            <SearchWithBackground home={true} navigation={navigation} name={inventory.name} address={inventory.address}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
-                <HomePageCategoryList data={data} navigation={navigation}/>
+                <HomePageCategoryList data={inventory.tags} navigation={navigation}/>
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
-                <Swipeable />
+                <Swipeable data={inventory.sp_offer}/>
                 <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
                 <StoreSpecialList object={object} />
                 <Swipeable />

@@ -8,22 +8,32 @@ import Root from './src/navigation/Root'
 import SplashScreen from 'react-native-splash-screen'
 
 //Amplify
-import Amplify from 'aws-amplify'
+import Amplify, { Hub } from 'aws-amplify'
 import awsConfig from './aws-exports'
 
 Amplify.configure(awsConfig)
 
-function App() {
+class App extends React.Component {
 
-  useEffect(() => {
+  constructor() {
+    super()
+    Hub.listen('auth', (data) => {
+      const { payload } = data;
+      console.log("A new auth event has happened", payload);
+    })
+  }
+
+  componentDidMount() {
     SplashScreen.hide()
-  }, [])
+  }
 
-  return (
-    <View style={{flex: 1, backgroundColor: Colors.background}}>
-      <Root />
-    </View>
-  )
+  render () {
+    return (
+      <View style={{flex: 1, backgroundColor: Colors.background}}>
+        <Root />
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({

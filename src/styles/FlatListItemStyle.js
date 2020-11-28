@@ -1,3 +1,4 @@
+import { autoShowTooltip } from 'aws-amplify';
 import {StyleSheet} from 'react-native';
 import colors from '../assets/colors';
 
@@ -64,9 +65,9 @@ export const storeListItemStyle = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: colors.mediumGrey,
-    width: 35,
     height: 35,
-    padding: 0,
+    padding: 5,
+    marginHorizontal: 2,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.background,
@@ -204,17 +205,16 @@ export const CartItemListItemStyles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
     margin: 20,
     marginBottom: -10,
     borderStyle: "solid",
     borderWidth: 1,
     borderColor: colors.mediumGrey,
-    borderRadius: 10
+    borderRadius: 10,
+    justifyContent: 'space-between'
   },
   infoView: {
-    display: 'flex',
-    flex: 1,
+    justifyContent: 'center',
   },
   subView: {
     display: 'flex',
@@ -234,7 +234,13 @@ export const CartItemListItemStyles = StyleSheet.create({
     marginHorizontal: 10,
   },
   weight: {
-    backgroundColor: colors.lightGrey, padding: 5, borderRadius: 10, width: 40, alignItems: "center", borderColor: colors.mediumGrey
+    backgroundColor: colors.lightGrey, 
+    padding: 10, 
+    marginTop: 10, 
+    width: 60, 
+    borderRadius: 10, 
+    borderWidth: 1,
+    borderColor: colors.primary
   },
   img: {
     display: 'flex',
@@ -242,6 +248,8 @@ export const CartItemListItemStyles = StyleSheet.create({
     height: 90,
     backgroundColor: 'blue',
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: colors.mediumGrey
   }
 });
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Dimensions, TouchableOpacity } from 'react-native'
 import colors from '../../assets/colors'
 import { HeaderText, BodyText } from '../atoms/Text'
@@ -6,8 +6,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import SearchBar from '../atoms/SearchBar'
 
 const {width} = Dimensions.get('window')
-const SearchWithBackground = ({navigation, home}) => {
-    const height = home ? 200 : 135
+const SearchWithBackground = ({navigation, home, name, address}) => {
+    const [textHeight, setTextHeight] = useState(0)
+    const height = home ? 125 + textHeight : 135
     return (
         <View>
             <View style={{
@@ -25,9 +26,14 @@ const SearchWithBackground = ({navigation, home}) => {
             {
                 home ? (
                     <View style={{display: "flex", alignItems: "flex-start", marginTop: 10, marginBottom: -20, paddingHorizontal: 20, flexDirection: "row"}}>
-                        <View>
-                            <HeaderText style={{color: "white", fontSize: 20}}>Abhishek General Store</HeaderText>
-                            <BodyText style={{color: "white", fontSize: 13}}>3A Kachari Inc3, Plot no 26/A, H, park, Kanchalmarath Mandal, RR Dist 500005</BodyText>
+                        <View onLayout={
+                            (event) => {
+                                var {x, y, width, height} = event.nativeEvent.layout;
+                                setTextHeight(height)
+                            }
+                        }>
+                            <HeaderText style={{color: "white", fontSize: 20}}>{name}</HeaderText>
+                            <BodyText style={{color: "white", fontSize: 13}}>{address}</BodyText>
                         </View>
                         <MaterialCommunityIcons name="pen" color={colors.white} size={20} style={{marginTop: 5}} onPress={() => navigation.navigate("Change Store")}/>
                     </View>

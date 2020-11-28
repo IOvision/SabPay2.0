@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { View, TouchableOpacity, StyleSheet, Dimensions, FlatList, Button, Text } from 'react-native'
 import { HeaderText, BodyText } from '../../components/atoms/Text'
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
@@ -16,30 +16,18 @@ import { connect } from 'react-redux'
 
 const {width, height} = Dimensions.get('window')
 const CartTab = (props) => {
-    console.log(props.isSignedIn)
-    const sheetRef = React.useRef(null);
+
+    const data = props.cart
+    const sheetRef = useRef(null)
+
     const handleContinue = () => (
         <Login />
     )
-    const DATA = [
-        {
-          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-          title: "First Item",
-        },
-        {
-          id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-          title: "Second Item",
-        },
-        {
-          id: "58694a0f-3da1-471f-bd96-145571e29d72",
-          title: "Third Item",
-        },
-      ];
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
             <SearchWithBackground navigation={props.navigation} />
             <FlatList 
-                data={DATA}
+                data={data}
                 ListEmptyComponent={() => {
                     return (
                         <View style={{height: 400, width: 400, marginTop: 20, alignItems: "center"}}>
@@ -61,36 +49,36 @@ const CartTab = (props) => {
                     )
                 }}
                 renderItem={({item, index}) => {
-                return <CartItemListItem />
+                    return <CartItemListItem item={item} />
                 }}
                 ListFooterComponent={() => {
                     return (
-                        <View style={{margin: 20}}>
-                            <CartPriceDetails />
-                            <HeaderText style={{marginLeft: 20, marginTop: 10}}>Delivery Options</HeaderText>
-                            <View style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: 10, marginBottom: 10}}>
-                                <View style={{flex: 1,
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    justifyContent: 'center', paddingHorizontal: 10}}>
-                                    <View style={{flex: 1}}>
-                                        <TouchableOpacity style={styles.deliveryOption} activeOpacity={0.9}>
-                                            <BodyText>Express</BodyText>
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={{flex: 1, marginHorizontal: 5}}>
-                                        <TouchableOpacity style={styles.deliveryOption} activeOpacity={0.9}>
-                                            <BodyText>Standard</BodyText>
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={{flex: 1}}>
-                                        <TouchableOpacity style={styles.deliveryOption} activeOpacity={0.9}>
-                                            <BodyText>Pick-Up</BodyText>
-                                        </TouchableOpacity>
-                                    </View>
+                        data.length != 0 ? <View style={{margin: 20}}>
+                        <CartPriceDetails />
+                        <HeaderText style={{marginLeft: 20, marginTop: 10}}>Delivery Options</HeaderText>
+                        <View style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: 10, marginBottom: 10}}>
+                            <View style={{flex: 1,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center', paddingHorizontal: 10}}>
+                                <View style={{flex: 1}}>
+                                    <TouchableOpacity style={styles.deliveryOption} activeOpacity={0.9}>
+                                        <BodyText>Express</BodyText>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{flex: 1, marginHorizontal: 5}}>
+                                    <TouchableOpacity style={styles.deliveryOption} activeOpacity={0.9}>
+                                        <BodyText>Standard</BodyText>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{flex: 1}}>
+                                    <TouchableOpacity style={styles.deliveryOption} activeOpacity={0.9}>
+                                        <BodyText>Pick-Up</BodyText>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </View>
+                    </View> : null
                     )
                 }}
             />
@@ -110,7 +98,8 @@ const CartTab = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isSignedIn: state.userReducer.signedIn
+        isSignedIn: state.userReducer.signedIn,
+        cart: state.cartReducer.items
     }
 }
 
