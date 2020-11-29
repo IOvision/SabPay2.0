@@ -1,7 +1,11 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 
-function RoundView(props) {
+export interface Props {
+    style?: StyleProp<ViewStyle>
+}
+
+const RoundView: React.FC<Props> = (props) => {
     return (
         <View style={[styles.container, props.style]}>
             {props.children}

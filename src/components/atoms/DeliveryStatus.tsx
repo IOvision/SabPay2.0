@@ -1,9 +1,14 @@
 import React from 'react'
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, ViewStyle } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 import colors from '../../assets/colors';
 
-export default function DeliveryStatus({data, counter, style}) {
+export interface Props {
+  style: ViewStyle,
+  counter: number
+}
+
+const DeliveryStatus: React.FC<Props> = ({data, counter, style}) => {
   const stepIndicatorStyles = {
     stepIndicatorSize: 30,
     currentStepIndicatorSize: 40,
@@ -35,6 +40,8 @@ export default function DeliveryStatus({data, counter, style}) {
     </View>
   )
 }
+
+export default DeliveryStatus
 
 const styles = StyleSheet.create({
   container: {

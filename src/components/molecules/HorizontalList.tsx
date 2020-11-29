@@ -1,7 +1,13 @@
 import React from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, StyleProp, ViewStyle, ListRenderItem} from 'react-native';
 
-function HorizontalList({data, style, renderItem}) {
+export interface Props {
+  data: any,
+  style: StyleProp<ViewStyle>,
+  renderItem: ListRenderItem<any>
+}
+
+const HorizontalList: React.FC<Props> = ({data, style, renderItem}) => {
   return (
     <View style={style}>
       <FlatList

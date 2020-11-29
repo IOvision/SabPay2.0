@@ -1,10 +1,17 @@
 import React from 'react'
-import { View } from 'react-native'
+import { StyleProp, View, ViewStyle } from 'react-native'
 import RoundView from '../atoms/RoundView'
 import { HeaderText, BodyText } from '../atoms/Text.js'
 import { styles } from '../../styles/CartPriceDetailsStyle.js'
 
-function CartPriceDetails({price, discount, total, style}) {
+export interface Props {
+    price: string,
+    discount: string,
+    total: string,
+    style: StyleProp<ViewStyle>
+}
+
+const CartPriceDetails: React.FC<Props> = ({price, discount, total, style}) => {
     return (
         <RoundView style={[styles.container, style]}>
             <HeaderText style={{fontWeight: "normal"}}>Price Details</HeaderText>

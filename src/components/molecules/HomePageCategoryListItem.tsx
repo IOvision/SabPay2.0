@@ -1,10 +1,16 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import { color } from 'react-native-reanimated';
+import {View, TouchableOpacity, Image, ImageSourcePropType, GestureResponderEvent} from 'react-native';
 import { HomePageCategoryListItemStyles } from '../../styles/FlatListItemStyle'
 import { HeaderText } from '../atoms/Text';
 
-function HomePageCategoryListItem({image, title, colour, onPress}) {
+export interface Props {
+    image: ImageSourcePropType,
+    title: string,
+    colour: string,
+    onPress: (event: GestureResponderEvent) => void
+}
+
+const HomePageCategoryListItem: React.FC<Props> = ({image, title, colour, onPress}) => {
     return (
         <TouchableOpacity style={HomePageCategoryListItemStyles.container} onPress={onPress} activeOpacity={0.9}>
             <Image source={image} style={{...HomePageCategoryListItemStyles.image, backgroundColor: colour}} />

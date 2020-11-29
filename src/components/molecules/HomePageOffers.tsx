@@ -3,7 +3,7 @@ import { View, Image, StyleSheet } from 'react-native'
 import styles from '../../styles/HomePageOffersStyles'
 import { CaptionText } from '../atoms/Text'
 
-export default function HomePageOffers() {
+const HomePageOffers: React.FC = () => {
     return (
         <View>
             <View style={styles.container1}>
@@ -28,3 +28,5 @@ export default function HomePageOffers() {
         </View>
     )
 }
+
+export default HomePageOffers

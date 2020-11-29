@@ -1,4 +1,8 @@
-export default {
+type colorName = "primary" | "white" | "background" | "grey" | "lightGrey" | "mediumGrey" | "darkgrey" | "blue" | "danger" | "gold"
+
+type colors = { [color in colorName]: string}
+
+const colors: colors = {
   primary: '#8021EB', //purple
   white: "#ffffff",
   background: "#F9F9F9",
@@ -24,3 +28,5 @@ export default {
   // purple: '#5A17A4',
   // brightPurple: '#8C1AFF',
 };
+
+export default colors

@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native'
 import ShopListItem from '../../components/molecules/ShopListItem'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
-export default function ShopScreen({navigation}) {
+const ShopScreen = ({navigation}) => {
     const data = [
         {
             image: require('../../assets/images/dryFruits.png'),
@@ -39,3 +39,5 @@ export default function ShopScreen({navigation}) {
         </View>
     )
 }
+
+export default ShopScreen

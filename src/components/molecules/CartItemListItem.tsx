@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import RoundView from '../atoms/RoundView'
-import { View, Image, Text, FlatList } from 'react-native'
-import { HeaderText, BodyText, OfferText } from '../atoms/Text'
+import { View, Image, ViewStyle, StyleProp } from 'react-native'
+import { HeaderText, BodyText } from '../atoms/Text'
 import { CartItemListItemStyles } from '../../styles/FlatListItemStyle'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import colors from '../../assets/colors'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import LinearGradient from 'react-native-linear-gradient'
 import ItemQuantityButton from './ItemQuantityButton'
 
-function CartItemListItem({item, style}) {
-    const [qty, setQty] = useState(1)
+export interface Props{
+    item: any,
+    style: StyleProp<ViewStyle>
+}
+
+const CartItemListItem: React.FC<Props> = ({item, style}) => {
     return (
         <RoundView style={[CartItemListItemStyles.container, style]}>
             <View style={CartItemListItemStyles.infoView}>

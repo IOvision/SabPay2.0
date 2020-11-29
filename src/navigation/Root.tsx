@@ -145,7 +145,9 @@ const RootDrawer = () => {
     )
 }
 
-const MainStack = () => {
+export interface Props {}
+
+const MainStack: React.FC<Props> = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator

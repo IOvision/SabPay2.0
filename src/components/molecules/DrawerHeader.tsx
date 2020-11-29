@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, Image } from 'react-native'
-import { HeaderText, BodyText } from '../atoms/Text'
+import { View } from 'react-native'
+import { HeaderText } from '../atoms/Text'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import DrawerHeaderStyle from '../../styles/DrawerHeaderStyle'
 
-const DrawerHeader = () => {
+const DrawerHeader: React.FC = () => {
     return (
         <View style={DrawerHeaderStyle.container}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>

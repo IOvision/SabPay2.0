@@ -1,10 +1,17 @@
 import React from 'react';
-import {View, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import {View, Image, TouchableOpacity, ImageSourcePropType, GestureResponderEvent } from 'react-native';
 import { CaptionText } from '../atoms/Text'
 import { CategoryPageCategoryItemStyles } from '../../styles/FlatListItemStyle'
 import randomColor, { colorLength } from '../../assets/randomColor';
 
-function CategoryPageCategoryListItem({image, title, onPress, index}) {
+export interface Props {
+    image: ImageSourcePropType,
+    title: string,
+    onPress: (event: GestureResponderEvent) => void
+    index: string
+}
+
+const CategoryPageCategoryListItem: React.FC<Props> = ({image, title, onPress, index}) => {
     return (
         <View style={{ ...CategoryPageCategoryItemStyles.container, backgroundColor: randomColor[index % colorLength]}}>
             <TouchableOpacity activeOpacity={0.9} style={CategoryPageCategoryItemStyles.container} onPress={onPress}>

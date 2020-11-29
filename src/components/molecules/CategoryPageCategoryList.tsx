@@ -1,8 +1,13 @@
 import React from 'react'
-import {View, FlatList} from 'react-native';
+import {View, FlatList, StyleProp, ViewStyle} from 'react-native';
 import CategoryPageCategoryListItem from './CategoryPageCategoryListItem.js'
 
-function CategoryPageCategoryList({data, style, navigation}) {
+export interface Props {
+    data: any,
+    style: StyleProp<ViewStyle>,
+}
+
+const CategoryPageCategoryList: React.FC<Props> = ({data, style, navigation}) => {
     return (
         <View style={style}>
             <FlatList

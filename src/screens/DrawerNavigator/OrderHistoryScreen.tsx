@@ -1,10 +1,12 @@
 import React from 'react'
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import MyOrderList from '../../components/molecules/MyOrderList'
 import colors from '../../assets/colors'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
-export default function OrderHistoryScreen({navigation}) {
+export interface Props {}
+
+const OrderHistoryScreen: React.FC<Props> = ({navigation}) => {
     return (
         <View style={styles.container}>
             <SearchWithBackground navigation={navigation}/>
@@ -12,6 +14,8 @@ export default function OrderHistoryScreen({navigation}) {
         </View>
     )
 }
+
+export default OrderHistoryScreen
 
 const styles = StyleSheet.create({
     container: {

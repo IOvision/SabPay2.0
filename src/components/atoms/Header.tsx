@@ -1,11 +1,19 @@
 import React from 'react';
-import {View, Image, Text} from 'react-native';
-import HeaderStyle from './../../styles/HeaderStyle';
+import {View, Image, Text, ImageSourcePropType} from 'react-native';
+import HeaderStyle from '../../styles/HeaderStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Colors from '../../assets/colors'
-import { DrawerActions, TabActions } from '@react-navigation/native'
+import { DrawerActions } from '@react-navigation/native'
 
-const Header = ({marginTop, image, navigation, back, title, color}) => {
+export interface Props {
+  marginTop: number,
+  image: ImageSourcePropType,
+  back: Boolean,
+  title: string,
+  color: string,
+}
+
+const Header: React.FC<Props> = ({marginTop, image, navigation, back, title, color}) => {
   if (title) 
   return (
     <View style={{backgroundColor: color ? color : Colors.primary}}>

@@ -1,28 +1,22 @@
 //React
-import React, { useEffect } from 'react';
+import React from 'react';
 import Colors from './src/assets/colors'
 import {
-  View, Text, StyleSheet
+  View,
 } from 'react-native';
 import Root from './src/navigation/Root'
 import SplashScreen from 'react-native-splash-screen'
 
 //Amplify
-import Amplify, { Hub } from 'aws-amplify'
+import Amplify from 'aws-amplify'
 import awsConfig from './aws-exports'
 
 Amplify.configure(awsConfig)
 
-class App extends React.Component {
+export interface Props { }
+export interface State { }
 
-  constructor() {
-    super()
-    Hub.listen('auth', (data) => {
-      const { payload } = data;
-      console.log("A new auth event has happened", payload);
-    })
-  }
-
+class App extends React.Component<Props, State> {
   componentDidMount() {
     SplashScreen.hide()
   }
@@ -35,9 +29,5 @@ class App extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  
-});
 
 export default App

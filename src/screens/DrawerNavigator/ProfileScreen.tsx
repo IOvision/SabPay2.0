@@ -6,7 +6,7 @@ import ProfilePageSvg from '../../assets/svg/ProfilePageSvg'
 import Background from '../../components/atoms/Background'
 
 
-export default function ProfileScreen() {
+const ProfileScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <Background />
@@ -22,6 +22,8 @@ export default function ProfileScreen() {
     </View>
   )
 }
+
+export default ProfileScreen
 
 const styles = StyleSheet.create({
   container: {

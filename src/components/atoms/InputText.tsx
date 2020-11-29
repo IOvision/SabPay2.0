@@ -1,9 +1,19 @@
 import React from 'react'
-import { View, TextInput, Text } from 'react-native'
+import { View, TextInput, Text, StyleProp, ViewStyle } from 'react-native'
 import InputStyle from '../../styles/InputStyle.js'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-function InputText({placeholder, value, backgroundStyle, onChangeText, style, error, preText}) {
+export interface Props {
+    placeholder: string,
+    value?: string,
+    backgroundStyle?: StyleProp<ViewStyle>,
+    onChangeText?: Function,
+    error?: string,
+    preText?: string,
+    style?: StyleProp<ViewStyle>
+}
+
+const InputText: React.FC<Props> = ({placeholder, value, backgroundStyle, onChangeText, style, error, preText}) => {
     return (
         <View style={
             error ? 

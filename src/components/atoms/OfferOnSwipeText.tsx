@@ -1,9 +1,13 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { CaptionText } from '../atoms/Text'
+import { View, StyleSheet } from 'react-native'
+import { CaptionText } from './Text'
 import colors from '../../assets/colors'
 
-export default function OfferOnSwipeText(props) {
+export interface Props {
+    text: string
+}
+
+const OfferOnSwipeText: React.FC<Props> = (props) => {
     if(props.text == "CONFIRM") {
         return (
             <View style={styles.containerConfirm}> 
@@ -17,6 +21,8 @@ export default function OfferOnSwipeText(props) {
         </View>
     )
 }
+
+export default OfferOnSwipeText
 
 const styles = StyleSheet.create({
     containerDiscard: {

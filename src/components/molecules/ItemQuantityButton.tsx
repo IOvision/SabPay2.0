@@ -8,7 +8,15 @@ import colors from '../../assets/colors'
 import { connect } from 'react-redux';
 import { addItem, decItem, incItem } from '../../redux/actions/cart.js';
 
-const ItemQuantityButton = ({item, cartQty, add, inc, dec}) => {
+export interface Props {
+    item: any,
+    cartQty: any,
+    add: any,
+    inc: any,
+    dec: any
+}
+
+const ItemQuantityButton: React.FC<Props> = ({item, cartQty, add, inc, dec}) => {
 
     const getQty = () => {
         if (cartQty[item.key])
