@@ -1,7 +1,14 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ViewStyle, TextStyle } from 'react-native'
 import colors from '../assets/colors'
 
-const InputStyle = StyleSheet.create({
+interface Style {
+    background: ViewStyle,
+    placeholder: ViewStyle,
+    text: TextStyle,
+    error: ViewStyle
+}
+
+const InputStyle = StyleSheet.create<Style>({
     background: {
         flexDirection: 'row',
         backgroundColor: colors.lightGrey,

@@ -1,8 +1,18 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions, ViewStyle } from 'react-native'
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
-const styles = StyleSheet.create({
+interface Style {
+    container1: ViewStyle,
+    container2: ViewStyle,
+    view1: ViewStyle,
+    view2: ViewStyle,
+    view3: ViewStyle,
+    view4: ViewStyle,
+    circleView: ViewStyle,
+    image: ViewStyle
+}
+
+const styles = StyleSheet.create<Style>({
     container1: {
         height: 150,
         borderTopRightRadius: 10,

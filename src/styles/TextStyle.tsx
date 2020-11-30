@@ -1,7 +1,14 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextStyle } from 'react-native'
 import Colors from '../assets/colors'
 
-const TextStyles = StyleSheet.create({
+interface Style {
+    headerText: TextStyle,
+    bodyText: TextStyle,
+    captionText: TextStyle,
+    offerText: TextStyle   
+}
+
+const TextStyles = StyleSheet.create<Style>({
     headerText: {
         fontSize: 15,
         marginBottom: 2,

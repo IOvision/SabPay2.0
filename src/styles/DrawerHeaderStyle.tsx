@@ -1,7 +1,12 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ViewStyle } from 'react-native'
 import Colors from '../assets/colors'
 
-const DrawerHeaderStyle = StyleSheet.create({
+interface Style {
+    container: ViewStyle,
+    image: ViewStyle
+}
+
+const DrawerHeaderStyle = StyleSheet.create<Style>({
     container: {
         flexDirection: 'row',
         marginTop: -10,

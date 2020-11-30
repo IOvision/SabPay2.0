@@ -1,7 +1,11 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ViewStyle } from 'react-native'
 import colors from '../assets/colors'
 
-const SearchBar = StyleSheet.create({
+interface Style {
+    background: ViewStyle
+}
+
+const SearchBar = StyleSheet.create<Style>({
     background: {
         height: 50,
         flexDirection: 'row',

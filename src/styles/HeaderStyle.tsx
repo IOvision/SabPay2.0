@@ -1,6 +1,13 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 
-const HeaderStyle = StyleSheet.create({
+interface Style {
+    container: ViewStyle,
+    logo: ViewStyle,
+    start_icon: ViewStyle,
+    end_icon: ViewStyle
+}
+
+const HeaderStyle = StyleSheet.create<Style>({
   container: {
     height: 54,
     width: `100%`,

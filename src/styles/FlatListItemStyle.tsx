@@ -1,8 +1,13 @@
-import { autoShowTooltip } from 'aws-amplify';
-import {StyleSheet} from 'react-native';
+import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import colors from '../assets/colors';
 
-export const shopListItemstyles = StyleSheet.create({
+interface StyleShopListItem {
+  container: ViewStyle,
+  shopImage: ViewStyle,
+  shopInfo: TextStyle
+}
+
+export const shopListItemstyles = StyleSheet.create<StyleShopListItem>({
   container: {
     backgroundColor: 'white',
     height: 100,
@@ -25,10 +30,22 @@ export const shopListItemstyles = StyleSheet.create({
     justifyContent: 'center',
     marginStart: 15,
   },
-  stars: {},
 });
 
-export const storeListItemStyle = StyleSheet.create({
+interface StyleStoreListItem {
+  container: ViewStyle,
+  itemImageView: ViewStyle,
+  itemImage: ViewStyle,
+  itemDetailsView: ViewStyle,
+  itemSizeAndQtyView: ViewStyle,
+  itemSize: ViewStyle,
+  itemQtyView: ViewStyle,
+  itemQty: ViewStyle,
+  itemQtyIncrease: ViewStyle,
+  itemQtyDecrease: ViewStyle
+}
+
+export const storeListItemStyle = StyleSheet.create<StyleStoreListItem>({
   container: {
     display: 'flex',
     flexDirection: 'row',
@@ -109,13 +126,19 @@ export const storeListItemStyle = StyleSheet.create({
   },
 });
 
-export const CategoryPageCategoryItemStyles = StyleSheet.create({
+interface StyleCategoryPageCategoryItem {
+    container: ViewStyle,
+    image: ViewStyle,
+    text: TextStyle,
+    textContainer: ViewStyle
+}
+
+export const CategoryPageCategoryItemStyles = StyleSheet.create<StyleCategoryPageCategoryItem>({
     container: {
         borderTopLeftRadius: 22,
         borderTopRightRadius: 22,
         width: '100%',
         height: 200,
-        // marginBottom: 10,
         marginBottom: 40,
         borderWidth: 1,
         borderColor: colors.mediumGrey
@@ -145,7 +168,13 @@ export const CategoryPageCategoryItemStyles = StyleSheet.create({
       },
 })
 
-export const HomePageCategoryListItemStyles = StyleSheet.create({
+interface StyleHomePageCategoryListItem {
+  container: ViewStyle,
+  image: ViewStyle,
+  textView: ViewStyle
+}
+
+export const HomePageCategoryListItemStyles = StyleSheet.create<StyleHomePageCategoryListItem>({
   container: {
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
@@ -167,7 +196,15 @@ export const HomePageCategoryListItemStyles = StyleSheet.create({
   },
 })
 
-export const ItemQuantityButtonStyle = StyleSheet.create({
+interface StyleItemQuantityButtonStyle {
+  itemQtyView: ViewStyle,
+  itemQty: ViewStyle,
+  itemQtyIncrease: ViewStyle,
+  itemQtyDecrease: ViewStyle,
+  touchableForIncDec: ViewStyle
+}
+
+export const ItemQuantityButtonStyle = StyleSheet.create<StyleItemQuantityButtonStyle>({
   itemQtyView: {
     display: 'flex',
     flexDirection: 'row',
@@ -201,7 +238,17 @@ export const ItemQuantityButtonStyle = StyleSheet.create({
   }
 })
 
-export const CartItemListItemStyles = StyleSheet.create({
+interface StyleCartItemListItem {
+  container: ViewStyle,
+  infoView: ViewStyle,
+  subView: ViewStyle,
+  discountView: ViewStyle,
+  originalPrice: TextStyle,
+  weight: ViewStyle,
+  img: ViewStyle
+}
+
+export const CartItemListItemStyles = StyleSheet.create<StyleCartItemListItem>({
   container: {
     display: 'flex',
     flexDirection: 'row',
@@ -253,7 +300,15 @@ export const CartItemListItemStyles = StyleSheet.create({
   }
 });
 
-export const StoreSpecialListItemStyles = StyleSheet.create({
+interface StyleStoreSpecialListItem {
+    container: ViewStyle,
+    image: ViewStyle,
+    containerView: ViewStyle,
+    text: TextStyle,
+    price: TextStyle
+}
+
+export const StoreSpecialListItemStyles = StyleSheet.create<StyleStoreSpecialListItem>({
   container: {
     marginBottom: 40,
     alignItems: 'center',
@@ -277,19 +332,23 @@ export const StoreSpecialListItemStyles = StyleSheet.create({
   text: {
     fontWeight: 'bold',
     fontSize: 13,
-    color: colors.medium,
+    color: colors.mediumGrey,
   },
   price: {
     fontWeight: 'bold',
     fontSize: 11,
-    color: colors.medium,
+    color: colors.mediumGrey,
   },
 });
 
-export const quantityArrayStyle = StyleSheet.create({
+interface StyleQuantityArray {
+  container: ViewStyle
+}
+
+export const quantityArrayStyle = StyleSheet.create<StyleQuantityArray>({
   container: {
     borderRadius: 10,
-    borderColor: colors.medium,
+    borderColor: colors.mediumGrey,
     marginRight: 10,
     borderWidth: 2,
     justifyContent: 'center',
