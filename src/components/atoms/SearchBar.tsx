@@ -1,7 +1,8 @@
 import React from 'react'
 import { NativeSyntheticEvent, StyleProp, TextInput, TextInputFocusEventData, TextStyle, View } from 'react-native'
 import SearchBarStyle from '../../styles/SearchBarStyle'
-import Magnify from '../../assets/icons/Magnify'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
 
 export interface Props {
     style: StyleProp<TextStyle>,
@@ -15,7 +16,7 @@ export interface Props {
 const SearchBar: React.FC<Props> = ({style, placeholder, value, onChangeText, onFocus, editable}) => {
     return (
         <View style={{ ...SearchBarStyle.background, ...(style as object) }}>
-            <Magnify />
+            <MaterialCommunityIcons name="search" color="white" size={20} />
             <TextInput 
                 placeholder={placeholder} 
                 style={{flex: 1, fontSize: 15, marginLeft: 10}}
