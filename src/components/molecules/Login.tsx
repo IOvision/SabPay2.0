@@ -12,12 +12,12 @@ import SmsRetriever from 'react-native-sms-retriever'
 
 import { ActivityIndicator } from 'react-native-paper';
 
-function Login() {
+const Login: React.FC = () => {
     const [state, setState] = useState(0)
-    const [phone, setPhone] = useState(null)
+    const [phone, setPhone] = useState("")
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
-    var temp
+    var temp: any
     //Hash - Xq5ZQIU2b5de
     const signUp = async () => {
         try {
@@ -60,7 +60,7 @@ function Login() {
         }
     }
 
-    const confirmSignUp = async (otp) => {
+    const confirmSignUp = async (otp: string) => {
         try {
             console.log("user", temp)
             console.log("otp", otp)

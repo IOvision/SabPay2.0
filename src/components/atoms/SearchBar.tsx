@@ -7,9 +7,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 export interface Props {
     style: StyleProp<TextStyle>,
     placeholder: string,
-    value: string,
-    onChangeText: (text: string) => null,
-    onFocus: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void,
+    value?: string,
+    onChangeText?: (text: string) => null,
+    onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void,
     editable: boolean
 }
 

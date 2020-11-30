@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, TextInput, Text, StyleProp, ViewStyle } from 'react-native'
-import InputStyle from '../../styles/InputStyle.js'
+import InputStyle from '../../styles/InputStyle'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export interface Props {

@@ -4,7 +4,12 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import colors from '../../assets/colors';
 import {HeaderText, CustomText} from './../atoms/Text';
 
-export default function MyOrderListItem({data, navigation}) {
+export interface Props {
+  data: any,
+  navigation: any
+}
+
+const MyOrderListItem: React.FC<Props> = ({data, navigation}) => {
     return (
       <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("OrderDetail")} activeOpacity={0.9} >
       <Image
@@ -30,6 +35,8 @@ export default function MyOrderListItem({data, navigation}) {
     </TouchableOpacity>
     )
 }
+
+export default MyOrderListItem
 
 const styles = StyleSheet.create({
     container: {

@@ -5,7 +5,7 @@ import PurpleRoundBtn from '../atoms/PurpleRoundBtn'
 import { StyleSheet, View } from 'react-native'
 import { HeaderText } from '../atoms/Text'
 
-function ProfileEdit() {
+const ProfileEdit = () => {
     return (
         <RoundView>
             <View style={styles.headerTextView}>

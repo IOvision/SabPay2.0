@@ -5,7 +5,7 @@ import { Pages } from 'react-native-pages'
 import data from '../../models/testInventory'
 const {width} = Dimensions.get('window')
 
-export default function Swipeable() {
+const Swipeable: React.FC = () => {
     console.log(data.address)
     const [offers, setOffers] = useState(data.sp_offer)
     const children = () => {
@@ -23,6 +23,8 @@ export default function Swipeable() {
         </View>
     )
 }
+
+export default Swipeable
 
 const styles = StyleSheet.create({
     container: {

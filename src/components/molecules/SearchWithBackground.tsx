@@ -6,7 +6,15 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import SearchBar from '../atoms/SearchBar'
 
 const {width} = Dimensions.get('window')
-const SearchWithBackground = ({navigation, home, name, address}) => {
+
+export interface Props {
+    navigation: any,
+    home: boolean,
+    name: string,
+    address: string,
+}
+
+const SearchWithBackground: React.FC<Props> = ({navigation, home, name, address}) => {
     const [textHeight, setTextHeight] = useState(0)
     const height = home ? 125 + textHeight : 135
     return (
@@ -28,7 +36,7 @@ const SearchWithBackground = ({navigation, home, name, address}) => {
                     <View style={{display: "flex", alignItems: "flex-start", marginTop: 10, marginBottom: -20, paddingHorizontal: 20, flexDirection: "row"}}>
                         <View onLayout={
                             (event) => {
-                                var {x, y, width, height} = event.nativeEvent.layout;
+                                var { height} = event.nativeEvent.layout;
                                 setTextHeight(height)
                             }
                         }>

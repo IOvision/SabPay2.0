@@ -1,9 +1,14 @@
 import React from 'react'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, ViewStyle } from 'react-native'
 import HomePageCategoryItem from './HomePageCategoryListItem' 
 import randomColor, { colorLength } from '../../assets/randomColor'
 
-function HomePageCategoryList({data, style, navigation}) {
+export interface Props {
+    data: any,
+    style: ViewStyle,
+}
+
+const HomePageCategoryList: React.FC<Props> = ({data, style, navigation}) => {
     return (
         <View style={style}>
             <FlatList
@@ -22,7 +27,6 @@ function HomePageCategoryList({data, style, navigation}) {
                     })} 
                 />;
                 }}
-                showsHorizontalScrollIndicator={false}
             />
         </View>
     )

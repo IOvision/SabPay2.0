@@ -113,16 +113,7 @@ const RootDrawer = () => {
             initialRouteName="Tab Navigator" 
             drawerContent={(props) => 
                 (
-                    <LinearGradient 
-                        style={{
-                            padding: 10,
-                            paddingHorizontal: 30,
-                            display: "flex",
-                            alignSelf: 'baseline'}} 
-                        start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-                        colors={['#8021EB', '#04035C']}>
-                        <CustomDrawerContent {...props} />
-                    </LinearGradient>
+                    <CustomDrawerContent {...props} />
                 )
             }
             screenOptions={{

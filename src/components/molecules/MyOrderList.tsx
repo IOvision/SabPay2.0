@@ -1,8 +1,12 @@
 import React from 'react'
-import {View, StyleSheet, Text, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import MyOrderListItem from './MyOrderListItem';
 
-export default function MyOrderList({navigation}) {
+export interface Props {
+  navigation: any
+}
+
+const MyOrderList: React.FC<Props> = ({navigation}) => {
     const data = [
         {
           id: 1,
@@ -41,6 +45,8 @@ export default function MyOrderList({navigation}) {
         </View>
     )
 }
+
+export default MyOrderList
 
 const styles = StyleSheet.create({
     container: {
