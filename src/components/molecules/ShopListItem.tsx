@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Image, Text } from 'react-native';
-import { shopListItemstyles } from '../../styles/FlatListItemStyle.js'
+import { shopListItemstyles } from '../../styles/FlatListItemStyle'
 import { HeaderText, BodyText } from '../atoms/Text'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../../assets/colors'

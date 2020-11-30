@@ -1,7 +1,14 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 import colors from '../assets/colors'
 
-export const styles = StyleSheet.create({
+interface Style {
+    container: ViewStyle,
+    subViews: ViewStyle,
+    priceText: TextStyle,
+    horizontalLine: ViewStyle
+}
+
+export const styles = StyleSheet.create<Style>({
     container:{
         borderStyle: "solid",
         borderWidth: 1,

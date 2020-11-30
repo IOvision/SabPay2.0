@@ -20,7 +20,7 @@ const SearchBar: React.FC<Props> = ({style, placeholder, value, onChangeText, on
                 placeholder={placeholder} 
                 style={{flex: 1, fontSize: 15, marginLeft: 10}}
                 value={value}
-                onChangeText={onChangeText ? (text) => onChangeText(text) : void}
+                onChangeText={(text) => onChangeText(text)}
                 onFocus={onFocus}
                 editable={editable}
             />

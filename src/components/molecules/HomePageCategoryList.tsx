@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, FlatList } from 'react-native'
-import HomePageCategoryItem from './HomePageCategoryListItem.js' 
+import HomePageCategoryItem from './HomePageCategoryListItem' 
 import randomColor, { colorLength } from '../../assets/randomColor'
 
 function HomePageCategoryList({data, style, navigation}) {

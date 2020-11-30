@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, FlatList, StyleProp, ViewStyle} from 'react-native';
-import CategoryPageCategoryListItem from './CategoryPageCategoryListItem.js'
+import CategoryPageCategoryListItem from './CategoryPageCategoryListItem'
 
 export interface Props {
     data: any,

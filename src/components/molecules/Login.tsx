@@ -2,29 +2,15 @@ import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native';
 import PurpleRoundBtn from '../atoms/PurpleRoundBtn';
 import RoundView from '../atoms/RoundView';
-import { HeaderText } from '../atoms/Text.js'
+import { HeaderText } from '../atoms/Text'
 import InputText from '../atoms/InputText';
 import Otp from './Otp';
-import { Platform, TouchableOpacity } from "react-native";
-import { TouchableOpacity as RNGHTouchableOpacity } from "react-native-gesture-handler";
 import { Auth } from 'aws-amplify'
 import colors from '../../assets/colors';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import SmsRetriever from 'react-native-sms-retriever'
 
-import { test } from '../../requests'
 import { ActivityIndicator } from 'react-native-paper';
-
-function Touch({onPress, children}) {
-    if (Platform.OS === "android") {
-        return (
-          <RNGHTouchableOpacity onPress={onPress}>{children}</RNGHTouchableOpacity>
-        );
-    }
-    
-    return <TouchableOpacity onPress={onPress}>{children}</TouchableOpacity>;
-};
-
 
 function Login() {
     const [state, setState] = useState(0)

@@ -1,8 +1,8 @@
 import React from 'react'
 import { GestureResponderEvent, StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import colors from '../../assets/colors.js'
-import { HeaderText } from './Text.js'
+import colors from '../../assets/colors'
+import { HeaderText } from './Text'
 import LinearGradient from 'react-native-linear-gradient'
 
 export interface Props {

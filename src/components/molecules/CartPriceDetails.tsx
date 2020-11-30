@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleProp, View, ViewStyle } from 'react-native'
 import RoundView from '../atoms/RoundView'
-import { HeaderText, BodyText } from '../atoms/Text.js'
-import { styles } from '../../styles/CartPriceDetailsStyle.js'
+import { HeaderText, BodyText } from '../atoms/Text'
+import { styles } from '../../styles/CartPriceDetailsStyle'
 
 export interface Props {
     price: string,

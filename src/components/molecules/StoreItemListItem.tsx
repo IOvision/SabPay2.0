@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { View, Image, TouchableOpacity } from 'react-native';
-import RoundView from '../atoms/RoundView.js'
-import { HeaderText, BodyText } from '../atoms/Text.js'
-import { storeListItemStyle } from '../../styles/FlatListItemStyle.js'
+import RoundView from '../atoms/RoundView'
+import { HeaderText, BodyText } from '../atoms/Text'
+import { storeListItemStyle } from '../../styles/FlatListItemStyle'
 import colors from '../../assets/colors'
-import ItemQuantityButton from './ItemQuantityButton.js';
+import ItemQuantityButton from './ItemQuantityButton';
 
 
 function StoreItemListItem({item, navigation}) {
