@@ -7,11 +7,11 @@ export default class Item implements Base {
     name: string;
     image: string;
     desc: string;
-    child: [{
+    child: {
         key: number,
         name: string,
         price: string
-    }];
+    }[];
     selected: number
 
     constructor(a: any) {
@@ -28,7 +28,7 @@ export default class Item implements Base {
         console.log(this)
     }
 
-    public static itemsFromList(json: Array<JSON>) {
+    public static itemsFromList(json: Object[]) {
         var list: Item[] = []
         json.forEach(element => {
             var a = new Item(element)
