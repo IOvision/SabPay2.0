@@ -20,6 +20,7 @@ const StoreItemListItem: React.FC<Props> = ({item, navigation}) => {
         return item.child.map((element) => {
             return (
                 <TouchableOpacity 
+                    key={element.id}
                     style={element.key == selected ? [storeListItemStyle.itemSize, {borderColor: colors.primary}] : storeListItemStyle.itemSize}
                     onPress={() => setSelected(element.key)}
                 >

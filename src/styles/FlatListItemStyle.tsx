@@ -328,16 +328,17 @@ export const StoreSpecialListItemStyles = StyleSheet.create<StyleStoreSpecialLis
     width: 120,
     display: 'flex',
     alignItems: 'center',
+    paddingHorizontal: 5
   },
   text: {
     fontWeight: 'bold',
     fontSize: 13,
-    color: colors.mediumGrey,
+    color: "black"
   },
   price: {
     fontWeight: 'bold',
     fontSize: 11,
-    color: colors.mediumGrey,
+    color: "black",
   },
 });
 

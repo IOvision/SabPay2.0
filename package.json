@@ -32,6 +32,7 @@
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.13.0",
+    "react-native-skeleton-placeholder": "^3.0.2",
     "react-native-sms-retriever": "^1.1.1",
     "react-native-splash-screen": "^3.2.0",
     "react-native-step-indicator": "^1.0.3",
