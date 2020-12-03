@@ -16,7 +16,7 @@ export interface Props {
 const SearchBar: React.FC<Props> = ({style, placeholder, value, onChangeText, onFocus, editable}) => {
     return (
         <View style={{ ...SearchBarStyle.background, ...(style as object) }}>
-            <MaterialCommunityIcons name="search" color="white" size={20} />
+            {/* <MaterialCommunityIcons name="search" color="white" size={20} /> */}
             <TextInput 
                 placeholder={placeholder} 
                 style={{flex: 1, fontSize: 15, marginLeft: 10}}
