@@ -3,18 +3,26 @@ import { View, Image, Text, ScrollView, TouchableOpacity, StyleSheet } from 'rea
 import colors from '../../assets/colors'
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
 import RoundView from '../../components/atoms/RoundView'
-import { BodyText, CaptionText, HeaderText } from '../../components/atoms/Text'
+import { CaptionText, HeaderText } from '../../components/atoms/Text'
 
 //Redux
 import { connect } from 'react-redux'
 import { addItem } from '../../redux/actions/cart'
+import Item from '../../models/Item'
 
-function ItemDetailScreen({route, cart, add}) {
+export interface Props {
+    route: any,
+    add: any
+}
 
-    const data = route.params.item
-    const [selected, setSelected] = useState("0")
+const ItemDetailScreen: React.FC<Props> = ({route, add}) => {
+
+    const data: Item = route.params.item
+
+    const [selected, setSelected] = useState<number>(data.getSelected())
+    
     const children = () => {
-        return data.children.map((element) => {
+        return data.child.map((element) => {
             return (
                 <TouchableOpacity
                     activeOpacity={0.7}
@@ -23,7 +31,7 @@ function ItemDetailScreen({route, cart, add}) {
                 >
                     <RoundView style={element.key === selected ? [styles.childContainer, styles.childSelected] : styles.childContainer}>
                         <HeaderText style={element.key === selected ? styles.childSelected : {color: colors.mediumGrey}}>
-                            {element.child_name}
+                            {element.name}
                         </HeaderText>
                     </RoundView>
                 </TouchableOpacity>
@@ -38,7 +46,7 @@ function ItemDetailScreen({route, cart, add}) {
                 </RoundView>
                 <CaptionText style={{marginVertical: 5}}>{data.name}</CaptionText>
                 <View style={{flexDirection: 'row', marginVertical: 5, alignItems: 'flex-end'}}>
-                    <CaptionText>Rs. {data.children[selected].child_price}</CaptionText>
+                    <CaptionText>Rs. {data.child[selected].price}</CaptionText>
                     {/* <CaptionText style={{textDecorationLine: 'line-through', marginLeft: 20, fontSize: 16}}> Rs. 300 </CaptionText> */}
                 </View>
                 {/* <HeaderText style={{color: '#007E0D'}}>5% Off</HeaderText> */}
@@ -53,7 +61,7 @@ function ItemDetailScreen({route, cart, add}) {
                 </Text>
             </ScrollView>
             <View style={{backgroundColor: 'white', alignItems: 'flex-end', elevation: 11, padding: 10}}>
-                <PurpleRoundBtn onPress={() => add(data.key, data)} style={{borderRadius: 10}} gradient text="Add to Cart" />
+                <PurpleRoundBtn onPress={() => add(data.id, data)} style={{borderRadius: 10}} mode="gradient" text="Add to Cart" />
             </View>
         </View>
     )

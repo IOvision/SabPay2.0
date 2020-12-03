@@ -1,16 +1,16 @@
-import { ADD_ITEM, INC_ITEM, DEC_ITEM, CLEAR } from '../actions/types'
+import { ADD_ITEM, INC_ITEM, DEC_ITEM, CLEAR, CartState, CartActionTypes } from '../actions/types'
 
-const initialState = {
+const initialState: CartState = {
     items: [],
     qty: {},
 }
 
-const cartReducer = (state = initialState, action) => {
+const cartReducer = (state = initialState, action: CartActionTypes) => {
     switch(action.type) {
         case ADD_ITEM:
-            const items = state.items.concat(action.data.item)
+            const items = state.items.concat(action.data)
             const qty = state.qty
-            qty[action.data.key] = 1
+            qty[action.data.id] = 1
             return {
                 ...state,
                 items,
@@ -25,7 +25,7 @@ const cartReducer = (state = initialState, action) => {
             }
         case DEC_ITEM:
             if (state.qty[action.data] == 1) {
-                const newItem = state.items.filter((item) => item.key !== action.data)
+                const newItem = state.items.filter((item) => item.id !== action.data)
                 const decQty = state.qty
                 delete decQty[action.data]
                 return {

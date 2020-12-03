@@ -9,9 +9,9 @@ const {width} = Dimensions.get('window')
 
 export interface Props {
     navigation: any,
-    home: boolean,
-    name: string,
-    address: string,
+    home?: boolean,
+    name?: string,
+    address?: string,
 }
 
 const SearchWithBackground: React.FC<Props> = ({navigation, home, name, address}) => {

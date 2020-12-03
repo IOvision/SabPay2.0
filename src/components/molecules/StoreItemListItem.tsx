@@ -5,20 +5,25 @@ import { HeaderText, BodyText } from '../atoms/Text'
 import { storeListItemStyle } from '../../styles/FlatListItemStyle'
 import colors from '../../assets/colors'
 import ItemQuantityButton from './ItemQuantityButton';
+import Item from '../../models/Item'
 
+export interface Props {
+    item: Item,
+    navigation: any
+}
 
-function StoreItemListItem({item, navigation}) {
+const StoreItemListItem: React.FC<Props> = ({item, navigation}) => {
     
     const [selected, setSelected] = useState(0)
- 
+    
     const children = () => {
-        return item.children.map((element) => {
+        return item.child.map((element) => {
             return (
                 <TouchableOpacity 
                     style={element.key == selected ? [storeListItemStyle.itemSize, {borderColor: colors.primary}] : storeListItemStyle.itemSize}
                     onPress={() => setSelected(element.key)}
                 >
-                    <BodyText>{element.child_name}</BodyText>
+                    <BodyText>{element.name}</BodyText>
                 </TouchableOpacity>
             )
         })
@@ -37,7 +42,7 @@ function StoreItemListItem({item, navigation}) {
                 </View>
                 <View style={storeListItemStyle.itemDetailsView}>
                     <HeaderText>{item.name}</HeaderText>
-                    <BodyText>Rs. {item.children[selected].child_price}</BodyText>
+                    <BodyText>Rs. {item.child[selected].price}</BodyText>
                     <View style={storeListItemStyle.itemSizeAndQtyView}>
                         <View style={{flexDirection: 'row'}}>
                         {children()}

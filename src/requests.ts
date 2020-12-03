@@ -1,12 +1,11 @@
-const apiKey = require('./Keys')
-const axios = require('axios').default
+import axios from 'axios'
 
 axios.defaults.baseURL = "https://oqy97amyd0.execute-api.ap-south-1.amazonaws.com/v1"
 axios.defaults.headers = { "x-api-key": 'RDFCXXNZwW2FBxGykBgKz3E0MPcz3A5I4yFqzmlw' }
 
 import Item from './models/Item'
 
-export const test = () => {
+export const test = (cb: (err: any, resp: Item[] | null) => void) => {
     axios.post('/test', [
         {
             "name": "Rich Tomato Ketchup",
@@ -16,13 +15,13 @@ export const test = () => {
             "child": [
                 {
                     "key": "0",
-                    "child_name": "250ml",
-                    "child_price": "150"
+                    "name": "250ml",
+                    "price": "150"
                 },
                 {
                     "key": "1",
-                    "child_name": "500ml",
-                    "child_price": "300"
+                    "name": "500ml",
+                    "price": "300"
                 }
             ]
         },
@@ -34,21 +33,30 @@ export const test = () => {
             "child": [
                 {
                     "key": "0",
-                    "child_name": "250ml",
-                    "child_price": "150"
+                    "name": "250ml",
+                    "price": "150"
                 },
                 {
                     "key": "1",
-                    "child_name": "500ml",
-                    "child_price": "300"
+                    "name": "500ml",
+                    "price": "300"
                 }
             ]
         }
     ])
-    .then(res => {
+    .then((res: any) => {
         var a = Item.itemsFromList(JSON.parse(res.data.body))
-        a[0].log()
-        a[1].log()
+        cb(null, a)
     })
-    .catch(err => console.log(err.response))
+    .catch((err: any) => {
+        cb(err, null)
+    })
+}
+
+export const getItems = (category: string, lastKey: string, cb: (err: any, resp: any) => void) => {
+    axios.get(`/item/${category}`, {})
+    .then(res => {
+        cb(false, Item.itemsFromList(res.data.data))
+    })
+    .catch(err => cb(err, null))
 }

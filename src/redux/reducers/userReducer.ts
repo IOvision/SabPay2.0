@@ -1,19 +1,17 @@
-import { SET_SIGNED_IN, SET_SIGNED_OUT } from '../actions/types'
+import { SET_SIGNED_IN, SET_SIGNED_OUT, UserActionTypes, UserState } from '../actions/types'
 
-const initialState = {
+const initialState: UserState = {
     signedIn: false
 }
 
-const userReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action: UserActionTypes) => {
     switch(action.type) {
         case SET_SIGNED_IN:
             return {
-                ...state,
                 signedIn: true
             };
         case SET_SIGNED_OUT:
             return {
-                ...state,
                 signedIn: false
             };
         default:

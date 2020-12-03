@@ -6,7 +6,7 @@ import { ItemQuantityButtonStyle } from '../../styles/FlatListItemStyle'
 import { BodyText, HeaderText } from '../atoms/Text'
 import colors from '../../assets/colors'
 import { connect } from 'react-redux';
-import { addItem, decItem, incItem } from '../../redux/actions/cart.js';
+import { addItem, decItem, incItem } from '../../redux/actions/cart';
 
 export interface Props {
     item: any,

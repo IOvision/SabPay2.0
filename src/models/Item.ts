@@ -1,24 +1,31 @@
-export default class Item {
+import Base from './Base'
+
+export default class Item implements Base {
+    
+    pk: string;
+    id: string;
     name: string;
     image: string;
     desc: string;
-    tag: string;
     child: [{
-        key: string,
+        key: number,
         name: string,
         price: string
     }];
+    selected: number
 
     constructor(a: any) {
+        this.pk = a.PK
+        this.id = a.SK
         this.name = a.name
         this.image = a.image
         this.desc = a.desc
-        this.tag = a.tag
         this.child = a.child
+        this.selected = 0
     }
-
+    
     public log() {
-        console.log(this.name)
+        console.log(this)
     }
 
     public static itemsFromList(json: Array<JSON>) {
@@ -29,5 +36,13 @@ export default class Item {
         });
         console.log('test', list)
         return list
+    }
+
+    public getSelected() {
+        return this.selected
+    }
+
+    public setSelected(select: number) {
+        this.selected = select
     }
 }
