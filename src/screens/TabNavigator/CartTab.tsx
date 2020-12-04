@@ -7,17 +7,23 @@ import EmptyCartSvg from '../../assets/svg/EmptyCartSvg'
 import CartItemListItem from '../../components/molecules/CartItemListItem'
 import CartPriceDetails from '../../components/molecules/CartPriceDetails'
 import Login from '../../components/molecules/Login'
-import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
 //Redux
 import { connect } from 'react-redux'
+import CartItem from '../../models/CartItem'
+import { RootState } from '../../redux/store'
 
-const {width, height} = Dimensions.get('window')
-const CartTab = (props) => {
+export interface Props {
+    cart: CartItem[],
+    qty: any,
+    isSignedIn: boolean,
+    navigation: any
+}
 
-    const data = props.cart
+const CartTab: React.FC<Props> = (props) => {
+
     const sheetRef = useRef(null)
 
     const handleContinue = () => (
@@ -27,7 +33,7 @@ const CartTab = (props) => {
         <View style={{flex: 1, backgroundColor: "white"}}>
             <SearchWithBackground navigation={props.navigation} />
             <FlatList 
-                data={data}
+                data={props.cart}
                 ListEmptyComponent={() => {
                     return (
                         <View style={{height: 400, width: 400, marginTop: 20, alignItems: "center"}}>
@@ -53,8 +59,8 @@ const CartTab = (props) => {
                 }}
                 ListFooterComponent={() => {
                     return (
-                        data.length != 0 ? <View style={{margin: 20}}>
-                        <CartPriceDetails />
+                        props.cart.length != 0 ? <View style={{margin: 20}}>
+                        <CartPriceDetails total={CartItem.getTotal(props.cart, props.qty).toString()}/>
                         <HeaderText style={{marginLeft: 20, marginTop: 10}}>Delivery Options</HeaderText>
                         <View style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: 10, marginBottom: 10}}>
                             <View style={{flex: 1,
@@ -82,9 +88,13 @@ const CartTab = (props) => {
                     )
                 }}
             />
-            <View style={styles.continueBtn}>
-                <PurpleRoundBtn gradient text="Continue" style={{borderRadius: 10}} onPress={() => props.isSignedIn ? props.navigation.navigate("PlaceOrder") : sheetRef.current.snapTo(0)}/>
-            </View>
+            {
+                props.cart.length != 0 ? (
+                    <View style={styles.continueBtn}>
+                        <PurpleRoundBtn mode="gradient" text="Continue" style={{borderRadius: 10}} onPress={() => props.isSignedIn ? props.navigation.navigate("PlaceOrder") : sheetRef.current.snapTo(0)}/>
+                    </View>
+                ) : null
+            }
             <BottomSheet
                 initialSnap={2}
                 ref={sheetRef}
@@ -96,10 +106,11 @@ const CartTab = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         isSignedIn: state.userReducer.signedIn,
-        cart: state.cartReducer.items
+        cart: state.cartReducer.items,
+        qty: state.cartReducer.qty
     }
 }
 

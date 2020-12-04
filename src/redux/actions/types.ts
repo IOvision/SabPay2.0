@@ -1,3 +1,4 @@
+import CartItem from "../../models/CartItem"
 import Item from "../../models/Item"
 
 //USER
@@ -20,7 +21,7 @@ export type UserActionTypes = SignInAction | SignOutAction
 
 //CART
 export interface CartState {
-    items: Item[],
+    items: CartItem[],
     qty: {
         [key: string]: number
     }
@@ -33,7 +34,7 @@ export const CLEAR = "CLEAR"
 
 interface AddItemAction {
     type: typeof ADD_ITEM,
-    data: Item
+    data: CartItem
 }
 
 interface IncItemAction {

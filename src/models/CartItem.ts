@@ -19,4 +19,12 @@ export default class CartItem implements Base {
         this.price = a.child[selected].price
     }
     
+    public static getTotal(items: CartItem[], qty: any) {
+        var total = 0
+        for (var i = 0; i < items.length; i++){
+            total += items[i].price * qty[items[i].id]
+        }
+        return total
+    }
+
 }

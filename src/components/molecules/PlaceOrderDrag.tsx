@@ -1,16 +1,35 @@
 import React from "react";
 import { StyleSheet, View, Dimensions } from "react-native";
-import Animated, { call, greaterOrEq, interpolate, lessOrEq } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from "../../assets/colors";
 import { HeaderText } from "../atoms/Text";
 import LinearGradient from "react-native-linear-gradient";
 
-const { width, height } = Dimensions.get("window");
-const { cond, eq, add, set, Value, event } = Animated;
-export default class PlaceOrderDrag extends React.Component {
-    constructor(props) {
+const { width } = Dimensions.get("window");
+const { cond, eq, add, Value, event, call, greaterOrEq, interpolate } = Animated;
+
+export interface Props {
+    navigation: any
+}
+
+export default class PlaceOrderDrag extends React.Component<Props> {
+    
+    dragX: Animated.Value<0>;
+    offsetX: Animated.Value<0>;
+    gestureState: Animated.Value<-1>;
+    onGestureEvent: (...args: any[]) => void;
+    transX: Animated.Node<number>;
+    opacity: Animated.Node<number>;
+    priceOpacity: Animated.Node<number>;
+    textOpacity: Animated.Node<number>;
+    textY: Animated.Node<number>;
+    centerTextOpacity: Animated.Node<0 | 1>;
+    left: any;
+    right: any;
+
+    constructor(props: Props) {
         super(props)
         this.onDrop = this.onDrop.bind(this)
         this.dragX = new Value(0)
@@ -56,7 +75,7 @@ export default class PlaceOrderDrag extends React.Component {
         this.left = x
         this.right = x + width
     }
-    onDrop([x]) {
+    onDrop([x]: readonly number[]) {
         if (x >= this.left){
             this.props.navigation.navigate("OrderPlacedScreen")
         }

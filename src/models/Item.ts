@@ -10,7 +10,7 @@ export default class Item implements Base {
     child: {
         key: number,
         name: string,
-        price: string
+        price: number
     }[];
     selected: number
 
@@ -34,7 +34,6 @@ export default class Item implements Base {
             var a = new Item(element)
             list.push(a)
         });
-        console.log('test', list)
         return list
     }
 

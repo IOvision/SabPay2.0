@@ -1,16 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import { View, FlatList, Text } from 'react-native'
+import { View, FlatList } from 'react-native'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground';
 import StoreItemListItem from '../../components/molecules/StoreItemListItem'
 import Item from '../../models/Item';
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
-import { test, getItems } from '../../requests';
+import { getItems } from '../../requests';
 import testItems from '../../models/testItems'
 
 export interface Props {
   navigation: any,
   route: any
+}
+
+const ItemSkeleton = () => {
+  return (
+    <SkeletonPlaceholder>
+      <View style={{flexDirection: "row", alignItems: "center", marginVertical: 5}}>
+        <View style={{ width: 100, height: 100 }} />
+        <View style={{ marginLeft: 20, flex: 1 }}>
+          <View style={{ width: 160, height: 20, borderRadius: 4 }} />
+          <View style={{ marginTop: 6, width: 60, height: 20, borderRadius: 4 }}/>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 15, justifyContent: 'space-between'}}>
+            <View style={{ width: 50, height: 35, borderRadius: 4 }} />
+            <View style={{ width: 60, height: 35, borderRadius: 4 }}/>
+          </View>
+        </View>
+      </View>
+    </SkeletonPlaceholder>
+  )
 }
 
 const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
@@ -22,9 +40,7 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
     getItems("test", "null", (err, resp) => {
       if (err)
         return console.log(err)
-      else {
-        setIsLoading(false);
-      }
+      setIsLoading(false);
       setData(testItems)
     })
   }, [])
@@ -32,7 +48,7 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
   const example = [1,2,3,4,5,6,7,8,9,10]
 
   return (
-      <View style={{backgroundColor: "white", padding: 10, display: "flex", flex: 1}}>
+      <View style={{backgroundColor: "white", display: "flex", flex: 1}}>
         <SearchWithBackground navigation={navigation}/>
         {
           isLoading ? (
@@ -41,19 +57,7 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
                 data={example}
                 keyExtractor={(item) => item.toString()}
                 renderItem={() => {
-                  return (
-                    <SkeletonPlaceholder >
-                      <View style={{ flexDirection: "row", alignItems: "center", marginTop: 10}}>
-                        <View style={{ width: 100, height: 100 }} />
-                        <View style={{ marginLeft: 20 }}>
-                          <View style={{ width: 160, height: 20, borderRadius: 4 }} />
-                          <View style={{ marginTop: 6, width: 80, height: 20, borderRadius: 4 }}/>
-                          <View style={{ marginTop: 15, width: 30, height: 30, borderRadius: 4 }} />
-                        </View>
-                        <View style={{ width: 70, height: 40, borderRadius: 4, marginTop: 60 }}></View>
-                      </View>
-                    </SkeletonPlaceholder>
-                  )
+                  return <ItemSkeleton />
                 }}
               />
             </View>
@@ -71,18 +75,8 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
               }}
               ListFooterComponent={() => {
                 return (
-                  <View style={{flex: 1, padding: 10}}>
-                    <SkeletonPlaceholder>
-                      <View style={{flexDirection: "row", alignItems: "center", marginTop: 10}}>
-                        <View style={{ width: 100, height: 100 }} />
-                        <View style={{ marginLeft: 20 }}>
-                          <View style={{ width: 160, height: 20, borderRadius: 4 }} />
-                          <View style={{ marginTop: 6, width: 60, height: 20, borderRadius: 4 }}/>
-                          <View style={{ marginTop: 15, width: 30, height: 30, borderRadius: 4 }} />
-                        </View>
-                        <View style={{ width: 70, height: 40, borderRadius: 4, marginTop: 60, marginEnd: 15 }}></View>
-                      </View>
-                    </SkeletonPlaceholder>
+                  <View style={{paddingHorizontal: 10, paddingBottom: 10}}>
+                    <ItemSkeleton />
                   </View>
                 )
               }}

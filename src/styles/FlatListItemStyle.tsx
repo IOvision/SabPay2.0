@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { StyleSheet, ViewStyle, TextStyle, ImageProps, ImageStyle } from 'react-native';
 import colors from '../assets/colors';
 
 interface StyleShopListItem {
@@ -35,7 +35,7 @@ export const shopListItemstyles = StyleSheet.create<StyleShopListItem>({
 interface StyleStoreListItem {
   container: ViewStyle,
   itemImageView: ViewStyle,
-  itemImage: ViewStyle,
+  itemImage: ImageProps,
   itemDetailsView: ViewStyle,
   itemSizeAndQtyView: ViewStyle,
   itemSize: ViewStyle,
@@ -49,14 +49,12 @@ export const storeListItemStyle = StyleSheet.create<StyleStoreListItem>({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: colors.mediumGrey,
-    marginVertical: 10
+    padding: 10,
+    borderRadius: 0
   },
   itemImageView: {
     width: 100,
     height: 100,
-    borderRadius: 10,
     borderWidth: 1,
     borderColor: '#b1b1b1',
     alignItems: 'center',
@@ -79,7 +77,7 @@ export const storeListItemStyle = StyleSheet.create<StyleStoreListItem>({
     marginTop: 15,
   },
   itemSize: {
-    borderRadius: 10,
+    borderRadius: 4,
     borderWidth: 1,
     borderColor: colors.mediumGrey,
     height: 35,
@@ -245,7 +243,7 @@ interface StyleCartItemListItem {
   discountView: ViewStyle,
   originalPrice: TextStyle,
   weight: ViewStyle,
-  img: ViewStyle
+  img: ImageStyle
 }
 
 export const CartItemListItemStyles = StyleSheet.create<StyleCartItemListItem>({

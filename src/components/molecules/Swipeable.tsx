@@ -6,15 +6,7 @@ import data from '../../models/testInventory'
 const {width} = Dimensions.get('window')
 
 const Swipeable: React.FC = ({isLoading}) => {
-    console.log(data.address)
     const [offers, setOffers] = useState(data.sp_offer)
-    const children = () => {
-        return offers.map((element) => {
-            return (
-                <Image style={styles.children} source={{uri: element.image}} />
-            )
-        })
-    }
     if(isLoading) {
         return (
             <View style={styles.container}>
@@ -23,6 +15,13 @@ const Swipeable: React.FC = ({isLoading}) => {
                 </SkeletonPlaceholder> 
             </View>
         )
+    }
+    const children = () => {
+        return offers.map((element) => {
+            return (
+                <Image style={styles.children} source={{uri: element.image}} key={data.key}/>
+            )
+        })
     }
     return (
         <View style={styles.container}>

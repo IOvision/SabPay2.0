@@ -5,11 +5,13 @@ import colors from '../../assets/colors'
 import { HeaderText } from './Text'
 import LinearGradient from 'react-native-linear-gradient'
 
+type ButtonModes = "gradient" | "outlined" | "normal"
+
 export interface Props {
     text: string,
     style?: StyleProp<ViewStyle>,
     color?: string,
-    mode?: string,
+    mode?: ButtonModes,
     textStyle?: StyleProp<TextStyle>,
     onPress?: (event: GestureResponderEvent) => void
 }
