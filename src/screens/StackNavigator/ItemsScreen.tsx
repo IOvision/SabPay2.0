@@ -7,6 +7,7 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 import { test, getItems } from '../../requests';
 import testItems from '../../models/testItems'
+import RoundView from '../../components/atoms/RoundView';
 
 export interface Props {
   navigation: any,
@@ -44,7 +45,7 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
                   return (
                     <SkeletonPlaceholder >
                       <View style={{ flexDirection: "row", alignItems: "center", marginTop: 10}}>
-                        <View style={{ width: 100, height: 100 }} />
+                        <View style={{ width: 100, height: 100, marginLeft: 10 }} />
                         <View style={{ marginLeft: 20 }}>
                           <View style={{ width: 160, height: 20, borderRadius: 4 }} />
                           <View style={{ marginTop: 6, width: 80, height: 20, borderRadius: 4 }}/>
@@ -73,14 +74,14 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
                 return (
                   <View style={{flex: 1, padding: 10}}>
                     <SkeletonPlaceholder>
-                      <View style={{flexDirection: "row", alignItems: "center", marginTop: 10}}>
+                      <View style={{flexDirection: "row", alignItems: "center", marginTop: 10, marginLeft: 10}}>
                         <View style={{ width: 100, height: 100 }} />
                         <View style={{ marginLeft: 20 }}>
                           <View style={{ width: 160, height: 20, borderRadius: 4 }} />
                           <View style={{ marginTop: 6, width: 60, height: 20, borderRadius: 4 }}/>
                           <View style={{ marginTop: 15, width: 30, height: 30, borderRadius: 4 }} />
                         </View>
-                        <View style={{ width: 70, height: 40, borderRadius: 4, marginTop: 60, marginEnd: 15 }}></View>
+                        <View style={{ width: 70, height: 40, borderRadius: 4, marginTop: 60, marginEnd: 15 }}/>
                       </View>
                     </SkeletonPlaceholder>
                   </View>
