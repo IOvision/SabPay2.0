@@ -1,9 +1,37 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, View } from 'react-native'
 import StoreSpecialListItem from '../molecules/StoreSpecialListItem'
 import randomColor, { colorLength } from '../../assets/randomColor'
+import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
-export default function StoreSpecialList({object}) {
+
+export default function StoreSpecialList({object, isLoading}) {
+
+    const sample = [1,2,3,4,5];
+    if(isLoading) {
+        return (
+            <FlatList
+                horizontal
+                data={sample}
+                keyExtractor={(item, index) => index.toString()}
+                showsHorizontalScrollIndicator={false}
+                ItemSeparatorComponent={() => { return (
+                    <View style={{width: 25}}></View>
+                )}}
+                renderItem={({item, index}) => {
+                return (
+                    <SkeletonPlaceholder >
+                        <View style={{alignItems: "center"}}>
+                            <View style={{borderRadius: 10, height: 120, width: 120}} />
+                            <View style={{ marginTop: 4, width: 120, height: 20, borderRadius: 4 }}/>
+                            <View style={{ marginTop: 4, width: 70, height: 20, borderRadius: 4, marginBottom: 20 }}/>
+                        </View>
+                    </SkeletonPlaceholder>
+                )
+                }}
+            />
+        )
+    }
     return (
         <FlatList
             horizontal

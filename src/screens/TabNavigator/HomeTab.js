@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, ScrollView, Dimensions } from 'react-native'
 import Swipeable from '../../components/molecules/Swipeable'
 import { CaptionText } from '../../components/atoms/Text'
@@ -11,6 +11,7 @@ import inventory from '../../models/testInventory'
 
 const {width} = Dimensions.get('window')
 const HomeTab = ({navigation}) => {
+    const [isLoading, setIsLoading] = useState(true)
     const object = [
         {
             title:"Dry Fruits (Diwali Special)",
@@ -33,14 +34,14 @@ const HomeTab = ({navigation}) => {
             <SearchWithBackground home={true} navigation={navigation} name={inventory.name} address={inventory.address}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
-                <HomePageCategoryList data={inventory.tags} navigation={navigation}/>
+                <HomePageCategoryList data={inventory.tags} navigation={navigation} isLoading={isLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
-                <Swipeable data={inventory.sp_offer}/>
+                <Swipeable data={inventory.sp_offer} isLoading={isLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
-                <StoreSpecialList object={object} />
-                <Swipeable />
+                <StoreSpecialList object={object} isLoading={isLoading}/>
+                <Swipeable isLoading={isLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
-                <HomePageOffers />
+                <HomePageOffers isLoading={isLoading} isLoading={isLoading}/>
                 <View style={{height: 30}}></View>
             </ScrollView>
         </View>

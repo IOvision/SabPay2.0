@@ -1,9 +1,27 @@
 import React from 'react'
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image, Dimensions } from 'react-native'
 import styles from '../../styles/HomePageOffersStyles'
 import { CaptionText } from '../atoms/Text'
+import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
-const HomePageOffers: React.FC = () => {
+
+const HomePageOffers: React.FC = ({isLoading}) => {
+    const {width} = Dimensions.get('window')
+
+    if(isLoading) {
+        return (
+            <SkeletonPlaceholder>
+                <View style={{flexDirection: "row", alignItems: "center"}}>
+                    <View style={{height: 150, width: width/2 -10, marginStart: 5}}/>
+                    <View style={{height: 150, width: width/2 -10, marginStart: 5, marginTop: 5}}/>
+                </View>
+                <View style={{flexDirection: "row", alignItems: "center"}}>
+                    <View style={{height: 150, width: width/2 -10, marginStart: 5}}/>
+                    <View style={{height: 150, width: width/2 -10, marginStart: 5, marginTop: 5}}/>
+                </View>
+            </SkeletonPlaceholder>
+        )
+    }
     return (
         <View>
             <View style={styles.container1}>
