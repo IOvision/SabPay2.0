@@ -14,7 +14,7 @@ const cartReducer = (state = initialState, action: CartActionTypes) => {
             return {
                 ...state,
                 items,
-                qty
+                qty,
             }
         case INC_ITEM:
             const incQty = state.qty

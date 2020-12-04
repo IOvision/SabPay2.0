@@ -7,20 +7,24 @@ import { BodyText, HeaderText } from '../atoms/Text'
 import colors from '../../assets/colors'
 import { connect } from 'react-redux';
 import { addItem, decItem, incItem } from '../../redux/actions/cart';
+import Item from '../../models/Item'
+import { RootState } from '../../redux/store'
+import CartItem from '../../models/CartItem'
 
 export interface Props {
-    item: any,
+    item: Item,
+    selected: number,
     cartQty: any,
-    add: any,
-    inc: any,
-    dec: any
+    add: (item: CartItem) => any,
+    inc: (id: string) => any,
+    dec: (id: string) => any
 }
 
-const ItemQuantityButton: React.FC<Props> = ({item, cartQty, add, inc, dec}) => {
-
+const ItemQuantityButton: React.FC<Props> = ({item, selected, cartQty, add, inc, dec}) => {
+    
     const getQty = () => {
-        if (cartQty[item.key])
-            return cartQty[item.key]
+        if (cartQty[item.id])
+            return cartQty[item.id]
         else
             return 0
     }
@@ -28,24 +32,25 @@ const ItemQuantityButton: React.FC<Props> = ({item, cartQty, add, inc, dec}) => 
     const [qty, setQty] = useState(getQty())
 
     const onAdd = () => {
-        add(item.key, item)
+        console.log(typeof item)
+        add(new CartItem(item, selected))
         setQty(1)
     }
 
     const onInc = () => {
-        inc(item.key)
+        inc(item.id)
         setQty(qty+1)
     }
 
     const onDec = () => {
-        dec(item.key)
+        dec(item.id)
         setQty(qty-1)
     }
 
 
     if (qty === 0) {
         return (
-            <LinearGradient style={{justifyContent: 'center', borderRadius: 10}} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#8021EB', '#04035C']}>
+            <LinearGradient style={{justifyContent: 'center', borderRadius: 8, width: 60, height: 35}} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#8021EB', '#04035C']}>
                 <TouchableOpacity style={{paddingHorizontal: 15}} onPress={onAdd} activeOpacity={0.9}>
                     <HeaderText style={{color: 'white'}}>Add</HeaderText>
                 </TouchableOpacity>
@@ -76,7 +81,7 @@ const ItemQuantityButton: React.FC<Props> = ({item, cartQty, add, inc, dec}) => 
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         cartQty: state.cartReducer.qty
     }
@@ -84,9 +89,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (key, item) => dispatch(addItem(key, item)),
-        inc: (key) => dispatch(incItem(key)),
-        dec: (key) => dispatch(decItem(key))
+        add: (item: CartItem) => dispatch(addItem(item)),
+        inc: (key: string) => dispatch(incItem(key)),
+        dec: (key: string) => dispatch(decItem(key))
     }
 }
 

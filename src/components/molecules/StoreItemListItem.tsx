@@ -14,7 +14,7 @@ export interface Props {
 
 const StoreItemListItem: React.FC<Props> = ({item, navigation}) => {
     
-    const [selected, setSelected] = useState(0)
+    const [selected, setSelected] = useState<number>(0)
     
     const children = () => {
         return item.child.map((element) => {
@@ -48,7 +48,7 @@ const StoreItemListItem: React.FC<Props> = ({item, navigation}) => {
                         <View style={{flexDirection: 'row'}}>
                         {children()}
                         </View>
-                        <ItemQuantityButton item={item} />
+                        <ItemQuantityButton selected={selected} item={item} />
                     </View>
                 </View>
             </RoundView>
