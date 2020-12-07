@@ -8,7 +8,7 @@ export interface Props {
     price: string,
     discount: string,
     total: string,
-    style: StyleProp<ViewStyle>
+    style?: StyleProp<ViewStyle>
 }
 
 const CartPriceDetails: React.FC<Props> = ({price, discount, total, style}) => {

@@ -1,5 +1,4 @@
 import CartItem from "../../models/CartItem"
-import Item from "../../models/Item"
 
 //USER
 export interface UserState {

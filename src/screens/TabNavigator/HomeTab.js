@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, ScrollView, Dimensions } from 'react-native'
 import Swipeable from '../../components/molecules/Swipeable'
 import { CaptionText } from '../../components/atoms/Text'
@@ -12,6 +12,11 @@ import inventory from '../../models/testInventory'
 const {width} = Dimensions.get('window')
 const HomeTab = ({navigation}) => {
     const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => setIsLoading(false), 1500)
+    }, [])
+
     const object = [
         {
             title:"Dry Fruits (Diwali Special)",

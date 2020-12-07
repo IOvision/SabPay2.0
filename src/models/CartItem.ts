@@ -27,4 +27,7 @@ export default class CartItem implements Base {
         return total
     }
 
+    public getSelectedId(selected: number) {
+        return `${this.id}-${selected}`
+    }
 }

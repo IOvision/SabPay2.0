@@ -42,7 +42,7 @@ interface StyleStoreListItem {
   itemQtyView: ViewStyle,
   itemQty: ViewStyle,
   itemQtyIncrease: ViewStyle,
-  itemQtyDecrease: ViewStyle
+  itemQtyDecrease: ViewStyle,
 }
 
 export const storeListItemStyle = StyleSheet.create<StyleStoreListItem>({
@@ -50,7 +50,6 @@ export const storeListItemStyle = StyleSheet.create<StyleStoreListItem>({
     display: 'flex',
     flexDirection: 'row',
     padding: 10,
-    borderRadius: 0
   },
   itemImageView: {
     width: 100,

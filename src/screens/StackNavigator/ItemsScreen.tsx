@@ -4,6 +4,7 @@ import SearchWithBackground from '../../components/molecules/SearchWithBackgroun
 import StoreItemListItem from '../../components/molecules/StoreItemListItem'
 import Item from '../../models/Item';
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
+import { Divider } from 'react-native-paper'
 
 import { getItems } from '../../requests';
 import testItems from '../../models/testItems'
@@ -65,8 +66,9 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
             <FlatList 
               data={data}
               keyExtractor={(item) => item.id}
-              renderItem={({item}) => {
-              return <StoreItemListItem item={item} navigation={navigation} />
+              ItemSeparatorComponent={() => <Divider/>}
+              renderItem={({item}) => { 
+                return <StoreItemListItem item={item} navigation={navigation} />
               }}
               onEndReached={({ distanceFromEnd }) => {
                 if(distanceFromEnd == 0) {

@@ -2,11 +2,12 @@
 import CartItem from '../../models/CartItem'
 import { ADD_ITEM, INC_ITEM, DEC_ITEM, CartActionTypes, CLEAR } from './types'
 
-export const addItem = (a: CartItem): CartActionTypes => {
+export const addItem = (a: CartItem, b: number): CartActionTypes => {
     return (
         {
             type: ADD_ITEM,
-            data: a
+            data: a,
+            selected: b
         }
     )
 }

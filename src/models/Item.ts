@@ -37,11 +37,7 @@ export default class Item implements Base {
         return list
     }
 
-    public getSelected() {
-        return this.selected
-    }
-
-    public setSelected(select: number) {
-        this.selected = select
+    public getSelectedId(selected: number) {
+        return `${this.id}-${selected}`
     }
 }

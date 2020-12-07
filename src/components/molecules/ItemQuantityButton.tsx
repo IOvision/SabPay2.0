@@ -15,16 +15,16 @@ export interface Props {
     item: Item,
     selected: number,
     cartQty: any,
-    add: (item: CartItem) => any,
+    add: (item: CartItem, selected: number) => any,
     inc: (id: string) => any,
     dec: (id: string) => any
 }
 
 const ItemQuantityButton: React.FC<Props> = ({item, selected, cartQty, add, inc, dec}) => {
-    
+    console.log(selected)
     const getQty = () => {
-        if (cartQty[item.id])
-            return cartQty[item.id]
+        if (cartQty[item.getSelectedId(selected)])
+            return cartQty[item.getSelectedId(selected)]
         else
             return 0
     }
@@ -32,18 +32,17 @@ const ItemQuantityButton: React.FC<Props> = ({item, selected, cartQty, add, inc,
     const [qty, setQty] = useState(getQty())
 
     const onAdd = () => {
-        console.log(typeof item)
-        add(new CartItem(item, selected))
+        add(new CartItem(item, selected), selected)
         setQty(1)
     }
 
     const onInc = () => {
-        inc(item.id)
+        inc(item.getSelectedId(selected))
         setQty(qty+1)
     }
 
     const onDec = () => {
-        dec(item.id)
+        dec(item.getSelectedId(selected))
         setQty(qty-1)
     }
 
@@ -89,7 +88,7 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (item: CartItem) => dispatch(addItem(item)),
+        add: (item: CartItem, selected: number) => dispatch(addItem(item, selected)),
         inc: (key: string) => dispatch(incItem(key)),
         dec: (key: string) => dispatch(decItem(key))
     }

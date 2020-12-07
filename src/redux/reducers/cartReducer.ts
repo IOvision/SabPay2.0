@@ -10,7 +10,7 @@ const cartReducer = (state = initialState, action: CartActionTypes) => {
         case ADD_ITEM:
             const items = state.items.concat(action.data)
             const qty = state.qty
-            qty[action.data.id] = 1
+            qty[action.data.getSelectedId(action.selected)] = 1
             return {
                 ...state,
                 items,
