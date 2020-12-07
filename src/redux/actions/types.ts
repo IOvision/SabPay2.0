@@ -33,7 +33,8 @@ export const CLEAR = "CLEAR"
 
 interface AddItemAction {
     type: typeof ADD_ITEM,
-    data: CartItem
+    data: CartItem,
+    selected: number
 }
 
 interface IncItemAction {
