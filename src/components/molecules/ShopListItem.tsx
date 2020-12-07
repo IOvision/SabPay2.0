@@ -1,32 +1,56 @@
 import React from 'react'
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 import { shopListItemstyles } from '../../styles/FlatListItemStyle'
 import { HeaderText, BodyText } from '../atoms/Text'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../../assets/colors'
+import Merchant from '../../models/Merchant';
+import { connect } from 'react-redux';
+import { setMerchant } from '../../redux/actions/merchant';
 
-function ShopListItem() {
+interface Props {
+    item: Merchant,
+    set: (a: Merchant) => void   
+}
+
+const displayRating = (number: number) => {
+    for(var i=1;i<=5;i++) {
+        if(i<=number) {
+            return (
+                <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
+            )
+        } else {
+            return (
+                <MaterialCommunityIcons name="star" color={colors.lightGrey} size={20} />
+            )
+        }
+    }
+}
+
+const ShopListItem: React.FC<Props> = ({item, set}) => {
     return (
-        <View style={shopListItemstyles.container}>
+        <TouchableOpacity style={shopListItemstyles.container} activeOpacity={0.9} onPress={() => set(item)}>
             <View>
                 <Image
                     style={shopListItemstyles.shopImage}
-                    source={{uri: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fsproutsocial.com%2Finsights%2Fsocial-media-image-sizes-guide%2F&psig=AOvVaw1YzM-RjPTcgQGMXHXbVTtv&ust=1604558173182000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKiwjZKj6OwCFQAAAAAdAAAAABAD'}}
+                    source={{uri: item.image}}
                 />   
             </View>
             <View style={shopListItemstyles.shopInfo}>
-                <HeaderText>Abhishek General Store</HeaderText>
-                <BodyText>Hari Mandir, Park Market, Hirapur, Dhanbad</BodyText>
+                <HeaderText>{item.name}</HeaderText>
+                <BodyText>{item.address}</BodyText>
                 <View style={{flexDirection: "row"}}>
-                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
-                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
-                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
-                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
-                    <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
+                {() => displayRating(item.rating)}
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        set: (merchant: Merchant) => dispatch(setMerchant(merchant)),
+    }
+}
 
-export default ShopListItem
+export default connect(null, mapDispatchToProps)(ShopListItem)

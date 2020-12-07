@@ -7,6 +7,7 @@ const initialState: MerchantState = {
 const merchantReducer = (state = initialState, action: MerchantActionTypes) => {
     switch(action.type) {
         case SET_MERCHANT:
+            console.log("Merchant: " + action.data)
             return {
                 merchant: action.data
             }

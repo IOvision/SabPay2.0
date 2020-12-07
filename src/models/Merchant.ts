@@ -7,6 +7,8 @@ export default class Merchant implements Base {
     id: string;
     name: string;
     address: string;
+    image: string;
+    rating: number;
     tags: string[];
     isOpen: boolean;
     exclude: {
@@ -21,11 +23,22 @@ export default class Merchant implements Base {
         this.id = a.SK
         this.name = a.name
         this.address = a.address
+        this.image = a.image
+        this.rating = a.rating
         this.tags = a.tags
         this.isOpen = a.isOpen
         this.exclude = a.exclude
         this.offers = a.offers
         this.storeSp = a.storeSp
+    }
+
+    public static itemsFromList(json: Object[]) {
+        var list: Merchant[] = []
+        json.forEach(element => {
+            var a = new Merchant(element)
+            list.push(a)
+        });
+        return list
     }
     
 }

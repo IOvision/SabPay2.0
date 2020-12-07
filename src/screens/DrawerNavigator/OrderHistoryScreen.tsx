@@ -4,7 +4,9 @@ import MyOrderList from '../../components/molecules/MyOrderList'
 import colors from '../../assets/colors'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
-export interface Props {}
+export interface Props {
+    navigation: any
+}
 
 const OrderHistoryScreen: React.FC<Props> = ({navigation}) => {
     return (

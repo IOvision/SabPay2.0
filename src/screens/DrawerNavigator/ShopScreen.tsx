@@ -2,28 +2,15 @@ import React from 'react'
 import { View, FlatList } from 'react-native'
 import ShopListItem from '../../components/molecules/ShopListItem'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
+import Merchant from '../../models/Merchant'
+import testInventory from '../../models/testInventory'
 
-const ShopScreen = ({navigation}) => {
-    const data = [
-        {
-            image: require('../../assets/images/dryFruits.png'),
-            shopName: "Abhishek General Store",
-            shopAddress: "404",
-            stars: 5
-        },
-        {
-            image: require('../../assets/images/dryFruits.png'),
-            shopName: "Abhishek General Store",
-            shopAddress: "404",
-            stars: 5
-        },
-        {
-            image: require('../../assets/images/dryFruits.png'),
-            shopName: "Abhishek General Store",
-            shopAddress: "404",
-            stars: 5
-        }
-    ]
+export interface Props {
+    navigation: any
+}
+
+const ShopScreen: React.FC<Props> = ({navigation}) => {
+    const data: Merchant[] = testInventory
     return (
         <View style={{backgroundColor: "white", flex: 1}}>
             <SearchWithBackground navigation={navigation} />
@@ -31,9 +18,9 @@ const ShopScreen = ({navigation}) => {
             <FlatList
                 data={data}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={() => {
+                renderItem={(item) => {
                     return (
-                        <ShopListItem />
+                        <ShopListItem item={item}/>
                     )
                 }} />
         </View>
