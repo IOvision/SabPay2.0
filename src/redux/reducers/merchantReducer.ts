@@ -1,7 +1,8 @@
 import { SET_MERCHANT, MerchantActionTypes, MerchantState } from '../actions/types'
+import testInventory from '../../models/testInventory'
 
 const initialState: MerchantState = {
-    merchant: null
+    merchant: testInventory[0]
 }
 
 const merchantReducer = (state = initialState, action: MerchantActionTypes) => {

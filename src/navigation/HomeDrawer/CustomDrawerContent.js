@@ -5,15 +5,16 @@ import {
     DrawerItemList
  } from '@react-navigation/drawer'
 import DrawerHeader from '../../components/molecules/DrawerHeader'
+import colors from '../../assets/colors'
 
 const CustomDrawerContent = (props) => {
     return (
         <DrawerContentScrollView {...props}>
             <DrawerHeader />
-            <DrawerItemList {...props} inactiveTintColor="white" activeTintColor="#d3d3d3" />
+            <DrawerItemList {...props} inactiveTintColor="#d3d3d3" activeTintColor={colors.primary} />
             <DrawerItem
-                activeTintColor="#d3d3d3"
-                inactiveTintColor="white"
+                activeTintColor={colors.primary}
+                inactiveTintColor="#d3d3d3"
                 label="Log Out"
                 onPress={() => console.log("Logged Out!")}
             />

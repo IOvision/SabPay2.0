@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, Image, Dimensions} from 'react-native'
+import React from 'react'
+import { View, StyleSheet, Image, Dimensions} from 'react-native'
 import { Pages } from 'react-native-pages'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
-import data from '../../models/testInventory'
+
 const {width} = Dimensions.get('window')
 
-const Swipeable: React.FC = ({isLoading}) => {
-    const [offers, setOffers] = useState(data.sp_offer)
+export interface Props {
+    data: {
+        key: string,
+        image: string
+    }[]
+    isLoading: boolean
+}
+
+const Swipeable: React.FC<Props> = ({data, isLoading}) => {
     if(isLoading) {
         return (
             <View style={styles.container}>
@@ -17,7 +24,7 @@ const Swipeable: React.FC = ({isLoading}) => {
         )
     }
     const children = () => {
-        return offers.map((element) => {
+        return data.map((element) => {
             return (
                 <Image style={styles.children} source={{uri: element.image}} key={data.key}/>
             )

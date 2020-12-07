@@ -6,7 +6,9 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 export interface Props {
     data: any,
-    style: ViewStyle,
+    style?: ViewStyle,
+    navigation: any,
+    isLoading: boolean
 }
 
 const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoading}) => {

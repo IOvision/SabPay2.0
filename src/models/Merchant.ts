@@ -9,14 +9,21 @@ export default class Merchant implements Base {
     address: string;
     image: string;
     rating: number;
-    tags: string[];
+    tags: {
+        title: string,
+        image: string,
+        tag: string
+    }[];
     isOpen: boolean;
     exclude: {
         tag: string,
         items: Item[]
     }[];
     offers: Item[];
-    storeSp: Item[];
+    storeSp: {
+        key: string,
+        image: string
+    }[];
 
     constructor(a: any) {
         this.pk = a.PK

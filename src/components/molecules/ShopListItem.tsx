@@ -10,26 +10,28 @@ import { setMerchant } from '../../redux/actions/merchant';
 
 interface Props {
     item: Merchant,
-    set: (a: Merchant) => void   
+    set: (a: Merchant) => void,
+    navigation: any
 }
 
 const displayRating = (number: number) => {
+    var stars = []
     for(var i=1;i<=5;i++) {
         if(i<=number) {
-            return (
-                <MaterialCommunityIcons name="star" color={colors.gold} size={20} />
-            )
+            stars.push(<MaterialCommunityIcons name="star" color={colors.gold} size={20} />)
         } else {
-            return (
-                <MaterialCommunityIcons name="star" color={colors.lightGrey} size={20} />
-            )
+            stars.push(<MaterialCommunityIcons name="star" color={colors.lightGrey} size={20} />)
         }
     }
+    return stars
 }
 
-const ShopListItem: React.FC<Props> = ({item, set}) => {
+const ShopListItem: React.FC<Props> = ({navigation, item, set}) => {
     return (
-        <TouchableOpacity style={shopListItemstyles.container} activeOpacity={0.9} onPress={() => set(item)}>
+        <TouchableOpacity style={shopListItemstyles.container} activeOpacity={0.9} onPress={() => {
+            set(item)
+            navigation.jumpTo('Dashboard')
+        }}>
             <View>
                 <Image
                     style={shopListItemstyles.shopImage}
@@ -40,7 +42,7 @@ const ShopListItem: React.FC<Props> = ({item, set}) => {
                 <HeaderText>{item.name}</HeaderText>
                 <BodyText>{item.address}</BodyText>
                 <View style={{flexDirection: "row"}}>
-                {() => displayRating(item.rating)}
+                {displayRating(item.rating)}
                 </View>
             </View>
         </TouchableOpacity>

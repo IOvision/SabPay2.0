@@ -9,6 +9,7 @@ import { CaptionText, HeaderText } from '../../components/atoms/Text'
 import { connect } from 'react-redux'
 import { addItem } from '../../redux/actions/cart'
 import Item from '../../models/Item'
+import { RootState } from '../../redux/store'
 
 export interface Props {
     route: any,
@@ -67,7 +68,7 @@ const ItemDetailScreen: React.FC<Props> = ({route, add}) => {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         cart: state.cartReducer.items
     }

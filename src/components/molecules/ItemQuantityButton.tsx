@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -21,7 +21,7 @@ export interface Props {
 }
 
 const ItemQuantityButton: React.FC<Props> = ({item, selected, cartQty, add, inc, dec}) => {
-    console.log(selected)
+
     const getQty = () => {
         if (cartQty[item.getSelectedId(selected)])
             return cartQty[item.getSelectedId(selected)]
@@ -30,6 +30,10 @@ const ItemQuantityButton: React.FC<Props> = ({item, selected, cartQty, add, inc,
     }
 
     const [qty, setQty] = useState(getQty())
+
+    useEffect(() => {
+        setQty(getQty())
+    }, [selected])
 
     const onAdd = () => {
         add(new CartItem(item, selected), selected)

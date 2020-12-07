@@ -4,8 +4,11 @@ import styles from '../../styles/HomePageOffersStyles'
 import { CaptionText } from '../atoms/Text'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
+export interface Props {
+    isLoading: boolean
+}
 
-const HomePageOffers: React.FC = ({isLoading}) => {
+const HomePageOffers: React.FC<Props> = ({isLoading}) => {
     const {width} = Dimensions.get('window')
 
     if(isLoading) {

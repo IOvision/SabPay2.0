@@ -57,7 +57,7 @@ export type CartActionTypes = AddItemAction | IncItemAction | DecItemAction | Cl
 
 //MERCHANT
 export interface MerchantState {
-    merchant: Merchant | null
+    merchant: Merchant
 }
 
 export const SET_MERCHANT = 'SET_MERCHANT'
