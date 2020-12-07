@@ -1,4 +1,5 @@
 import CartItem from "../../models/CartItem"
+import Merchant from "../../models/Merchant"
 
 //USER
 export interface UserState {
@@ -52,3 +53,18 @@ interface ClearCartAction {
 }
 
 export type CartActionTypes = AddItemAction | IncItemAction | DecItemAction | ClearCartAction
+
+
+//MERCHANT
+export interface MerchantState {
+    merchant: Merchant | null
+}
+
+export const SET_MERCHANT = 'SET_MERCHANT'
+
+interface SetMerchantAction {
+    type: typeof SET_MERCHANT,
+    data: Merchant
+}
+
+export type MerchantActionTypes = SetMerchantAction
