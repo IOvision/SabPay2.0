@@ -3,8 +3,8 @@ import RoundView from '../atoms/RoundView'
 import { View, Image, ViewStyle } from 'react-native'
 import { HeaderText, BodyText } from '../atoms/Text'
 import { CartItemListItemStyles } from '../../styles/FlatListItemStyle'
-import ItemQuantityButton from './ItemQuantityButton'
 import CartItem from '../../models/CartItem'
+import CartQuantityButton from './CartQuantityButton'
 
 export interface Props{
     item: CartItem,
@@ -36,7 +36,7 @@ const CartItemListItem: React.FC<Props> = ({item, style}) => {
                     style={CartItemListItemStyles.img}
                     source={{uri: item.image}}
                 />
-                <ItemQuantityButton item={item} />
+                <CartQuantityButton item={item} />
             </View>
         </RoundView>
     )

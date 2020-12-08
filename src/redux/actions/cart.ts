@@ -12,17 +12,19 @@ export const addItem = (a: CartItem, b: number): CartActionTypes => {
     )
 }
 
-export const incItem = (id: string): CartActionTypes => (
+export const incItem = (id: string, price: number): CartActionTypes => (
     {
         type: INC_ITEM,
-        data: id
+        data: id,
+        price
     }
 )
 
-export const decItem = (id: string): CartActionTypes => (
+export const decItem = (id: string, price: number): CartActionTypes => (
     {
         type: DEC_ITEM,
-        data: id
+        data: id,
+        price
     }
 )
 

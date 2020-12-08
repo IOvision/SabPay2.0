@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react'
-import { View, TouchableOpacity, StyleSheet, Dimensions, FlatList, Button, Text } from 'react-native'
+import React, { useEffect, useRef } from 'react'
+import { View, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
 import { HeaderText, BodyText } from '../../components/atoms/Text'
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
 import colors from '../../assets/colors'
@@ -18,6 +18,7 @@ import { RootState } from '../../redux/store'
 export interface Props {
     cart: CartItem[],
     qty: any,
+    total: number,
     isSignedIn: boolean,
     navigation: any
 }
@@ -34,6 +35,7 @@ const CartTab: React.FC<Props> = (props) => {
             <SearchWithBackground navigation={props.navigation} />
             <FlatList 
                 data={props.cart}
+                keyExtractor={(item) => item.getSelectedId()}
                 ListEmptyComponent={() => {
                     return (
                         <View style={{height: 400, width: 400, marginTop: 20, alignItems: "center"}}>
@@ -60,7 +62,7 @@ const CartTab: React.FC<Props> = (props) => {
                 ListFooterComponent={() => {
                     return (
                         props.cart.length != 0 ? <View style={{margin: 20}}>
-                        <CartPriceDetails total={CartItem.getTotal(props.cart, props.qty).toString()}/>
+                        <CartPriceDetails price={props.total} discount={0} />
                         <HeaderText style={{marginLeft: 20, marginTop: 10}}>Delivery Options</HeaderText>
                         <View style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: 10, marginBottom: 10}}>
                             <View style={{flex: 1,
@@ -110,7 +112,8 @@ const mapStateToProps = (state: RootState) => {
     return {
         isSignedIn: state.userReducer.signedIn,
         cart: state.cartReducer.items,
-        qty: state.cartReducer.qty
+        qty: state.cartReducer.qty,
+        total: state.cartReducer.total
     }
 }
 

@@ -24,7 +24,8 @@ export interface CartState {
     items: CartItem[],
     qty: {
         [key: string]: number
-    }
+    },
+    total: number
 }
 
 export const ADD_ITEM = "ADD_ITEM"
@@ -40,12 +41,14 @@ interface AddItemAction {
 
 interface IncItemAction {
     type: typeof INC_ITEM,
-    data: string
+    data: string,
+    price: number
 }
 
 interface DecItemAction {
     type: typeof DEC_ITEM,
-    data: string
+    data: string,
+    price: number
 }
 
 interface ClearCartAction {

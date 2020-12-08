@@ -24,6 +24,8 @@ export default class Merchant implements Base {
         key: string,
         image: string
     }[];
+    latitude: number;
+    longitude: number;
 
     constructor(a: any) {
         this.pk = a.PK
@@ -37,6 +39,8 @@ export default class Merchant implements Base {
         this.exclude = a.exclude
         this.offers = a.offers
         this.storeSp = a.storeSp
+        this.latitude = 0
+        this.longitude = 0
     }
 
     public static itemsFromList(json: Object[]) {

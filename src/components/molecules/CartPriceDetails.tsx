@@ -5,13 +5,12 @@ import { HeaderText, BodyText } from '../atoms/Text'
 import { styles } from '../../styles/CartPriceDetailsStyle'
 
 export interface Props {
-    price: string,
-    discount: string,
-    total: string,
+    price: number,
+    discount: number,
     style?: StyleProp<ViewStyle>
 }
 
-const CartPriceDetails: React.FC<Props> = ({price, discount, total, style}) => {
+const CartPriceDetails: React.FC<Props> = ({price, discount, style}) => {
     return (
         <RoundView style={[styles.container, style]}>
             <HeaderText style={{fontWeight: "normal"}}>Price Details</HeaderText>
@@ -33,7 +32,7 @@ const CartPriceDetails: React.FC<Props> = ({price, discount, total, style}) => {
                 <View style={styles.priceText}>
                     <HeaderText>Total</HeaderText>
                 </View>
-                <HeaderText>Rs. {total}</HeaderText>
+                <HeaderText>Rs. {price-discount}</HeaderText>
             </View>
         </RoundView>
     )

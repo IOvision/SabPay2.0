@@ -3,62 +3,39 @@ import { View, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { ItemQuantityButtonStyle } from '../../styles/FlatListItemStyle'
-import { BodyText, HeaderText } from '../atoms/Text'
+import { BodyText } from '../atoms/Text'
 import colors from '../../assets/colors'
 import { connect } from 'react-redux';
-import { addItem, decItem, incItem } from '../../redux/actions/cart';
-import Item from '../../models/Item'
+import { decItem, incItem } from '../../redux/actions/cart';
 import { RootState } from '../../redux/store'
 import CartItem from '../../models/CartItem'
 
 export interface Props {
-    item: Item,
-    selected: number,
+    item: CartItem,
     cartQty: any,
-    add: (item: CartItem, selected: number) => any,
     inc: (id: string, price: number) => any,
     dec: (id: string, price: number) => any
 }
 
-const ItemQuantityButton: React.FC<Props> = ({item, selected, cartQty, add, inc, dec}) => {
+const CartQuantityButton: React.FC<Props> = ({item, cartQty, inc, dec}) => {
 
     const getQty = () => {
-        if (cartQty[item.getSelectedId(selected)])
-            return cartQty[item.getSelectedId(selected)]
+        if (cartQty[item.getSelectedId()])
+            return cartQty[item.getSelectedId()]
         else
             return 0
     }
 
     const [qty, setQty] = useState(getQty())
 
-    useEffect(() => {
-        setQty(getQty())
-    }, [selected])
-
-    const onAdd = () => {
-        add(new CartItem(item, selected), selected)
-        setQty(1)
-    }
-
     const onInc = () => {
-        inc(item.getSelectedId(selected), item.child[selected].price)
+        inc(item.getSelectedId(), item.price)
         setQty(qty+1)
     }
 
     const onDec = () => {
-        dec(item.getSelectedId(selected), item.child[selected].price)
+        dec(item.getSelectedId(), item.price)
         setQty(qty-1)
-    }
-
-
-    if (qty === 0) {
-        return (
-            <TouchableOpacity onPress={onAdd} activeOpacity={0.9}>
-                <LinearGradient style={{paddingHorizontal: 15, justifyContent: 'center', borderRadius: 8, width: 60, height: 35}} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#8021EB', '#04035C']}>
-                    <HeaderText style={{color: 'white'}}>Add</HeaderText>
-                </LinearGradient>
-            </TouchableOpacity>
-        )
     }
 
     return (
@@ -92,10 +69,9 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (item: CartItem, selected: number) => dispatch(addItem(item, selected)),
         inc: (key: string, price: number) => dispatch(incItem(key, price)),
         dec: (key: string, price: number) => dispatch(decItem(key, price))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemQuantityButton)
+export default connect(mapStateToProps, mapDispatchToProps)(CartQuantityButton)
