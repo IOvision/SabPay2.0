@@ -279,7 +279,7 @@ export const CartItemListItemStyles = StyleSheet.create<StyleCartItemListItem>({
   },
   weight: {
     backgroundColor: colors.lightGrey, 
-    padding: 10, 
+    padding: 5, 
     marginTop: 10, 
     width: 60, 
     borderRadius: 10, 

@@ -26,7 +26,7 @@ const Swipeable: React.FC<Props> = ({data, isLoading}) => {
     const children = () => {
         return data.map((element) => {
             return (
-                <Image style={styles.children} source={{uri: element.image}} key={data.key}/>
+                <Image style={styles.children} source={{uri: element.image}} key={element.image.toString}/> 
             )
         })
     }
