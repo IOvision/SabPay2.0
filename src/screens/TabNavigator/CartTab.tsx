@@ -52,6 +52,7 @@ const CartTab: React.FC<Props> = (props) => {
                                     fontSize: 20,
                                     marginHorizontal: 2
                                 }}
+                                onPress={() => props.navigation.navigate("CategoryList")}
                             />
                         </View>
                     )

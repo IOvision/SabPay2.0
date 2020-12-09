@@ -5,10 +5,11 @@ import { CaptionText } from '../atoms/Text'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 export interface Props {
-    isLoading: boolean
+    isLoading: boolean,
+    data: Array<string>
 }
 
-const HomePageOffers: React.FC<Props> = ({isLoading}) => {
+const HomePageOffers: React.FC<Props> = ({isLoading, data}) => {
     const {width} = Dimensions.get('window')
 
     if(isLoading) {
@@ -29,18 +30,18 @@ const HomePageOffers: React.FC<Props> = ({isLoading}) => {
         <View>
             <View style={styles.container1}>
                 <View style={styles.view1}>
-                    <Image resizeMode='contain' source={require('../../assets/images/maggi.png')} style={styles.image}/>
+                    <Image resizeMode='contain' source={{uri: data[0]}} style={styles.image}/>
                 </View>
                 <View style={styles.view2}>
-                    <Image resizeMode='contain' source={require('../../assets/images/ice-cream.png')} style={styles.image}/>
+                    <Image resizeMode='contain' source={{uri: data[1]}} style={styles.image}/>
                 </View>
             </View>
             <View style={styles.container2}>
                 <View style={styles.view3}>
-                    <Image resizeMode='contain' source={require('../../assets/images/pads.png')} style={styles.image}/>
+                    <Image resizeMode='contain' source={{uri: data[2]}} style={styles.image}/>
                 </View>
                 <View style={styles.view4}>
-                    <Image resizeMode='contain' source={require('../../assets/images/jam.png')} style={styles.image}/>
+                    <Image resizeMode='contain' source={{uri: data[3]}} style={styles.image}/>
                 </View>
             </View>
             <View style={styles.circleView}>

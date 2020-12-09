@@ -7,14 +7,18 @@ import {
 import DrawerHeader from '../../components/molecules/DrawerHeader'
 import colors from '../../assets/colors'
 
-const CustomDrawerContent = (props) => {
+export interface Props {
+    
+}
+
+const CustomDrawerContent: React.FC<Props> = (props) => {
     return (
         <DrawerContentScrollView {...props}>
             <DrawerHeader />
-            <DrawerItemList {...props} inactiveTintColor="#d3d3d3" activeTintColor={colors.primary} />
+            <DrawerItemList {...props} inactiveTintColor={colors.darkgrey} activeTintColor={colors.primary} />
             <DrawerItem
                 activeTintColor={colors.primary}
-                inactiveTintColor="#d3d3d3"
+                inactiveTintColor={colors.darkgrey}
                 label="Log Out"
                 onPress={() => console.log("Logged Out!")}
             />

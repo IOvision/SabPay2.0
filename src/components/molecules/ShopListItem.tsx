@@ -18,9 +18,9 @@ const displayRating = (number: number) => {
     var stars = []
     for(var i=1;i<=5;i++) {
         if(i<=number) {
-            stars.push(<MaterialCommunityIcons name="star" color={colors.gold} size={20} />)
+            stars.push(<MaterialCommunityIcons name="star" color={colors.gold} size={20} key={i}/>)
         } else {
-            stars.push(<MaterialCommunityIcons name="star" color={colors.lightGrey} size={20} />)
+            stars.push(<MaterialCommunityIcons name="star" color={colors.lightGrey} size={20} key={i}/>)
         }
     }
     return stars

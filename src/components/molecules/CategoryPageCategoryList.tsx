@@ -5,6 +5,7 @@ import CategoryPageCategoryListItem from './CategoryPageCategoryListItem'
 export interface Props {
     data: any,
     style: StyleProp<ViewStyle>,
+    navigation: any
 }
 
 const CategoryPageCategoryList: React.FC<Props> = ({data, style, navigation}) => {
@@ -14,7 +15,7 @@ const CategoryPageCategoryList: React.FC<Props> = ({data, style, navigation}) =>
                 data={data}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item, index}) => {
-                return <CategoryPageCategoryListItem index={index} image={item.image} title={item.title} onPress={() => navigation.navigate("Items")}/>;
+                return <CategoryPageCategoryListItem index={index.toString()} image={item.image} title={item.title} onPress={() => navigation.navigate("Items")}/>;
                 }}
                 showsVerticalScrollIndicator={false}
             />

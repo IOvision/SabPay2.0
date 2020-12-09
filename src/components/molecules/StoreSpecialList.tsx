@@ -4,8 +4,13 @@ import StoreSpecialListItem from '../molecules/StoreSpecialListItem'
 import randomColor, { colorLength } from '../../assets/randomColor'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
+export interface Props {
+    object: Object,
+    isLoading: boolean
+}
 
-export default function StoreSpecialList({object, isLoading}) {
+
+const StoreSpecialList: React.FC<Props> = ({object, isLoading}) => {
 
     const sample = [1,2,3,4,5];
     if(isLoading) {
@@ -43,3 +48,5 @@ export default function StoreSpecialList({object, isLoading}) {
         }}/>
     )
 }
+
+export default StoreSpecialList

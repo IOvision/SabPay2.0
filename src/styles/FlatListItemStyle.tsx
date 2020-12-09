@@ -212,7 +212,7 @@ export const ItemQuantityButtonStyle = StyleSheet.create<StyleItemQuantityButton
     paddingVertical: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   itemQtyIncrease: {
     borderColor: colors.grey,

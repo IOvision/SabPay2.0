@@ -1,28 +1,28 @@
 import React from 'react'
-import { View, Dimensions, TouchableOpacity } from 'react-native'
-import colors from '../../assets/colors'
-import SearchBar from '../../components/atoms/SearchBar'
-
+import { View, TouchableOpacity } from 'react-native'
 import CategoryPageCategoryList from '../../components/molecules/CategoryPageCategoryList'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
 const data = [
     {
-        image: require('../../assets/images/grocery.png'),
+        image: "https://as1.ftcdn.net/jpg/02/49/26/28/500_F_249262814_LpzzpJ27F8K1EHfcAEZBMi31YRZmCsBN.jpg",
         title: "Groceries and Staples"
     },
     {
-        image: require('../../assets/images/PackagedFoods.png'),
+        image: "https://globe-net.com/wp-content/uploads/packaging-1.jpg",
         title: "Packaged Food"
     },
     {
-        image: require('../../assets/images/HouseholdCare.png'),
+        image: "https://www.expertmarketresearch.com/files/images/Top-Household-Care-Products-Manufacturers-in-the-World.jpg",
         title: "Household Care"
     }
 ]
 
-const { width, height } = Dimensions.get('window')
-const CategoriesTab = ({navigation}) => {
+export interface Props {
+    navigation: any
+}
+const CategoriesTab: React.FC<Props> = ({navigation}) => {
+    
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
             <TouchableOpacity onPress={() => navigation.push('CategoryList')}
