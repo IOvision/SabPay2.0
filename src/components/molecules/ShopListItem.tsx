@@ -11,7 +11,7 @@ import { setMerchant } from '../../redux/actions/merchant';
 interface Props {
     item: Merchant,
     set: (a: Merchant) => void,
-    navigation: any
+    navigation: any,
 }
 
 const displayRating = (number: number) => {

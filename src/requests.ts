@@ -60,3 +60,16 @@ export const getItems = (category: string, lastKey: string, cb: (err: any, resp:
     })
     .catch(err => cb(err, null))
 }
+
+export const getInventory = (latitude: number, longitude: number, radius: number, cb: (err: any, resp: any) => void) => {
+    const params = {
+        radius: radius,
+        latitude: latitude,
+        longitude: longitude
+      };
+    axios.get('/inventory', { params })
+    .then(res => {
+        cb(false, res.data.data)
+    })
+    .catch(err => cb(err, null))
+}
