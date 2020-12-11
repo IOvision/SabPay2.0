@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, FlatList } from 'react-native'
 import ShopListItem from '../../components/molecules/ShopListItem'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 import testInventory from '../../models/testInventory'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import RNLocation from "react-native-location";
+import { getMerchant } from '../../requests'
 
 export interface Props {
     navigation: any
@@ -12,45 +13,36 @@ export interface Props {
 
 const ShopScreen: React.FC<Props> = ({navigation}) => {
     const [isLoading, setIsLoading] = useState(true)
-    const [location, setLocation] = useState(null)
+    const [inventories, setInventories] = useState(testInventory)
+    const [location, setLocation] = useState({})
     let locationSubscription = null
-    useEffect(() => {
-        RNLocation.configure({
-                distanceFilter: 5.0
-        });
-        RNLocation.requestPermission({
-                ios: "whenInUse",
-                android: {
-                  detail: "fine",
-                  rationale: {
-                    title: "Location permission",
-                    message: "We use your location to demo the library",
-                    buttonPositive: "OK",
-                    buttonNegative: "Cancel"
-                  }
-                }
-              }).then(granted => {
-                if (granted) {
-                  _startUpdatingLocation();
-                }
-                });
-            //axios request
-        setIsLoading(false)
-      })
-      const _startUpdatingLocation = () => {
-        locationSubscription = RNLocation.subscribeToLocationUpdates(
-          locations => {
-            console.log(locations)
-            setLocation(locations[0])
-          }
-        );
-      };
+    RNLocation.configure({
+      distanceFilter: 5.0
+    })
+    
+    RNLocation.requestPermission({
+      ios: "whenInUse",
+      android: {
+        detail: "coarse"
+      }
+    }).then(granted => {
+        if (granted) {
+          locationSubscription = RNLocation.subscribeToLocationUpdates(
+            locations => {
+              console.log(locations)
+              setLocation(locations[0])
+              //getMerchant(location.latitude, location.longitude, 5, (err, resp) => {
+              getMerchant(26.847170, 80.943422, 5, (err, resp) => {
+                if(err) 
+                  return console.log(err)
+                  setInventories(resp)
+                  setIsLoading(false)
+              })
+            }
+          );
+        }
+    })
 
-      const _stopUpdatingLocation = () => {
-        locationSubscription && locationSubscription();
-        setLocation(null)
-        console.log("stop")
-      };
     const sample = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
         <View style={{backgroundColor: "white", flex: 1}}>
@@ -83,7 +75,7 @@ const ShopScreen: React.FC<Props> = ({navigation}) => {
                         />
                 ) : (
                     <FlatList
-                        data={testInventory}
+                        data={inventories}
                         keyExtractor={(index) => index.toString()}
                         renderItem={({item}) => {
                             return (

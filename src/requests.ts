@@ -4,6 +4,7 @@ axios.defaults.baseURL = "https://oqy97amyd0.execute-api.ap-south-1.amazonaws.co
 axios.defaults.headers = { "x-api-key": 'RDFCXXNZwW2FBxGykBgKz3E0MPcz3A5I4yFqzmlw' }
 
 import Item from './models/Item'
+import Merchant from './models/Merchant'
 
 export const test = (cb: (err: any, resp: Item[] | null) => void) => {
     axios.post('/test', [
@@ -61,7 +62,7 @@ export const getItems = (category: string, lastKey: string, cb: (err: any, resp:
     .catch(err => cb(err, null))
 }
 
-export const getInventory = (latitude: number, longitude: number, radius: number, cb: (err: any, resp: any) => void) => {
+export const getMerchant = (latitude: number, longitude: number, radius: number, cb: (err: any, resp: any) => void) => {
     const params = {
         radius: radius,
         latitude: latitude,
@@ -69,7 +70,7 @@ export const getInventory = (latitude: number, longitude: number, radius: number
       };
     axios.get('/inventory', { params })
     .then(res => {
-        cb(false, res.data.data)
+        cb(false, Merchant.itemsFromList(res.data.data))
     })
     .catch(err => cb(err, null))
 }
