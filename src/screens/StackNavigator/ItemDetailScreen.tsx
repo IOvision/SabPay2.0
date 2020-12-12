@@ -19,8 +19,7 @@ export interface Props {
 const ItemDetailScreen: React.FC<Props> = ({route, add}) => {
 
     const data: Item = route.params.item
-
-    const [selected, setSelected] = useState<number>(data.getSelected())
+    const [selected, setSelected] = useState<number>(route.params.selected)
     
     const children = () => {
         return data.child.map((element) => {
@@ -47,10 +46,22 @@ const ItemDetailScreen: React.FC<Props> = ({route, add}) => {
                 </RoundView>
                 <CaptionText style={{marginVertical: 5}}>{data.name}</CaptionText>
                 <View style={{flexDirection: 'row', marginVertical: 5, alignItems: 'flex-end'}}>
-                    <CaptionText>Rs. {data.child[selected].price}</CaptionText>
-                    {/* <CaptionText style={{textDecorationLine: 'line-through', marginLeft: 20, fontSize: 16}}> Rs. 300 </CaptionText> */}
+                    <CaptionText>Rs. {data.child[selected].onDiscount ? data.child[selected].discountPrice : data.child[selected].price}</CaptionText>
+                    { 
+                        data.child[selected].onDiscount ? (
+                            <CaptionText style={{textDecorationLine: 'line-through', marginLeft: 20, fontSize: 16}}> Rs. {data.child[selected].price} </CaptionText>
+                        ) : (
+                            null
+                        )
+                    }
                 </View>
-                {/* <HeaderText style={{color: '#007E0D'}}>5% Off</HeaderText> */}
+                { 
+                    data.child[selected].onDiscount ? (
+                        <HeaderText style={{color: '#007E0D'}}>Save Rs. {(data.child[selected].price-data.child[selected].discountPrice)}</HeaderText>
+                    ) : (
+                        null
+                    )
+                }
                 <CaptionText style={{marginVertical: 5}}>Select Size</CaptionText>
                 <View style={{flexDirection: 'row', marginVertical: 5}}>
                     {children()}

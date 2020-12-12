@@ -10,7 +10,9 @@ export default class Item implements Base {
     child: {
         key: number,
         name: string,
-        price: number
+        price: number,
+        onDiscount: boolean,
+        discountPrice: number
     }[];
     selected: number
 

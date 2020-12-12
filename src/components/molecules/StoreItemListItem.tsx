@@ -32,7 +32,8 @@ const StoreItemListItem: React.FC<Props> = ({item, navigation}) => {
 
     return (
         <TouchableOpacity onPress={() => navigation.navigate("ItemDetails", {
-            item: item
+            item: item,
+            selected: selected
         })} activeOpacity={0.9}>
             <RoundView style={storeListItemStyle.container}>
                 <View style={storeListItemStyle.itemImageView}>

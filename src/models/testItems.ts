@@ -12,12 +12,16 @@ var json = [
             {
                 "key": 0,
                 "name": "250ml",
-                "price": 150
+                "price": 150,
+                "onDiscount": false,
+                "discountPrice": 0
             },
             {
                 "key": 1,
                 "name": "500ml",
-                "price": 300
+                "price": 300,
+                "onDiscount": true,
+                "discountPrice": 250
             }
         ]
     },
