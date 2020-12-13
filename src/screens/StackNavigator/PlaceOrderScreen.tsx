@@ -6,12 +6,19 @@ import RoundView from '../../components/atoms/RoundView'
 import { BodyText, HeaderText, CaptionText } from '../../components/atoms/Text'
 import { RadioButton } from 'react-native-paper'
 import CartPriceDetails from '../../components/molecules/CartPriceDetails'
-import { PanGestureHandler } from 'react-native-gesture-handler'
-import Animated from 'react-native-reanimated'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import PlaceOrderDrag from '../../components/molecules/PlaceOrderDrag'
+import { RootState } from '../../redux/store'
+import { connect } from 'react-redux'
+import CartItem from '../../models/CartItem'
 
-const OrderDetails = ({navigation}) => {
+export interface Props {
+    items: CartItem[],
+    navigation: any,
+    total: number,
+    discount?: number
+}
+
+const OrderDetails: React.FC<Props> = ({items, navigation, total}) => {
 
     const [paymentMethod, setPaymentMethod] = React.useState("upi")
 
@@ -57,14 +64,21 @@ const OrderDetails = ({navigation}) => {
                     </View>
                 </RadioButton.Group>
             </RoundView>
-            <CartPriceDetails price={300} discount={15} total={285} style={{marginBottom: 20}}/>
+            <CartPriceDetails price={total} discount={0} style={{marginBottom: 20}}/>
         </ScrollView>
-            <PlaceOrderDrag navigation={navigation} />
+            <PlaceOrderDrag qty={items.length} total={total} navigation={navigation} />
         </View>
     )
 }
 
-export default OrderDetails
+const mapStateToProps = (state: RootState) => {
+    return {
+        total: state.cartReducer.total,
+        items: state.cartReducer.items
+    }
+}
+
+export default connect(mapStateToProps)(OrderDetails)
 
 const OrderDetailsStyle = StyleSheet.create({
     roundView: {

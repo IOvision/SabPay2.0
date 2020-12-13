@@ -10,6 +10,7 @@
     "lint": "tslint -p \".\" -t stylish"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.13.2",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "^5.9.7",
     "@react-navigation/drawer": "^5.10.6",

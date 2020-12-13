@@ -205,7 +205,7 @@ export const ItemQuantityButtonStyle = StyleSheet.create<StyleItemQuantityButton
   itemQtyView: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 5
+    marginTop: 15
   },
   itemQty: {
     width: 25,
@@ -282,9 +282,10 @@ export const CartItemListItemStyles = StyleSheet.create<StyleCartItemListItem>({
     padding: 5, 
     marginTop: 10, 
     width: 60, 
-    borderRadius: 10, 
+    borderRadius: 4, 
     borderWidth: 1,
-    borderColor: colors.primary
+    borderColor: colors.primary,
+    alignItems: 'center'
   },
   img: {
     display: 'flex',

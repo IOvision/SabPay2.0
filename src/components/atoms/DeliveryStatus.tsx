@@ -4,6 +4,10 @@ import StepIndicator from 'react-native-step-indicator';
 import colors from '../../assets/colors';
 
 export interface Props {
+  data: {
+    id: number,
+    status: string
+  }[],
   style: ViewStyle,
   counter: number
 }

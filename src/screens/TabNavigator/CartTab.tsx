@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react'
-import { View, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
-import { HeaderText, BodyText } from '../../components/atoms/Text'
+import React, { useRef, useState } from 'react'
+import { View, StyleSheet, FlatList } from 'react-native'
+import { HeaderText } from '../../components/atoms/Text'
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
 import colors from '../../assets/colors'
 import EmptyCartSvg from '../../assets/svg/EmptyCartSvg'
@@ -14,6 +14,7 @@ import SearchWithBackground from '../../components/molecules/SearchWithBackgroun
 import { connect } from 'react-redux'
 import CartItem from '../../models/CartItem'
 import { RootState } from '../../redux/store'
+import ButtonGroups from '../../components/molecules/ButtonGroups'
 
 export interface Props {
     cart: CartItem[],
@@ -26,6 +27,8 @@ export interface Props {
 const CartTab: React.FC<Props> = (props) => {
 
     const sheetRef = useRef(null)
+    const DeliveryOptions: string[] = ["Express", "Standard", "Pick-up"]
+    const [deliveryOption, setDeliveryOption] = useState(2)
 
     const handleContinue = () => (
         <Login />
@@ -65,28 +68,7 @@ const CartTab: React.FC<Props> = (props) => {
                         props.cart.length != 0 ? <View style={{margin: 20}}>
                         <CartPriceDetails price={props.total} discount={0} />
                         <HeaderText style={{marginLeft: 20, marginTop: 10}}>Delivery Options</HeaderText>
-                        <View style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: 10, marginBottom: 10}}>
-                            <View style={{flex: 1,
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                justifyContent: 'center', paddingHorizontal: 10}}>
-                                <View style={{flex: 1}}>
-                                    <TouchableOpacity style={styles.deliveryOption} activeOpacity={0.9}>
-                                        <BodyText>Express</BodyText>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={{flex: 1, marginHorizontal: 5}}>
-                                    <TouchableOpacity style={styles.deliveryOption} activeOpacity={0.9}>
-                                        <BodyText>Standard</BodyText>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={{flex: 1}}>
-                                    <TouchableOpacity style={styles.deliveryOption} activeOpacity={0.9}>
-                                        <BodyText>Pick-Up</BodyText>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </View>
+                        <ButtonGroups list={DeliveryOptions} selected={deliveryOption} setSelected={setDeliveryOption} />
                     </View> : null
                     )
                 }}
@@ -129,14 +111,5 @@ const styles = StyleSheet.create({
         borderColor: "white", 
         borderTopColor: colors.mediumGrey, 
         padding: 10
-    },
-    deliveryOption: {
-        flex: 1,
-        borderWidth: 1,
-        borderColor: colors.mediumGrey,
-        borderRadius: 5,
-        backgroundColor: "white",
-        padding: 10,
-        alignItems: "center"
     },
 })

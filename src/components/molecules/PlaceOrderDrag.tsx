@@ -11,7 +11,9 @@ const { width } = Dimensions.get("window");
 const { cond, eq, add, Value, event, call, greaterOrEq, interpolate } = Animated;
 
 export interface Props {
-    navigation: any
+    qty: number,
+    navigation: any,
+    total: number
 }
 
 export default class PlaceOrderDrag extends React.Component<Props> {
@@ -77,14 +79,17 @@ export default class PlaceOrderDrag extends React.Component<Props> {
     }
     onDrop([x]: readonly number[]) {
         if (x >= this.left){
-            this.props.navigation.navigate("OrderPlacedScreen")
+            this.props.navigation.navigate("OrderPlacedScreen", {
+                qty: this.props.qty,
+                total: this.props.total
+            })
         }
     }
   render() {
     return (
       <View style={styles.container}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Animated.View style={{opacity: this.priceOpacity}}><HeaderText style={{fontSize: 18}}>Rs. 285</HeaderText></Animated.View>
+            <Animated.View style={{opacity: this.priceOpacity}}><HeaderText style={{fontSize: 18}}>Rs. {this.props.total}</HeaderText></Animated.View>
             <Animated.View style={{opacity: this.textOpacity, transform: [{translateX: this.textY}]}}><HeaderText style={{fontSize: 18}}>Order Placed!</HeaderText></Animated.View>
         </View>
         <View style={{marginTop: 10}}>

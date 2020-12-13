@@ -1,3 +1,4 @@
+import CartItem from '../../models/CartItem'
 import { ADD_ITEM, INC_ITEM, DEC_ITEM, CLEAR, CartState, CartActionTypes } from '../actions/types'
 
 const initialState: CartState = {
@@ -51,7 +52,12 @@ const cartReducer = (state = initialState, action: CartActionTypes) => {
                 }
             }
         case CLEAR:
-            return state;
+            var newItem: CartItem[] = []
+            return {
+                items: newItem,
+                qty: {},
+                total: 0
+            };
         default: 
             return state;
     }

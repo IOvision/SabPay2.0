@@ -35,7 +35,7 @@ import ItemsScreen from '../screens/StackNavigator/ItemsScreen'
 import ItemDetailScreen from '../screens/StackNavigator/ItemDetailScreen'
 import colors from '../assets/colors'
 import CategoryList from '../screens/StackNavigator/CategoryList'
-import PlaceOrder from '../screens/StackNavigator/PlaceOrder'
+import PlaceOrderScreen from '../screens/StackNavigator/PlaceOrderScreen'
 import OrderDetail from '../screens/StackNavigator/OrderDetail'
 import OrderPlacedScreen from '../screens/StackNavigator/OrderPlacedScreen'
 
@@ -197,7 +197,7 @@ const MainStack: React.FC<Props> = () => {
                 />
                 <Stack.Screen 
                     name="PlaceOrder" 
-                    component={PlaceOrder}
+                    component={PlaceOrderScreen}
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (

@@ -1,24 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, ScrollView, StyleSheet } from 'react-native'
 import colors from '../../assets/colors'
 import LinearGradient from 'react-native-linear-gradient'
 import { HeaderText, BodyText } from '../../components/atoms/Text'
 import DeliveryStatus from '../../components/atoms/DeliveryStatus'
+import { RootState } from '../../redux/store'
+import { connect } from 'react-redux'
+import { clear } from '../../redux/actions/cart'
+import CartItem from '../../models/CartItem'
 
-export default function OrderPlacedScreen() {
+export interface Props {
+    route: any,
+    navigation: any,
+    clearCart: () => void
+}
+
+const OrderPlacedScreen: React.FC<Props> = ({route, navigation, clearCart}) => {
     const indicator = [
         {id: 1, status: 'Ordered'},
         {id: 2, status: 'Shipped'},
         {id: 3, status: 'Delivered'},
     ];
+    console.log("Route ", route)
+    useEffect(() => {
+        clearCart()
+    }, [])
     return (
         <ScrollView style={styles.container}>
             <LinearGradient style={styles.gradient} colors={['#8021EB','#04035C']}>
                 <HeaderText style={{color: colors.white, fontSize: 25}}>Order Placed!</HeaderText>
-                <HeaderText style={{color: colors.white}}>Total Price for 2 items Rs. 285</HeaderText>
+                <HeaderText style={{color: colors.white}}>Total Price for {route.params.qty} {route.params.qty < 2 ? "item" : "items"} Rs. {route.params.total}</HeaderText>
             </LinearGradient>
             <View style={styles.innerView}>
-                <HeaderText>Delivered by Thu, Nov 19th '20</HeaderText>
+                <HeaderText>Delivery by Thu, Nov 19th '20</HeaderText>
             </View>
             <View style={styles.innerView}>
                 <HeaderText>Santiago D'Souza</HeaderText>
@@ -34,6 +48,14 @@ export default function OrderPlacedScreen() {
         </ScrollView>
     )
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        clearCart: () => dispatch(clear()) 
+    }
+}
+
+export default connect(null, mapDispatchToProps)(OrderPlacedScreen)
 
 const styles = StyleSheet.create({
     container: {

@@ -1,7 +1,7 @@
 import { SET_SIGNED_IN, SET_SIGNED_OUT, UserActionTypes, UserState } from '../actions/types'
 
 const initialState: UserState = {
-    signedIn: false
+    signedIn: true
 }
 
 const userReducer = (state = initialState, action: UserActionTypes) => {
