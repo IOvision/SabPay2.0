@@ -43,9 +43,8 @@ const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoadi
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item, index}) => {
                 return <HomePageCategoryItem 
-                    image={item.image} 
-                    title={item.title} 
-                    tag={item.tag} 
+                    image={"h"} 
+                    title={item} 
                     colour={randomColor[(index % colorLength) + 1]} 
                     onPress={() => navigation.navigate("Items", {
                         tag: item.tag

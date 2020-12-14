@@ -12,21 +12,22 @@ interface Props {
     item: Merchant,
     set: (a: Merchant) => void,
     navigation: any,
+    index: number
 }
 
-const displayRating = (number: number) => {
+const displayRating = (number: number, index: number) => {
     var stars = []
     for(var i=1;i<=5;i++) {
         if(i<=number) {
-            stars.push(<MaterialCommunityIcons name="star" color={colors.gold} size={20} key={i}/>)
+            stars.push(<MaterialCommunityIcons name="star" color={colors.gold} size={20} key={`${index}${i}`}/>)
         } else {
-            stars.push(<MaterialCommunityIcons name="star" color={colors.lightGrey} size={20} key={i}/>)
+            stars.push(<MaterialCommunityIcons name="star" color={colors.lightGrey} size={20} key={`${index}${i}`}/>)
         }
     }
     return stars
 }
 
-const ShopListItem: React.FC<Props> = ({navigation, item, set}) => {
+const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
     return (
         <TouchableOpacity style={shopListItemstyles.container} activeOpacity={0.9} onPress={() => {
             set(item)
@@ -42,7 +43,7 @@ const ShopListItem: React.FC<Props> = ({navigation, item, set}) => {
                 <HeaderText>{item.name}</HeaderText>
                 <BodyText>{item.address}</BodyText>
                 <View style={{flexDirection: "row"}}>
-                {displayRating(item.rating)}
+                {displayRating(item.rating, index)}
                 </View>
             </View>
         </TouchableOpacity>

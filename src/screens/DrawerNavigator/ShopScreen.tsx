@@ -32,7 +32,7 @@ const ShopScreen: React.FC<Props> = ({navigation}) => {
               console.log(locations)
               setLocation(locations[0])
               //getMerchant(location.latitude, location.longitude, 5, (err, resp) => {
-              getMerchant(26.847170, 80.943422, 5, (err, resp) => {
+              getMerchant(25.599778, 85.134688, 5, (err, resp) => {
                 if(err) 
                   return console.log(err)
                   setInventories(resp)
@@ -77,12 +77,12 @@ const ShopScreen: React.FC<Props> = ({navigation}) => {
                     <FlatList
                         data={inventories}
                         keyExtractor={(index) => index.toString()}
-                        renderItem={({item}) => {
+                        renderItem={({item, index}) => {
                             return (
-                                <ShopListItem navigation={navigation} item={item} />
+                                <ShopListItem navigation={navigation} item={item} index={index}/>
                             )
                         }}
-                    />
+                    />  
                 )
             }
         </View>

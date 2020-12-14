@@ -11,13 +11,7 @@ var json = [
         "rating": 1,
         "latitude": 26.847170,
         "longitude": 80.943422,
-        "tags": [
-            {
-                "title": "Groceries & Staples",
-                "image": "https://png.pngtree.com/thumb_back/fh260/background/20190221/ourmid/pngtree-red-tilt-texture-offer-image_11168.jpg",
-                "tag": "grocery"
-            }
-        ],
+        "tags": [ "Groceries & Staples"],
         "isOpen": false,
         "exclude": [{
             "tag": "fruit",

@@ -2,6 +2,9 @@ import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import CategoryPageCategoryList from '../../components/molecules/CategoryPageCategoryList'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
+import Merchant from '../../models/Merchant'
+import { connect } from 'react-redux'
+import { RootState } from '../../redux/store'
 
 const data = [
     {
@@ -19,10 +22,11 @@ const data = [
 ]
 
 export interface Props {
-    navigation: any
+    navigation: any,
+    merchant: Merchant
 }
-const CategoriesTab: React.FC<Props> = ({navigation}) => {
-    
+const CategoriesTab: React.FC<Props> = ({navigation, merchant}) => {
+
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
             <TouchableOpacity onPress={() => navigation.push('CategoryList')}
@@ -30,7 +34,7 @@ const CategoriesTab: React.FC<Props> = ({navigation}) => {
                 <SearchWithBackground navigation={navigation}/>
             </TouchableOpacity>
             <CategoryPageCategoryList 
-                data={data}
+                data={merchant.tags}
                 style={{margin: 10, marginTop: 20, marginBottom: 0, flex: 1}}
                 navigation={navigation}
             />
@@ -38,4 +42,10 @@ const CategoriesTab: React.FC<Props> = ({navigation}) => {
     )
 }
 
-export default CategoriesTab
+const mapStateToProps = (state: RootState) => {
+    return {
+        merchant: state.merchantReducer.merchant
+    }
+}
+
+export default connect(mapStateToProps)(CategoriesTab)

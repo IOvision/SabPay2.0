@@ -15,7 +15,7 @@ const CategoryPageCategoryList: React.FC<Props> = ({data, style, navigation}) =>
                 data={data}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item, index}) => {
-                return <CategoryPageCategoryListItem index={index.toString()} image={item.image} title={item.title} onPress={() => navigation.navigate("Items")}/>;
+                return <CategoryPageCategoryListItem index={index.toString()} image={"https://raw.githubusercontent.com/IOvision/assets/master/images/Bakery%20and%20Dairy/amul_butter.JPG"} title={item} onPress={() => navigation.navigate("Items")}/>;
                 }}
                 showsVerticalScrollIndicator={false}
             />
