@@ -71,7 +71,7 @@ const ItemQuantityButton: React.FC<Props> = ({item, selected, cartQty, add, inc,
                 </LinearGradient>
             </View>
             <View style={ItemQuantityButtonStyle.itemQty}>
-                <BodyText style={{backgroundColor: colors.mediumGrey, width: '100%', textAlign: 'center'}}>{qty}</BodyText>
+                <BodyText style={{width: '100%', textAlign: 'center', height: 30}}>{qty}</BodyText>
             </View>
             <View style={ItemQuantityButtonStyle.itemQtyDecrease}>
                 <LinearGradient style={{borderRadius: 5}} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#8021EB', '#04035C']}>

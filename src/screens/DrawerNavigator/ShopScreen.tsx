@@ -6,6 +6,8 @@ import testInventory from '../../models/testInventory'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import RNLocation from "react-native-location";
 import { getMerchant } from '../../requests'
+import Background from '../../components/atoms/Background'
+
 
 export interface Props {
     navigation: any
@@ -46,7 +48,7 @@ const ShopScreen: React.FC<Props> = ({navigation}) => {
     const sample = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
         <View style={{backgroundColor: "white", flex: 1}}>
-            <SearchWithBackground navigation={navigation} />
+            <Background />
             <View style={{height: 20}}></View>
             {
                 isLoading ? (
@@ -74,7 +76,7 @@ const ShopScreen: React.FC<Props> = ({navigation}) => {
                             }}
                         />
                 ) : (
-                    <FlatList
+                     <FlatList
                         data={inventories}
                         keyExtractor={(index) => index.toString()}
                         renderItem={({item, index}) => {

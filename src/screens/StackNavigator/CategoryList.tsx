@@ -4,49 +4,15 @@ import colors from '../../assets/colors'
 import SearchBar from '../../components/atoms/SearchBar'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { BodyText } from '../../components/atoms/Text'
+import { connect } from 'react-redux'
+import { RootState } from '../../redux/store'
+import Merchant from '../../models/Merchant'
 
 const { width } = Dimensions.get('window')
-const data = [
-    {
-        id: 1,
-        name: "Atta, Rice"
-    },
-    {
-        id: 2,
-        name: "Surf, Vim",
-    },
-    {
-        id: 3,
-        name: "Dal Masala"
-    },
-    {
-        id: 4,
-        name: "Oil, Ghee"
-    },
-    {
-        id: 5,
-        name: "Jam, Ketchup"
-    },
-    {
-        id: 6,
-        name: "Biscuits, Namkeen"
-    },
-    {
-        id: 7,
-        name: "Soap, Handwash"
-    },
-    {
-        id: 8,
-        name: "Noodles, Soup"
-    },
-    {
-        id: 9,
-        name: "Breakfast Items"
-    }
-]
 
 export interface Props {
-    navigation: any
+    navigation: any,
+    merchant: Merchant
 }
 
 const CategoryListTab: React.FC<Props> = (props) => {
@@ -72,12 +38,15 @@ const CategoryListTab: React.FC<Props> = (props) => {
             />
             <FlatList
                 style={{marginTop: 20}}
-                data={data}
-                keyExtractor={({id}) => id.toString()}
+                data={props.merchant.tags}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) => {
                     return (
-                        <TouchableOpacity style={{padding: 15, flexDirection: 'row', justifyContent: 'space-between'}} activeOpacity={0.9} onPress={() => props.navigation.navigate("Items")}>
-                            <BodyText>{item.name}</BodyText>
+                        <TouchableOpacity style={{padding: 15, flexDirection: 'row', justifyContent: 'space-between'}} activeOpacity={0.9} 
+                            onPress={() => props.navigation.navigate("Items", {
+                                tag: item
+                                })}>
+                            <BodyText>{item}</BodyText>
                             <Icon name='chevron-right' size={24} color='black' />
                         </TouchableOpacity>
                     )
@@ -88,4 +57,11 @@ const CategoryListTab: React.FC<Props> = (props) => {
     )
 }
 
-export default CategoryListTab
+const mapStateToProps = (state: RootState) => {
+    return {
+        merchant: state.merchantReducer.merchant
+    }
+}
+
+export default connect(mapStateToProps)(CategoryListTab)
+
