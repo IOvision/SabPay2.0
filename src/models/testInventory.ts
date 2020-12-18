@@ -1,6 +1,6 @@
 import Merchant from './Merchant'
 
-var a: Merchant[]
+var testInventory: Merchant[]
 var json = [
     {
         "PK": "",
@@ -11,7 +11,7 @@ var json = [
         "rating": 1,
         "latitude": 26.847170,
         "longitude": 80.943422,
-        "tags": [ "Groceries & Staples"],
+        "tags": [ "Dairy", "Salt and Sugar"],
         "isOpen": false,
         "exclude": [{
             "tag": "fruit",
@@ -183,6 +183,6 @@ var json = [
     }
 ]
 
-a = Merchant.itemsFromList(json)
+testInventory = Merchant.itemsFromList(json)
 
-export default a
+export default testInventory

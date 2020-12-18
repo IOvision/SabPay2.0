@@ -9,11 +9,7 @@ export default class Merchant implements Base {
     address: string;
     image: string;
     rating: number;
-    tags: {
-        title: string,
-        image: string,
-        tag: string
-    }[];
+    tags: string[];
     isOpen: boolean;
     exclude: {
         tag: string,

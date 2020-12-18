@@ -3,15 +3,18 @@ import { View, FlatList } from 'react-native'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground';
 import StoreItemListItem from '../../components/molecules/StoreItemListItem'
 import Item from '../../models/Item';
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
+import SkeletonPlaceholder from "react-native-skeleton-placeholder"
 import { Divider } from 'react-native-paper'
 
 import { getItems } from '../../requests';
-import testItems from '../../models/testItems'
 
 export interface Props {
   navigation: any,
-  route: any
+  route: {
+    params: {
+      tag: string
+    }
+  }
 }
 
 const ItemSkeleton = () => {
@@ -36,13 +39,12 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
 
   const [data, setData] = useState<Item[] | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-
   useEffect(() => {
-    getItems("test", "null", (err, resp) => {
+    getItems(route.params.tag.replace(/ /g, "_"), "null", (err, resp) => {
       if (err)
         return console.log(err)
       setIsLoading(false);
-      setData(testItems)
+      setData(resp)
     })
   }, [])
 

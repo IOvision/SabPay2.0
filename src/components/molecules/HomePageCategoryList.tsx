@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, FlatList, ViewStyle, Text } from 'react-native'
+import { View, FlatList, ViewStyle } from 'react-native'
 import HomePageCategoryItem from './HomePageCategoryListItem' 
 import randomColor, { colorLength } from '../../assets/randomColor'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 export interface Props {
-    data: any,
+    data: string[],
     style?: ViewStyle,
     navigation: any,
     isLoading: boolean
@@ -47,7 +47,7 @@ const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoadi
                     title={item} 
                     colour={randomColor[(index % colorLength) + 1]} 
                     onPress={() => navigation.navigate("Items", {
-                        tag: item.tag
+                        tag: item
                     })} 
                 />;
                 }}

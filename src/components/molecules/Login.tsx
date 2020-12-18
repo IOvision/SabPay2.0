@@ -12,7 +12,11 @@ import SmsRetriever from 'react-native-sms-retriever'
 
 import { ActivityIndicator } from 'react-native-paper';
 
-const Login: React.FC = () => {
+export interface Props {
+    close: () => void
+}
+
+const Login: React.FC<Props> = () => {
     const [state, setState] = useState(0)
     const [phone, setPhone] = useState("")
     const [user, setUser] = useState(null)
@@ -38,16 +42,14 @@ const Login: React.FC = () => {
             const registered = await SmsRetriever.startSmsRetriever()
             if (registered) {
                 signIn()
-                console.log("gg", user)
                 SmsRetriever.addSmsListener(event => {
                     const a = /(\d{4})/g.exec(event.message)[1]
                     SmsRetriever.removeSmsListener()
-                    confirmSignUp(a)
+                    confirmSignIn(a)
                 })
             }
         } catch (error) {
             setIsLoading(false)
-            console.log(JSON.stringify(error))
         }  
     }
 
@@ -60,18 +62,14 @@ const Login: React.FC = () => {
         }
     }
 
-    const confirmSignUp = async (otp: string) => {
+    const confirmSignIn = async (otp: string) => {
         try {
-            console.log("user", temp)
-            console.log("otp", otp)
-            const data = await Auth.sendCustomChallengeAnswer(temp, otp);
-            console.log("Logged in", data)
+            await Auth.sendCustomChallengeAnswer(temp, otp);
+            close()
         } catch (error) {
             console.log('error', error)
         }
     }
-
-    
 
     if(isLoading) {
         return (

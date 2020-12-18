@@ -55,7 +55,11 @@ export const test = (cb: (err: any, resp: Item[] | null) => void) => {
 }
 
 export const getItems = (category: string, lastKey: string, cb: (err: any, resp: any) => void) => {
-    axios.get(`/item/${category}`, {})
+    axios.get(`/item/${category}`, {
+        params: {
+            byCategory: true
+        }
+    })
     .then(res => {
         cb(false, Item.itemsFromList(res.data.data))
     })

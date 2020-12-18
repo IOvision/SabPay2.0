@@ -8,17 +8,33 @@ import Root from './src/navigation/Root'
 import SplashScreen from 'react-native-splash-screen'
 
 //Amplify
-import Amplify from 'aws-amplify'
+import Amplify, { Auth } from 'aws-amplify'
 import awsConfig from './aws-exports'
+import AmplifyStorage from './src/models/AmplifyStorage';
+import { signIn } from './src/redux/actions/user';
+import { connect } from 'react-redux';
 
 Amplify.configure(awsConfig)
+Auth.configure({
+  storage: AmplifyStorage
+})
 
-export interface Props { }
+export interface Props {
+  setSignedIn: () => void
+}
 export interface State { }
 
 class App extends React.Component<Props, State> {
+
   componentDidMount() {
-    SplashScreen.hide()
+    Auth.currentSession()
+    .then(data => {
+      this.props.setSignedIn()
+      SplashScreen.hide()
+    })
+    .catch(err => {
+      SplashScreen.hide()
+    })
   }
 
   render () {
@@ -30,4 +46,10 @@ class App extends React.Component<Props, State> {
   }
 }
 
-export default App
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSignedIn: () => dispatch(signIn())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)

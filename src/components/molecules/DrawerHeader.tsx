@@ -5,29 +5,34 @@ import { HeaderText } from '../atoms/Text'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import DrawerHeaderStyle from '../../styles/DrawerHeaderStyle'
+import colors from '../../assets/colors'
+import { connect } from 'react-redux'
+import { RootState } from '../../redux/store'
 
-const DrawerHeader: React.FC = () => {
-    return (
-        <View style={DrawerHeaderStyle.container}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={{flex: 1, width: 5, backgroundColor: 'white', alignSelf: 'flex-start', marginLeft: 10, marginTop: 20}} />
-                <View style={{marginLeft: 20, marginTop: 10}}>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Icon name="account-circle" color='white' size={24} />
-                        <HeaderText style={{color: 'white'}}>Santiago D'Souza</HeaderText>
-                    </View>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Icon name="phone" color='white' size={24} />
-                        <HeaderText style={{color: 'white'}}>967829XXXX</HeaderText>
-                    </View>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Icon name="wallet" color='white' size={24} />
-                        <HeaderText style={{color: 'white'}}>Rs. 2,000</HeaderText>
-                    </View>
-                </View>
-            </View>
-        </View>
-    )
+export interface Props {
+    isSignedIn: boolean
 }
 
-export default DrawerHeader
+const DrawerHeader: React.FC<Props> = ({isSignedIn}) => {
+    if (isSignedIn) {
+        return (
+            <View style={{padding: 50, backgroundColor: colors.primary, alignItems: 'center'}}>
+                <HeaderText style={{color: 'white'}}>Logged In</HeaderText>
+            </View>
+        )
+    } else {
+        return (
+            <View style={{padding: 50, backgroundColor: colors.primary, alignItems: 'center'}}>
+                <HeaderText style={{color: 'white'}}>Logged Out</HeaderText>
+            </View>
+        )
+    }
+}
+
+const mapStateToProps = (state: RootState) => {
+    return {
+        isSignedIn: state.userReducer.signedIn
+    }
+}
+
+export default connect(mapStateToProps)(DrawerHeader)

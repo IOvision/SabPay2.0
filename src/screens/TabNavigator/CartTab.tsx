@@ -30,8 +30,12 @@ const CartTab: React.FC<Props> = (props) => {
     const DeliveryOptions: string[] = ["Express", "Standard", "Pick-up"]
     const [deliveryOption, setDeliveryOption] = useState(2)
 
+    const closeBottomSheet = () => {
+        sheetRef.current.snapTo(2)
+    }
+
     const handleContinue = () => (
-        <Login />
+        <Login close={closeBottomSheet} />
     )
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
