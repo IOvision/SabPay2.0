@@ -1,10 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
 import { HeaderText } from '../atoms/Text'
-
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-
-import DrawerHeaderStyle from '../../styles/DrawerHeaderStyle'
 import colors from '../../assets/colors'
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'

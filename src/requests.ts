@@ -54,7 +54,15 @@ export const test = (cb: (err: any, resp: Item[] | null) => void) => {
     })
 }
 
-export const getItems = (category: string, lastKey: string, cb: (err: any, resp: any) => void) => {
+export const getItemsFromTag = (tag: string, lastKey: string, cb: (err: any, resp: any) => void) => {
+    axios.get(`/item/${tag}`)
+    .then(res => {
+        cb(false, Item.itemsFromList(res.data.data))
+    })
+    .catch(err => cb(err, null))
+}
+
+export const getItemsFromCategory = (category: string, lastKey: string, cb: (err: any, resp: any) => void) => {
     axios.get(`/item/${category}`, {
         params: {
             byCategory: true
@@ -65,6 +73,7 @@ export const getItems = (category: string, lastKey: string, cb: (err: any, resp:
     })
     .catch(err => cb(err, null))
 }
+
 
 export const getMerchant = (latitude: number, longitude: number, radius: number, cb: (err: any, resp: any) => void) => {
     const params = {

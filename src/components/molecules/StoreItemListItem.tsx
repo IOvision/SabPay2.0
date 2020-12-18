@@ -32,9 +32,9 @@ const StoreItemListItem: React.FC<Props> = ({item, navigation}) => {
 
     return (
         <TouchableOpacity onPress={() => navigation.navigate("ItemDetails", {
-            item: item,
-            selected: selected
-        })} activeOpacity={0.9}>
+                item: item,
+                selected: selected
+            })} activeOpacity={0.9}>
             <RoundView style={storeListItemStyle.container}>
                 <View style={storeListItemStyle.itemImageView}>
                     <Image 
@@ -47,7 +47,7 @@ const StoreItemListItem: React.FC<Props> = ({item, navigation}) => {
                     <BodyText>Rs. {item.child[selected].price}</BodyText>
                     <View style={storeListItemStyle.itemSizeAndQtyView}>
                         <View style={{flexDirection: 'row'}}>
-                        {children()}
+                            {children()}
                         </View>
                         <ItemQuantityButton selected={selected} item={item} />
                     </View>

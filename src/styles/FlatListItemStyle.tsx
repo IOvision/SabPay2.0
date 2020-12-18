@@ -85,6 +85,8 @@ export const storeListItemStyle = StyleSheet.create<StyleStoreListItem>({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.background,
+    maxWidth: 60,
+    overflow: "hidden"
   },
   itemQtyView: {
     display: 'flex',

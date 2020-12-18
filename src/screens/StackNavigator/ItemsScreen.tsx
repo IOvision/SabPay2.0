@@ -6,7 +6,7 @@ import Item from '../../models/Item';
 import SkeletonPlaceholder from "react-native-skeleton-placeholder"
 import { Divider } from 'react-native-paper'
 
-import { getItems } from '../../requests';
+import { getItemsFromTag } from '../../requests';
 
 export interface Props {
   navigation: any,
@@ -40,9 +40,10 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
   const [data, setData] = useState<Item[] | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
-    getItems(route.params.tag.replace(/ /g, "_"), "null", (err, resp) => {
+    getItemsFromTag(route.params.tag, "null", (err, resp) => {
       if (err)
         return console.log(err)
+      console.log(route.params.tag + ": " + resp)
       setIsLoading(false);
       setData(resp)
     })
