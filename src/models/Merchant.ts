@@ -22,6 +22,7 @@ export default class Merchant implements Base {
     }[];
     latitude: number;
     longitude: number;
+    phone: string;
 
     constructor(a: any) {
         this.pk = a.PK
@@ -37,6 +38,7 @@ export default class Merchant implements Base {
         this.storeSp = a.storeSp
         this.latitude = 0
         this.longitude = 0
+        this.phone = a.phone
     }
 
     public static itemsFromList(json: Object[]) {
@@ -48,4 +50,11 @@ export default class Merchant implements Base {
         return list
     }
     
+    public toJson() {
+        return JSON.stringify(this)
+    }
+
+    public static fromString(a: string) {
+        return new Merchant(JSON.parse(a))
+    }
 }

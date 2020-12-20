@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { View, FlatList } from 'react-native'
 import ShopListItem from '../../components/molecules/ShopListItem'
-import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 import testInventory from '../../models/testInventory'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import RNLocation from "react-native-location";
@@ -16,7 +15,7 @@ export interface Props {
 const ShopScreen: React.FC<Props> = ({navigation}) => {
     const [isLoading, setIsLoading] = useState(true)
     const [inventories, setInventories] = useState(testInventory)
-    const [location, setLocation] = useState({})
+    // const [location, setLocation] = useState({})
     let locationSubscription = null
     RNLocation.configure({
       distanceFilter: 5.0
@@ -32,7 +31,7 @@ const ShopScreen: React.FC<Props> = ({navigation}) => {
           locationSubscription = RNLocation.subscribeToLocationUpdates(
             locations => {
               console.log(locations)
-              setLocation(locations[0])
+            //   setLocation(locations[0])
               //getMerchant(location.latitude, location.longitude, 5, (err, resp) => {
               getMerchant(25.599778, 85.134688, 5, (err, resp) => {
                 if(err) 

@@ -10,6 +10,7 @@ import PlaceOrderDrag from '../../components/molecules/PlaceOrderDrag'
 import { RootState } from '../../redux/store'
 import { connect } from 'react-redux'
 import CartItem from '../../models/CartItem'
+import { Auth } from 'aws-amplify'
 
 export interface Props {
     items: CartItem[],
@@ -21,6 +22,10 @@ export interface Props {
 const OrderDetails: React.FC<Props> = ({items, navigation, total}) => {
 
     const [paymentMethod, setPaymentMethod] = React.useState("upi")
+
+    const confirm = () => {
+        Auth.currentAuthenticatedUser().then(res => console.log(res.attributes.phone_number))
+    }
 
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
@@ -66,7 +71,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total}) => {
             </RoundView>
             <CartPriceDetails price={total} discount={0} style={{marginBottom: 20}}/>
         </ScrollView>
-            <PlaceOrderDrag qty={items.length} total={total} navigation={navigation} />
+            <PlaceOrderDrag qty={items.length} total={total} confirm={confirm} />
         </View>
     )
 }

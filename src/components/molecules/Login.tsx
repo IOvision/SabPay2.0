@@ -11,12 +11,16 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import SmsRetriever from 'react-native-sms-retriever'
 
 import { ActivityIndicator } from 'react-native-paper';
+import { connect } from 'react-redux';
+import { signIn } from '../../redux/actions/user';
+import User from '../../models/User';
 
 export interface Props {
     close: () => void
+    setSignedIn: (user: User) => void
 }
 
-const Login: React.FC<Props> = () => {
+const Login: React.FC<Props> = ({setSignedIn, close}) => {
     const [state, setState] = useState(0)
     const [phone, setPhone] = useState("")
     const [user, setUser] = useState(null)
@@ -65,6 +69,7 @@ const Login: React.FC<Props> = () => {
     const confirmSignIn = async (otp: string) => {
         try {
             await Auth.sendCustomChallengeAnswer(temp, otp);
+            setSignedIn(new User("+917084552191"))
             close()
         } catch (error) {
             console.log('error', error)
@@ -124,7 +129,13 @@ const Login: React.FC<Props> = () => {
     )
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setSignedIn: (user: User) => dispatch(signIn(user))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login)
 
 const styles = StyleSheet.create({
     container: {

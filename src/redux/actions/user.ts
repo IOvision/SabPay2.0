@@ -1,8 +1,10 @@
+import User from '../../models/User';
 import { SET_SIGNED_IN, SET_SIGNED_OUT, UserActionTypes } from './types'
 
-export const signIn = (): UserActionTypes => (
+export const signIn = (user: User): UserActionTypes => (
     {
-        type: SET_SIGNED_IN
+        type: SET_SIGNED_IN,
+        user: user
     }
 );
 

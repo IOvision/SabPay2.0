@@ -7,6 +7,7 @@ import colors from '../../assets/colors'
 import Merchant from '../../models/Merchant';
 import { connect } from 'react-redux';
 import { setMerchant } from '../../redux/actions/merchant';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface Props {
     item: Merchant,
@@ -30,6 +31,7 @@ const displayRating = (number: number, index: number) => {
 const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
     return (
         <TouchableOpacity style={shopListItemstyles.container} activeOpacity={0.9} onPress={() => {
+            AsyncStorage.setItem('@Merchant', item.toJson())
             set(item)
             navigation.jumpTo('Dashboard')
         }}>

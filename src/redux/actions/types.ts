@@ -1,8 +1,10 @@
 import CartItem from "../../models/CartItem"
 import Merchant from "../../models/Merchant"
+import User from "../../models/User"
 
 //USER
 export interface UserState {
+    user: User
     signedIn: boolean
 }
 
@@ -10,7 +12,8 @@ export const SET_SIGNED_IN = "SET_SIGNED_IN"
 export const SET_SIGNED_OUT = "SET_SIGNED_OUT"
 
 interface SignInAction {
-    type: typeof SET_SIGNED_IN
+    type: typeof SET_SIGNED_IN,
+    user: User
 }
 
 interface SignOutAction {

@@ -12,7 +12,7 @@ const { cond, eq, add, Value, event, call, greaterOrEq, interpolate } = Animated
 
 export interface Props {
     qty: number,
-    navigation: any,
+    confirm: () => void,
     total: number
 }
 
@@ -79,10 +79,7 @@ export default class PlaceOrderDrag extends React.Component<Props> {
     }
     onDrop([x]: readonly number[]) {
         if (x >= this.left){
-            this.props.navigation.navigate("OrderPlacedScreen", {
-                qty: this.props.qty,
-                total: this.props.total
-            })
+            this.props.confirm()
         }
     }
   render() {

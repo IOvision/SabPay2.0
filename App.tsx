@@ -13,6 +13,10 @@ import awsConfig from './aws-exports'
 import AmplifyStorage from './src/models/AmplifyStorage';
 import { signIn } from './src/redux/actions/user';
 import { connect } from 'react-redux';
+import User from './src/models/User';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Merchant from './src/models/Merchant';
+import { setMerchant } from './src/redux/actions/merchant';
 
 Amplify.configure(awsConfig)
 Auth.configure({
@@ -20,35 +24,71 @@ Auth.configure({
 })
 
 export interface Props {
-  setSignedIn: () => void
+  setSignedIn: (user: User) => void,
+  setMerchant: (merchant: Merchant) => void
 }
-export interface State { }
+export interface State {
+  isLoading: boolean
+}
 
 class App extends React.Component<Props, State> {
 
-  componentDidMount() {
+  constructor(props: Props) {
+    super(props)
+    this.state = {
+      isLoading: true
+    }
+  }
+
+  getUserData = () => new Promise((resolve, reject) => {
     Auth.currentSession()
     .then(data => {
-      this.props.setSignedIn()
-      SplashScreen.hide()
+      var a = new User("+917084552191")
+      this.props.setSignedIn(a)
+      resolve(true)
     })
     .catch(err => {
+      resolve(true)
+    })
+  })
+
+  getMerchantData = () => new Promise((resolve, reject) => {
+    AsyncStorage.getItem('@Merchant')
+    .then(data => {
+      if (data) this.props.setMerchant(Merchant.fromString(data))
+      resolve(true)
+    })
+    .catch(err => reject(err))
+  })
+
+  componentDidMount() {
+    Promise.all([this.getUserData(), this.getMerchantData()])
+    .then(data => {
+      this.setState({
+        isLoading: false
+      })
       SplashScreen.hide()
     })
+    .catch(err => console.log(err))
   }
 
   render () {
+    if(!this.state.isLoading)
     return (
       <View style={{flex: 1, backgroundColor: Colors.background}}>
         <Root />
       </View>
+    )
+    return (
+      <View></View>
     )
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setSignedIn: () => dispatch(signIn())
+    setSignedIn: (user: User) => dispatch(signIn(user)),
+    setMerchant: (merchant: Merchant) => dispatch(setMerchant(merchant))
   }
 }
 
