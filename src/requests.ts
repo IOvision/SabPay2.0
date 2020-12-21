@@ -103,3 +103,16 @@ export const order = (order: Order, phone: string, merchantId: string, cb: (err:
     })
     .catch(err => cb(err, null))
 }
+
+export const getOrders = (phone: string, token: string, cb: (err: any, resp: any) => void) => {
+    phone = "7084552191"
+    axios.get(`/user/${phone}/order`, {
+        headers: {
+            "SP-TOKEN": token
+          }
+    })
+    .then(res => {
+        cb(false, Order.itemsFromList(res.data.data))
+    })
+    .catch(err => cb(err, null))
+}

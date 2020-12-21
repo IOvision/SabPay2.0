@@ -4,15 +4,40 @@ import StepIndicator from 'react-native-step-indicator';
 import colors from '../../assets/colors';
 
 export interface Props {
-  data: {
-    id: number,
-    status: string
-  }[],
   style: ViewStyle,
-  counter: number
+  counter: string
 }
 
-const DeliveryStatus: React.FC<Props> = ({data, counter, style}) => {
+const DeliveryStatus: React.FC<Props> = ({counter, style}) => {
+  const data = [
+    {
+      "id": 0,
+      "status": "Order Placed"
+    }, 
+    {
+      "id": 1,
+      "status": "Order Confirmed"
+    }, 
+    {
+      "id": 2,
+      "status": "Out for delivery"
+    }, 
+    {
+      "id": 3,
+      "status": "Order Delivered"
+    }
+  ]
+  let counterId;
+  if(counter === "order placed")
+    counterId = 0
+  else if(counter === "order confirmed")
+    counterId = 1
+  else if(counter === "Out for delivery")
+    counterId = 2
+  else
+    counterId = 3
+
+  //order placed, order confirmed, Out for delivery, order delivered
   const stepIndicatorStyles = {
     stepIndicatorSize: 30,
     currentStepIndicatorSize: 40,
@@ -38,7 +63,7 @@ const DeliveryStatus: React.FC<Props> = ({data, counter, style}) => {
         customStyles={stepIndicatorStyles}
         stepCount={data.length}
         direction="vertical"
-        currentPosition={counter}
+        currentPosition={counterId}
         labels={data.map((item) => item.status)}
       />
     </View>

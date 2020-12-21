@@ -31,7 +31,12 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
 
     const confirm = () => {
         setIsLoading(true)
-        order(new Order(items, total.toString(), "0"), user.getPhone(), merchant.SK, (err, resp) => {
+        var object = {
+            "items": items,
+            "total": total.toString(),
+            "discount": total.toString()
+        }
+        order(new Order(object), user.getPhone(), merchant.SK, (err, resp) => {
             if (err) console.log(err)
             if(resp) {
                 navigation.replace("OrderPlacedScreen", {

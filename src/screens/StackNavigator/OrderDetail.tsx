@@ -5,8 +5,18 @@ import { HeaderText, BodyText } from '../../components/atoms/Text'
 import CartItemListItem from '../../components/molecules/CartItemListItem'
 import DeliveryStatus from '../../components/atoms/DeliveryStatus'
 import CartPriceDetails from '../../components/molecules/CartPriceDetails'
+import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 
-export default function OrderDetail() {
+export interface Props {
+    navigation: any,
+    route: {
+        params: {
+          data: Object
+        }
+    }
+}
+const OrderDetail: React.FC<Props> = ({route, navigation})=>  {
+    console.log("details: " + Object.keys(route.params.data))
     const DATA = [
         {
             id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -21,19 +31,15 @@ export default function OrderDetail() {
             title: "Third Item",
         },
     ];
-    const indicator = [
-        {id: 1, status: 'Ordered'},
-        {id: 2, status: 'Shipped'},
-        {id: 3, status: 'Delivered'},
-    ];
     return (
         <View style={{display: "flex", flex: 1, backgroundColor: colors.white}}>
         <View style={styles.container}>
+            <SearchWithBackground navigation={navigation}/>
             <View>
                 <HeaderText>Delivered Text</HeaderText>
-                <BodyText>254-255, pocket-18, sector-24 rohini delhi- 110085</BodyText>
+                <BodyText>{route.params.data.address}</BodyText>
             </View>
-            <View style={styles.end}></View>
+            <View style={styles.end}></View>                
             <View>
                 <HeaderText>Service Provider</HeaderText>
                 <BodyText>Abhishek General Store</BodyText>
@@ -43,12 +49,12 @@ export default function OrderDetail() {
             <FlatList 
                 data={DATA}
                 renderItem={({item, index}) => {
-                    return <CartItemListItem style={{marginHorizontal: -10 }}/>
+                    return <CartItemListItem style={{marginHorizontal: -10 }} />
                 }}
                 ListFooterComponent={() => {
                     return (
                         <View>
-                            <DeliveryStatus data={indicator} style={{margin: 20}}/>
+                            <DeliveryStatus style={{margin: 20}} counter={"order confirmed"}/>
                             <View style={styles.end}></View>
                             <CartPriceDetails />
                         </View>
@@ -58,6 +64,8 @@ export default function OrderDetail() {
         </View>
     )
 }
+
+export default OrderDetail
 
 const styles = StyleSheet.create({
     container: {

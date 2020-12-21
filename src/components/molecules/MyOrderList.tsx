@@ -1,13 +1,15 @@
 import React from 'react'
 import {View, StyleSheet, FlatList} from 'react-native';
+import Order from '../../models/Order';
 import MyOrderListItem from './MyOrderListItem';
 
 export interface Props {
-  navigation: any
+  navigation: any,
+  data: Array<Order>
 }
 
-const MyOrderList: React.FC<Props> = ({navigation}) => {
-    const data = [
+const MyOrderList: React.FC<Props> = ({navigation, data}) => {
+    const data1 = [
         {
           id: 1,
           image: require('../../assets/images/jam.png'),

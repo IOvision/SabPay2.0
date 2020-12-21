@@ -15,10 +15,10 @@ const CartItemListItem: React.FC<Props> = ({item, style}) => {
     return (
         <RoundView style={[CartItemListItemStyles.container, style]}>
             <View style={CartItemListItemStyles.infoView}>
-                <HeaderText>{item.name}</HeaderText>
+                {/* <HeaderText>{item.name}</HeaderText> */}
 
                 <View style={CartItemListItemStyles.subView}>
-                    <BodyText>Rs. {item.price}</BodyText>
+                    {/* <BodyText>Rs. {item.price}</BodyText> */}
                     {/* <View style={CartItemListItemStyles.discountView}>
                         <Text style={CartItemListItemStyles.originalPrice}>Rs. 600</Text>
                         <OfferText>40% Off</OfferText>
@@ -27,16 +27,16 @@ const CartItemListItem: React.FC<Props> = ({item, style}) => {
 
                 {/* <OfferText>1 Offer Applied</OfferText> */}
 
-                <View style={CartItemListItemStyles.weight}><BodyText>{item.variant}</BodyText></View>
+                {/* <View style={CartItemListItemStyles.weight}><BodyText>{item.variant}</BodyText></View> */}
 
             </View>
             
             <View style={{alignItems: "center"}}>
-                <Image
+                {/* <Image
                     style={CartItemListItemStyles.img}
                     source={{uri: item.image}}
-                />
-                <CartQuantityButton item={item} />
+                /> */}
+                {/* <CartQuantityButton item={item} /> */}
             </View>
         </RoundView>
     )
