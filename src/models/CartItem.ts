@@ -3,8 +3,8 @@ import Item from "./Item";
 
 export default class CartItem implements Base {
     
-    pk: string;
-    id: string;
+    PK: string;
+    SK: string;
     name: string;
     image: string;
     variant: string;
@@ -12,8 +12,8 @@ export default class CartItem implements Base {
     price: number;
     
     constructor(a: Item, selected: number) {
-        this.pk = a.pk
-        this.id = a.id
+        this.PK = a.PK
+        this.SK = a.SK
         this.name = a.name
         this.image = a.image
         this.variantKey = selected
@@ -30,6 +30,6 @@ export default class CartItem implements Base {
     }
 
     public getSelectedId() {
-        return `${this.id}-${this.variantKey}`
+        return `${this.SK}-${this.variantKey}`
     }
 }

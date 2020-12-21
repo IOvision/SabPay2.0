@@ -1,9 +1,7 @@
-import Base from './Base'
-
-export default class Item implements Base {
+export default class Item {
     
-    pk: string;
-    id: string;
+    PK: string;
+    SK: string;
     name: string;
     image: string;
     desc: string;
@@ -17,8 +15,8 @@ export default class Item implements Base {
     selected: number
 
     constructor(a: any) {
-        this.pk = a.PK
-        this.id = a.SK
+        this.PK = a.PK
+        this.SK = a.SK
         this.name = a.name
         this.image = a.image
         this.desc = a.desc
@@ -40,6 +38,6 @@ export default class Item implements Base {
     }
 
     public getSelectedId(selected: number) {
-        return `${this.id}-${selected}`
+        return `${this.SK}-${selected}`
     }
 }

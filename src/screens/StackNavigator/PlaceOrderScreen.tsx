@@ -10,21 +10,40 @@ import PlaceOrderDrag from '../../components/molecules/PlaceOrderDrag'
 import { RootState } from '../../redux/store'
 import { connect } from 'react-redux'
 import CartItem from '../../models/CartItem'
-import { Auth } from 'aws-amplify'
+import { order } from '../../requests'
+import Merchant from '../../models/Merchant'
+import User from '../../models/User'
+import Order from '../../models/Order'
 
 export interface Props {
     items: CartItem[],
     navigation: any,
     total: number,
+    merchant: Merchant,
+    user: User,
     discount?: number
 }
 
-const OrderDetails: React.FC<Props> = ({items, navigation, total}) => {
+const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user}) => {
 
     const [paymentMethod, setPaymentMethod] = React.useState("upi")
+    const [isLoading, setIsLoading] = React.useState(false)
 
     const confirm = () => {
-        Auth.currentAuthenticatedUser().then(res => console.log(res.attributes.phone_number))
+        setIsLoading(true)
+        order(new Order(items, total.toString(), "0"), user.getPhone(), merchant.SK, (err, resp) => {
+            if (err) console.log(err)
+            if(resp) {
+                navigation.replace("OrderPlacedScreen", {
+                    qty: items.length,
+                    total: total
+                })
+            }
+        })
+    }
+
+    if(isLoading) {
+        return <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}><HeaderText>Loading</HeaderText></View>
     }
 
     return (
@@ -79,7 +98,9 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total}) => {
 const mapStateToProps = (state: RootState) => {
     return {
         total: state.cartReducer.total,
-        items: state.cartReducer.items
+        items: state.cartReducer.items,
+        merchant: state.merchantReducer.merchant,
+        user: state.userReducer.user
     }
 }
 

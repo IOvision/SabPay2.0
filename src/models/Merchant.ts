@@ -1,10 +1,9 @@
-import Base from './Base'
 import Item from './Item'
 
-export default class Merchant implements Base {
+export default class Merchant {
     
-    pk: string;
-    id: string;
+    PK: string;
+    SK: string;
     name: string;
     address: string;
     image: string;
@@ -22,11 +21,10 @@ export default class Merchant implements Base {
     }[];
     latitude: number;
     longitude: number;
-    phone: string;
 
     constructor(a: any) {
-        this.pk = a.PK
-        this.id = a.SK
+        this.PK = a.PK
+        this.SK = a.SK
         this.name = a.name
         this.address = a.address
         this.image = a.image
@@ -38,7 +36,6 @@ export default class Merchant implements Base {
         this.storeSp = a.storeSp
         this.latitude = 0
         this.longitude = 0
-        this.phone = a.phone
     }
 
     public static itemsFromList(json: Object[]) {

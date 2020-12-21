@@ -3,13 +3,13 @@ import CartItem from './CartItem'
 export default class Order {
 
     items: CartItem[]
-    total: number
-    discount: number
+    total: string
+    discount: string
 
-    constructor(a: CartItem[], b: number, c: number) {
-        this.items = a
-        this.total = b
-        this.discount = c
+    constructor(items: CartItem[], total: string, discount: string) {
+        this.items = items
+        this.total = total
+        this.discount = discount
     }
 
 }

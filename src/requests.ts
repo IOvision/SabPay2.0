@@ -5,6 +5,7 @@ axios.defaults.headers = { "x-api-key": 'RDFCXXNZwW2FBxGykBgKz3E0MPcz3A5I4yFqzml
 
 import Item from './models/Item'
 import Merchant from './models/Merchant'
+import Order from './models/Order'
 
 export const test = (cb: (err: any, resp: Item[] | null) => void) => {
     axios.post('/test', [
@@ -57,6 +58,7 @@ export const test = (cb: (err: any, resp: Item[] | null) => void) => {
 export const getItemsFromTag = (tag: string, lastKey: string, cb: (err: any, resp: any) => void) => {
     axios.get(`/item/${tag}`)
     .then(res => {
+        console.log('done')
         cb(false, Item.itemsFromList(res.data.data))
     })
     .catch(err => cb(err, null))
@@ -84,6 +86,20 @@ export const getMerchant = (latitude: number, longitude: number, radius: number,
     axios.get('/inventory', { params })
     .then(res => {
         cb(false, Merchant.itemsFromList(res.data.data))
+    })
+    .catch(err => cb(err, null))
+}
+
+export const order = (order: Order, phone: string, merchantId: string, cb: (err: any, resp: any) => void) => {
+    axios.post("/order", {
+        PK: merchantId,
+        GS1_PK: phone,
+        items: order.items,
+        total: order.total,
+        discount: order.discount
+    })
+    .then(res => {
+        cb(false, res.data.success)
     })
     .catch(err => cb(err, null))
 }

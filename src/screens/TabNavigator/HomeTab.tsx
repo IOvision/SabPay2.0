@@ -19,7 +19,7 @@ const HomeTab: React.FC<Props> = ({navigation, merchant}) => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
     useEffect(() => {
-        setTimeout(() => setIsLoading(false), 1500)
+        setIsLoading(false)
     }, [])
 
     const data1 =  [
