@@ -41,9 +41,9 @@ class App extends React.Component<Props, State> {
   }
 
   getUserData = () => new Promise((resolve, reject) => {
-    Auth.currentSession()
+    Auth.currentAuthenticatedUser()
     .then(data => {
-      var a = new User("+917084552191")
+      var a = new User(data.attributes.phone_number)
       this.props.setSignedIn(a)
       resolve(true)
     })

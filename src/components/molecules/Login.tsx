@@ -23,7 +23,6 @@ export interface Props {
 const Login: React.FC<Props> = ({setSignedIn, close}) => {
     const [state, setState] = useState(0)
     const [phone, setPhone] = useState("")
-    const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     var temp: any
     //Hash - Xq5ZQIU2b5de
@@ -68,8 +67,8 @@ const Login: React.FC<Props> = ({setSignedIn, close}) => {
 
     const confirmSignIn = async (otp: string) => {
         try {
-            await Auth.sendCustomChallengeAnswer(temp, otp);
-            setSignedIn(new User("+917084552191"))
+            const data = await Auth.sendCustomChallengeAnswer(temp, otp);
+            setSignedIn(new User(data.attributes.phone_number))
             close()
         } catch (error) {
             console.log('error', error)

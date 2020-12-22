@@ -5,32 +5,45 @@ export default class Order {
     items: CartItem[]
     total: string
     discount: string
+    address: string
+    id: string
+    merchantName: string
 
-    constructor(obj: any) {
-        this.items = undefined;
-        this.total = undefined;
-        this.discount = undefined;
+    constructor() {
+        this.items = [];
+        this.total = "";
+        this.discount = "";
+        this.address = "";
+        this.id = "";
+        this.merchantName = "";
     }
 
-    public static fromJson = (obj: any) => {
+    public static fullDetails(obj: any) {
         var a = new Order()
         a.items = obj.items;
         a.total = obj.total;
         a.discount = obj.discount;
+        a.address = obj.address;
+        a.id = obj.SK
+        a.merchantName = obj.merchantName
+        return a
     }
 
-    // constructor(items: CartItem[], total: string, discount: string) {
-    //     this.items = items
-    //     this.total = total
-    //     this.discount = discount
-    // }
+    public static partialDetails(items: CartItem[], total: string, discount: string) {
+        var a = new Order();
+        a.items = items;
+        a.total = total;
+        a.discount = discount;
+        return a;
+    }
 
-    public static itemsFromList(json: Object[]) {
-        var list: Order[] = []
-        json.forEach(element => {
-            var a = new Order(element)
-            list.push(a)
-        });
-        return list
+    public toJSON() {
+        var a = {
+            items: this.items,
+            total: this.total,
+            discount: this.discount,
+            address: this.address
+        }
+        return a;
     }
 }
