@@ -16,21 +16,8 @@ export interface Props {
     }
 }
 const OrderDetail: React.FC<Props> = ({route, navigation})=>  {
-    console.log("details: " + Object.keys(route.params.data))
-    const DATA = [
-        {
-            id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-            title: "First Item",
-        },
-        {
-            id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-            title: "Second Item",
-        },
-        {
-            id: "58694a0f-3da1-471f-bd96-145571e29d72",
-            title: "Third Item",
-        },
-    ];
+    console.log("data1: " + Object.keys(route.params.data.items[0]))
+
     return (
         <View style={{display: "flex", flex: 1, backgroundColor: colors.white}}>
         <View style={styles.container}>
@@ -42,21 +29,21 @@ const OrderDetail: React.FC<Props> = ({route, navigation})=>  {
             <View style={styles.end}></View>                
             <View>
                 <HeaderText>Service Provider</HeaderText>
-                <BodyText>Abhishek General Store</BodyText>
+                <BodyText>{route.params.data.merchantName}</BodyText>
             </View>
             <View style={styles.end}></View>
-            <HeaderText>Order Id - OD19965369fhyv</HeaderText>
+            <HeaderText>Order Id - {route.params.data.id}</HeaderText>
             <FlatList 
-                data={DATA}
+                data={route.params.data.items}
                 renderItem={({item, index}) => {
-                    return <CartItemListItem style={{marginHorizontal: -10 }} />
+                    return <CartItemListItem style={{marginHorizontal: -10 }} item={item} show={false}/>
                 }}
                 ListFooterComponent={() => {
                     return (
                         <View>
                             <DeliveryStatus style={{margin: 20}} counter={"order confirmed"}/>
                             <View style={styles.end}></View>
-                            <CartPriceDetails />
+                            <CartPriceDetails price={route.params.data.total} discount={route.params.data.discount}/>
                         </View>
                     )
                 }}/>

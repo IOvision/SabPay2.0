@@ -65,7 +65,7 @@ const CartTab: React.FC<Props> = (props) => {
                     )
                 }}
                 renderItem={({item, index}) => {
-                    return <CartItemListItem item={item} />
+                    return <CartItemListItem item={item} show={true}/>
                 }}
                 ListFooterComponent={() => {
                     return (
@@ -80,7 +80,10 @@ const CartTab: React.FC<Props> = (props) => {
             {
                 props.cart.length != 0 ? (
                     <View style={styles.continueBtn}>
-                        <PurpleRoundBtn mode="gradient" text="Continue" style={{borderRadius: 10}} onPress={() => props.isSignedIn ? props.navigation.navigate("PlaceOrder") : sheetRef.current.snapTo(0)}/>
+                        <PurpleRoundBtn mode="gradient" text="Continue" style={{borderRadius: 10}} 
+                        onPress={() => props.isSignedIn ? props.navigation.navigate("PlaceOrder", {
+                            deliveryType: deliveryOption
+                        }) : sheetRef.current.snapTo(0)}/>
                     </View>
                 ) : null
             }

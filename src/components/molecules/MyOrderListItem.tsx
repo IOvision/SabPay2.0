@@ -10,7 +10,6 @@ export interface Props {
 }
 
 const MyOrderListItem: React.FC<Props> = ({data, navigation}) => {
-  console.log("data: " + data)
     return (
       <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("OrderDetail", {
           data: data
@@ -19,12 +18,12 @@ const MyOrderListItem: React.FC<Props> = ({data, navigation}) => {
         source={{uri: data.items[0].image}}
         style={styles.image}
       >
+        <View style={styles.overlay} />
         {
           data.items.length == 1 ? null : (
             <View>
-              <View style={styles.overlay} />
               <View style={{backgroundColor: "black", width: 30, opacity: 0.8, alignItems: "center"}}>
-                <HeaderText style={{fontSize: 16, color: "white", opacity: 1}}>+ data.items.length-1</HeaderText>
+                <HeaderText style={{fontSize: 16, color: "white", opacity: 1}}>+ {data.items.length-1}</HeaderText>
               </View>
             </View>
           )
@@ -32,7 +31,7 @@ const MyOrderListItem: React.FC<Props> = ({data, navigation}) => {
       </ImageBackground>
       <View style={styles.semiContainer}>
         <HeaderText style={styles.headerText}>{data.status}</HeaderText>
-        <CustomText>{data.items[0].name} { data.items.length == 1 ? null : + data.items.length-1 }</CustomText>
+        <CustomText>{data.items[0].name} +{ data.items.length == 1 ? null : + data.items.length-1 } other</CustomText>
       </View>
       <Icon
         style={styles.materialIcon}

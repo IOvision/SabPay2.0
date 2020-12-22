@@ -14,11 +14,6 @@ export interface Props {
 }
 
 const OrderPlacedScreen: React.FC<Props> = ({route, navigation, clearCart}) => {
-    const indicator = [
-        {id: 1, status: 'Ordered'},
-        {id: 2, status: 'Shipped'},
-        {id: 3, status: 'Delivered'},
-    ];
     console.log("Route ", route)
     useEffect(() => {
         clearCart()
@@ -38,7 +33,7 @@ const OrderPlacedScreen: React.FC<Props> = ({route, navigation, clearCart}) => {
             </View>
             <View style={styles.status}>
                 <HeaderText>Delivery Status</HeaderText>
-                <DeliveryStatus data={indicator} counter={0} style={{margin: 20}}/>
+                <DeliveryStatus counter={"order placed"} style={{margin: 20}}/>
             </View>
             <View style={styles.innerView}>
                 <HeaderText>Thanks For Shopping</HeaderText>

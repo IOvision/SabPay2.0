@@ -9,32 +9,6 @@ export interface Props {
 }
 
 const MyOrderList: React.FC<Props> = ({navigation, data}) => {
-    const data1 = [
-        {
-          id: 1,
-          image: require('../../assets/images/jam.png'),
-          status: 'Out For Delivery',
-          name: 'Ashirvaad Aata',
-        },
-        {
-          id: 2,
-          image: require('../../assets/images/jam.png'),
-          status: 'For Delivery',
-          name: 'Ashirvaad Aata',
-        },
-        {
-          id: 3,
-          image: require('../../assets/images/jam.png'),
-          status: 'Gone Delivery',
-          name: 'Ashirvaad Aata',
-        },
-        {
-          id: 4,
-          image: require('../../assets/images/jam.png'),
-          status: 'Delivery',
-          name: 'Ashirvaad Aata',
-        },
-      ];
     return (
         <View style={styles.container}>
             <FlatList

@@ -21,17 +21,28 @@ export interface Props {
     total: number,
     merchant: Merchant,
     user: User,
-    discount?: number
+    discount?: number,
+    route: {
+        params: {
+            deliveryType: number
+        }
+    }
 }
 
-const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user}) => {
+const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user, discount, route}) => {
 
     const [paymentMethod, setPaymentMethod] = React.useState("upi")
     const [isLoading, setIsLoading] = React.useState(false)
-
+    let deliveryType: string
+    if(route.params.deliveryType === 0) 
+        deliveryType = "Express"
+    else if(route.params.deliveryType === 1) 
+        deliveryType = "Standard"
+    else
+        deliveryType = "Pick-Up"
     const confirm = () => {
         setIsLoading(true)
-        order(Order.partialDetails(items, total.toString(), "0"), user.getPhone(), merchant.SK, (err, resp) => {
+        order(Order.partialDetails(items, total.toString(), "0", deliveryType), user.getPhone(), merchant.SK, (err, resp) => {
             if (err) console.log(err)
             if(resp) {
                 navigation.replace("OrderPlacedScreen", {

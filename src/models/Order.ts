@@ -8,6 +8,8 @@ export default class Order {
     address: string
     id: string
     merchantName: string
+    status: string
+    deliveryType: string
 
     constructor() {
         this.items = [];
@@ -16,9 +18,11 @@ export default class Order {
         this.address = "";
         this.id = "";
         this.merchantName = "";
+        this.status = "";
+        this.deliveryType = "";
     }
 
-    public static fullDetails(obj: any) {
+    public fullDetails(obj: any) {
         var a = new Order()
         a.items = obj.items;
         a.total = obj.total;
@@ -26,14 +30,16 @@ export default class Order {
         a.address = obj.address;
         a.id = obj.SK
         a.merchantName = obj.merchantName
+        a.status = obj.status
         return a
     }
 
-    public static partialDetails(items: CartItem[], total: string, discount: string) {
+    public static partialDetails(items: CartItem[], total: string, discount: string, deliveryType: string) {
         var a = new Order();
         a.items = items;
         a.total = total;
         a.discount = discount;
+        a.deliveryType = deliveryType
         return a;
     }
 
@@ -46,4 +52,15 @@ export default class Order {
         }
         return a;
     }
+
+    public static itemsFromList(json: Object[]) {
+        var list: Order[] = []
+        json.forEach(element => {
+            var a = new Order();
+            a = a.fullDetails(element);
+            list.push(a)
+        });
+        return list
+    }
+
 }
