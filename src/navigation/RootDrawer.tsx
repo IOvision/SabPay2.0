@@ -2,6 +2,7 @@ import React from 'react'
 
 import ProfileScreen from '../screens/DrawerNavigator/ProfileScreen'
 import ShopScreen from '../screens/DrawerNavigator/ShopScreen'
+import MapScreen from '../screens/StackNavigator/MapScreen'
 import OrderHistory from '../screens/DrawerNavigator/OrderHistoryScreen'
 import CartTab from '../screens/TabNavigator/CartTab'
 import OffersTab from '../screens/TabNavigator/OffersTab'
@@ -37,7 +38,7 @@ const RootDrawer: React.FC<Props> = ({merchant}) => {
             <Drawer.Screen name="Order History" component={OrderHistory} />
             <Drawer.Screen name="My Account" component={ProfileScreen} />
             <Drawer.Screen name="Offer Zone" component={OffersTab} />
-            <Drawer.Screen name="Change Store" component={ShopScreen} />
+            <Drawer.Screen name="Change Store" component={MapScreen} />
         </Drawer.Navigator>
     )
 }
