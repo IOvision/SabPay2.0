@@ -5,8 +5,8 @@ export default class User {
     phoneNumber: string
 
     constructor(phone: string) {
-        this.name = ""
-        this.address = []
+        this.name = "Mr. Customer"
+        this.address = ["M-473, Ashiyana, Kanpur Road, Lucknow - 226012"]
         this.phoneNumber = phone
     }
 

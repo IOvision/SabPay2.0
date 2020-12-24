@@ -13,7 +13,7 @@ import CartItem from '../../models/CartItem'
 import { order } from '../../requests'
 import Merchant from '../../models/Merchant'
 import User from '../../models/User'
-import Order from '../../models/Order'
+import Order, { MerchantOrderDetails, UserOrderDetails } from '../../models/Order'
 
 export interface Props {
     items: CartItem[],
@@ -26,10 +26,13 @@ export interface Props {
         params: {
             deliveryType: number
         }
+    },
+    quantity: {
+        [key: string]: number
     }
 }
 
-const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user, discount, route}) => {
+const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user, discount, route, quantity}) => {
 
     const [paymentMethod, setPaymentMethod] = React.useState("upi")
     const [isLoading, setIsLoading] = React.useState(false)
@@ -42,7 +45,17 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
         deliveryType = "Pick-Up"
     const confirm = () => {
         setIsLoading(true)
-        order(Order.partialDetails(items, total.toString(), "0", deliveryType), user.getPhone(), merchant.SK, (err, resp) => {
+        const userDetails: UserOrderDetails = {
+            name: user.name,
+            phone: user.phoneNumber,
+            address: user.address[0]
+        }
+        const merchantDetails: MerchantOrderDetails = {
+            name: merchant.name,
+            phone: merchant.phone,
+            address: merchant.address
+        }
+        order(Order.partialDetails(CartItem.itemsWithQuantity(items, quantity), total.toString(), "0", deliveryType, userDetails, merchantDetails), user.getPhone(), merchant.SK, (err, resp) => {
             if (err) console.log(err)
             if(resp) {
                 navigation.replace("OrderPlacedScreen", {
@@ -110,6 +123,7 @@ const mapStateToProps = (state: RootState) => {
     return {
         total: state.cartReducer.total,
         items: state.cartReducer.items,
+        quantity: state.cartReducer.qty,
         merchant: state.merchantReducer.merchant,
         user: state.userReducer.user
     }

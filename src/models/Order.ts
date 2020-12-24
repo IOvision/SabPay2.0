@@ -1,23 +1,43 @@
 import CartItem from './CartItem'
 
+export interface UserOrderDetails {
+    name: string,
+    phone: string,
+    address: string,
+}
+
+export interface MerchantOrderDetails {
+    name: string,
+    phone: string,
+    address: string
+}
+
 export default class Order {
 
     items: CartItem[]
     total: string
     discount: string
-    address: string
     id: string
-    merchantName: string
     status: string
     deliveryType: string
+    user: UserOrderDetails
+    merchant: MerchantOrderDetails
 
     constructor() {
         this.items = [];
         this.total = "";
         this.discount = "";
-        this.address = "";
+        this.user = {
+            name: "",
+            phone: "",
+            address: "",
+        };
         this.id = "";
-        this.merchantName = "";
+        this.merchant = {
+            name: "",
+            phone: "",
+            address: ""
+        };
         this.status = "";
         this.deliveryType = "";
     }
@@ -27,19 +47,21 @@ export default class Order {
         a.items = obj.items;
         a.total = obj.total;
         a.discount = obj.discount;
-        a.address = obj.address;
+        a.user = obj.user;
         a.id = obj.SK
-        a.merchantName = obj.merchantName
+        a.merchant = obj.merchantName
         a.status = obj.status
         return a
     }
 
-    public static partialDetails(items: CartItem[], total: string, discount: string, deliveryType: string) {
+    public static partialDetails(items: CartItem[], total: string, discount: string, deliveryType: string, user: UserOrderDetails, merchant: MerchantOrderDetails) {
         var a = new Order();
         a.items = items;
         a.total = total;
         a.discount = discount;
-        a.deliveryType = deliveryType
+        a.deliveryType = deliveryType;
+        a.user = user;
+        a.merchant = merchant;
         return a;
     }
 
@@ -48,7 +70,9 @@ export default class Order {
             items: this.items,
             total: this.total,
             discount: this.discount,
-            address: this.address
+            user: this.user,
+            merchant: this.merchant,
+            deliveryType: this.deliveryType
         }
         return a;
     }

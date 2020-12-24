@@ -6,6 +6,7 @@ export default class Merchant {
     SK: string;
     name: string;
     address: string;
+    phone: string;
     image: string;
     rating: number;
     tags: string[];
@@ -34,6 +35,7 @@ export default class Merchant {
         this.exclude = a.exclude
         this.offers = a.offers
         this.storeSp = a.storeSp
+        this.phone = a.phone
         this.latitude = 0
         this.longitude = 0
     }

@@ -1,7 +1,6 @@
-import Base from "./Base";
 import Item from "./Item";
 
-export default class CartItem implements Base {
+export default class CartItem {
     
     PK: string;
     SK: string;
@@ -10,6 +9,7 @@ export default class CartItem implements Base {
     variant: string;
     variantKey: number;
     price: number;
+    quantity: number;
     
     constructor(a: Item, selected: number) {
         this.PK = a.PK
@@ -19,6 +19,7 @@ export default class CartItem implements Base {
         this.variantKey = selected
         this.variant = a.child[selected].name
         this.price = a.child[selected].price
+        this.quantity = 0
     }
     
     public static getTotal(items: CartItem[], qty: any) {
@@ -27,6 +28,14 @@ export default class CartItem implements Base {
             total += items[i].price * qty[items[i].getSelectedId()]
         }
         return total
+    }
+
+    public static itemsWithQuantity(items: CartItem[], quantity: any) {
+        var a = [...items]
+        a.forEach(item => {
+            item.quantity = quantity[item.getSelectedId()]
+        });
+        return a
     }
 
     public getSelectedId() {
