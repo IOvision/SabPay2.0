@@ -7,14 +7,11 @@ export interface Props {
     navigation: any
 }
 
-MapboxGL.setAccessToken(
-    'pk.eyJ1IjoicmFzaGlkdGhlZGV2ZWxvcGVyIiwiYSI6ImNrYXBncGlwdjBjbG4yd3FqaXl2ams1NHQifQ.jvRoapH6Ae7QHb8Kx4z9F'
-    );
-
 const MapScreen: React.FC<Props> = ({navigation}) => {
+  MapboxGL.setAccessToken('sk.eyJ1IjoiYmV0YXZpc2lvbmlvIiwiYSI6ImNrajJqOHV3bDAxaW0ycG52ODY2N2dnejYifQ.x5BERYSGry9zBk22iLjMsw');
     const [marker, setMarker] = useState([28.73873873873874, 77.1007792729739])
-    const [latitude, setLatitude] = useState(undefined)
-    const [longitude, setLongitude] = useState(undefined)
+    const [latitude, setLatitude] = useState(77.1007792729739)
+    const [longitude, setLongitude] = useState(28.73873873873874)
     const [screenPointX, setScreenPointX] = useState(undefined)
     const [screenPointY, setScreenPointY] = useState(undefined)
     const [location, setLocation] = useState({})
@@ -86,10 +83,6 @@ const MapScreen: React.FC<Props> = ({navigation}) => {
                 onPress={(feature) => setCoordinates(feature)} 
                 zoomEnabled={true}
                 surfaceView={true}>
-                    <MapboxGL.Camera 
-                            zoomLevel={10}
-                        />
-
                 <MapboxGL.PointAnnotation
                     key="key1"
                     id="id1"
