@@ -9,6 +9,7 @@ import SearchWithBackground from '../../components/molecules/SearchWithBackgroun
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
 import Merchant from '../../models/Merchant'
+import { getSpecialOffers } from '../../requests'
 
 export interface Props {
     navigation: any,
@@ -17,32 +18,26 @@ export interface Props {
 
 const HomeTab: React.FC<Props> = ({navigation, merchant}) => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [isSpecialOffersLoading, setIsSpecialOffersLoading] = useState<boolean>(true)
+    const [specialOffers1, setSpecialOffers1] = useState([])
+    const [specialOffers2, setSpecialOffers2] = useState([])
 
     useEffect(() => {
+        getSpecialOffers((err, resp) => {
+            if(err) 
+                return console.log(err)
+            let result = [];
+            for (let i = 2; i > 0; i--) {
+                result.push(resp.splice(0, Math.ceil(resp.length / i)));
+            }
+            setSpecialOffers1(result[0])
+            setSpecialOffers2(result[1])
+            setIsSpecialOffersLoading(false)
+            return console.log(resp)
+        })
         setIsLoading(false)
     }, [])
 
-    const data1 =  [
-        {
-            key: "0",
-            image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
-        },
-        {
-            key: "2",
-            image: "https://static01.nyt.com/images/2019/11/26/science/00SCI-DOGLOVE-promo/00SCI-DOGLOVE-promo-superJumbo-v2.jpg",
-        },
-    ]
-    
-    const data2 =  [
-        {
-            key: "0",
-            image: "https://static01.nyt.com/images/2019/11/26/science/00SCI-DOGLOVE-promo/00SCI-DOGLOVE-promo-superJumbo-v2.jpg",
-        },
-        {
-            key: "2",
-            image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
-        },
-    ]
     const dealsOfTheDay = [ "https://pngimg.com/uploads/dog/dog_PNG50348.png", "https://freepngimg.com/thumb/dog/23730-1-dog-file.png", "https://pngimg.com/uploads/dog/dog_PNG50360.png", "https://static.wixstatic.com/media/2cd43b_afa39a2ccac54a9b8122257b451a461f~mv2_d_1300_1639_s_2.png/v1/fill/w_174,h_219,fp_0.50_0.50/2cd43b_afa39a2ccac54a9b8122257b451a461f~mv2_d_1300_1639_s_2.png"]
     return (
         <View style={{flex: 1, backgroundColor: 'white'}}>
@@ -51,10 +46,10 @@ const HomeTab: React.FC<Props> = ({navigation, merchant}) => {
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
                 <HomePageCategoryList data={merchant.tags} navigation={navigation} isLoading={isLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
-                <Swipeable data={data1} isLoading={isLoading}/>
+                <Swipeable data={specialOffers1} isLoading={isSpecialOffersLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
                 <StoreSpecialList object={merchant.storeSp} isLoading={isLoading}/>
-                <Swipeable data={data2} isLoading={isLoading}/>
+                <Swipeable data={specialOffers2} isLoading={isSpecialOffersLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
                 <HomePageOffers isLoading={isLoading} data={dealsOfTheDay}/>
                 <View style={{height: 30}}></View>

@@ -3,6 +3,9 @@ import {Text, View} from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps'
 import RNLocation from "react-native-location";
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
+import Background from '../../components/atoms/Background';
+import RoundView from '../../components/atoms/RoundView';
+import { BodyText, CaptionText, HeaderText } from '../../components/atoms/Text';
 
 export interface Props {
     navigation: any
@@ -13,8 +16,6 @@ const MapScreen: React.FC<Props> = ({navigation}) => {
     const [marker, setMarker] = useState([28.73873873873874, 77.1007792729739])
     const [latitude, setLatitude] = useState(undefined)
     const [longitude, setLongitude] = useState(undefined)
-    const [screenPointX, setScreenPointX] = useState(undefined)
-    const [screenPointY, setScreenPointY] = useState(undefined)
     const [location, setLocation] = useState({})
 
     let locationSubscription = null
@@ -66,8 +67,6 @@ const MapScreen: React.FC<Props> = ({navigation}) => {
         const {geometry, properties} = event;
         setLatitude(geometry.coordinates[1])
         setLongitude(geometry.coordinates[0])
-        setScreenPointX(properties.screenPointX)
-        setScreenPointY(properties.screenPointY)
         setMarker([geometry.coordinates[0], geometry.coordinates[1]])
     }
 
@@ -80,34 +79,34 @@ const MapScreen: React.FC<Props> = ({navigation}) => {
             );
         }
         return (
-            <View>
-                <PurpleRoundBtn text="Confirm" onPress={() => navigation.replace("Change Store", {
-                  latitude: latitude,
-                  longitude: longitude
-                })}/>
-                <PurpleRoundBtn text="Reset" onPress={_startUpdatingLocation}/>
-                <Text>Latitude: {latitude}</Text>
-                <Text>Longitude: {longitude}</Text>
-                <Text>Screen Point X: {screenPointX}</Text>
-                <Text>Screen Point Y: {screenPointY}</Text>
-            </View>
+          <View style={{margin: 10}}>
+            <CaptionText>Location</CaptionText>
+            <BodyText>Latitude: {latitude}</BodyText>
+            <BodyText>Longitude: {longitude}</BodyText>
+            <PurpleRoundBtn style={{alignSelf: "flex-end"}} text="Confirm >>" onPress={() => navigation.replace("Change Store", {
+              latitude: latitude,
+              longitude: longitude
+            })}/>
+          </View>
         );
     }
 
 
     return (
-        <View style={{display: "flex", flex: 1, backgroundColor: "yellow"}}>
+        <View style={{display: "flex", flex: 1}}>
             <MapboxGL.MapView
-                style={{display: "flex", flex: 1, backgroundColor: "red"}}
+                style={{display: "flex", flex: 1}}
                 onPress={(feature) => setCoordinates(feature)} 
                 zoomEnabled={true}
-                surfaceView={true}>
+                surfaceView={true}
+                logoEnabled={false}
+                compassEnabled={true}>
                 <MapboxGL.Camera 
-                  zoomLevel={10}
-                />
+                  zoomLevel={4}
+                  centerCoordinate={[79.001124, 22.966484]}/>
                 <MapboxGL.PointAnnotation
-                    key="key1"
-                    id="id1"
+                    key="key"
+                    id="id"
                     title="Test"
                     coordinate={marker}>
                 </MapboxGL.PointAnnotation>

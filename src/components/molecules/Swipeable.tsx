@@ -6,10 +6,7 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 const {width} = Dimensions.get('window')
 
 export interface Props {
-    data: {
-        key: string,
-        image: string
-    }[]
+    data: []
     isLoading: boolean
 }
 
@@ -26,7 +23,7 @@ const Swipeable: React.FC<Props> = ({data, isLoading}) => {
     const children = () => {
         return data.map((element) => {
             return (
-                <Image style={styles.children} source={{uri: element.image}} key={element.key}/> 
+                <Image style={styles.children} source={{uri: `${element}`}} key={element}/> 
             )
         })
     }
