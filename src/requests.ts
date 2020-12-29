@@ -70,9 +70,9 @@ export const getOrders = (phone: string, token: string, cb: (err: any, resp: any
 }
 
 export const getSpecialOffers = (cb: (err: any, resp: any) => void) => {
-    axios.get(`\graphics`)
-    .then(res => {
-        cb(false, res.data.data)
-    })
-    .catch(err => cb(err, null))
+    // axios.get(`\graphics`)
+    // .then(res => {
+    //     cb(false, res.data.data)
+    // })
+    // .catch(err => cb(err, null))
 }

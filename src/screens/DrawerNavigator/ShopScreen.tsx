@@ -22,9 +22,9 @@ const ShopScreen: React.FC<Props> = ({navigation, route}) => {
     const [inventories, setInventories] = useState(testInventory)
     
     useEffect(() => {
-      // getMerchant(25.599778, 85.134688, 5, (err, resp) => {
+      getMerchant(25.599778, 85.134688, 5, (err, resp) => {
 
-      getMerchant(route.params.latitude, route.params.longitude, 5, (err, resp) => {
+    //   getMerchant(route.params.latitude, route.params.longitude, 5, (err, resp) => {
         console.log("getMerchnat" + route.params.latitude + route.params.longitude)
         if(err) 
           return console.log(err)
