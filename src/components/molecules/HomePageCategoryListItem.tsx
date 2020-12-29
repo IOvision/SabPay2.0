@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, TouchableOpacity, Image, ImageSourcePropType, GestureResponderEvent} from 'react-native';
+import {View, TouchableOpacity, Image, GestureResponderEvent} from 'react-native';
 import { HomePageCategoryListItemStyles } from '../../styles/FlatListItemStyle'
 import { HeaderText } from '../atoms/Text';
 
 export interface Props {
     image: string,
-    title: string,
+    title: {
+        title: string,
+        tag: string[]
+    },
     colour: string,
     onPress: (event: GestureResponderEvent) => void
 }

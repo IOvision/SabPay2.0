@@ -9,7 +9,10 @@ export default class Merchant {
     phone: string;
     image: string;
     rating: number;
-    tags: string[];
+    tags: {
+        title: string,
+        tag: string[]
+    }[]
     isOpen: boolean;
     exclude: {
         tag: string,
@@ -18,7 +21,9 @@ export default class Merchant {
     offers: Item[];
     storeSp: {
         key: string,
-        image: string
+        image: string,
+        title: string,
+        price: string
     }[];
     latitude: number;
     longitude: number;
