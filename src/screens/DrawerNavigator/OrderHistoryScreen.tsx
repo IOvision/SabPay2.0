@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { View, StyleSheet } from 'react-native'
 import MyOrderList from '../../components/molecules/MyOrderList'
 import colors from '../../assets/colors'
@@ -8,6 +8,10 @@ import { RootState } from '../../redux/store'
 import { connect } from 'react-redux'
 import User from '../../models/User'
 import { Auth } from 'aws-amplify'
+import { CaptionText } from '../../components/atoms/Text'
+import Login from '../../components/molecules/Login'
+import BottomSheet from 'reanimated-bottom-sheet';
+import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
 
 export interface Props {
     navigation: any,
@@ -16,8 +20,16 @@ export interface Props {
 
 const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
     const [order, setOrder] = useState([])
+    const sheetRef = useRef(null)
+
+    const closeBottomSheet = () => {
+        sheetRef.current.snapTo(2)
+    }
+
+    const handleContinue = () => (
+        <Login close={closeBottomSheet} />
+    )
     useEffect(() => {
-        console.log("Lets start")
         Auth.currentSession()
         .then(data => {
             console.log("data: " + data.getIdToken().getJwtToken())
@@ -28,12 +40,29 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
                 return console.log("data"+ Object.keys(resp[0]))
               })
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            setOrder(null)
+            console.log(err)
+        })
     }, [])
     return (
         <View style={styles.container}>
             <SearchWithBackground navigation={navigation}/>
-            <MyOrderList navigation={navigation} data={order}/>
+            {
+                order == null ? (
+                    <View style={{flex: 1, justifyContent: 'center', margin: -10}}>
+                        <CaptionText style={{alignSelf: "center", marginTop: 30}}>You are currently not logged In</CaptionText>
+                        <PurpleRoundBtn text="Log In" style={styles.btn} onPress={() => sheetRef.current.snapTo(0)}/>
+                        <BottomSheet
+                        initialSnap={2}
+                        ref={sheetRef}
+                        snapPoints={['47%', '47%', 0]}
+                        borderRadius={10}
+                        renderContent={handleContinue}
+                        />
+                    </View>
+                ) : <MyOrderList navigation={navigation} data={order}/>
+            }
         </View>
     )
 }
@@ -53,4 +82,9 @@ const styles = StyleSheet.create({
       padding: 10,
       color: colors.background,
     },
+    btn: {
+        margin: 20,
+        alignSelf: "center",
+        paddingHorizontal: 40
+    }
   });

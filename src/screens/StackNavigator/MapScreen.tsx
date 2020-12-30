@@ -94,6 +94,7 @@ const MapScreen: React.FC<Props> = ({navigation}) => {
 
     return (
         <View style={{display: "flex", flex: 1}}>
+            <Background />
             <MapboxGL.MapView
                 style={{display: "flex", flex: 1}}
                 onPress={(feature) => setCoordinates(feature)} 

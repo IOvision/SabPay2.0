@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import CategoryPageCategoryList from '../../components/molecules/CategoryPageCategoryList'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
@@ -11,6 +11,14 @@ export interface Props {
     merchant: Merchant
 }
 const CategoriesTab: React.FC<Props> = ({navigation, merchant}) => {
+    const [tags, setTags] = useState<string[]>([])
+    useEffect(() => {
+        let tags: string[] = []
+        for (let item of merchant.tags) {
+            tags = tags.concat(item.tag)
+        }
+        setTags(tags)
+    }, [])
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
             <TouchableOpacity onPress={() => navigation.push('CategoryList')}
@@ -18,7 +26,7 @@ const CategoriesTab: React.FC<Props> = ({navigation, merchant}) => {
                 <SearchWithBackground navigation={navigation}/>
             </TouchableOpacity>
             <CategoryPageCategoryList 
-                data={merchant.tags}
+                data={tags}
                 style={{margin: 10, marginTop: 20, marginBottom: 0, flex: 1}}
                 navigation={navigation}
             />

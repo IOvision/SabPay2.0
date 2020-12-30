@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Dimensions, FlatList, TouchableOpacity } from 'react-native'
 import colors from '../../assets/colors'
 import SearchBar from '../../components/atoms/SearchBar'
@@ -16,7 +16,14 @@ export interface Props {
 }
 
 const CategoryListTab: React.FC<Props> = (props) => {
-
+    const [tags, setTags] = useState<string[]>([])
+    useEffect(() => {
+        let tags: string[] = []
+        for (let item of props.merchant.tags) {
+            tags = tags.concat(item.tag)
+        }
+        setTags(tags)
+    }, [])
     return (
         <View style={{flex: 1}}>
             <View style={{
@@ -38,7 +45,7 @@ const CategoryListTab: React.FC<Props> = (props) => {
             />
             <FlatList
                 style={{marginTop: 20}}
-                data={props.merchant.tags}
+                data={tags}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) => {
                     return (

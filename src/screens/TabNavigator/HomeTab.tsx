@@ -40,7 +40,6 @@ const HomeTab: React.FC<Props> = ({navigation, merchant, set}) => {
         getMerchantDetails(merchant.SK, (err, resp) => {
             if(err)
                 return console.log(err)
-            console.log("data: " + resp[0].storeSp)
             merchant.storeSp = resp[0].storeSp
             merchant.offers = resp[0].offers
             merchant.exclude = resp[0].exclude
