@@ -62,15 +62,21 @@ export const getOrders = (phone: string, token: string, cb: (err: any, resp: any
           }
     })
     .then(res => {
-        console.log("full: " + Object.keys(res.data.data[0]))
-        console.log("full: " + res.data.data[0].SK)
         cb(false, Order.itemsFromList(res.data.data))
     })
     .catch(err => cb(err, null))
 }
 
 export const getSpecialOffers = (cb: (err: any, resp: any) => void) => {
-    axios.get(`\graphics`)
+    axios.get(`/graphics`)
+    .then(res => {
+        cb(false, res.data.data)
+    })
+    .catch(err => cb(err, null))
+}
+
+export const getMerchantDetails = (SK: string, cb: (err: any, resp: any) => void) => {
+    axios.get(`/inventory/${SK}`)
     .then(res => {
         cb(false, res.data.data)
     })

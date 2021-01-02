@@ -8,10 +8,11 @@ export interface Props {
     data: string[],
     style?: ViewStyle,
     navigation: any,
-    isLoading: boolean
+    isLoading: boolean,
+    baseUrl: string
 }
 
-const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoading}) => {
+const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoading, baseUrl}) => {
     const sample = [1,2,3,4,5];
     if(isLoading) {
         return (
@@ -43,8 +44,8 @@ const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoadi
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item, index}) => {
                 return <HomePageCategoryItem 
-                    image={"h"} 
-                    title={item} 
+                    image={`${baseUrl}/cat/${item.title}`} 
+                    title={item.title} 
                     colour={randomColor[(index % colorLength) + 1]} 
                     onPress={() => navigation.navigate("Items", {
                         tag: item

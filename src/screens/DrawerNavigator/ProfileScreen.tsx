@@ -20,7 +20,7 @@ const ProfileScreen: React.FC<Props> = ({isSignedIn}) => {
   const sheetRef = useRef(null)
 
   const closeBottomSheet = () => {
-    sheetRef.current.snapTo(3)
+    sheetRef.current.snapTo(2)
   }
 
   const handleContinue = () => (
@@ -41,13 +41,13 @@ const ProfileScreen: React.FC<Props> = ({isSignedIn}) => {
             <PurpleRoundBtn text="Save" style={styles.btn} />
           </View>
         ) : (
-          <View style={{flex: 1}}>
+          <View style={{flex: 1, margin: -20}}>
             <CaptionText style={{alignSelf: "center", marginTop: 30}}>You are currently not logged In</CaptionText>
             <PurpleRoundBtn text="Log In" style={styles.btn} onPress={() => sheetRef.current.snapTo(0)}/>
             <BottomSheet
               initialSnap={2}
               ref={sheetRef}
-              snapPoints={[150, 150, 0]}
+              snapPoints={['30%', '30%', 0]}
               borderRadius={10}
               renderContent={handleContinue}
             />

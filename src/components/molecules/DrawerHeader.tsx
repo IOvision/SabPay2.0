@@ -12,13 +12,13 @@ export interface Props {
 const DrawerHeader: React.FC<Props> = ({isSignedIn}) => {
     if (isSignedIn) {
         return (
-            <View style={{padding: 50, backgroundColor: colors.primary, alignItems: 'center'}}>
+            <View style={{padding: 50, backgroundColor: colors.primary, alignItems: 'center', marginTop: -10}}>
                 <HeaderText style={{color: 'white'}}>Logged In</HeaderText>
             </View>
         )
     } else {
         return (
-            <View style={{padding: 50, backgroundColor: colors.primary, alignItems: 'center'}}>
+            <View style={{padding: 50, backgroundColor: colors.primary, alignItems: 'center', marginTop: -10}}>
                 <HeaderText style={{color: 'white'}}>Logged Out</HeaderText>
             </View>
         )

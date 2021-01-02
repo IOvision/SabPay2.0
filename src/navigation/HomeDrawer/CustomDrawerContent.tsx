@@ -9,9 +9,12 @@ import colors from '../../assets/colors'
 import { Auth } from 'aws-amplify'
 import { connect } from 'react-redux'
 import { signOut } from '../../redux/actions/user'
+import { RootState } from '../../redux/store'
+
 
 export interface Props {
-    setSignedOut: () => void
+    setSignedOut: () => void,
+    isSignedIn: boolean
 }
 
 const CustomDrawerContent: React.FC<Props> = (props) => {
@@ -29,14 +32,24 @@ const CustomDrawerContent: React.FC<Props> = (props) => {
         <DrawerContentScrollView {...props}>
             <DrawerHeader />
             <DrawerItemList {...props} inactiveTintColor={colors.darkgrey} activeTintColor={colors.primary} />
-            <DrawerItem
-                activeTintColor={colors.primary}
-                inactiveTintColor={colors.darkgrey}
-                label="Log Out"
-                onPress={signOut}
-            />
+            {
+                props.isSignedIn ? (
+                    <DrawerItem
+                        activeTintColor={colors.primary}
+                        inactiveTintColor={colors.darkgrey}
+                        label="Log Out"
+                        onPress={signOut}
+                    />
+                ) : null
+            }
         </DrawerContentScrollView>
     )
+}
+
+const mapStateToProps = (state: RootState) => {
+    return {
+        isSignedIn: state.userReducer.signedIn
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -45,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CustomDrawerContent)
+export default connect(mapStateToProps, mapDispatchToProps)(CustomDrawerContent)

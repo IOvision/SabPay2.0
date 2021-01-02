@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 const Stack = createStackNavigator();
 
 import ShopScreen from '../screens/DrawerNavigator/ShopScreen'
+import MapScreen from '../screens/StackNavigator/MapScreen'
 import ItemsScreen from '../screens/StackNavigator/ItemsScreen'
 import ItemDetailScreen from '../screens/StackNavigator/ItemDetailScreen'
 import CategoryList from '../screens/StackNavigator/CategoryList'
@@ -36,6 +37,17 @@ const MainStack: React.FC = () => {
                         header: ({ scene, previous, navigation}) => {
                             return (
                                 <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                            )
+                        }
+                    }}
+                />
+                <Stack.Screen 
+                    name="Map" 
+                    component={MapScreen}
+                    options={{
+                        header: ({ scene, previous, navigation}) => {
+                            return (
+                                <Header navigation={navigation} image={require('../assets/images/logo.png')} />
                             )
                         }
                     }}

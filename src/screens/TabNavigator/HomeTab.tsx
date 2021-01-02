@@ -9,14 +9,17 @@ import SearchWithBackground from '../../components/molecules/SearchWithBackgroun
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
 import Merchant from '../../models/Merchant'
-import { getSpecialOffers } from '../../requests'
+import { getSpecialOffers, getMerchantDetails } from '../../requests'
+import { setMerchant } from '../../redux/actions/merchant';
+
 
 export interface Props {
     navigation: any,
-    merchant: Merchant
+    merchant: Merchant,
+    set: (a: Merchant) => void,
 }
 
-const HomeTab: React.FC<Props> = ({navigation, merchant}) => {
+const HomeTab: React.FC<Props> = ({navigation, merchant, set}) => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [isSpecialOffersLoading, setIsSpecialOffersLoading] = useState<boolean>(true)
     const [specialOffers1, setSpecialOffers1] = useState([])
@@ -32,19 +35,27 @@ const HomeTab: React.FC<Props> = ({navigation, merchant}) => {
             }
             setSpecialOffers1(result[0])
             setSpecialOffers2(result[1])
+            return console.log(resp)
+        })
+        getMerchantDetails(merchant.SK, (err, resp) => {
+            if(err)
+                return console.log(err)
+            merchant.storeSp = resp[0].storeSp
+            merchant.offers = resp[0].offers
+            merchant.exclude = resp[0].exclude
+            merchant.tags = resp[0].tags
+            setIsLoading(false)
             setIsSpecialOffersLoading(false)
             return console.log(resp)
         })
-        setIsLoading(false)
     }, [])
-
     const dealsOfTheDay = [ "https://pngimg.com/uploads/dog/dog_PNG50348.png", "https://freepngimg.com/thumb/dog/23730-1-dog-file.png", "https://pngimg.com/uploads/dog/dog_PNG50360.png", "https://static.wixstatic.com/media/2cd43b_afa39a2ccac54a9b8122257b451a461f~mv2_d_1300_1639_s_2.png/v1/fill/w_174,h_219,fp_0.50_0.50/2cd43b_afa39a2ccac54a9b8122257b451a461f~mv2_d_1300_1639_s_2.png"]
     return (
         <View style={{flex: 1, backgroundColor: 'white'}}>
             <SearchWithBackground home={true} navigation={navigation} name={merchant.name} address={merchant.address}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
-                <HomePageCategoryList data={merchant.tags} navigation={navigation} isLoading={isLoading}/>
+                <HomePageCategoryList data={merchant.tags} baseUrl={""} navigation={navigation} isLoading={isLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
                 <Swipeable data={specialOffers1} isLoading={isSpecialOffersLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
@@ -64,4 +75,10 @@ const mapStateToProps = (state: RootState) => {
     }
 }
 
-export default connect(mapStateToProps)(HomeTab)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        set: (merchant: Merchant) => dispatch(setMerchant(merchant)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeTab)

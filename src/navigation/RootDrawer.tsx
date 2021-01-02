@@ -17,7 +17,7 @@ import Merchant from '../models/Merchant'
 const Drawer = createDrawerNavigator();
 
 export interface Props {
-    merchant: Merchant
+    merchant: Merchant,
 }
 
 const RootDrawer: React.FC<Props> = ({merchant}) => {
@@ -26,7 +26,7 @@ const RootDrawer: React.FC<Props> = ({merchant}) => {
             drawerStyle={{
                 width: 240,
             }}
-            initialRouteName={ merchant ? "Dashboard" : "Change Store" } 
+            initialRouteName={ merchant ? "Dashboard" : "Map" } 
             drawerContent={(props) => 
                 (
                     <CustomDrawerContent {...props} />
