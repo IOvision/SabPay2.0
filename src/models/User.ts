@@ -6,7 +6,7 @@ export default class User {
 
     constructor(phone: string) {
         this.name = "Mr. Customer"
-        this.address = ["M-473, Ashiyana, Kanpur Road, Lucknow - 226012"]
+        this.address = ["M-473, Ashiyana, Kanpur Road, Lucknow - 226012", "Galgotias University, Sector-17A, Greater Noida - 201310"]
         this.phoneNumber = phone
     }
 

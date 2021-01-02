@@ -13,7 +13,7 @@ export const getItemsFromTag = (tag: string, lastKey: string, cb: (err: any, res
         console.log('done')
         cb(false, Item.itemsFromList(res.data.data))
     })
-    .catch(err => cb(err, null))
+    .catch(err => cb(err.response, null))
 }
 
 export const getItemsFromCategory = (category: string, lastKey: string, cb: (err: any, resp: any) => void) => {

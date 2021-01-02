@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import { addItem } from '../../redux/actions/cart'
 import Item from '../../models/Item'
 import { RootState } from '../../redux/store'
+import CartItem from '../../models/CartItem'
 
 export interface Props {
     route: any,
@@ -87,7 +88,7 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (key, item) => dispatch(addItem(key, item))
+        add: (key: number, item: CartItem) => dispatch(addItem(item, key))
     }
 }
 
