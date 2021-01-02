@@ -126,7 +126,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
                 ref={addressRef}
                 snapPoints={[450, 300, 0]}
                 borderRadius={10}
-                renderContent={() => <AddressDetails setSelected={setAddress} />}
+                renderContent={() => <AddressDetails setSelected={setAddress} selected={user.address[address]}/>}
             />
         </View>
     )
