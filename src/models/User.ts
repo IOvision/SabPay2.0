@@ -4,10 +4,10 @@ export default class User {
     address: string[]
     phoneNumber: string
 
-    constructor(phone: string) {
-        this.name = "Mr. Customer"
-        this.address = ["M-473, Ashiyana, Kanpur Road, Lucknow - 226012", "Galgotias University, Sector-17A, Greater Noida - 201310"]
-        this.phoneNumber = phone
+    constructor(data: any) {
+        this.name = data.name
+        this.address = data.address
+        this.phoneNumber = data.phoneNumber
     }
 
     public getPhone() {

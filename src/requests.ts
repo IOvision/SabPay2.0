@@ -6,6 +6,7 @@ axios.defaults.headers = { "x-api-key": 'RDFCXXNZwW2FBxGykBgKz3E0MPcz3A5I4yFqzml
 import Item from './models/Item'
 import Merchant from './models/Merchant'
 import Order from './models/Order'
+import User from './models/User'
 
 export const getItemsFromTag = (tag: string, lastKey: string, cb: (err: any, resp: any) => void) => {
     axios.get(`/item/${tag}`)
@@ -81,4 +82,16 @@ export const getMerchantDetails = (SK: string, cb: (err: any, resp: any) => void
         cb(false, res.data.data)
     })
     .catch(err => cb(err, null))
+}
+
+export const getUserData = (phone: string, token: string, cb: (err: any, resp: User) => void) => {
+    axios.get(`/user/${phone}`, {
+        headers: {
+            "SP-TOKEN": token
+        }
+    })
+    .then(res => {
+        cb(false, new User(res.data.data[0]))
+    })
+    .catch(err => cb(err.response, null))
 }

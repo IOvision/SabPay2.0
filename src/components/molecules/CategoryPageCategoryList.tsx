@@ -17,7 +17,7 @@ const CategoryPageCategoryList: React.FC<Props> = ({data, style, navigation}) =>
                 renderItem={({item, index}) => {
                 return <CategoryPageCategoryListItem index={index.toString()} 
                     image={"https://raw.githubusercontent.com/IOvision/assets/master/images/Bakery%20and%20Dairy/amul_butter.JPG"} 
-                    title={item} 
+                    title={item.replace(/_/gi, " ")} 
                     onPress={() => navigation.navigate("Items", {
                         tag: item
                     })}/>;

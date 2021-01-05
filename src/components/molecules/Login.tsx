@@ -14,6 +14,7 @@ import { ActivityIndicator } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { signIn } from '../../redux/actions/user';
 import User from '../../models/User';
+import { getUserData } from '../../requests';
 
 export interface Props {
     close: () => void
@@ -68,7 +69,10 @@ const Login: React.FC<Props> = ({setSignedIn, close}) => {
     const confirmSignIn = async (otp: string) => {
         try {
             const data = await Auth.sendCustomChallengeAnswer(temp, otp);
-            setSignedIn(new User(data.attributes.phone_number))
+            getUserData(phone, data.signInUserSession.idToken.jwtToken, (err, resp) => {
+                if (err) return console.log('error', err)
+                console.log(resp)
+            })
             close()
         } catch (error) {
             console.log('error', error)

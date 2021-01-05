@@ -53,7 +53,7 @@ const CategoryListTab: React.FC<Props> = (props) => {
                             onPress={() => props.navigation.navigate("Items", {
                                 tag: item
                                 })}>
-                            <BodyText>{item}</BodyText>
+                            <BodyText>{item.replace(/_/gi, " ")}</BodyText>
                             <Icon name='chevron-right' size={24} color='black' />
                         </TouchableOpacity>
                     )

@@ -66,7 +66,7 @@ const ShopScreen: React.FC<Props> = ({navigation, route}) => {
                 ) : (
                      <FlatList
                         data={inventories}
-                        keyExtractor={(index) => index.toString()}
+                        keyExtractor={(item, index) => item.SK}
                         renderItem={({item, index}) => {
                             return (
                                 <ShopListItem navigation={navigation} item={item} index={index}/>

@@ -26,7 +26,7 @@ const RootDrawer: React.FC<Props> = ({merchant}) => {
             drawerStyle={{
                 width: 240,
             }}
-            initialRouteName={ merchant ? "Dashboard" : "Map" } 
+            initialRouteName={ merchant ? "Dashboard" : "Change Store" } 
             drawerContent={(props) => 
                 (
                     <CustomDrawerContent {...props} />
