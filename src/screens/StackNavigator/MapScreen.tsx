@@ -4,8 +4,7 @@ import MapboxGL from '@react-native-mapbox-gl/maps'
 import RNLocation from "react-native-location";
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
 import Background from '../../components/atoms/Background';
-import RoundView from '../../components/atoms/RoundView';
-import { BodyText, CaptionText, HeaderText } from '../../components/atoms/Text';
+import { BodyText, CaptionText } from '../../components/atoms/Text';
 
 export interface Props {
     navigation: any

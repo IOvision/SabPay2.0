@@ -8,6 +8,8 @@ import colors from '../assets/colors'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
+import Signup from '../screens/StackNavigator/Signup'
+
 const Tab = createMaterialBottomTabNavigator();
 
 const RootTab: React.FC = () => {
@@ -31,7 +33,7 @@ const RootTab: React.FC = () => {
             />
             <Tab.Screen 
                 name="Categories" 
-                component={CategoriesTab} 
+                component={Signup} 
                 options={{
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="view-grid" color={color} size={24} />
