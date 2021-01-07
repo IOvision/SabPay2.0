@@ -41,15 +41,12 @@ class App extends React.Component<Props, State> {
   }
 
   getUserData = () => new Promise((resolve, reject) => {
-    Auth.currentAuthenticatedUser()
+    AsyncStorage.getItem('@User')
     .then(data => {
-      var a = new User(data.attributes.phone_number)
-      this.props.setSignedIn(a)
+      if(data) this.props.setSignedIn(User.fromString(data))
       resolve(true)
     })
-    .catch(err => {
-      resolve(true)
-    })
+    .catch(err => reject(err))
   })
 
   getMerchantData = () => new Promise((resolve, reject) => {

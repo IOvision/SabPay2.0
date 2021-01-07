@@ -51,7 +51,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
     const confirm = () => {
         setIsLoading(true)
         const userDetails: UserOrderDetails = {
-            name: user.name,
+            name: user.username,
             phone: user.phoneNumber,
             address: user.address[address]
         }
@@ -60,7 +60,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
             phone: merchant.phone,
             address: merchant.address
         }
-        order(Order.partialDetails(CartItem.itemsWithQuantity(items, quantity), total.toString(), "0", deliveryType, userDetails, merchantDetails), user.getPhone(), merchant.SK, (err, resp) => {
+        order(Order.partialDetails(CartItem.itemsWithQuantity(items, quantity), total.toString(), "0", deliveryType, userDetails, merchantDetails), user.phoneNumber.substr(3), merchant.SK, (err, resp) => {
             if (err) console.log(err)
             if(resp) {
                 navigation.replace("OrderPlacedScreen", {
@@ -82,7 +82,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
                     <View>
                         <BodyText>Deliver to:</BodyText>
                         <View>
-                            <HeaderText>{user.name}</HeaderText>
+                            <HeaderText>{user.username}</HeaderText>
                             <BodyText>{user.address[address]}</BodyText>
                         </View>
                     </View>

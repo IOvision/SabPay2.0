@@ -9,14 +9,16 @@ import { RootState } from '../../redux/store'
 import { CaptionText } from '../../components/atoms/Text'
 import Login from '../../components/molecules/Login'
 import BottomSheet from 'reanimated-bottom-sheet';
+import User from '../../models/User'
 
 
 
 export interface Props {
-  isSignedIn: boolean
+  isSignedIn: boolean,
+  user: User
 }
 
-const ProfileScreen: React.FC<Props> = ({isSignedIn}) => {
+const ProfileScreen: React.FC<Props> = ({isSignedIn, user}) => {
   const sheetRef = useRef(null)
 
   const closeBottomSheet = () => {
@@ -35,9 +37,9 @@ const ProfileScreen: React.FC<Props> = ({isSignedIn}) => {
       {
         isSignedIn ? (
           <View style={{flex: 1}}>
-            <InputText placeholder="name" error={true} />
-            <InputText placeholder="phone" />
-            <InputText placeholder="address" />
+            <InputText placeholder="name" value={user.username} />
+            <InputText placeholder="phone" value={user.phoneNumber} />
+            <InputText placeholder="address" value={user.address[0]} />
             <PurpleRoundBtn text="Save" style={styles.btn} />
           </View>
         ) : (
@@ -60,7 +62,8 @@ const ProfileScreen: React.FC<Props> = ({isSignedIn}) => {
 
 const mapStateToProps = (state: RootState) => {
   return {
-      isSignedIn: state.userReducer.signedIn
+      isSignedIn: state.userReducer.signedIn,
+      user: state.userReducer.user
   }
 }
 

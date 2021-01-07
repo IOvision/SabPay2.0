@@ -16,6 +16,7 @@ import PlaceOrderScreen from '../screens/StackNavigator/PlaceOrderScreen'
 import OrderDetail from '../screens/StackNavigator/OrderDetail'
 import OrderPlacedScreen from '../screens/StackNavigator/OrderPlacedScreen'
 import RootDrawer from './RootDrawer'
+import Signup from '../screens/StackNavigator/Signup';
 
 const MainStack: React.FC = () => {
     return (
@@ -30,6 +31,17 @@ const MainStack: React.FC = () => {
                 }}
             >   
                 <Stack.Screen name="Main" component={RootDrawer} />
+                <Stack.Screen
+                    name="Signup"
+                    component={Signup}
+                    options={{
+                        header: ({ scene, previous, navigation}) => {
+                            return (
+                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                            )
+                        }
+                    }}
+                />
                 <Stack.Screen 
                     name="Change Store" 
                     component={ShopScreen}

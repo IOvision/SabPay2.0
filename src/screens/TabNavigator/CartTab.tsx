@@ -18,6 +18,7 @@ import ButtonGroups from '../../components/molecules/ButtonGroups'
 
 export interface Props {
     cart: CartItem[],
+    user: User,
     qty: any,
     total: number,
     isSignedIn: boolean,
@@ -35,7 +36,7 @@ const CartTab: React.FC<Props> = (props) => {
     }
 
     const handleContinue = () => (
-        <Login close={closeBottomSheet} />
+        <Login navigation={props.navigation} close={closeBottomSheet} />
     )
     return (
         <View style={{flex: 1, backgroundColor: "white"}}>
@@ -81,9 +82,9 @@ const CartTab: React.FC<Props> = (props) => {
                 props.cart.length != 0 ? (
                     <View style={styles.continueBtn}>
                         <PurpleRoundBtn mode="gradient" text="Continue" style={{borderRadius: 10}} 
-                        onPress={() => props.isSignedIn ? props.navigation.navigate("PlaceOrder", {
+                        onPress={() => props.isSignedIn ? props.user ? props.navigation.navigate("PlaceOrder", {
                             deliveryType: deliveryOption
-                        }) : sheetRef.current.snapTo(0)}/>
+                        }) : props.navigation.navigate('Signup') : sheetRef.current.snapTo(0)}/>
                     </View>
                 ) : null
             }
@@ -101,6 +102,7 @@ const CartTab: React.FC<Props> = (props) => {
 const mapStateToProps = (state: RootState) => {
     return {
         isSignedIn: state.userReducer.signedIn,
+        user: state.userReducer.user,
         cart: state.cartReducer.items,
         qty: state.cartReducer.qty,
         total: state.cartReducer.total

@@ -15,13 +15,15 @@ import { connect } from 'react-redux';
 import { signIn } from '../../redux/actions/user';
 import User from '../../models/User';
 import { getUserData } from '../../requests';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface Props {
+    navigation: any,
     close: () => void
     setSignedIn: (user: User) => void
 }
 
-const Login: React.FC<Props> = ({setSignedIn, close}) => {
+const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
     const [state, setState] = useState(0)
     const [phone, setPhone] = useState("")
     const [isLoading, setIsLoading] = useState(false)
@@ -70,8 +72,13 @@ const Login: React.FC<Props> = ({setSignedIn, close}) => {
         try {
             const data = await Auth.sendCustomChallengeAnswer(temp, otp);
             getUserData(phone, data.signInUserSession.idToken.jwtToken, (err, resp) => {
-                if (err) return console.log('error', err)
-                console.log(resp)
+                if (err) {
+                    if(err === 'signup'){
+                        navigation.navigate('Signup')
+                    }
+                }
+                AsyncStorage.setItem('@User', JSON.stringify(resp))
+                setSignedIn(resp)
             })
             close()
         } catch (error) {
