@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native';
 import PurpleRoundBtn from '../atoms/PurpleRoundBtn';
 import RoundView from '../atoms/RoundView';
-import { HeaderText } from '../atoms/Text'
+import { BodyText, HeaderText } from '../atoms/Text'
 import InputText from '../atoms/InputText';
 import Otp from './Otp';
 import { Auth } from 'aws-amplify'
@@ -16,6 +16,7 @@ import { signIn } from '../../redux/actions/user';
 import User from '../../models/User';
 import { getUserData } from '../../requests';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export interface Props {
     navigation: any,
@@ -26,6 +27,8 @@ export interface Props {
 const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
     const [state, setState] = useState(0)
     const [phone, setPhone] = useState("")
+    const [user, setUser] = useState('null')
+    const [otp, setOTP] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     var temp: any
     //Hash - Xq5ZQIU2b5de
@@ -45,9 +48,10 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
 
     const startSmsListener = async () => {
         try {
+            setIsLoading(true)
+            signIn()
             const registered = await SmsRetriever.startSmsRetriever()
             if (registered) {
-                signIn()
                 SmsRetriever.addSmsListener(event => {
                     const a = /(\d{4})/g.exec(event.message)[1]
                     SmsRetriever.removeSmsListener()
@@ -60,9 +64,9 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
     }
 
     const signIn = async () => {
-        setIsLoading(true)
         try {
             temp = await Auth.signIn(`+91${phone}`)
+            setUser(temp)
         } catch (error) {
             console.log(error)
         }
@@ -70,7 +74,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
 
     const confirmSignIn = async (otp: string) => {
         try {
-            const data = await Auth.sendCustomChallengeAnswer(temp, otp);
+            const data = await Auth.sendCustomChallengeAnswer(user, otp);
             getUserData(phone, data.signInUserSession.idToken.jwtToken, (err, resp) => {
                 if (err) {
                     if(err === 'signup'){
@@ -86,11 +90,20 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
         }
     }
 
+    const handleManual = async () => {
+        SmsRetriever.removeSmsListener()
+        setState(1)
+        setIsLoading(false)
+    }
+
     if(isLoading) {
         return (
             <RoundView style={{ ...styles.container, justifyContent: 'center' }}>
                 <ActivityIndicator />
                 <HeaderText style={{alignSelf: 'center', marginTop: 10}}>Reading OTP</HeaderText>
+                <TouchableOpacity onPress={handleManual}>
+                    <BodyText style={{fontSize: 14, alignSelf: 'flex-end', marginTop: 10, color: '#8021EB'}}>Enter OTP Manually</BodyText>
+                </TouchableOpacity>
             </RoundView>
         )
     }
@@ -113,12 +126,12 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
             {
                 state === 1 ? (
                     <View>
-                        <View>
+                        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => setState(0)}>
                             <Icons name="arrow-left" color="black" size={18} />
-                            <HeaderText>Enter the otp: </HeaderText>
-                        </View>
-                        <Otp />
-                        <PurpleRoundBtn text="Next" />
+                            <HeaderText style={{marginLeft: 5, fontSize: 18}}>Enter the OTP:</HeaderText>
+                        </TouchableOpacity>
+                        <Otp value={otp} setValue={setOTP} />
+                        <PurpleRoundBtn style={{alignSelf: 'center', width: 100, borderRadius: 4}} mode="gradient" text="Next" onPress={() => confirmSignIn(otp)} />
                     </View>
                 ) : (
                     null
