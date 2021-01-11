@@ -30,19 +30,28 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
     const [user, setUser] = useState('null')
     const [otp, setOTP] = useState("")
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(false)
     var temp: any
     //Hash - Xq5ZQIU2b5de
+    const validateNumber = (number: string) => {
+        var re = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/; 
+        return re.test(number);
+      };
     const signUp = async () => {
-        try {
-            const { user } = await Auth.signUp({
-                username: `+91${phone}`,
-                password: Date.now().toString()
-            })
-            startSmsListener()
-            console.log(user)
-        } catch (error) {
-            if (error.code === "UsernameExistsException")
-            startSmsListener()
+        if(validateNumber(phone)) {
+            try {
+                const { user } = await Auth.signUp({
+                    username: `+91${phone}`,
+                    password: Date.now().toString()
+                })
+                startSmsListener()
+                console.log(user)
+            } catch (error) {
+                if (error.code === "UsernameExistsException")
+                startSmsListener()
+            }
+        } else {
+            setError(true)
         }
     }
 
@@ -116,7 +125,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
                         <View>
                             <HeaderText>Enter Phone number to continue: </HeaderText>
                         </View>
-                        <InputText preText="+91" style={styles.input} placeholder="Enter Mobile Number" value={phone} onChangeText={setPhone} />
+                        <InputText preText="+91" style={styles.input} placeholder="Enter Mobile Number" value={phone} onChangeText={setPhone} editable={true} error={error ? "Invalid" : ""} keyboardType={"phone-pad"}/>
                         <PurpleRoundBtn text="Next" onPress={signUp} />
                     </View>
                 ) : (
@@ -141,7 +150,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
                 state === 2 ? (
                     <View>
                         <HeaderText>Enter your name: </HeaderText>
-                        <InputText style={styles.input} placeholder="Enter Name"/>
+                        <InputText style={styles.input} placeholder="Enter Name" editable={true} keyboardType={"phone-pad"}/>
                         <PurpleRoundBtn text="Confirm" style={styles.btn} />
                     </View>
                 ) : (

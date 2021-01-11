@@ -22,6 +22,7 @@ const InputStyle = StyleSheet.create<Style>({
         padding: 5,
         color: '#6E6E6E',
         fontWeight: 'bold',
+        flex: 1
     },
     text: {
         padding: 5,

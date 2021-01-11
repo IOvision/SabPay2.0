@@ -13,28 +13,28 @@ export interface Props {
 }
 
 const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoading, baseUrl}) => {
-    // const sample = [1,2,3,4,5];
-    // if(isLoading) {
-    //     return (
-    //         <FlatList
-    //             horizontal
-    //             data={sample}
-    //             keyExtractor={(item, index) => index.toString()}
-    //             showsHorizontalScrollIndicator={false}
-    //             ItemSeparatorComponent={() => { return (
-    //                 <View style={{width: 10}}></View>
-    //             )}}
-    //             renderItem={({item, index}) => {
-    //             return (
-    //                 <SkeletonPlaceholder >
-    //                     <View style={{ width: 100, height: 100, borderRadius: 10 }} />
-    //                     <View style={{ marginTop: 4, width: 100, height: 20, borderRadius: 4, marginBottom: 20 }}/>
-    //                 </SkeletonPlaceholder>
-    //             )
-    //             }}
-    //         />
-    //     )
-    // }
+    const sample = [1,2,3,4,5];
+    if(isLoading) {
+        return (
+            <FlatList
+                horizontal
+                data={sample}
+                keyExtractor={(item, index) => index.toString()}
+                showsHorizontalScrollIndicator={false}
+                ItemSeparatorComponent={() => { return (
+                    <View style={{width: 10}}></View>
+                )}}
+                renderItem={({item, index}) => {
+                return (
+                    <SkeletonPlaceholder >
+                        <View style={{ width: 100, height: 100, borderRadius: 10 }} />
+                        <View style={{ marginTop: 4, width: 100, height: 20, borderRadius: 4, marginBottom: 20 }}/>
+                    </SkeletonPlaceholder>
+                )
+                }}
+            />
+        )
+    }
     return (
         <View style={style}>
             <FlatList

@@ -37,10 +37,10 @@ const Signup: React.FC<Props> = ({navigation, setSignedIn}) => {
 
     return (
         <View style={{padding: 20, backgroundColor: "white", flex: 1}}>
-            <InputText placeholder={"Name"} value={username} onChangeText={setUsername}/>
-            <InputText placeholder={"House/Flat number"} value={house} onChangeText={setHouse}/>
-            <InputText placeholder={"Colony/ Society/ Road"} value={colony} onChangeText={setColony}/>
-            <InputText placeholder={"City/State"} value={city} onChangeText={setCity}/>
+            <InputText placeholder={"Name"} value={username} onChangeText={setUsername} editable={true}/>
+            <InputText placeholder={"House/Flat number"} value={house} onChangeText={setHouse} editable={true}/>
+            <InputText placeholder={"Colony/ Society/ Road"} value={colony} onChangeText={setColony} editable={true}/>
+            <InputText placeholder={"City/State"} value={city} onChangeText={setCity} editable={true}/>
             <PurpleRoundBtn text={"Save"} onPress={handlePress} style={{alignSelf: "center", marginTop: 20}}/>
         </View>
     )

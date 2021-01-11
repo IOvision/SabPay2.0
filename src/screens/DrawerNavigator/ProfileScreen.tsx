@@ -28,6 +28,11 @@ const ProfileScreen: React.FC<Props> = ({isSignedIn, user}) => {
   const handleContinue = () => (
       <Login close={closeBottomSheet} />
   )
+
+  const validateEmail = (email: string) => {
+    var re = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/; 
+    return re.test(email);
+  };
   return (
     <View style={styles.container}>
       <Background />
@@ -37,10 +42,10 @@ const ProfileScreen: React.FC<Props> = ({isSignedIn, user}) => {
       {
         isSignedIn ? (
           <View style={{flex: 1}}>
-            <InputText placeholder="name" value={user.username} />
-            <InputText placeholder="phone" value={user.phoneNumber} />
+            <InputText placeholder="name" value={user.username} editable={true}/>
+            <InputText placeholder="phone" value={user.phoneNumber} editable={false}  />
             <InputText placeholder="address" value={user.address[0]} />
-            <PurpleRoundBtn text="Save" style={styles.btn} />
+            <PurpleRoundBtn text="Save" style={styles.btn} editable={true} />
           </View>
         ) : (
           <View style={{flex: 1, margin: -20}}>

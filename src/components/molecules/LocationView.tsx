@@ -14,9 +14,9 @@ const AddressInputView: React.FC = () => {
             <View style={styles.text}>
                 <HeaderText style={styles.text}>Use Current Location</HeaderText>
             </View>
-            <InputText placeholder="House/Flat number"/>
-            <InputText placeholder="Colony/Society/Road"/>
-            <InputText placeholder="City/State"/>
+            <InputText placeholder="House/Flat number" editable={true}/>
+            <InputText placeholder="Colony/Society/Road" editable={true}/>
+            <InputText placeholder="City/State" editable={true}/>
             <View style={styles.text}>
                 <HeaderText style={styles.text}>Use Current Location</HeaderText>
             </View>

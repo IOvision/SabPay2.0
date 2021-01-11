@@ -11,10 +11,10 @@ const ProfileEdit = () => {
             <View style={styles.headerTextView}>
                 <HeaderText style={styles.headerText}>Your Profile</HeaderText>
             </View>
-            <InputText placeholder="Enter Name" />
-            <InputText placeholder="Enter Email" />
-            <InputText placeholder="Enter Phone Number" />
-            <InputText placeholder="Enter Address" />
+            <InputText placeholder="Enter Name" editable={true}/>
+            <InputText placeholder="Enter Email" editable={true}/>
+            <InputText placeholder="Enter Phone Number" editable={false}/>
+            <InputText placeholder="Enter Address" editable={true}/>
             <PurpleRoundBtn style={styles.btnView} text="Save" />
         </RoundView>
     )

@@ -10,10 +10,12 @@ export interface Props {
     onChangeText?: Function,
     error?: string,
     preText?: string,
-    style?: StyleProp<ViewStyle>
+    style?: StyleProp<ViewStyle>,
+    editable?: boolean,
+    keyboardType?: string
 }
 
-const InputText: React.FC<Props> = ({placeholder, value, backgroundStyle, onChangeText, style, error, preText}) => {
+const InputText: React.FC<Props> = ({placeholder, value, backgroundStyle, onChangeText, style, error, preText, editable, keyboardType}) => {
     return (
         <View style={
             error ? 
@@ -28,6 +30,8 @@ const InputText: React.FC<Props> = ({placeholder, value, backgroundStyle, onChan
                     value={value}
                     placeholder={placeholder}
                     onChangeText={(text) => onChangeText(text)}
+                    editable={editable}
+                    keyboardType={keyboardType ? keyboardType : "default"}
                 />
             </View>
             <View style={{alignSelf: 'center'}}>

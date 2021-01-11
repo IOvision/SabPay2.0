@@ -58,7 +58,7 @@ const HomeTab: React.FC<Props> = ({navigation, merchant, set}) => {
             <SearchWithBackground home={true} navigation={navigation} name={merchant.name} address={merchant.address}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
-                <HomePageCategoryList data={merchant.tags} baseUrl={""} navigation={navigation} />
+                <HomePageCategoryList data={merchant.tags} baseUrl={""} navigation={navigation}  isLoading={isLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
                 <Swipeable data={specialOffers1} />
                 <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
