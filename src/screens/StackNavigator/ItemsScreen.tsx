@@ -3,10 +3,9 @@ import { View, FlatList } from 'react-native'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground';
 import StoreItemListItem from '../../components/molecules/StoreItemListItem'
 import Item from '../../models/Item';
-import SkeletonPlaceholder from "react-native-skeleton-placeholder"
 import { Divider } from 'react-native-paper'
-
 import { getItemsFromTag } from '../../requests';
+import Skeleton from '../../components/atoms/Skeleton';
 
 export interface Props {
   navigation: any,
@@ -19,19 +18,17 @@ export interface Props {
 
 const ItemSkeleton = () => {
   return (
-    <SkeletonPlaceholder>
-      <View style={{flexDirection: "row", alignItems: "center", marginVertical: 5}}>
-        <View style={{ width: 100, height: 100 }} />
-        <View style={{ marginLeft: 20, flex: 1 }}>
-          <View style={{ width: 160, height: 20, borderRadius: 4 }} />
-          <View style={{ marginTop: 6, width: 60, height: 20, borderRadius: 4 }}/>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 15, justifyContent: 'space-between'}}>
-            <View style={{ width: 50, height: 35, borderRadius: 4 }} />
-            <View style={{ width: 60, height: 35, borderRadius: 4 }}/>
-          </View>
+    <View style={{flexDirection: "row", alignItems: "center", marginVertical: 5}}>
+      <Skeleton width={100} height={100} borderRadius={0} style={{ width: 100, height: 100 }} />
+      <View style={{ marginLeft: 20, flex: 1 }}>
+        <Skeleton width={160} height={10} borderRadius={4}  style={{ width: 160, height: 20, borderRadius: 4 }} />
+        <Skeleton width={60} height={20} borderRadius={4} style={{ marginTop: 6, width: 60, height: 20, borderRadius: 4 }}/>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 15, justifyContent: 'space-between'}}>
+          <Skeleton width={50} height={35} borderRadius={4} style={{ width: 50, height: 35, borderRadius: 4 }} />
+          <Skeleton width={60} height={35} borderRadius={4} style={{ width: 60, height: 35, borderRadius: 4 }}/>
         </View>
       </View>
-    </SkeletonPlaceholder>
+    </View>   
   )
 }
 
