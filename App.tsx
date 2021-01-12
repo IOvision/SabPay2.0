@@ -2,6 +2,7 @@
 import React from 'react';
 import Colors from './src/assets/colors'
 import {
+  Dimensions,
   View,
 } from 'react-native';
 import Root from './src/navigation/Root'
@@ -17,6 +18,8 @@ import User from './src/models/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Merchant from './src/models/Merchant';
 import { setMerchant } from './src/redux/actions/merchant';
+import { BodyText } from './src/components/atoms/Text';
+import NetInfo from '@react-native-community/netinfo';
 
 Amplify.configure(awsConfig)
 Auth.configure({
@@ -28,15 +31,19 @@ export interface Props {
   setMerchant: (merchant: Merchant) => void
 }
 export interface State {
-  isLoading: boolean
+  isLoading: boolean,
+  internet: boolean
 }
+
+const {width, height} = Dimensions.get('window')
 
 class App extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props)
     this.state = {
-      isLoading: true
+      isLoading: true,
+      internet: true
     }
   }
 
@@ -67,6 +74,12 @@ class App extends React.Component<Props, State> {
       SplashScreen.hide()
     })
     .catch(err => console.log(err))
+    NetInfo.addEventListener(network => {
+     this.setState({
+       ...this.state,
+       internet: network.isConnected
+     })
+    })
   }
 
   render () {
@@ -74,6 +87,26 @@ class App extends React.Component<Props, State> {
     return (
       <View style={{flex: 1, backgroundColor: Colors.background}}>
         <Root />
+        { this.state.internet ? (
+          null
+        ) : (
+          <View style={{position: 'absolute', flex: 1, width: width, height: height}}>
+          <View style={{flex: 1, backgroundColor: 'black', opacity: 0.5}} />
+          <View style={{
+            position: 'absolute', 
+            width: width/2, 
+            height: height/3, 
+            backgroundColor: 'white', 
+            alignSelf: 'center', 
+            marginTop: height/2 - height/6, 
+            borderRadius: 5, 
+            alignItems: 'center', 
+            justifyContent: 'center'
+          }}>
+            <BodyText>Not connected to the internet</BodyText>
+          </View>
+        </View>
+        )}
       </View>
     )
     return (
