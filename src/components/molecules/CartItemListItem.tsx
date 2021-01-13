@@ -19,10 +19,13 @@ const CartItemListItem: React.FC<Props> = ({item, style, show}) => {
                 <HeaderText>{item.name}</HeaderText>
                 <View style={CartItemListItemStyles.subView}>
                     <BodyText>Rs. {item.price}</BodyText>
-                    <View style={CartItemListItemStyles.discountView}>
-                        <BodyText style={CartItemListItemStyles.originalPrice}>Rs. 600</BodyText>
-                        <OfferText>40% Off</OfferText>
-                    </View>
+                    {
+                        item.originalPrice ? (
+                            <View style={CartItemListItemStyles.discountView}>
+                                <BodyText style={CartItemListItemStyles.originalPrice}>Rs. {item.originalPrice}</BodyText>
+                            </View>
+                        ) : ( null )
+                    }
                 </View>
 
                 <OfferText>1 Offer Applied</OfferText>

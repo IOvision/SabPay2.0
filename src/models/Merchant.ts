@@ -29,6 +29,7 @@ export default class Merchant {
     longitude: number;
 
     constructor(a: any) {
+        console.log('debug', a.offers)
         this.PK = a.PK
         this.SK = a.SK
         this.name = a.name

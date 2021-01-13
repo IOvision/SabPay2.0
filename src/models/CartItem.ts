@@ -9,6 +9,7 @@ export default class CartItem {
     variant: string;
     variantKey: number;
     price: number;
+    originalPrice: number | undefined;
     quantity: number;
     
     constructor(a: Item, selected: number) {
@@ -19,6 +20,10 @@ export default class CartItem {
         this.variantKey = selected
         this.variant = a.child[selected].name
         this.price = a.child[selected].price
+        if(a.child[selected].onDiscount){
+            this.originalPrice = a.child[selected].price
+            this.price = a.child[selected].discountPrice
+        }
         this.quantity = 0
     }
     
