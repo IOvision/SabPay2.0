@@ -34,8 +34,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
     var temp: any
     //Hash - Xq5ZQIU2b5de
     const validateNumber = (number: string) => {
-        var re = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/; 
-        return re.test(number);
+        return number.length == 10;
       };
     const signUp = async () => {
         if(validateNumber(phone)) {

@@ -7,17 +7,19 @@ export interface Props {
     style: StyleProp<TextStyle>,
     placeholder: string,
     value?: string,
-    onChangeText?: (text: string) => null,
+    onChangeText?: (text: string) => void,
     onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void,
     editable: boolean
+    inputRef?: any
 }
 
-const SearchBar: React.FC<Props> = ({style, placeholder, value, onChangeText, onFocus, editable}) => {
+const SearchBar: React.FC<Props> = ({style, placeholder, value, onChangeText, onFocus, editable, inputRef}) => {
     return (
         <View style={{ ...SearchBarStyle.background, ...(style as object) }}>
             {/* <MaterialCommunityIcons name="search" color="white" size={20} /> */}
             <TextInput 
                 placeholder={placeholder} 
+                ref={inputRef}
                 style={{flex: 1, fontSize: 15, marginLeft: 10}}
                 value={value}
                 onChangeText={(text) => onChangeText(text)}

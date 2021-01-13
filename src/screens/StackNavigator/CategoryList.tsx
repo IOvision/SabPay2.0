@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { View, Dimensions, FlatList, TouchableOpacity } from 'react-native'
 import colors from '../../assets/colors'
 import SearchBar from '../../components/atoms/SearchBar'
@@ -17,12 +17,16 @@ export interface Props {
 
 const CategoryListTab: React.FC<Props> = (props) => {
     const [tags, setTags] = useState<string[]>([])
+    const [search, setSearch] = useState<string>("")
+    const inputRef = useRef(null)
+
     useEffect(() => {
         let tags: string[] = []
         for (let item of props.merchant.tags) {
             tags = tags.concat(item.tag)
         }
         setTags(tags)
+        inputRef.current.focus()
     }, [])
     return (
         <View style={{flex: 1}}>
@@ -41,7 +45,10 @@ const CategoryListTab: React.FC<Props> = (props) => {
             <SearchBar
                 placeholder="What are you looking for?"
                 style={{marginHorizontal: 30, marginTop: 30}}
+                inputRef={inputRef}
                 editable={true}
+                value={search}
+                onChangeText={(text) => setSearch(text)}
             />
             <FlatList
                 style={{marginTop: 20}}
