@@ -9,7 +9,6 @@ import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
 import Merchant from '../../models/Merchant'
 import { addItem } from '../../redux/actions/cart'
-import Item from '../../models/Item'
 import CartItem from '../../models/CartItem'
 
 export interface Props {

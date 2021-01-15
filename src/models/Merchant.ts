@@ -19,12 +19,7 @@ export default class Merchant {
         items: Item[]
     }[];
     offers: Item[];
-    storeSp: {
-        key: string,
-        image: string,
-        title: string,
-        price: string
-    }[];
+    storeSp: Item[];
     latitude: number;
     longitude: number;
 

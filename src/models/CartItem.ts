@@ -13,6 +13,7 @@ export default class CartItem {
     quantity: number;
     
     constructor(a: Item, selected: number) {
+        console.log("constrcutor: " + Object.keys(a))
         this.PK = a.PK
         this.SK = a.SK
         this.name = a.name

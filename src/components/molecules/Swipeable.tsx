@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Image, Dimensions} from 'react-native'
 import { Pages } from 'react-native-pages'
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
+import Skeleton from "../atoms/Skeleton";
 
 const {width} = Dimensions.get('window')
 
@@ -14,9 +14,9 @@ const Swipeable: React.FC<Props> = ({data, isLoading}) => {
     if(isLoading) {
         return (
             <View style={styles.container}>
-                <SkeletonPlaceholder >
-                    <View style={{borderRadius: 10, height: 150, width: width-30}} />
-                </SkeletonPlaceholder> 
+                <View >
+                    <Skeleton borderRadius={10} height={150} width={width-30} />
+                </View> 
             </View>
         )
     }

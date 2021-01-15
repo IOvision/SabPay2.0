@@ -27,8 +27,9 @@ const CartItemListItem: React.FC<Props> = ({item, style, show}) => {
                         ) : ( null )
                     }
                 </View>
-
-                <OfferText>1 Offer Applied</OfferText>
+                {
+                    item.originalPrice ? <OfferText>1 Offer Applied</OfferText> : null
+                }
    
                 <View style={CartItemListItemStyles.weight}><BodyText>{item.variant}</BodyText></View> 
 
@@ -39,9 +40,6 @@ const CartItemListItem: React.FC<Props> = ({item, style, show}) => {
                     style={CartItemListItemStyles.img}
                     source={{uri: item.image}}
                 />
-                {
-                    show ? <CartQuantityButton item={item} /> : null
-                }
             </View>
         </RoundView>
     )

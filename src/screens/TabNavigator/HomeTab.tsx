@@ -42,16 +42,6 @@ const HomeTab: React.FC<Props> = ({navigation, merchant, set}) => {
         })
     }, [])
     const dealsOfTheDay = [ "https://pngimg.com/uploads/dog/dog_PNG50348.png", "https://freepngimg.com/thumb/dog/23730-1-dog-file.png", "https://pngimg.com/uploads/dog/dog_PNG50360.png", "https://static.wixstatic.com/media/2cd43b_afa39a2ccac54a9b8122257b451a461f~mv2_d_1300_1639_s_2.png/v1/fill/w_174,h_219,fp_0.50_0.50/2cd43b_afa39a2ccac54a9b8122257b451a461f~mv2_d_1300_1639_s_2.png"]
-    if (isLoading) {
-        return (
-            <View style={{flex: 1}}>
-                <SearchWithBackground home={true} navigation={navigation} name={merchant.name} address={merchant.address} />
-                <View style={{flex: 1, padding: 15}}>
-                    
-                </View>
-            </View>
-        )
-    }
 
     return (
         <View style={{flex: 1, backgroundColor: 'white'}}>

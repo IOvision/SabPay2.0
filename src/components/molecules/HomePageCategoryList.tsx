@@ -2,7 +2,7 @@ import React from 'react'
 import { View, FlatList, ViewStyle } from 'react-native'
 import HomePageCategoryItem from './HomePageCategoryListItem' 
 import randomColor, { colorLength } from '../../assets/randomColor'
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
+import Skeleton from "../atoms/Skeleton";
 
 export interface Props {
     data: string[],
@@ -26,10 +26,10 @@ const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoadi
                 )}}
                 renderItem={({item, index}) => {
                 return (
-                    <SkeletonPlaceholder >
-                        <View style={{ width: 100, height: 100, borderRadius: 10 }} />
-                        <View style={{ marginTop: 4, width: 100, height: 20, borderRadius: 4, marginBottom: 20 }}/>
-                    </SkeletonPlaceholder>
+                    <View >
+                        <Skeleton width={100} height={100} borderRadius={10} />
+                        <Skeleton width={100} height={20} borderRadius={4} style={{ marginTop: 4, marginBottom: 20 }}/>
+                    </View>
                 )
                 }}
             />
