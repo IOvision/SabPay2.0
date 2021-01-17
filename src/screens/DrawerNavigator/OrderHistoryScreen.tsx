@@ -20,6 +20,7 @@ export interface Props {
 
 const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
     const [order, setOrder] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
     const sheetRef = useRef(null)
 
     const closeBottomSheet = () => {
@@ -37,6 +38,7 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
                 if(err) 
                   return console.log(err)
                   setOrder(resp)
+                  setIsLoading(false)
                 return console.log("data"+ Object.keys(resp[0]))
               })
         })
@@ -49,7 +51,7 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
         <View style={styles.container}>
             <SearchWithBackground navigation={navigation}/>
             {
-                order == null ? (
+                user == null ? (
                     <View style={{flex: 1, justifyContent: 'center', margin: -10}}>
                         <CaptionText style={{alignSelf: "center", marginTop: 30}}>You are currently not logged In</CaptionText>
                         <PurpleRoundBtn text="Log In" style={styles.btn} onPress={() => sheetRef.current.snapTo(0)}/>
@@ -61,7 +63,7 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
                         renderContent={handleContinue}
                         />
                     </View>
-                ) : <MyOrderList navigation={navigation} data={order}/>
+                ) : <MyOrderList navigation={navigation} data={order} isLoading={isLoading} />
             }
         </View>
     )

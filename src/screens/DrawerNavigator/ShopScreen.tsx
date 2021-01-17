@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, FlatList } from 'react-native'
 import ShopListItem from '../../components/molecules/ShopListItem'
 import testInventory from '../../models/testInventory'
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
+import Skeleton from "../../components/atoms/Skeleton";
 import { getMerchant } from '../../requests'
 import Background from '../../components/atoms/Background'
 
@@ -50,16 +50,16 @@ const ShopScreen: React.FC<Props> = ({navigation, route}) => {
                             )}}
                             renderItem={({item}) => {
                             return (
-                                <SkeletonPlaceholder >
+                                <View >
                                     <View style={{flexDirection: "row", marginTop: 10 }}>
-                                        <View style={{ marginTop: 4, width: 70, height: 70, borderRadius: 10, marginLeft: 20 }}/>
+                                        <Skeleton width={70} height={70} borderRadius={10} style={{ marginTop: 4, marginLeft: 20 }}/>
                                         <View style={{marginLeft: 20}}>
-                                            <View style={{ marginTop: 4, width: 150, height: 15, borderRadius: 4, marginBottom: 4 }} />
-                                            <View style={{ marginTop: 4, width: 200, height: 15, borderRadius: 4, marginBottom: 4 }} />
-                                            <View style={{ marginTop: 4, width: 100, height: 15, borderRadius: 4, marginBottom: 2 }} />
+                                            <Skeleton width={150} height={15} borderRadius={4} style={{ marginTop: 4, marginBottom: 4 }} />
+                                            <Skeleton width={200} height={15} borderRadius={4} style={{ marginTop: 4, marginBottom: 4 }} />
+                                            <Skeleton width={100} height={15} borderRadius={4} style={{ marginTop: 4, marginBottom: 2 }} />
                                         </View>
                                     </View>
-                                </SkeletonPlaceholder>
+                                </View>
                             )
                             }}
                         />
