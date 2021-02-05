@@ -48,7 +48,7 @@ const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoadi
                     title={item.title} 
                     colour={randomColor[(index % colorLength) + 1]} 
                     onPress={() => navigation.navigate("Items", {
-                        tag: item
+                        tag: item.tag
                     })} 
                 />;
                 }}

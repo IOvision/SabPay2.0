@@ -9,10 +9,10 @@ import CartQuantityButton from './CartQuantityButton'
 export interface Props{
     item: CartItem,
     style?: ViewStyle,
-    show: boolean
+    history: boolean
 }
 
-const CartItemListItem: React.FC<Props> = ({item, style, show}) => {
+const CartItemListItem: React.FC<Props> = ({item, style, history}) => {
     return (
         <RoundView style={[CartItemListItemStyles.container, style]}>
             <View style={CartItemListItemStyles.infoView}>
@@ -30,16 +30,16 @@ const CartItemListItem: React.FC<Props> = ({item, style, show}) => {
                 {
                     item.originalPrice ? <OfferText>1 Offer Applied</OfferText> : null
                 }
-   
                 <View style={CartItemListItemStyles.weight}><BodyText>{item.variant}</BodyText></View> 
-
             </View>
-            
             <View style={{alignItems: "center"}}>
                 <Image
                     style={CartItemListItemStyles.img}
                     source={{uri: item.image}}
                 />
+                {
+                    history ? null : <CartQuantityButton item={item} />
+                }
             </View>
         </RoundView>
     )

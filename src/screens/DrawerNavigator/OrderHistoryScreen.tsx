@@ -34,12 +34,12 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
         Auth.currentSession()
         .then(data => {
             console.log("data: " + data.getIdToken().getJwtToken())
-            getOrders(user.getPhone(), data.getIdToken().getJwtToken(), (err, resp) => {
+            getOrders(user.phoneNumber.substr(3), data.getIdToken().getJwtToken(), (err, resp) => {
                 if(err) 
                   return console.log(err)
                   setOrder(resp)
                   setIsLoading(false)
-                return console.log("data"+ Object.keys(resp[0]))
+                  console.log(resp[0])
               })
         })
         .catch(err => {

@@ -1,7 +1,7 @@
 import { View } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
+// import LinearGradient from 'react-native-linear-gradient'
 import React from 'react'
-import Animated, { Clock, Easing, startClock, useCode, block, set, cond, Value, timing, eq} from 'react-native-reanimated'
+// import Animated, { Clock, Easing, startClock, useCode, block, set, cond, Value, timing, eq} from 'react-native-reanimated'
 
 export interface Props {
     width: number, 
@@ -47,14 +47,8 @@ const Skeleton: React.FC<Props> = ({width, height, borderRadius, style}) => {
     //     inputRange: [0,1],
     //     outputRange: [-1, width/2]
     // })
-
-    const AnimatedG = Animated.createAnimatedComponent(LinearGradient);
     return ( 
-        <View style={[style, {backgroundColor: "#d0d0d0", height: height, width: width, borderRadius: borderRadius}]}>
-            <AnimatedG 
-            colors={['#d0d0d0', '#e0e0e0','#e0e0e0', '#d0d0d0']}
-            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-            style={{backgroundColor: "#d0d0d0", height: height, width: width/2, borderRadius: borderRadius}} />
+        <View style={[style, {backgroundColor: "#f0f0f0", height: height, width: width, borderRadius: borderRadius}]}>
         </View>
     )
 }

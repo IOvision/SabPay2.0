@@ -9,15 +9,15 @@ import Merchant from './models/Merchant'
 import Order from './models/Order'
 import User from './models/User'
 
-export const getItemsFromTag = (tag: string, lastKey: string, cb: (err: any, resp: any) => void) => {
+export const getItemsFromTag = (tag: string, lastKey: string) => new Promise<Array<Item>>((resolve, reject) => {
     axios.get(`/item/${tag}`)
     .then(res => {
         console.log('done')
-        cb(false, Item.itemsFromList(res.data.data))
+        resolve(Item.itemsFromList(res.data.data))
     })
-    .catch(err => cb(err.response, null))
-}
-
+    .catch(err => reject(err.response))
+}) 
+    
 export const getItemsFromCategory = (category: string, lastKey: string, cb: (err: any, resp: any) => void) => {
     axios.get(`/item/${category}`, {
         params: {

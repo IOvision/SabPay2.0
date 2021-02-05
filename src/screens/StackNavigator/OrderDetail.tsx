@@ -6,25 +6,24 @@ import CartItemListItem from '../../components/molecules/CartItemListItem'
 import DeliveryStatus from '../../components/atoms/DeliveryStatus'
 import CartPriceDetails from '../../components/molecules/CartPriceDetails'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
+import Order from '../../models/Order'
 
 export interface Props {
     navigation: any,
     route: {
         params: {
-          data: Object
+          data: Order
         }
     }
 }
 const OrderDetail: React.FC<Props> = ({route, navigation})=>  {
-    console.log("data1: " + Object.keys(route.params.data.items[0]))
-
     return (
         <View style={{display: "flex", flex: 1, backgroundColor: colors.white}}>
         <View style={styles.container}>
             <SearchWithBackground navigation={navigation}/>
             <View>
-                <HeaderText>Delivered Text</HeaderText>
-                <BodyText>{route.params.data.address}</BodyText>
+                <HeaderText>Delivered To:</HeaderText>
+                <BodyText>{route.params.data.user.address}</BodyText>
             </View>
             <View style={styles.end}></View>                
             <View>
@@ -35,8 +34,9 @@ const OrderDetail: React.FC<Props> = ({route, navigation})=>  {
             <HeaderText>Order Id - {route.params.data.id}</HeaderText>
             <FlatList 
                 data={route.params.data.items}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({item, index}) => {
-                    return <CartItemListItem style={{marginHorizontal: -10 }} item={item} show={false}/>
+                    return <CartItemListItem style={{marginHorizontal: -10 }} item={item} history={true}/>
                 }}
                 ListFooterComponent={() => {
                     return (

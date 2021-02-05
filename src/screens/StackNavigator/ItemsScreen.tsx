@@ -11,7 +11,7 @@ export interface Props {
   navigation: any,
   route: {
     params: {
-      tag: string
+      tag: string[]
     }
   }
 }
@@ -37,13 +37,23 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
   const [data, setData] = useState<Item[] | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
-    getItemsFromTag(route.params.tag, "null", (err, resp) => {
-      if (err)
-        return console.log(err)
-      console.log(route.params.tag + ": " + resp)
-      setIsLoading(false);
-      setData(resp)
+    var promises : Promise<Array<Item>>[] = []
+    route.params.tag.forEach(element => {
+      promises.push(getItemsFromTag(element, "null"))
+    });
+    Promise.all(promises)
+    .then(res => {
+      var temp: Item[] = []
+      res.forEach(element => {
+        element.forEach(item => {
+          temp.push(item)
+        })
+      });
+      console.log(temp)
+      setData(temp)
+      setIsLoading(false)
     })
+    .catch(err => console.log(err))
   }, [])
 
   const example = [1,2,3,4,5,6,7,8,9,10]
