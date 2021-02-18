@@ -12,7 +12,7 @@ export interface Props {
     preText?: string,
     style?: StyleProp<ViewStyle>,
     editable?: boolean,
-    keyboardType?: string
+    keyboardType?: "default" | "email-address" | "numeric" | "phone-pad" | "number-pad" | "decimal-pad" | "visible-password" | "ascii-capable" | "numbers-and-punctuation" | "url" | "name-phone-pad" | "twitter" | "web-search" | undefined
 }
 
 const InputText: React.FC<Props> = ({placeholder, value, backgroundStyle, onChangeText, style, error, preText, editable, keyboardType}) => {
@@ -26,7 +26,7 @@ const InputText: React.FC<Props> = ({placeholder, value, backgroundStyle, onChan
             <View style={{flexShrink: 1, flex: 1, flexDirection: 'row'}}>
                 <Text style={{ ...InputStyle.text, alignSelf: 'center', paddingRight: 0}}>{preText}</Text>
                 <TextInput 
-                    style={value == "" || typeof value == 'undefined' ? InputStyle.placeholder : InputStyle.text } 
+                    style={value == "" || typeof value == 'undefined' ? InputStyle.placeholder : InputStyle.textInput } 
                     value={value}
                     placeholder={placeholder}
                     onChangeText={(text) => onChangeText(text)}

@@ -17,6 +17,7 @@ import OrderDetail from '../screens/StackNavigator/OrderDetail'
 import OrderPlacedScreen from '../screens/StackNavigator/OrderPlacedScreen'
 import RootDrawer from './RootDrawer'
 import Signup from '../screens/StackNavigator/Signup';
+import CartTab from '../screens/TabNavigator/CartTab';
 
 const MainStack: React.FC = () => {
     return (
@@ -37,7 +38,11 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header 
+                                    back={() => navigation.pop()}
+                                    navigation={navigation}
+                                    cart={false}
+                                />
                             )
                         }
                     }}
@@ -48,7 +53,11 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header 
+                                    back={() => navigation.pop()}
+                                    navigation={navigation}
+                                    cart={false}
+                                />
                             )
                         }
                     }}
@@ -59,7 +68,11 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header 
+                                    back={() => navigation.pop()}
+                                    navigation={navigation}
+                                    cart={false}
+                                />
                             )
                         }
                     }}
@@ -70,7 +83,11 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header 
+                                    back={() => navigation.pop()}
+                                    navigation={navigation}
+                                    cart={false}
+                                />
                             )
                         }
                     }}
@@ -81,7 +98,11 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header 
+                                    back={() => navigation.pop()}
+                                    navigation={navigation}
+                                    cart={false}
+                                />
                             )
                         }
                     }}
@@ -92,7 +113,11 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header 
+                                    back={() => navigation.pop()}
+                                    navigation={navigation}
+                                    cart={false}
+                                />
                             )
                         }
                     }}
@@ -103,7 +128,11 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header color="white" back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header 
+                                    back={() => navigation.pop()}
+                                    navigation={navigation}
+                                    cart={false}
+                                />
                             )
                         }
                     }}
@@ -114,7 +143,11 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header 
+                                    back={() => navigation.pop()}
+                                    navigation={navigation}
+                                    cart={false}
+                                />
                             )
                         }
                     }}
@@ -125,7 +158,27 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header back={() => navigation.pop()} navigation={navigation} image={require('../assets/images/logo.png')} />
+                                <Header 
+                                    back={() => navigation.pop()} 
+                                    navigation={navigation}
+                                    cart={false}
+                                />
+                            )
+                        }
+                    }}
+                />
+                <Stack.Screen 
+                    name="Cart" 
+                    component={CartTab}
+                    options={{
+                        header: ({ scene, previous, navigation}) => {
+                            return (
+                                <Header 
+                                    back={() => navigation.pop()}
+                                    navigation={navigation}
+                                    title="My Cart"
+                                    cart={false}
+                                />
                             )
                         }
                     }}

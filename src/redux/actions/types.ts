@@ -38,8 +38,7 @@ export const CLEAR = "CLEAR"
 
 interface AddItemAction {
     type: typeof ADD_ITEM,
-    data: CartItem,
-    selected: number
+    data: CartItem
 }
 
 interface IncItemAction {
@@ -74,3 +73,30 @@ interface SetMerchantAction {
 }
 
 export type MerchantActionTypes = SetMerchantAction
+
+//App Utility
+export interface AppState {
+    isDrawerOpen: boolean,
+    headerTitle: string | undefined
+}
+
+export const SET_DRAWER_STATE = "SET_DRAWER_STATE"
+export const SET_HEADER_TITLE = "SET_HEADER_TITLE"
+export const REMOVE_HEADER_TITLE = "REMOVE_HEADER_TITLE"
+
+
+interface SetDrawerStateAction {
+    type: typeof SET_DRAWER_STATE,
+    data: boolean
+}
+
+interface SetHeaderTitleAction {
+    type: typeof SET_HEADER_TITLE,
+    data: string
+}
+
+interface RemoveHeaderTitleAction {
+    type: typeof REMOVE_HEADER_TITLE,
+}
+
+export type AppActionTypes = SetDrawerStateAction | SetHeaderTitleAction | RemoveHeaderTitleAction

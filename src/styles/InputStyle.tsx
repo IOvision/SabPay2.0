@@ -5,6 +5,7 @@ interface Style {
     background: ViewStyle,
     placeholder: ViewStyle,
     text: TextStyle,
+    textInput: TextStyle,
     error: ViewStyle
 }
 
@@ -26,6 +27,12 @@ const InputStyle = StyleSheet.create<Style>({
     },
     text: {
         padding: 5,
+        color: colors.primary,
+        fontWeight: 'bold',
+    },
+    textInput: {
+        padding: 5,
+        flex: 1,
         color: colors.primary,
         fontWeight: 'bold',
     },

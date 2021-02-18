@@ -1,27 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { 
     DrawerContentScrollView,
     DrawerItem,
-    DrawerItemList
+    DrawerItemList,
+    useIsDrawerOpen
  } from '@react-navigation/drawer'
-import DrawerHeader from '../../components/molecules/DrawerHeader'
 import colors from '../../assets/colors'
 import { Auth } from 'aws-amplify'
 import { connect } from 'react-redux'
 import { signOut } from '../../redux/actions/user'
 import { RootState } from '../../redux/store'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { setDrawerState } from '../../redux/actions/app'
 
 export interface Props {
     setSignedOut: () => void,
+    setDrawer: (a: boolean) => void,
     isSignedIn: boolean
 }
 
 const CustomDrawerContent: React.FC<Props> = (props) => {
 
+    const isDrawerOpen = useIsDrawerOpen()
+
+    useEffect(() => {
+        props.setDrawer(isDrawerOpen)
+    }, [isDrawerOpen])
+
     const signOut = async () => {
         try {
             await Auth.signOut()
+            await AsyncStorage.removeItem('@User')
             props.setSignedOut()
         } catch(error) {
             console.log('error signing out', error)
@@ -30,7 +39,6 @@ const CustomDrawerContent: React.FC<Props> = (props) => {
 
     return (
         <DrawerContentScrollView {...props}>
-            <DrawerHeader />
             <DrawerItemList {...props} inactiveTintColor={colors.darkgrey} activeTintColor={colors.primary} />
             {
                 props.isSignedIn ? (
@@ -54,7 +62,8 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setSignedOut: () => dispatch(signOut())
+        setSignedOut: () => dispatch(signOut()),
+        setDrawer: (a: boolean) => dispatch(setDrawerState(a))
     }
 }
 

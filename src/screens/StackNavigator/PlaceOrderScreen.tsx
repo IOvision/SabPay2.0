@@ -36,7 +36,7 @@ export interface Props {
 
 const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user, discount, route, quantity}) => {
 
-    const [paymentMethod, setPaymentMethod] = React.useState("upi")
+    const [paymentMethod, setPaymentMethod] = React.useState("cod")
     const [isLoading, setIsLoading] = React.useState(false)
     const addressRef = React.useRef(null)
     const [address, setAddress] = React.useState(0)

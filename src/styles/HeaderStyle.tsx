@@ -14,8 +14,6 @@ const HeaderStyle = StyleSheet.create<Style>({
     flexDirection: 'row',
     justifyContent: 'center',
     backgroundColor: 'white',
-    borderBottomEndRadius: 20,
-    borderBottomStartRadius: 20,
     overflow: 'hidden',
     shadowColor: "#000",
     shadowOffset: {

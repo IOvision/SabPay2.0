@@ -4,22 +4,25 @@ import { HeaderText } from '../atoms/Text'
 import colors from '../../assets/colors'
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
+import User from '../../models/User'
 
 export interface Props {
-    isSignedIn: boolean
+    isSignedIn: boolean,
+    user: User
 }
 
-const DrawerHeader: React.FC<Props> = ({isSignedIn}) => {
+const DrawerHeader: React.FC<Props> = ({isSignedIn, user}) => {
     if (isSignedIn) {
         return (
-            <View style={{padding: 50, backgroundColor: colors.primary, alignItems: 'center', marginTop: -10}}>
-                <HeaderText style={{color: 'white'}}>Logged In</HeaderText>
+            <View style={{padding: 40, backgroundColor: colors.primary, alignItems: 'center', marginTop: -10}}>
+                <HeaderText style={{color: 'white'}}>{user.username}</HeaderText>
+                <HeaderText style={{color: 'white'}}>{user.phoneNumber}</HeaderText>
             </View>
         )
     } else {
         return (
             <View style={{padding: 50, backgroundColor: colors.primary, alignItems: 'center', marginTop: -10}}>
-                <HeaderText style={{color: 'white'}}>Logged Out</HeaderText>
+                <HeaderText style={{color: 'white'}}>Login/Register</HeaderText>
             </View>
         )
     }
@@ -27,7 +30,8 @@ const DrawerHeader: React.FC<Props> = ({isSignedIn}) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        isSignedIn: state.userReducer.signedIn
+        isSignedIn: state.userReducer.signedIn,
+        user: state.userReducer.user
     }
 }
 

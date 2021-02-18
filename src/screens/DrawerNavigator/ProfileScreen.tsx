@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import InputText from '../../components/atoms/InputText'
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
@@ -6,10 +6,11 @@ import ProfilePageSvg from '../../assets/svg/ProfilePageSvg'
 import Background from '../../components/atoms/Background'
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
-import { CaptionText } from '../../components/atoms/Text'
+import { CaptionText, HeaderText } from '../../components/atoms/Text'
 import Login from '../../components/molecules/Login'
 import BottomSheet from 'reanimated-bottom-sheet';
 import User from '../../models/User'
+import { ActivityIndicator } from 'react-native-paper'
 
 
 
@@ -20,6 +21,12 @@ export interface Props {
 
 const ProfileScreen: React.FC<Props> = ({isSignedIn, user}) => {
   const sheetRef = useRef(null)
+  
+  const [name, setName] = useState(user.username)
+  const [phone, setPhone] = useState(user.phoneNumber)
+  const [address, setAddress] = useState(user.address[0])
+
+  const [isLoading, setIsLoading] = useState(false)
 
   const closeBottomSheet = () => {
     sheetRef.current.snapTo(2)
@@ -33,6 +40,16 @@ const ProfileScreen: React.FC<Props> = ({isSignedIn, user}) => {
     var re = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/; 
     return re.test(email);
   };
+
+  if (isLoading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center'}}>
+        <ActivityIndicator />
+        <HeaderText style={{textAlign: 'center', marginTop: 20}}>Making changes...</HeaderText>
+      </View>
+    )
+  }
+
   return (
     <View style={styles.container}>
       <Background />
@@ -42,10 +59,10 @@ const ProfileScreen: React.FC<Props> = ({isSignedIn, user}) => {
       {
         isSignedIn ? (
           <View style={{flex: 1}}>
-            <InputText placeholder="name" value={user.username} editable={true}/>
-            <InputText placeholder="phone" value={user.phoneNumber} editable={false}  />
-            <InputText placeholder="address" value={user.address[0]} />
-            <PurpleRoundBtn text="Save" style={styles.btn} editable={true} />
+            <InputText placeholder="name" value={name} editable={true} onChangeText={setName} />
+            <InputText placeholder="phone" value={phone} editable={false} onChangeText={setPhone} />
+            <InputText placeholder="address" value={address} editable={false} />
+            <PurpleRoundBtn text="Save" style={styles.btn} />
           </View>
         ) : (
           <View style={{flex: 1, margin: -20}}>

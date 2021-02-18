@@ -14,7 +14,7 @@ import CartItem from '../../models/CartItem'
 
 export interface Props {
     route: any,
-    add: any
+    add: (item: CartItem) => void
 }
 
 const ItemDetailScreen: React.FC<Props> = ({route, add}) => {
@@ -23,10 +23,11 @@ const ItemDetailScreen: React.FC<Props> = ({route, add}) => {
     const [selected, setSelected] = useState<number>(route.params.selected)
     
     const children = () => {
-        return data.child.map((element) => {
+        return data.child.map((element, index) => {
             return (
                 <TouchableOpacity
                     activeOpacity={0.7}
+                    key={index}
                     onPress={() => setSelected(element.key)}
                     style={{marginHorizontal: 5}}
                 >
@@ -74,7 +75,7 @@ const ItemDetailScreen: React.FC<Props> = ({route, add}) => {
                 </Text>
             </ScrollView>
             <View style={{backgroundColor: 'white', alignItems: 'flex-end', elevation: 11, padding: 10}}>
-                <PurpleRoundBtn onPress={() => add(data.id, data)} style={{borderRadius: 10}} mode="gradient" text="Add to Cart" />
+                <PurpleRoundBtn onPress={() => add(new CartItem(data, selected))} style={{borderRadius: 10}} mode="gradient" text="Add to Cart" />
             </View>
         </View>
     )
@@ -88,7 +89,7 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (key: number, item: CartItem) => dispatch(addItem(item, key))
+        add: (item: CartItem) => dispatch(addItem(item))
     }
 }
 

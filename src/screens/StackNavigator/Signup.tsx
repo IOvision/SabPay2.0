@@ -14,10 +14,10 @@ export interface Props {
 }
 
 const Signup: React.FC<Props> = ({navigation, setSignedIn}) => {
-    const [username, setUsername] = useState("Rakshit Singh")
-    const [house, setHouse] = useState("M-473, Kanpur Road")
-    const [colony, setColony] = useState("Ashiyana")
-    const [city, setCity] = useState("Lucknow")
+    const [username, setUsername] = useState("")
+    const [house, setHouse] = useState("")
+    const [colony, setColony] = useState("")
+    const [city, setCity] = useState("")
 
     const handlePress = () => {
         var phoneNumber = "+917084552191"

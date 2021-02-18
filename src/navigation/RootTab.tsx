@@ -47,15 +47,6 @@ const RootTab: React.FC = () => {
                     )
                 }}
             />
-            <Tab.Screen 
-                name="Cart" 
-                component={CartTab} 
-                options={{
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="cart" color={color} size={24} />
-                    )
-                }}
-            />
         </Tab.Navigator> 
     )
 }

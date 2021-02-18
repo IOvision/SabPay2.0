@@ -75,8 +75,8 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
           ) : (
             <FlatList 
               data={data}
-              keyExtractor={(item) => item.id}
-              ItemSeparatorComponent={() => <Divider/>}
+              keyExtractor={(item) => item.SK}
+              ItemSeparatorComponent={() => <Divider />}
               renderItem={({item}) => { 
                 return <StoreItemListItem item={item} navigation={navigation} />
               }}
