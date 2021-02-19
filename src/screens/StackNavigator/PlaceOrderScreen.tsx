@@ -14,8 +14,7 @@ import { order } from '../../requests'
 import Merchant from '../../models/Merchant'
 import User from '../../models/User'
 import Order, { MerchantOrderDetails, UserOrderDetails } from '../../models/Order'
-import BottomSheet from 'reanimated-bottom-sheet'
-import AddressDetails from '../../components/molecules/AddressDetails'
+import AddressDetails, { AddressDetailsType } from '../../components/molecules/AddressDetails'
 
 export interface Props {
     items: CartItem[],
@@ -38,7 +37,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
 
     const [paymentMethod, setPaymentMethod] = React.useState("cod")
     const [isLoading, setIsLoading] = React.useState(false)
-    const addressRef = React.useRef(null)
+    const addressRef = React.useRef<AddressDetailsType>(null)
     const [address, setAddress] = React.useState(0)
 
     let deliveryType: string
@@ -76,6 +75,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
     }
 
     return (
+        <View style={{flex: 1}}>
         <View style={{flex: 1, backgroundColor: "white"}}>
             <ScrollView style={{padding: 10}}>
                 <RoundView style={[OrderDetailsStyle.roundView, OrderDetailsStyle.addressContainer]}>
@@ -86,7 +86,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
                             <BodyText>{user.address[address]}</BodyText>
                         </View>
                     </View>
-                    <PurpleRoundBtn text="Change" mode="outlined" onPress={() => addressRef.current.snapTo(0)}/>
+                    <PurpleRoundBtn text="Change" mode="outlined" onPress={() => addressRef.current.openAddress()}/>
                 </RoundView>
                 <RoundView style={{ ...OrderDetailsStyle.roundView, marginTop: 10, marginBottom: 10}}>
                     <CaptionText>Payment Options</CaptionText>
@@ -122,12 +122,8 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
                 <CartPriceDetails price={total} discount={0} style={{marginBottom: 20}}/>
             </ScrollView>
             <PlaceOrderDrag qty={items.length} total={total} confirm={confirm} />
-            <BottomSheet
-                ref={addressRef}
-                snapPoints={[450, 300, 0]}
-                borderRadius={10}
-                renderContent={() => <AddressDetails setSelected={setAddress} selected={user.address[address]}/>}
-            />
+        </View>
+        <AddressDetails ref={addressRef} user={user} setSelected={setAddress} selected={user.address[address]}/>
         </View>
     )
 }
