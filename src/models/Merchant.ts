@@ -1,10 +1,17 @@
 import Item from './Item'
 
+export interface NewInventoryData {
+    shopname: string,
+    address: string,
+    phone: string,
+    deliveryOpted: boolean
+}
+
 export default class Merchant {
     
     PK: string;
     SK: string;
-    name: string;
+    shopname: string;
     address: string;
     phone: string;
     image: string;
@@ -23,22 +30,22 @@ export default class Merchant {
     latitude: number;
     longitude: number;
 
-    constructor(a: any) {
-        console.log('debug', a.offers)
-        this.PK = a.PK
-        this.SK = a.SK
-        this.name = a.name
-        this.address = a.address
-        this.image = a.image
-        this.rating = a.rating
-        this.tags = a.tags
-        this.isOpen = a.isOpen
-        this.exclude = a.exclude
-        this.offers = a.offers
-        this.storeSp = a.storeSp
-        this.phone = a.phone
-        this.latitude = 0
-        this.longitude = 0
+    constructor(a?: any) {
+        console.log('debug', a)
+        this.PK = a && a.PK || undefined
+        this.SK = a && a.SK || undefined
+        this.shopname = a && a.shopname || undefined
+        this.address = a && a.address || undefined
+        this.image = a && a.image || "NaN"
+        this.rating = a && a.rating || 0
+        this.tags = a && a.tags || []
+        this.isOpen = a && a.isOpen || false
+        this.exclude = a && a.exclude || []
+        this.offers = a && a.offers || []
+        this.storeSp = a && a.storeSp || []
+        this.phone = a && a.phone || undefined
+        this.latitude = a && a.latitude || 0
+        this.longitude = a && a.longitude || 0
     }
 
     public static itemsFromList(json: Object[]) {
@@ -49,7 +56,11 @@ export default class Merchant {
         });
         return list
     }
-    
+
+    public getPhone(): string {
+        return this.phone.substr(3)
+    }
+
     public toJson() {
         return JSON.stringify(this)
     }

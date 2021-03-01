@@ -1,27 +1,22 @@
-import Item from './Item'
-
 export default class MerchantDetails {
     
+    PK: string;
     SK: string;
-    tags: string[];
-    exclude: {
-        tag: string,
-        items: Item[]
-    }[];
-    offers: Item[];
-    storeSp: {
-        key: string,
-        image: string
-    }[];
-    dealsOfTheDay: Item[]
+    shopname: string;
+    address: string;
+    phone: string;
+    image: string;
+    rating: number
 
     constructor(a: any) {
+        console.log("metadata", a)
+        this.PK = a.PK
         this.SK = a.SK
-        this.tags = a.tags
-        this.exclude = a.exclude
-        this.offers = a.offers
-        this.storeSp = a.storeSp
-        this.dealsOfTheDay = a.dealsOfTheDay
+        this.shopname = a.shopname
+        this.address = a.address
+        this.phone = a.phone
+        this.image = a.image
+        this.rating = a.rating
     }
 
     public static itemsFromList(json: Object[]) {

@@ -7,10 +7,11 @@ import Skeleton from "../atoms/Skeleton";
 export interface Props {
   navigation: any,
   data: Array<Order>,
-  isLoading: boolean
+  isLoading: boolean,
+  setLastKey: any
 }
 
-const MyOrderList: React.FC<Props> = ({navigation, data, isLoading}) => {
+const MyOrderList: React.FC<Props> = ({navigation, data, isLoading, setLastKey}) => {
     const sample = [1,2,3,4,5];
     return (
         <View style={styles.container}>
@@ -36,6 +37,11 @@ const MyOrderList: React.FC<Props> = ({navigation, data, isLoading}) => {
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item}) => {
               return <MyOrderListItem data={item} navigation={navigation} />;
+              }}
+              onEndReached={({ distanceFromEnd }) => {
+                if(distanceFromEnd == 0) {
+                  setLastKey(btoa(JSON.stringify(data[data?.length - 1])))
+                }
               }}
           />
           }

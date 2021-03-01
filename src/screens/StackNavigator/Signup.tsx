@@ -10,17 +10,18 @@ import { putUserData } from '../../requests'
 
 export interface Props {
     navigation: any,
-    setSignedIn : (user: User) => void
+    setSignedIn : (user: User) => void,
+    route: any
 }
 
-const Signup: React.FC<Props> = ({navigation, setSignedIn}) => {
+const Signup: React.FC<Props> = ({navigation, setSignedIn, route}) => {
     const [username, setUsername] = useState("")
     const [house, setHouse] = useState("")
     const [colony, setColony] = useState("")
     const [city, setCity] = useState("")
 
     const handlePress = () => {
-        var phoneNumber = "+917084552191"
+        var phoneNumber = route.params.phone
         if (house == "" || colony == "" || city == "") return ToastAndroid.show("Enter details", ToastAndroid.SHORT)
         const address = [`${house}, ${colony}, ${city}`]
         const data = {

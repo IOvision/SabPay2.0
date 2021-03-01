@@ -34,12 +34,13 @@ const ItemSkeleton = () => {
 
 const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
 
-  const [data, setData] = useState<Item[] | null>(null)
+  const [data, setData] = useState<Item[]>([])
+  const [lastKey, setLastKey] = useState<string>("null")
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     var promises : Promise<Array<Item>>[] = []
     route.params.tag.forEach(element => {
-      promises.push(getItemsFromTag(element, "null"))
+      promises.push(getItemsFromTag(element, lastKey))
     });
     Promise.all(promises)
     .then(res => {
@@ -82,7 +83,7 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
               }}
               onEndReached={({ distanceFromEnd }) => {
                 if(distanceFromEnd == 0) {
-                  console.log("end reached")
+                  setLastKey(btoa(JSON.stringify(data[data?.length - 1])))
                 }
               }}
               ListFooterComponent={() => {
