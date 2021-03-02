@@ -1,14 +1,14 @@
-import { SET_MERCHANT, MerchantActionTypes, MerchantState } from '../actions/types'
+import { SET_INVENTORY, InventoryActionTypes, InventoryState } from '../actions/types'
 
-const initialState: MerchantState = {
-    merchant: null
+const initialState: InventoryState = {
+    inventory: null
 }
 
-const merchantReducer = (state = initialState, action: MerchantActionTypes) => {
+const merchantReducer = (state = initialState, action: InventoryActionTypes) => {
     switch(action.type) {
-        case SET_MERCHANT:
+        case SET_INVENTORY:
             return {
-                merchant: action.data
+                inventory: action.data
             }
         default:
             return state;

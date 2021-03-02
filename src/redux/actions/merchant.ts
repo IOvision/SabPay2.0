@@ -1,9 +1,9 @@
-import Merchant from '../../models/Merchant';
-import { SET_MERCHANT, MerchantActionTypes } from './types'
+import Inventory from '../../models/Inventory';
+import { SET_INVENTORY, InventoryActionTypes } from './types'
 
-export const setMerchant = (merchant: Merchant): MerchantActionTypes => {
+export const setMerchant = (inventory: Inventory): InventoryActionTypes => {
     return {
-        type: SET_MERCHANT,
-        data: merchant
+        type: SET_INVENTORY,
+        data: inventory
     }
 };

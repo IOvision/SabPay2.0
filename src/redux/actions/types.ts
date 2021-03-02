@@ -1,4 +1,5 @@
 import CartItem from "../../models/CartItem"
+import Inventory from "../../models/Inventory"
 import Merchant from "../../models/Merchant"
 import User from "../../models/User"
 
@@ -61,18 +62,18 @@ export type CartActionTypes = AddItemAction | IncItemAction | DecItemAction | Cl
 
 
 //MERCHANT
-export interface MerchantState {
-    merchant: Merchant
+export interface InventoryState {
+    inventory: Inventory
 }
 
-export const SET_MERCHANT = 'SET_MERCHANT'
+export const SET_INVENTORY = 'SET_INVENTORY'
 
-interface SetMerchantAction {
-    type: typeof SET_MERCHANT,
-    data: Merchant
+interface SetInventoryAction {
+    type: typeof SET_INVENTORY,
+    data: Inventory
 }
 
-export type MerchantActionTypes = SetMerchantAction
+export type InventoryActionTypes = SetInventoryAction
 
 //App Utility
 export interface AppState {
