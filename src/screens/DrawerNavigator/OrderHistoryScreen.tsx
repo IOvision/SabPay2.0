@@ -20,6 +20,7 @@ export interface Props {
 
 const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
     const [order, setOrder] = useState([])
+    const [lastKey, setLastKey] = useState("null")
     const [isLoading, setIsLoading] = useState(true)
     const sheetRef = useRef(null)
 
@@ -34,7 +35,7 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
         Auth.currentSession()
         .then(data => {
             console.log("data: " + data.getIdToken().getJwtToken())
-            getOrders(user.phoneNumber.substr(3), data.getIdToken().getJwtToken(), (err, resp) => {
+            getOrders(user.phoneNumber.substr(3), lastKey, (err, resp) => {
                 if(err) 
                   return console.log(err)
                   setOrder(resp)
@@ -43,7 +44,7 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
               })
         })
         .catch(err => {
-            setOrder(null)
+            setOrder([])
             console.log(err)
         })
     }, [])
@@ -63,7 +64,7 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
                         renderContent={handleContinue}
                         />
                     </View>
-                ) : <MyOrderList navigation={navigation} data={order} isLoading={isLoading} />
+                ) : <MyOrderList navigation={navigation} data={order} isLoading={isLoading} setLastKey={setLastKey} />
             }
         </View>
     )

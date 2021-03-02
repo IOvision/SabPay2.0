@@ -86,7 +86,9 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
             getUserData(phone, data.signInUserSession.idToken.jwtToken, (err, resp) => {
                 if (err) {
                     if(err === 'signup'){
-                        navigation.navigate('Signup')
+                        navigation.navigate('Signup', {
+                            phone: phone
+                        })
                     }
                 }
                 AsyncStorage.setItem('@User', JSON.stringify(resp))

@@ -10,7 +10,11 @@ import Order from './models/Order'
 import User from './models/User'
 
 export const getItemsFromTag = (tag: string, lastKey: string) => new Promise<Array<Item>>((resolve, reject) => {
-    axios.get(`/item/${tag}`)
+    axios.get(`/item/${tag}`, {
+        params: {
+            lastKey: lastKey
+        }
+    })
     .then(res => {
         console.log('done')
         resolve(Item.itemsFromList(res.data.data))
@@ -22,6 +26,7 @@ export const getItemsFromCategory = (category: string, lastKey: string, cb: (err
     axios.get(`/item/${category}`, {
         params: {
             byCategory: true
+
         }
     })
     .then(res => {
@@ -58,16 +63,23 @@ export const order = (order: Order, phone: string, merchantId: string, cb: (err:
     .catch(err => cb(err, null))
 }
 
-export const getOrders = (phone: string, token: string, cb: (err: any, resp: any) => void) => {
-    axios.get(`/user/${phone}/order`, {
-        headers: {
-            "SP-TOKEN": token
-          }
+export const getOrders = (phone: string, lastKey: string, cb: (err: any, resp: any) => void) => {
+    Auth.currentSession()
+    .then(data => {
+        const token = data.getIdToken().getJwtToken()
+        axios.get(`/user/${phone}/order`, {
+            params: {
+                lastKey: lastKey
+            },
+            headers: {
+                "SP-TOKEN": token
+            }
+        })
+        .then(res => {
+            cb(false, Order.itemsFromList(res.data.data))
+        })
+        .catch(err => cb(err, null))
     })
-    .then(res => {
-        cb(false, Order.itemsFromList(res.data.data))
-    })
-    .catch(err => cb(err, null))
 }
 
 export const getSpecialOffers = () => new Promise<Array<String>>((resolve, reject) => {

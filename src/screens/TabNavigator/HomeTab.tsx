@@ -22,7 +22,7 @@ const HomeTab: React.FC<Props> = ({navigation, merchant, set}) => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [specialOffers1, setSpecialOffers1] = useState<Array<String>>([])
     const [specialOffers2, setSpecialOffers2] = useState<Array<String>>([])
-
+    console.log(merchant)
     useEffect(() => {
         Promise.all([getSpecialOffers(), getMerchantDetails(merchant.SK)])
         .then(data => {
