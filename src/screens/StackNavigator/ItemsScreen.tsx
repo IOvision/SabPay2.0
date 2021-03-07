@@ -43,13 +43,13 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
     });
     Promise.all(promises)
     .then(res => {
+      console.log(res)
       var temp: Item[] = []
       res.forEach(element => {
         element.forEach(item => {
           temp.push(item)
         })
       });
-      console.log(temp)
       setData(temp)
       setIsLoading(false)
     })

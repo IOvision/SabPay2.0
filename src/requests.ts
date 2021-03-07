@@ -12,9 +12,6 @@ import InventoryMetadata from './models/InventoryMetadata'
 
 export const getItemsFromTag = (tag: string, lastKey: string) => new Promise<Array<Item>>((resolve, reject) => {
     axios.get(`/item/${tag}`, {
-        params: {
-            lastKey: lastKey
-        }
     })
     .then(res => {
         resolve(Item.itemsFromList(res.data.data))
