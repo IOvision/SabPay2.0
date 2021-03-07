@@ -33,7 +33,6 @@ const ItemSkeleton = () => {
 }
 
 const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
-
   const [data, setData] = useState<Item[]>([])
   const [lastKey, setLastKey] = useState<string>("null")
   const [isLoading, setIsLoading] = useState(true)

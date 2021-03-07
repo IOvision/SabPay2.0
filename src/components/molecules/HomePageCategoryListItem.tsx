@@ -5,10 +5,7 @@ import { HeaderText } from '../atoms/Text';
 
 export interface Props {
     image: string,
-    title: {
-        title: string,
-        tag: string[]
-    },
+    title: string,
     colour: string,
     onPress: (event: GestureResponderEvent) => void
 }

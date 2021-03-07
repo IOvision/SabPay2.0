@@ -3,15 +3,19 @@ import { View, FlatList, ViewStyle } from 'react-native'
 import HomePageCategoryItem from './HomePageCategoryListItem' 
 import randomColor, { colorLength } from '../../assets/randomColor'
 import Skeleton from "../atoms/Skeleton";
+import { connect } from 'react-redux'
+import { RootState } from '../../redux/store'
+import Inventory from '../../models/Inventory';
 
 export interface Props {
     data: string[],
     style?: ViewStyle,
     navigation: any,
-    baseUrl: string
+    baseUrl: string,
+    inventory: Inventory
 }
 
-const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoading, baseUrl}) => {
+const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoading, baseUrl, inventory}) => {
     const sample = [1,2,3,4,5];
     if(isLoading) {
         return (
@@ -34,6 +38,7 @@ const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoadi
             />
         )
     }
+    console.log(inventory.tags)
     return (
         <View style={style}>
             <FlatList
@@ -43,11 +48,11 @@ const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoadi
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item, index}) => {
                 return <HomePageCategoryItem 
-                    image={`${baseUrl}/cat/${item.title}`} 
-                    title={item.title} 
+                    image={`${baseUrl}/cat/${item}`} 
+                    title={item} 
                     colour={randomColor[(index % colorLength) + 1]} 
                     onPress={() => navigation.navigate("Items", {
-                        tag: item.tag
+                        tag: inventory.tags[item]
                     })} 
                 />;
                 }}
@@ -56,4 +61,11 @@ const HomePageCategoryList: React.FC<Props> = ({data, style, navigation, isLoadi
     )
 }
 
-export default HomePageCategoryList
+
+const mapStateToProps = (state: RootState) => {
+    return {
+        inventory: state.inventoryReducer.inventory
+    }
+}
+
+export default connect(mapStateToProps)(HomePageCategoryList)

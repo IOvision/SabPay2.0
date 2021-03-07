@@ -37,6 +37,7 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
             inventory.offers = second.offers
             inventory.exclude = second.exclude
             inventory.tags = second.tags
+            console.log("hxcv: "+Object.keys(inventory.tags))
             setIsLoading(false)
         })
     }, [])
@@ -46,14 +47,21 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
             <SearchWithBackground home={true} navigation={navigation} name={inventory.shopName} address={inventory.address.locality}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
-                <HomePageCategoryList data={inventory.tags} baseUrl={""} navigation={navigation}  isLoading={isLoading}/>
-                {/* <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
+                <HomePageCategoryList data={Object.keys(inventory.tags)} baseUrl={""} navigation={navigation}  isLoading={isLoading}/>
+                <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
                 <Swipeable data={specialOffers1} />
-                <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
-                <StoreSpecialList object={inventory.storeSp} />
+                {
+                    inventory.storeSp == null ? (
+                        <View>
+                            <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
+                            <StoreSpecialList object={inventory.storeSp} />
+                        </View>
+                    ) : null
+                }
+                {/* <StoreSpecialList object={inventory.storeSp} /> */}
                 <Swipeable data={specialOffers2} />
                 <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
-                <HomePageOffers data={dealsOfTheDay}/> */}
+                <HomePageOffers data={dealsOfTheDay}/>
                 <View style={{height: 30}}></View>
             </ScrollView>
         </View>

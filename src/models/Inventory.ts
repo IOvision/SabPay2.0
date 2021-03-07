@@ -17,9 +17,8 @@ export default class Inventory {
     image: string;
     rating: number;
     tags: {
-        title: string,
-        tag: string[]
-    }[]
+        [key: string]: string[]
+    }
     isOpen: boolean;
     exclude: {
         tag: string,

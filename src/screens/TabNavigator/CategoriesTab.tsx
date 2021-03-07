@@ -14,8 +14,8 @@ const CategoriesTab: React.FC<Props> = ({navigation, inventory}) => {
     const [tags, setTags] = useState<string[]>([])
     useEffect(() => {
         let tags: string[] = []
-        for (let item of inventory.tags) {
-            tags = tags.concat(item.tag)
+        for (let item in inventory.tags) {
+            tags = tags.concat(inventory.tags[item])
         }
         setTags(tags)
     }, [])

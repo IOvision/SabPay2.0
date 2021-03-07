@@ -18,7 +18,8 @@ export interface Props {
 }
 
 const OffersTab: React.FC<Props> = ({navigation, inventory, addToCart}) => {
-    const [empty, setEmpty] = useState(inventory.offers ? false : true) 
+    console.log(inventory.offers)
+    const [empty, setEmpty] = useState(Array.isArray(inventory.offers) && inventory.offers.length ? false : true) 
     return (
         <View style={styles.container}>
             <View style={{zIndex: 1}}><SearchWithBackground navigation={navigation}/></View>

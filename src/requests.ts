@@ -17,7 +17,6 @@ export const getItemsFromTag = (tag: string, lastKey: string) => new Promise<Arr
         }
     })
     .then(res => {
-        console.log('done')
         resolve(Item.itemsFromList(res.data.data))
     })
     .catch(err => reject(err.response))
@@ -45,7 +44,6 @@ export const getMerchant = (latitude: number, longitude: number, radius: number,
       };
     axios.get('/inventory', { params })
     .then(res => {
-        console.log("gatemERchant: " + Object.values(res.data.data))
         cb(false, InventoryMetadata.itemsFromList(res.data.data))
     })
     .catch(err => cb(err, null))
@@ -95,7 +93,7 @@ export const getSpecialOffers = () => new Promise<Array<String>>((resolve, rejec
 export const getMerchantDetails = (SK: string) => new Promise<Inventory>((resolve, reject) => {
     axios.get(`/inventory/${SK}`)
     .then(res => {
-        console.log(Object.keys(res.data.data[0]))
+        console.log("ggg: " + Object.keys(res.data.data[0]))
         resolve(res.data.data[0])
     })
     .catch(err => reject(err))
