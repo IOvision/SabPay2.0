@@ -28,7 +28,7 @@ const OrderDetail: React.FC<Props> = ({route, navigation})=>  {
             <View style={styles.end}></View>                
             <View>
                 <HeaderText>Service Provider</HeaderText>
-                <BodyText>{route.params.data.merchantName}</BodyText>
+                <BodyText>{route.params.data.merchant.name}</BodyText>
             </View>
             <View style={styles.end}></View>
             <HeaderText>Order Id - {route.params.data.id}</HeaderText>

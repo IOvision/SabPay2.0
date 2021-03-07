@@ -5,8 +5,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import colors from '../../assets/colors'
 import Inventory from '../../models/Inventory';
 import { connect } from 'react-redux';
-import { setMerchant } from '../../redux/actions/merchant';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setInventory } from '../../redux/actions/inventory';
 
 interface Props {
     item: Inventory,
@@ -56,7 +56,7 @@ const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        set: (inventory: Inventory) => dispatch(setMerchant(inventory)),
+        set: (inventory: Inventory) => dispatch(setInventory(inventory)),
     }
 }
 

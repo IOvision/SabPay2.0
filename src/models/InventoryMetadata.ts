@@ -2,7 +2,7 @@ export default class InventoryMetadata {
     
     PK: string;
     SK: string;
-    shopname: string;
+    shopName: string;
     address: string;
     phone: string;
     image: string;
@@ -11,7 +11,7 @@ export default class InventoryMetadata {
     constructor(a: any) {
         this.PK = a.PK
         this.SK = a.SK
-        this.shopname = a.shopname
+        this.shopName = a.shopName
         this.address = a.address
         this.phone = a.phone
         this.image = a.image

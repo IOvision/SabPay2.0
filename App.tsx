@@ -17,9 +17,9 @@ import { connect } from 'react-redux';
 import User from './src/models/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Inventory from './src/models/Inventory';
-import { setMerchant } from './src/redux/actions/merchant';
 import { BodyText } from './src/components/atoms/Text';
 import NetInfo from '@react-native-community/netinfo';
+import { setInventory } from './src/redux/actions/inventory';
 
 Amplify.configure(awsConfig)
 Auth.configure({
@@ -118,7 +118,7 @@ class App extends React.Component<Props, State> {
 const mapDispatchToProps = (dispatch) => {
   return {
     setSignedIn: (user: User) => dispatch(signIn(user)),
-    setInventory: (inventory: Inventory) => dispatch(setMerchant(inventory))
+    setInventory: (inventory: Inventory) => dispatch(setInventory(inventory))
   }
 }
 

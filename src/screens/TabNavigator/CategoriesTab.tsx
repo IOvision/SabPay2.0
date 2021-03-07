@@ -36,7 +36,7 @@ const CategoriesTab: React.FC<Props> = ({navigation, inventory}) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        inventory: state.merchantReducer.inventory
+        inventory: state.inventoryReducer.inventory
     }
 }
 

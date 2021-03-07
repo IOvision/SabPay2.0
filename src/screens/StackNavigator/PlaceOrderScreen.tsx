@@ -133,7 +133,7 @@ const mapStateToProps = (state: RootState) => {
         total: state.cartReducer.total,
         items: state.cartReducer.items,
         quantity: state.cartReducer.qty,
-        inventory: state.merchantReducer.inventory,
+        inventory: state.inventoryReducer.inventory,
         user: state.userReducer.user
     }
 }

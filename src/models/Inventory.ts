@@ -1,7 +1,7 @@
 import Item from './Item'
 
 export interface NewInventoryData {
-    shopname: string,
+    shopName: string,
     address: string,
     phone: string,
     deliveryOpted: boolean
@@ -11,7 +11,7 @@ export default class Inventory {
     
     PK: string;
     SK: string;
-    shopname: string;
+    shopName: string;
     address: string;
     phone: string;
     image: string;
@@ -34,7 +34,7 @@ export default class Inventory {
         console.log('debug', a.offers)
         this.PK = a && a.PK || undefined
         this.SK = a && a.SK || undefined
-        this.shopname = a && a.shopname || undefined
+        this.shopName = a && a.shopName || undefined
         this.address = a && a.address || undefined
         this.image = a && a.image || "NaN"
         this.rating = a && a.rating || 0

@@ -79,13 +79,13 @@ const OffersTab: React.FC<Props> = ({navigation, inventory, addToCart}) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        inventory: state.merchantReducer.inventory
+        inventory: state.inventoryReducer.inventory
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addToCart : (item: CartItem, selected: number) => dispatch(addItem(item, selected))
+        addToCart : (item: CartItem) => dispatch(addItem(item))
     }
 }
 

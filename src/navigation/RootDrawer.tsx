@@ -44,7 +44,7 @@ const RootDrawer: React.FC<Props> = ({inventory}) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        inventory: state.merchantReducer.inventory
+        inventory: state.inventoryReducer.inventory
     }
 }
 

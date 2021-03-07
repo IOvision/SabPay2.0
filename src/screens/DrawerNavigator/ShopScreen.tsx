@@ -28,6 +28,7 @@ const ShopScreen: React.FC<Props> = ({navigation, route}) => {
         console.log("getMerchnat" + route.params.latitude + route.params.longitude)
         if(err) 
           return console.log(err)
+          console.log(resp)
           setInventories(resp)
           setIsLoading(false)
       })

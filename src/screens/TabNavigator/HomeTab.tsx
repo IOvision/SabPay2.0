@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
 import Inventory from '../../models/Inventory'
 import { getSpecialOffers, getMerchantDetails } from '../../requests'
-import { setMerchant } from '../../redux/actions/merchant';
+import { setInventory } from '../../redux/actions/inventory';
 
 export interface Props {
     navigation: any,
@@ -45,7 +45,7 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
 
     return (
         <View style={{flex: 1, backgroundColor: 'white'}}>
-            <SearchWithBackground home={true} navigation={navigation} name={inventory.name} address={inventory.address}/>
+            <SearchWithBackground home={true} navigation={navigation} name={inventory.shopName} address={inventory.address}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
                 <HomePageCategoryList data={inventory.tags} baseUrl={""} navigation={navigation}  isLoading={isLoading}/>
@@ -64,13 +64,13 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        inventory: state.merchantReducer.inventory
+        inventory: state.inventoryReducer.inventory
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        set: (inventory: Inventory) => dispatch(setMerchant(inventory)),
+        set: (inventory: Inventory) => dispatch(setInventory(inventory)),
     }
 }
 

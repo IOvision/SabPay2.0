@@ -16,7 +16,7 @@ export interface Props {
     addToCart: (item: CartItem, selected: number) => void
 }
 
-const StoreSpecialListItem: React.FC<Props> = ({item, color, addToCart,inventory}) => {
+const StoreSpecialListItem: React.FC<Props> = ({item, color, addToCart, inventory}) => {
   console.log("store: " + Object.keys(item))
   return (
     <TouchableOpacity style={StoreSpecialListItemStyles.container} 
@@ -32,13 +32,13 @@ const StoreSpecialListItem: React.FC<Props> = ({item, color, addToCart,inventory
 
 const mapStateToProps = (state: RootState) => {
   return {
-      merchant: state.merchantReducer.inventory
+      inventory: state.inventoryReducer.inventory
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      addToCart : (item: CartItem, selected: number) => dispatch(addItem(item, selected))
+      addToCart : (item: CartItem) => dispatch(addItem(item))
   }
 }
 
