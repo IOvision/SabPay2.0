@@ -91,7 +91,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, use
                 <RoundView style={{ ...OrderDetailsStyle.roundView, marginTop: 10, marginBottom: 10}}>
                     <CaptionText>Payment Options</CaptionText>
                     <RadioButton.Group onValueChange={newValue => setPaymentMethod(newValue)} value={paymentMethod}>
-                        <View style={{ ...OrderDetailsStyle.radioButtonItem, marginTop: 20}}>
+                        {/* <View style={{ ...OrderDetailsStyle.radioButtonItem, marginTop: 20}}>
                             <RadioButton color={colors.primary} value="upi" />
                             <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                                 <BodyText style={{fontSize: 20}}>UPI</BodyText>
@@ -112,7 +112,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, use
                         <View style={OrderDetailsStyle.radioButtonItem}>
                             <RadioButton color={colors.primary} value="net-banking" />
                             <BodyText style={{fontSize: 20}}>Net Banking</BodyText>
-                        </View>
+                        </View> */}
                         <View style={OrderDetailsStyle.radioButtonItem}>
                             <RadioButton color={colors.primary} value="cod" />
                             <BodyText style={{fontSize: 20}}>Cash on Delivery</BodyText>

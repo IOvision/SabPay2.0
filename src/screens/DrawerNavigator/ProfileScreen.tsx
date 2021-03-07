@@ -22,9 +22,9 @@ export interface Props {
 const ProfileScreen: React.FC<Props> = ({isSignedIn, user}) => {
   const sheetRef = useRef(null)
   
-  const [name, setName] = useState(user.username)
-  const [phone, setPhone] = useState(user.phoneNumber)
-  const [address, setAddress] = useState(user.address[0])
+  const [name, setName] = useState(user ? user.username : undefined)
+  const [phone, setPhone] = useState(user ? user.phoneNumber : undefined)
+  const [address, setAddress] = useState(user ? user.address[0] : undefined)
 
   const [isLoading, setIsLoading] = useState(false)
 

@@ -30,7 +30,6 @@ export default class Inventory {
     longitude: number;
 
     constructor(a?: any) {
-        console.log('debug', a.offers)
         this.PK = a && a.PK || undefined
         this.SK = a && a.SK || undefined
         this.shopName = a && a.shopName || undefined

@@ -22,7 +22,7 @@ const Signup: React.FC<Props> = ({navigation, setSignedIn, route}) => {
 
     const handlePress = () => {
         var phoneNumber = route.params.phone
-        if (house == "" || colony == "" || city == "") return ToastAndroid.show("Enter details", ToastAndroid.SHORT)
+        if (house == "" || colony == "" || city == "" || username == "") return ToastAndroid.show("Enter details", ToastAndroid.SHORT)
         const address = [`${house}, ${colony}, ${city}`]
         const data = {
             username,

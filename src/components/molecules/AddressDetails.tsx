@@ -7,6 +7,7 @@ import { Dimensions, View, Text } from 'react-native'
 import { Divider, RadioButton } from 'react-native-paper'
 import colors from '../../assets/colors'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import LocationView from '../molecules/LocationView'
 import Animated, { block, clockRunning, cond, debug, Easing, set, startClock, stopClock, timing, Value } from 'react-native-reanimated'
 
 export interface Props {
@@ -22,9 +23,8 @@ export interface Handle {
 const {height, width} = Dimensions.get('window')
 
 const AddressDetails: React.ForwardRefRenderFunction<Handle, Props> = forwardRef(({user, setSelected, selected}, ref) => {
-    console.log("selected: " + selected)
     const [translateY, setTranslateY] = useState(height)
-
+    const [state, setState] = useState("old")
     useImperativeHandle(ref, () => ({
         openAddress() {
             setTranslateY(0)
@@ -63,17 +63,18 @@ const AddressDetails: React.ForwardRefRenderFunction<Handle, Props> = forwardRef
     const toggleView = () => {
         setTranslateY(height)
     }
-
+    
     return (
         <Animated.View style={{flex: 1, height, width, position: 'absolute', backgroundColor: 'transparent', transform:[{translateY}]}}>
             <View style={{height, width, position: 'absolute', opacity: 0.8, backgroundColor: 'black'}} />
-            <View style={{flex: 1, height, marginTop: height/3, backgroundColor: 'white', padding: 15}}>
+            {
+                state == "old" ? <View style={{flex: 1, height, marginTop: height/3, backgroundColor: 'white', padding: 15}}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                     <BodyText style={{fontSize: 24, color: Colors.primary}}>Select an address</BodyText>
                     <Icon name="close" color={Colors.grey} size={22} onPress={toggleView} />
                 </View>
                 <Divider style={{marginVertical: 10}} />
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => setState("new")}>
                     <View style={{
                         flexDirection: 'row', 
                         backgroundColor: 'white', 
@@ -109,7 +110,9 @@ const AddressDetails: React.ForwardRefRenderFunction<Handle, Props> = forwardRef
                     }
                 </RadioButton.Group>
             </View>
-        </Animated.View>
+        : <View style={{flex: 1, height, marginTop: height/3, backgroundColor: 'white', padding: 15}}><LocationView state={state} setState={setState}/></View>
+            }
+            </Animated.View>
     )
 })
 

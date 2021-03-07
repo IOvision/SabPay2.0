@@ -90,7 +90,6 @@ export const getSpecialOffers = () => new Promise<Array<String>>((resolve, rejec
 export const getMerchantDetails = (SK: string) => new Promise<Inventory>((resolve, reject) => {
     axios.get(`/inventory/${SK}`)
     .then(res => {
-        console.log("ggg: " + Object.keys(res.data.data[0]))
         resolve(res.data.data[0])
     })
     .catch(err => reject(err))
@@ -115,7 +114,7 @@ export const putUserData = (user: User, cb: (err: any, resp: User) => void) => {
     Auth.currentSession()
     .then(data => {
         const token = data.getIdToken().getJwtToken()
-        axios.put(`/user/${user.getPhone()}`, {
+        axios.put(`/user/${user.phoneNumber}`, {
             UpdateExpression: "set username=:n, address= :a, phoneNumber= :p",
             ExpressionAttributeValues: {
                 ":n": user.username,

@@ -1,33 +1,56 @@
-import React from 'react'
+import React, {useState} from 'react'
 import RoundView from '../atoms/RoundView'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { View, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 import InputText from '../atoms/InputText'
-import { CaptionText, HeaderText, BodyText } from '../atoms/Text'
+import { CaptionText, BodyText } from '../atoms/Text'
 import PurpleRoundButton from '../atoms/PurpleRoundBtn'
 import colors from '../../assets/colors'
+import { connect } from 'react-redux'
+import { RootState } from '../../redux/store'
+import User from '../../models/User'
+import {putUserData} from '../../requests'
+
+export interface Props {
+    user: User,
+    state: string, 
+    setState: Function
+}
  
-const AddressInputView: React.FC = () => {
+const AddressInputView: React.FC<Props> = ({user, state, setState}) => {
+    const [flat, setFlat] = useState("")
+    const [colony, setColony] = useState("")
+    const [city, setCity] = useState("")
+    const addAddress = () => {
+        const address = flat + ", " + colony + ", " + city
+        user.address.push(address)
+        putUserData(user, (err, resp) => {
+            AsyncStorage.setItem('@User', JSON.stringify(resp))
+        })
+        setState("old")
+    }
     return (
         <RoundView>
             <CaptionText>Location</CaptionText>
-            <BodyText>Shakti Viahr Colony, Kolakusma Road, Chanakya Nagar Dhanbad, Jharkhand 828127, India</BodyText>
-            <View style={styles.text}>
-                <HeaderText style={styles.text}>Use Current Location</HeaderText>
-            </View>
-            <InputText placeholder="House/Flat number" editable={true}/>
-            <InputText placeholder="Colony/Society/Road" editable={true}/>
-            <InputText placeholder="City/State" editable={true}/>
-            <View style={styles.text}>
-                <HeaderText style={styles.text}>Use Current Location</HeaderText>
-            </View>
+            <BodyText>{user.address[0]}</BodyText>
+            <InputText placeholder="House/Flat number" editable={true} value={flat} onChangeText={setFlat}/>
+            <InputText placeholder="Colony/Society/Road" editable={true} value={colony} onChangeText={setColony}/>
+            <InputText placeholder="City/State" editable={true} value={city} onChangeText={setCity}/>
             <View style={styles.btnView}>
-                <PurpleRoundButton text="Confirm" />
+                <PurpleRoundButton text="Confirm" onPress={addAddress}/>
             </View>
         </RoundView>
     )
 }
 
-export default AddressInputView
+const mapStateToProps = (state: RootState) => {
+  return {
+      user: state.userReducer.user
+  }
+}
+
+export default connect(mapStateToProps)(AddressInputView)
+
 
 interface Style {
     text: TextStyle,
@@ -41,6 +64,7 @@ const styles = StyleSheet.create<Style>({
         marginTop: 15
     },
     btnView: {
-        alignItems: "flex-end"
+        alignItems: "flex-end",
+        marginTop: 30
     }
 })

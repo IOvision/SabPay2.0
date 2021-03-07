@@ -22,14 +22,14 @@ const CategoryListTab: React.FC<Props> = (props) => {
 
     useEffect(() => {
         let tags: string[] = []
-        for (let item of props.inventory.tags) {
-            tags = tags.concat(item.tag)
+        for (let item in props.inventory.tags) {
+            tags = tags.concat(props.inventory.tags[item])
         }
         setTags(tags)
         inputRef.current.focus()
     }, [])
     return (
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: "white"}}>
             <View style={{
                 backgroundColor: colors.primary, 
                 width: width/2,
@@ -73,7 +73,7 @@ const CategoryListTab: React.FC<Props> = (props) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        inventory: state.merchantReducer.inventory
+        inventory: state.inventoryReducer.inventory
     }
 }
 

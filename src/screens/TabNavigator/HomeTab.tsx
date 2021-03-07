@@ -37,7 +37,6 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
             inventory.offers = second.offers
             inventory.exclude = second.exclude
             inventory.tags = second.tags
-            console.log("hxcv: "+Object.keys(inventory.tags))
             setIsLoading(false)
         })
     }, [])

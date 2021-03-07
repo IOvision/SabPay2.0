@@ -2,7 +2,8 @@ import React from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import { colorsType } from '../../assets/colors';
 import {StoreSpecialListItemStyles} from '../../styles/FlatListItemStyle';
-import {BodyText} from '../atoms/Text';import { connect } from 'react-redux'
+import {BodyText} from '../atoms/Text';
+import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
 import Inventory from '../../models/Inventory'
 import { addItem } from '../../redux/actions/cart'
