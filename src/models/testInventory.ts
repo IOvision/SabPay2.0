@@ -1,6 +1,6 @@
-import Merchant from './Merchant'
+import Inventory from './Inventory'
 
-var testInventory: Merchant[]
+var testInventory: Inventory[]
 var json = [
     {
         "PK": "",

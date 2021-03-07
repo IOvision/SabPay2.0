@@ -1,7 +1,6 @@
 import React from 'react'
 
 import ProfileScreen from '../screens/DrawerNavigator/ProfileScreen'
-import ShopScreen from '../screens/DrawerNavigator/ShopScreen'
 import MapScreen from '../screens/StackNavigator/MapScreen'
 import OrderHistory from '../screens/DrawerNavigator/OrderHistoryScreen'
 import CartTab from '../screens/TabNavigator/CartTab'
@@ -12,21 +11,21 @@ import RootTab from './RootTab'
 import CustomDrawerContent from './HomeDrawer/CustomDrawerContent'
 import { connect } from 'react-redux'
 import { RootState } from '../redux/store'
-import Merchant from '../models/Merchant'
+import Inventory from '../models/Inventory'
 
 const Drawer = createDrawerNavigator();
 
 export interface Props {
-    merchant: Merchant,
+    inventory: Inventory,
 }
 
-const RootDrawer: React.FC<Props> = ({merchant}) => {
+const RootDrawer: React.FC<Props> = ({inventory}) => {
     return (
         <Drawer.Navigator 
             drawerStyle={{
                 width: 240,
             }}
-            initialRouteName={ merchant ? "Dashboard" : "Change Store" } 
+            initialRouteName={ inventory ? "Dashboard" : "Change Store" } 
             drawerContent={(props) => 
                 (
                     <CustomDrawerContent {...props} />
@@ -45,7 +44,7 @@ const RootDrawer: React.FC<Props> = ({merchant}) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        merchant: state.merchantReducer.merchant
+        inventory: state.merchantReducer.inventory
     }
 }
 

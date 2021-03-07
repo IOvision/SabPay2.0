@@ -4,19 +4,19 @@ import { colorsType } from '../../assets/colors';
 import {StoreSpecialListItemStyles} from '../../styles/FlatListItemStyle';
 import {BodyText} from '../atoms/Text';import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
-import Merchant from '../../models/Merchant'
+import Inventory from '../../models/Inventory'
 import { addItem } from '../../redux/actions/cart'
 import CartItem from '../../models/CartItem'
 import Item from '../../models/Item'
 
 export interface Props {
     color: colorsType,
-    merchant: Merchant,
+    inventory: Inventory,
     item: Item,
     addToCart: (item: CartItem, selected: number) => void
 }
 
-const StoreSpecialListItem: React.FC<Props> = ({item, color, addToCart,merchant}) => {
+const StoreSpecialListItem: React.FC<Props> = ({item, color, addToCart,inventory}) => {
   console.log("store: " + Object.keys(item))
   return (
     <TouchableOpacity style={StoreSpecialListItemStyles.container} 
@@ -32,7 +32,7 @@ const StoreSpecialListItem: React.FC<Props> = ({item, color, addToCart,merchant}
 
 const mapStateToProps = (state: RootState) => {
   return {
-      merchant: state.merchantReducer.merchant
+      merchant: state.merchantReducer.inventory
   }
 }
 

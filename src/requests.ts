@@ -5,7 +5,7 @@ axios.defaults.baseURL = "https://oqy97amyd0.execute-api.ap-south-1.amazonaws.co
 axios.defaults.headers = { "x-api-key": 'RDFCXXNZwW2FBxGykBgKz3E0MPcz3A5I4yFqzmlw' }
 
 import Item from './models/Item'
-import Merchant from './models/Merchant'
+import Inventory from './models/Inventory'
 import Order from './models/Order'
 import User from './models/User'
 
@@ -44,7 +44,7 @@ export const getMerchant = (latitude: number, longitude: number, radius: number,
       };
     axios.get('/inventory', { params })
     .then(res => {
-        cb(false, Merchant.itemsFromList(res.data.data))
+        cb(false, Inventory.itemsFromList(res.data.data))
     })
     .catch(err => cb(err, null))
 }
@@ -90,7 +90,7 @@ export const getSpecialOffers = () => new Promise<Array<String>>((resolve, rejec
     .catch(err => reject(err))
 })
 
-export const getMerchantDetails = (SK: string) => new Promise<Merchant>((resolve, reject) => {
+export const getMerchantDetails = (SK: string) => new Promise<Inventory>((resolve, reject) => {
     axios.get(`/inventory/${SK}`)
     .then(res => {
         resolve(res.data.data[0])

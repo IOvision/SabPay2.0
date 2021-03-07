@@ -8,7 +8,6 @@ export interface Props {
     data: string[],
     style?: ViewStyle,
     navigation: any,
-    // isLoading: boolean,
     baseUrl: string
 }
 

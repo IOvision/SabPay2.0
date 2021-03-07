@@ -7,18 +7,18 @@ import OfferOnSwipeText from '../../components/atoms/OfferOnSwipeText'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
-import Merchant from '../../models/Merchant'
+import Inventory from '../../models/Inventory'
 import { addItem } from '../../redux/actions/cart'
 import CartItem from '../../models/CartItem'
 
 export interface Props {
     navigation: any,
-    merchant: Merchant,
+    inventory: Inventory,
     addToCart: (item: CartItem, selected: number) => void
 }
 
-const OffersTab: React.FC<Props> = ({navigation, merchant, addToCart}) => {
-    const [empty, setEmpty] = useState(merchant.offers ? false : true) 
+const OffersTab: React.FC<Props> = ({navigation, inventory, addToCart}) => {
+    const [empty, setEmpty] = useState(inventory.offers ? false : true) 
     return (
         <View style={styles.container}>
             <View style={{zIndex: 1}}><SearchWithBackground navigation={navigation}/></View>
@@ -27,11 +27,11 @@ const OffersTab: React.FC<Props> = ({navigation, merchant, addToCart}) => {
                     <View style={styles.textContainer}><CaptionText style={{margin: 10}}>Currently there are no offers :(</CaptionText></View>
                 ) : (
                     <Swiper
-                        cards={merchant.offers}
+                        cards={inventory.offers}
                         backgroundColor={'#ffffff'}
                         animateCardOpacity={true}
                         onSwipedLeft={() => console.log("Left")}
-                        onSwipedRight={(card) => addToCart(new CartItem(merchant.offers[card], 0), 0)}
+                        onSwipedRight={(card) => addToCart(new CartItem(inventory.offers[card], 0), 0)}
                         onSwipedAll={() => setEmpty(true)}
                         verticalSwipe={false}
                         outputRotationRange={["10deg", "0deg", "-10deg"]}
@@ -79,7 +79,7 @@ const OffersTab: React.FC<Props> = ({navigation, merchant, addToCart}) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        merchant: state.merchantReducer.merchant
+        inventory: state.merchantReducer.inventory
     }
 }
 

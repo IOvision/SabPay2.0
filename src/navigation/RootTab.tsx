@@ -1,7 +1,6 @@
 import React from 'react'
 
 import HomeTab from '../screens/TabNavigator/HomeTab'
-import CartTab from '../screens/TabNavigator/CartTab'
 import CategoriesTab from '../screens/TabNavigator/CategoriesTab'
 import OffersTab from '../screens/TabNavigator/OffersTab'
 import colors from '../assets/colors'

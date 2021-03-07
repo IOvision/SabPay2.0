@@ -16,7 +16,7 @@ import { signIn } from './src/redux/actions/user';
 import { connect } from 'react-redux';
 import User from './src/models/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Merchant from './src/models/Merchant';
+import Inventory from './src/models/Inventory';
 import { setMerchant } from './src/redux/actions/merchant';
 import { BodyText } from './src/components/atoms/Text';
 import NetInfo from '@react-native-community/netinfo';
@@ -28,7 +28,7 @@ Auth.configure({
 
 export interface Props {
   setSignedIn: (user: User) => void,
-  setMerchant: (merchant: Merchant) => void
+  setInventory: (inventory: Inventory) => void
 }
 export interface State {
   isLoading: boolean,
@@ -57,9 +57,9 @@ class App extends React.Component<Props, State> {
   })
 
   getMerchantData = () => new Promise((resolve, reject) => {
-    AsyncStorage.getItem('@Merchant')
+    AsyncStorage.getItem('@Inventory')
     .then(data => {
-      if (data) this.props.setMerchant(Merchant.fromString(data))
+      if (data) this.props.setInventory(Inventory.fromString(data))
       resolve(true)
     })
     .catch(err => reject(err))
@@ -118,7 +118,7 @@ class App extends React.Component<Props, State> {
 const mapDispatchToProps = (dispatch) => {
   return {
     setSignedIn: (user: User) => dispatch(signIn(user)),
-    setMerchant: (merchant: Merchant) => dispatch(setMerchant(merchant))
+    setInventory: (inventory: Inventory) => dispatch(setMerchant(inventory))
   }
 }
 

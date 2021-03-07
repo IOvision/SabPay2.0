@@ -6,13 +6,13 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { BodyText } from '../../components/atoms/Text'
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
-import Merchant from '../../models/Merchant'
+import Inventory from '../../models/Inventory'
 
 const { width } = Dimensions.get('window')
 
 export interface Props {
     navigation: any,
-    merchant: Merchant
+    inventory: Inventory
 }
 
 const CategoryListTab: React.FC<Props> = (props) => {
@@ -22,7 +22,7 @@ const CategoryListTab: React.FC<Props> = (props) => {
 
     useEffect(() => {
         let tags: string[] = []
-        for (let item of props.merchant.tags) {
+        for (let item of props.inventory.tags) {
             tags = tags.concat(item.tag)
         }
         setTags(tags)
@@ -73,7 +73,7 @@ const CategoryListTab: React.FC<Props> = (props) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        merchant: state.merchantReducer.merchant
+        inventory: state.merchantReducer.inventory
     }
 }
 

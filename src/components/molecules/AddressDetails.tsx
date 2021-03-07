@@ -1,15 +1,13 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { connect } from 'react-redux'
 import User from '../../models/User'
-import { RootState } from '../../redux/store'
 import { BodyText } from '../atoms/Text'
 import Colors from '../../assets/colors'
 import { Dimensions, View, Text } from 'react-native'
-import { Divider, RadioButton, ToggleButton } from 'react-native-paper'
+import { Divider, RadioButton } from 'react-native-paper'
 import colors from '../../assets/colors'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import Animated, { block, Clock, clockRunning, cond, debug, Easing, set, startClock, stopClock, timing, Value } from 'react-native-reanimated'
+import Animated, { block, clockRunning, cond, debug, Easing, set, startClock, stopClock, timing, Value } from 'react-native-reanimated'
 
 export interface Props {
     user: User,

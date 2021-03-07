@@ -1,6 +1,5 @@
 import CartItem from "../../models/CartItem"
 import Inventory from "../../models/Inventory"
-import Merchant from "../../models/Merchant"
 import User from "../../models/User"
 
 //USER
@@ -61,7 +60,7 @@ interface ClearCartAction {
 export type CartActionTypes = AddItemAction | IncItemAction | DecItemAction | ClearCartAction
 
 
-//MERCHANT
+//INVENTORY
 export interface InventoryState {
     inventory: Inventory
 }

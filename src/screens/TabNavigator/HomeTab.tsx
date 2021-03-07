@@ -8,23 +8,23 @@ import HomePageOffers from '../../components/molecules/HomePageOffers'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
-import Merchant from '../../models/Merchant'
+import Inventory from '../../models/Inventory'
 import { getSpecialOffers, getMerchantDetails } from '../../requests'
 import { setMerchant } from '../../redux/actions/merchant';
 
 export interface Props {
     navigation: any,
-    merchant: Merchant,
-    set: (a: Merchant) => void,
+    inventory: Inventory,
+    set: (a: Inventory) => void,
 }
 
-const HomeTab: React.FC<Props> = ({navigation, merchant, set}) => {
+const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [specialOffers1, setSpecialOffers1] = useState<Array<String>>([])
     const [specialOffers2, setSpecialOffers2] = useState<Array<String>>([])
-    console.log(merchant)
+    console.log(inventory)
     useEffect(() => {
-        Promise.all([getSpecialOffers(), getMerchantDetails(merchant.SK)])
+        Promise.all([getSpecialOffers(), getMerchantDetails(inventory.SK)])
         .then(data => {
             const first = data[0]
             const second = data[1]
@@ -34,10 +34,10 @@ const HomeTab: React.FC<Props> = ({navigation, merchant, set}) => {
             }
             setSpecialOffers1(result[0])
             setSpecialOffers2(result[1])
-            merchant.storeSp = second.storeSp
-            merchant.offers = second.offers
-            merchant.exclude = second.exclude
-            merchant.tags = second.tags
+            inventory.storeSp = second.storeSp
+            inventory.offers = second.offers
+            inventory.exclude = second.exclude
+            inventory.tags = second.tags
             setIsLoading(false)
         })
     }, [])
@@ -45,14 +45,14 @@ const HomeTab: React.FC<Props> = ({navigation, merchant, set}) => {
 
     return (
         <View style={{flex: 1, backgroundColor: 'white'}}>
-            <SearchWithBackground home={true} navigation={navigation} name={merchant.name} address={merchant.address}/>
+            <SearchWithBackground home={true} navigation={navigation} name={inventory.name} address={inventory.address}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
-                <HomePageCategoryList data={merchant.tags} baseUrl={""} navigation={navigation}  isLoading={isLoading}/>
+                <HomePageCategoryList data={inventory.tags} baseUrl={""} navigation={navigation}  isLoading={isLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
                 <Swipeable data={specialOffers1} />
                 <CaptionText style={{marginBottom: 10}}>Store Specials</CaptionText>
-                <StoreSpecialList object={merchant.storeSp} />
+                <StoreSpecialList object={inventory.storeSp} />
                 <Swipeable data={specialOffers2} />
                 <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
                 <HomePageOffers data={dealsOfTheDay}/>
@@ -64,13 +64,13 @@ const HomeTab: React.FC<Props> = ({navigation, merchant, set}) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        merchant: state.merchantReducer.merchant
+        inventory: state.merchantReducer.inventory
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        set: (merchant: Merchant) => dispatch(setMerchant(merchant)),
+        set: (inventory: Inventory) => dispatch(setMerchant(inventory)),
     }
 }
 

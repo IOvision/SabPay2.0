@@ -1,17 +1,16 @@
 import React from 'react'
 import { View, TouchableOpacity, Image } from 'react-native';
 import { shopListItemstyles } from '../../styles/FlatListItemStyle'
-import { HeaderText, BodyText } from '../atoms/Text'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../../assets/colors'
-import Merchant from '../../models/Merchant';
+import Inventory from '../../models/Inventory';
 import { connect } from 'react-redux';
 import { setMerchant } from '../../redux/actions/merchant';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface Props {
-    item: Merchant,
-    set: (a: Merchant) => void,
+    item: Inventory,
+    set: (a: Inventory) => void,
     navigation: any,
     index: number
 }
@@ -29,9 +28,10 @@ const displayRating = (number: number, index: number) => {
 }
 
 const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
+    console.log("data: ", Object.keys(item))
     return (
         <TouchableOpacity style={shopListItemstyles.container} activeOpacity={0.9} onPress={() => {
-            AsyncStorage.setItem('@Merchant', item.toJson())
+            AsyncStorage.setItem('@Inventory', item.toJson())
             set(item)
             navigation.navigate('Main', {
                 item: item
@@ -43,20 +43,20 @@ const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
                     source={{uri: item.image}}
                 />   
             </View>
-            <View style={shopListItemstyles.shopInfo}>
+            {/* <View style={shopListItemstyles.shopInfo}>
                 <HeaderText>{item.name}</HeaderText>
                 <BodyText>{item.address}</BodyText>
                 <View style={{flexDirection: "row"}}>
                 {displayRating(item.rating, index)}
                 </View>
-            </View>
+            </View> */}
         </TouchableOpacity>
     )
 }
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        set: (merchant: Merchant) => dispatch(setMerchant(merchant)),
+        set: (inventory: Inventory) => dispatch(setMerchant(inventory)),
     }
 }
 

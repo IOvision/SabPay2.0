@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import CategoryPageCategoryList from '../../components/molecules/CategoryPageCategoryList'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
-import Merchant from '../../models/Merchant'
+import Inventory from '../../models/Inventory'
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
 
 export interface Props {
     navigation: any,
-    merchant: Merchant
+    inventory: Inventory
 }
-const CategoriesTab: React.FC<Props> = ({navigation, merchant}) => {
+const CategoriesTab: React.FC<Props> = ({navigation, inventory}) => {
     const [tags, setTags] = useState<string[]>([])
     useEffect(() => {
         let tags: string[] = []
-        for (let item of merchant.tags) {
+        for (let item of inventory.tags) {
             tags = tags.concat(item.tag)
         }
         setTags(tags)
@@ -36,7 +36,7 @@ const CategoriesTab: React.FC<Props> = ({navigation, merchant}) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        merchant: state.merchantReducer.merchant
+        inventory: state.merchantReducer.inventory
     }
 }
 

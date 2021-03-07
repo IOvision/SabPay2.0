@@ -11,7 +11,7 @@ import { RootState } from '../../redux/store'
 import { connect } from 'react-redux'
 import CartItem from '../../models/CartItem'
 import { order } from '../../requests'
-import Merchant from '../../models/Merchant'
+import Inventory from '../../models/Inventory'
 import User from '../../models/User'
 import Order, { MerchantOrderDetails, UserOrderDetails } from '../../models/Order'
 import AddressDetails, { AddressDetailsType } from '../../components/molecules/AddressDetails'
@@ -20,7 +20,7 @@ export interface Props {
     items: CartItem[],
     navigation: any,
     total: number,
-    merchant: Merchant,
+    inventory: Inventory,
     user: User,
     discount?: number,
     route: {
@@ -33,7 +33,7 @@ export interface Props {
     }
 }
 
-const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user, discount, route, quantity}) => {
+const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, user, discount, route, quantity}) => {
 
     const [paymentMethod, setPaymentMethod] = React.useState("cod")
     const [isLoading, setIsLoading] = React.useState(false)
@@ -55,11 +55,11 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, merchant, user
             address: user.address[address]
         }
         const merchantDetails: MerchantOrderDetails = {
-            name: merchant.name,
-            phone: merchant.phone,
-            address: merchant.address
+            name: inventory.shopname,
+            phone: inventory.phone,
+            address: inventory.address
         }
-        order(Order.partialDetails(CartItem.itemsWithQuantity(items, quantity), total.toString(), "0", deliveryType, userDetails, merchantDetails), user.phoneNumber.substr(3), merchant.SK, (err, resp) => {
+        order(Order.partialDetails(CartItem.itemsWithQuantity(items, quantity), total.toString(), "0", deliveryType, userDetails, merchantDetails), user.phoneNumber.substr(3), inventory.SK, (err, resp) => {
             if (err) console.log(err)
             if(resp) {
                 navigation.replace("OrderPlacedScreen", {
@@ -133,7 +133,7 @@ const mapStateToProps = (state: RootState) => {
         total: state.cartReducer.total,
         items: state.cartReducer.items,
         quantity: state.cartReducer.qty,
-        merchant: state.merchantReducer.merchant,
+        inventory: state.merchantReducer.inventory,
         user: state.userReducer.user
     }
 }
