@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import User from '../../models/User'
 import { BodyText } from '../atoms/Text'
 import Colors from '../../assets/colors'
@@ -70,52 +70,62 @@ const AddressDetails: React.ForwardRefRenderFunction<Handle, Props> = forwardRef
     }
     
     return (
-        <Animated.View style={{flex: 1, height, width, position: 'absolute', backgroundColor: 'transparent', transform:[{translateY}]}}>
+        <Animated.View style={{flex: 1, width, position: 'absolute', backgroundColor: 'transparent', transform:[{translateY}]}}>
             <View style={{height, width, position: 'absolute', opacity: 0.8, backgroundColor: 'black'}} />
             {
-                state == "old" ? <View style={{flex: 1, height, marginTop: height/3, backgroundColor: 'white', padding: 15}}>
-                <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                    <BodyText style={{fontSize: 24, color: Colors.primary}}>Select an address</BodyText>
-                    <Icon name="close" color={Colors.grey} size={22} onPress={toggleView} />
-                </View>
-                <Divider style={{marginVertical: 10}} />
-                <TouchableOpacity onPress={() => setState("new")}>
-                    <View style={{
-                        flexDirection: 'row', 
-                        backgroundColor: 'white', 
-                        borderWidth: 2, 
-                        borderColor: colors.primary,
-                        borderRadius: 5, 
-                        padding: 7, 
-                        justifyContent: 'center', 
-                        alignItems: 'center',
-                    }}>
-                        <Icon name="plus" color={Colors.primary} size={22} />
-                        <Text style={{
-                            fontSize: 18, 
-                            textAlign: 'center', 
-                            color: colors.primary,
-                            marginLeft: 5
-                        }}>Add address</Text>
-                    </View>
-                </TouchableOpacity>
-                <BodyText style={{fontSize: 24, color: Colors.primary, marginTop: 20}}>Saved Addresses</BodyText>
-                <Divider style={{marginBottom: 10}} />
-                    {
-                        user.address.map((text, index) => (
-                            <View key={index.toString()}>
-                                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 5 }}>                                
-                                    <BodyText style={{fontSize: 18}}>{text}</BodyText>
-                                    <RadioButton color={colors.primary} value={text}
-                                        status={ checked == text ? 'checked' : 'unchecked' }
-                                        onPress={() => changeSelectedAddress(text, index)} />   
-                                </View>
-                                <Divider style={{marginVertical: 5}} />
+                state == "old" ? (
+                    <ScrollView style={{flex: 1, height: (2*height)/3-65, marginTop: height/3, backgroundColor: 'white', padding: 15}}>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                            <BodyText style={{fontSize: 24, color: Colors.primary}}>Select an address</BodyText>
+                            <Icon name="close" color={Colors.primary} size={22} onPress={toggleView} />
+                        </View>
+                        <Divider style={{marginVertical: 10}} />
+                        <TouchableOpacity onPress={() => setState("new")}>
+                            <View style={{
+                                flexDirection: 'row', 
+                                backgroundColor: 'white', 
+                                borderWidth: 2, 
+                                borderColor: colors.primary,
+                                borderRadius: 5, 
+                                padding: 7, 
+                                justifyContent: 'center', 
+                                alignItems: 'center',
+                            }}>
+                                <Icon name="plus" color={Colors.primary} size={22} />
+                                <Text style={{
+                                    fontSize: 18, 
+                                    textAlign: 'center', 
+                                    color: colors.primary,
+                                    marginLeft: 5
+                                }}>Add address</Text>
                             </View>
-                        ))
-                    }
-            </View>
-        : <View style={{flex: 1, height, marginTop: height/3, backgroundColor: 'white', padding: 15}}><LocationView state={state} setState={setState}/></View>
+                        </TouchableOpacity>
+                        <BodyText style={{fontSize: 20, color: Colors.primary, marginTop: 20}}>Saved Addresses</BodyText>
+                        <Divider style={{marginBottom: 10}} />
+                        {
+                            user.address.map((text, index) => (
+                                <View key={index.toString()}>
+                                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 5 }}>                                
+                                        <BodyText style={{fontSize: 16}}>{text}</BodyText>
+                                        <RadioButton color={colors.primary} value={text}
+                                            status={ checked == text ? 'checked' : 'unchecked' }
+                                            onPress={() => changeSelectedAddress(text, index)} />   
+                                    </View>
+                                    <Divider style={{marginVertical: 5}} />
+                                </View>
+                            ))
+                        }
+                        <View style={{height: 50}} />
+                    </ScrollView>
+                ) : (
+                    <View style={{flex: 1, height: (2*height)/3-65, marginTop: height/3, backgroundColor: 'white'}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 15, padding: 15}}>
+                            <Icon name="arrow-left" color={Colors.primary} size={22} onPress={() => setState("old")} />
+                            <BodyText style={{fontSize: 24, color: Colors.primary, marginStart: 20}}>Add address</BodyText>
+                        </View>
+                        <LocationView state={state} setState={setState}/>
+                    </View>
+                )
             }
             </Animated.View>
     )
