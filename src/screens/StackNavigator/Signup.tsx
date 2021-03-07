@@ -34,6 +34,7 @@ const Signup: React.FC<Props> = ({navigation, setSignedIn, route}) => {
             AsyncStorage.setItem('@User', JSON.stringify(resp))
             setSignedIn(resp)
         })
+        navigation.pop()
     }
 
     return (

@@ -4,6 +4,7 @@ import Order from '../../models/Order';
 import MyOrderListItem from './MyOrderListItem';
 import Skeleton from "../atoms/Skeleton";
 import { HeaderText } from '../atoms/Text';
+import colors from '../../assets/colors';
 
 export interface Props {
   navigation: any,
@@ -48,7 +49,9 @@ const MyOrderList: React.FC<Props> = ({navigation, data, isLoading, setLastKey})
           }
           {
             data.length == 0 ? (
-              <View style={{ marginBottom: 300, alignItems: "center", backgroundColor: "white", flex: 1}}><HeaderText>There are no orders yet</HeaderText></View>
+              <View style={{ marginBottom: 300, alignItems: "center", backgroundColor: "white", flex: 1}}>
+                <HeaderText style={{color: colors.darkgrey, fontSize: 20}}>There are no orders yet</HeaderText>
+              </View>
             ) : null
           }
         </View>

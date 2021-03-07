@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
-import RoundView from '../atoms/RoundView'
+import {ToastAndroid} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { View, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 import InputText from '../atoms/InputText'
-import { CaptionText, BodyText, HeaderText } from '../atoms/Text'
-import PurpleRoundButton from '../atoms/PurpleRoundBtn'
+import { HeaderText } from '../atoms/Text'
 import colors from '../../assets/colors'
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
@@ -23,6 +22,7 @@ const AddressInputView: React.FC<Props> = ({user, state, setState}) => {
     const [colony, setColony] = useState("")
     const [city, setCity] = useState("")
     const addAddress = () => {
+        if (house == "" || colony == "" || city == "") return ToastAndroid.show("Enter details", ToastAndroid.SHORT)
         const address = flat + ", " + colony + ", " + city
         user.address.push(address)
         putUserData(user, (err, resp) => {
