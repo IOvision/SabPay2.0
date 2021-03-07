@@ -183,6 +183,6 @@ var json = [
     }
 ]
 
-testInventory = Merchant.itemsFromList(json)
+testInventory = Inventory.itemsFromList(json)
 
 export default testInventory

@@ -8,6 +8,7 @@ import Item from './models/Item'
 import Inventory from './models/Inventory'
 import Order from './models/Order'
 import User from './models/User'
+import InventoryMetadata from './models/InventoryMetadata'
 
 export const getItemsFromTag = (tag: string, lastKey: string) => new Promise<Array<Item>>((resolve, reject) => {
     axios.get(`/item/${tag}`, {
@@ -36,7 +37,7 @@ export const getItemsFromCategory = (category: string, lastKey: string, cb: (err
 }
 
 
-export const getMerchant = (latitude: number, longitude: number, radius: number, cb: (err: any, resp: any) => void) => {
+export const getMerchant = (latitude: number, longitude: number, radius: number, cb: (err: any, resp: InventoryMetadata[]) => void) => {
     const params = {
         radius: radius,
         latitude: latitude,
@@ -44,7 +45,8 @@ export const getMerchant = (latitude: number, longitude: number, radius: number,
       };
     axios.get('/inventory', { params })
     .then(res => {
-        cb(false, Inventory.itemsFromList(res.data.data))
+        console.log("gatemERchant: " + Object.values(res.data.data))
+        cb(false, InventoryMetadata.itemsFromList(res.data.data))
     })
     .catch(err => cb(err, null))
 }
@@ -93,6 +95,7 @@ export const getSpecialOffers = () => new Promise<Array<String>>((resolve, rejec
 export const getMerchantDetails = (SK: string) => new Promise<Inventory>((resolve, reject) => {
     axios.get(`/inventory/${SK}`)
     .then(res => {
+        console.log(Object.keys(res.data.data[0]))
         resolve(res.data.data[0])
     })
     .catch(err => reject(err))

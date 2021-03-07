@@ -5,6 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import colors from '../../assets/colors'
 import Inventory from '../../models/Inventory';
 import { connect } from 'react-redux';
+import {HeaderText, BodyText} from '../atoms/Text'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setInventory } from '../../redux/actions/inventory';
 
@@ -28,7 +29,7 @@ const displayRating = (number: number, index: number) => {
 }
 
 const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
-    console.log("data: ", Object.keys(item))
+    console.log("data: ", Object.values(item))
     return (
         <TouchableOpacity style={shopListItemstyles.container} activeOpacity={0.9} onPress={() => {
             AsyncStorage.setItem('@Inventory', item.toJson())
@@ -43,13 +44,13 @@ const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
                     source={{uri: item.image}}
                 />   
             </View>
-            {/* <View style={shopListItemstyles.shopInfo}>
-                <HeaderText>{item.name}</HeaderText>
-                <BodyText>{item.address}</BodyText>
+            <View style={shopListItemstyles.shopInfo}>
+                <HeaderText>{item.shopName}</HeaderText>
+                <BodyText>{item.address.locality} {item.address.town} {item.address.city}</BodyText>
                 <View style={{flexDirection: "row"}}>
                 {displayRating(item.rating, index)}
                 </View>
-            </View> */}
+            </View>
         </TouchableOpacity>
     )
 }
