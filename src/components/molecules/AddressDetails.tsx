@@ -23,8 +23,13 @@ export interface Handle {
 const {height, width} = Dimensions.get('window')
 
 const AddressDetails: React.ForwardRefRenderFunction<Handle, Props> = forwardRef(({user, setSelected, selected}, ref) => {
+    const [checked, setChecked] = useState(user.address[0])
     const [translateY, setTranslateY] = useState(height)
     const [state, setState] = useState("old")
+    const changeSelectedAddress = (text, index) => {
+        setChecked(text)
+        setSelected(index.toString())
+    }
     useImperativeHandle(ref, () => ({
         openAddress() {
             setTranslateY(0)
@@ -96,19 +101,19 @@ const AddressDetails: React.ForwardRefRenderFunction<Handle, Props> = forwardRef
                 </TouchableOpacity>
                 <BodyText style={{fontSize: 24, color: Colors.primary, marginTop: 20}}>Saved Addresses</BodyText>
                 <Divider style={{marginBottom: 10}} />
-                <RadioButton.Group onValueChange={(value: string) => setSelected(parseInt(value))} value={selected.toString()}>
                     {
                         user.address.map((text, index) => (
                             <View key={index.toString()}>
                                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 5 }}>                                
                                     <BodyText style={{fontSize: 18}}>{text}</BodyText>
-                                    <RadioButton color={colors.primary} value={index.toString()} />   
+                                    <RadioButton color={colors.primary} value={text}
+                                        status={ checked == text ? 'checked' : 'unchecked' }
+                                        onPress={() => changeSelectedAddress(text, index)} />   
                                 </View>
                                 <Divider style={{marginVertical: 5}} />
                             </View>
                         ))
                     }
-                </RadioButton.Group>
             </View>
         : <View style={{flex: 1, height, marginTop: height/3, backgroundColor: 'white', padding: 15}}><LocationView state={state} setState={setState}/></View>
             }

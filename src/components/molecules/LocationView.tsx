@@ -32,7 +32,7 @@ const AddressInputView: React.FC<Props> = ({user, state, setState}) => {
     return (
         <RoundView>
             <CaptionText>Location</CaptionText>
-            <BodyText>{user.address[0]}</BodyText>
+            <BodyText>Add new address</BodyText>
             <InputText placeholder="House/Flat number" editable={true} value={flat} onChangeText={setFlat}/>
             <InputText placeholder="Colony/Society/Road" editable={true} value={colony} onChangeText={setColony}/>
             <InputText placeholder="City/State" editable={true} value={city} onChangeText={setCity}/>
