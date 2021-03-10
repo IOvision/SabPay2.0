@@ -1,4 +1,5 @@
 import CartItem from './CartItem'
+import dt from 'date-and-time'
 
 export interface UserOrderDetails {
     name: string,
@@ -49,7 +50,7 @@ export default class Order {
         a.discount = obj.discount;
         a.user = obj.user;
         a.id = obj.SK
-        a.merchant = obj.merchantName
+        a.merchant = obj.merchant
         a.status = obj.status
         return a
     }
@@ -87,4 +88,30 @@ export default class Order {
         return list
     }
 
+    public static createOrder(
+        invId: string,
+        deliveryType: string,
+        merchant: MerchantOrderDetails,
+        user: UserOrderDetails,
+        items: CartItem[],
+        total: string,
+        discount: string
+    ) {
+        const pattern = dt.compile('YYYYMMDDHHmmSSS')
+        const ts = Date.now()
+        var order = {
+            GS1_PK: `USR#${user.phone}`,
+            LS1_SK: 1,
+            PK: invId,
+            SK: `ORD#${dt.format(new Date(ts), pattern)}${user.phone}`,
+            status: "PLACED",
+            total,
+            discount,
+            deliveryType,
+            user,
+            merchant,
+            items,
+        }
+        return order;
+    }
 }

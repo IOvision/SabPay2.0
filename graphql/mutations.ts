@@ -1,46 +1,37 @@
-/* tslint:disable */
-/* eslint-disable */
-// this is an auto generated file. This will be overwritten
-
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createOrder = /* GraphQL */ `
+  mutation createOrder(
+    $input: CreateOrderInput!
   ) {
-    createTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
-  ) {
-    updateTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
-  ) {
-    deleteTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
+    createOrder(input: $input) {
+      GS1_PK
+      LS1_SK
+      SK
+      PK
+      deliveryType
+      discount
+      items {
+        PK
+        SK
+        image
+        name
+        originalPrice
+        price
+        quantity
+        variant
+        variantKey
+      }
+      merchant {
+        address
+        name
+        phone
+      }
+      status
+      total
+      user {
+        address
+        name
+        phone
+      }
     }
   }
 `;

@@ -33,15 +33,14 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
     )
     useEffect(() => {
         Auth.currentSession()
-        .then(data => {
-            console.log("data: " + data.getIdToken().getJwtToken())
-            getOrders(user.phoneNumber.substr(3), lastKey, (err, resp) => {
+        .then(data => {           
+            getOrders(user.phoneNumber, lastKey, (err, resp) => {
                 if(err) 
                   return console.log(err)
                   setOrder(resp)
                   setIsLoading(false)
                   console.log(resp[0])
-              })
+              })    
         })
         .catch(err => {
             setOrder([])
@@ -57,11 +56,11 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
                         <CaptionText style={{alignSelf: "center", marginTop: 30}}>You are currently not logged In</CaptionText>
                         <PurpleRoundBtn text="Log In" style={styles.btn} onPress={() => sheetRef.current.snapTo(0)}/>
                         <BottomSheet
-                        initialSnap={2}
-                        ref={sheetRef}
-                        snapPoints={['47%', '47%', 0]}
-                        borderRadius={10}
-                        renderContent={handleContinue}
+                            initialSnap={2}
+                            ref={sheetRef}
+                            snapPoints={['47%', '47%', 0]}
+                            borderRadius={10}
+                            renderContent={handleContinue}
                         />
                     </View>
                 ) : <MyOrderList navigation={navigation} data={order} isLoading={isLoading} setLastKey={setLastKey} />

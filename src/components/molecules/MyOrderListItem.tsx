@@ -10,6 +10,7 @@ export interface Props {
 }
 
 const MyOrderListItem: React.FC<Props> = ({data, navigation}) => {
+  console.log(data)
     return (
       <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("OrderDetail", {
           data: data

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, StyleSheet, Image } from 'react-native'
+import { View, ScrollView, StyleSheet } from 'react-native'
 import colors from '../../assets/colors'
 import PurpleRoundBtn from '../../components/atoms/PurpleRoundBtn'
 import RoundView from '../../components/atoms/RoundView'
@@ -10,11 +10,12 @@ import PlaceOrderDrag from '../../components/molecules/PlaceOrderDrag'
 import { RootState } from '../../redux/store'
 import { connect } from 'react-redux'
 import CartItem from '../../models/CartItem'
-import { order } from '../../requests'
 import Inventory from '../../models/Inventory'
 import User from '../../models/User'
 import Order, { MerchantOrderDetails, UserOrderDetails } from '../../models/Order'
-import AddressDetails, { AddressDetailsType } from '../../components/molecules/AddressDetails'
+import AddressDetails from '../../components/molecules/AddressDetails'
+import API, { graphqlOperation } from '@aws-amplify/api'
+import { createOrder } from '../../../graphql/mutations'
 
 export interface Props {
     items: CartItem[],
@@ -37,7 +38,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, use
 
     const [paymentMethod, setPaymentMethod] = React.useState("cod")
     const [isLoading, setIsLoading] = React.useState(false)
-    const addressRef = React.useRef<AddressDetailsType>(null)
+    const addressRef = React.useRef(null)
     const [address, setAddress] = React.useState(0)
 
     let deliveryType: string
@@ -46,8 +47,8 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, use
     else if(route.params.deliveryType === 1) 
         deliveryType = "Standard"
     else
-        deliveryType = "Pick-Up"
-    const confirm = () => {
+        deliveryType = "Self"
+    const confirm = async () => {
         setIsLoading(true)
         const userDetails: UserOrderDetails = {
             name: user.username,
@@ -55,19 +56,25 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, use
             address: user.address[address]
         }
         const merchantDetails: MerchantOrderDetails = {
-            name: inventory.shopname,
+            name: inventory.shopName,
             phone: inventory.phone,
             address: inventory.address
         }
-        order(Order.partialDetails(CartItem.itemsWithQuantity(items, quantity), total.toString(), "0", deliveryType, userDetails, merchantDetails), user.phoneNumber.substr(3), inventory.SK, (err, resp) => {
-            if (err) console.log(err)
-            if(resp) {
-                navigation.replace("OrderPlacedScreen", {
-                    qty: items.length,
-                    total: total
-                })
-            }
-        })
+        const order = Order.createOrder(
+            inventory.SK, 
+            deliveryType, 
+            merchantDetails, 
+            userDetails,
+            CartItem.itemsWithQuantity(items, quantity),
+            total.toString(),
+            "0"
+            )
+            console.log("order :", order)
+        try {
+            const newOrder = await API.graphql(graphqlOperation(createOrder, {input: order}))
+        } catch(err) {
+            console.log(err.errors)
+        }
     }
 
     if(isLoading) {

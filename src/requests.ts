@@ -65,9 +65,6 @@ export const getOrders = (phone: string, lastKey: string, cb: (err: any, resp: a
     .then(data => {
         const token = data.getIdToken().getJwtToken()
         axios.get(`/user/${phone}/order`, {
-            params: {
-                lastKey: lastKey
-            },
             headers: {
                 "SP-TOKEN": token
             }
