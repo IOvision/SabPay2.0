@@ -16,6 +16,7 @@ import Order, { MerchantOrderDetails, UserOrderDetails } from '../../models/Orde
 import AddressDetails from '../../components/molecules/AddressDetails'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import { createOrder } from '../../../graphql/mutations'
+import LottieView from 'lottie-react-native';
 
 export interface Props {
     items: CartItem[],
@@ -69,7 +70,6 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, use
             total.toString(),
             "0"
             )
-            console.log("order :", order)
         try {
             const newOrder = await API.graphql(graphqlOperation(createOrder, {input: order}))
         } catch(err) {
@@ -78,7 +78,7 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, use
     }
 
     if(isLoading) {
-        return <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}><HeaderText>Loading</HeaderText></View>
+        return <LottieView style={{display: "flex", flex: 1, backgroundColor: "white"}} source={require('../../assets/animations/loading.json')} autoPlay loop />
     }
 
     return (
