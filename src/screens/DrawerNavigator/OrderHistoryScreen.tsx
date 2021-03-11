@@ -37,6 +37,7 @@ const OrderHistoryScreen: React.FC<Props> = ({navigation, user}) => {
             getOrders(user.phoneNumber, lastKey, (err, resp) => {
                 if(err) 
                   return console.log(err)
+                  console.log("done")
                   setOrder(resp)
                   setIsLoading(false)
                   console.log(resp[0])

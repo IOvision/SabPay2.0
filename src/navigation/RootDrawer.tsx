@@ -30,7 +30,7 @@ const RootDrawer: React.FC<Props> = ({inventory, isSignedIn}) => {
             initialRouteName={ inventory ? "Dashboard" : "Change Store" } 
             drawerContent={(props) => 
                 (
-                    <CustomDrawerContent {...props} />
+                    <CustomDrawerContent {...props} setState={setState}/>
                 )
             }
         >   

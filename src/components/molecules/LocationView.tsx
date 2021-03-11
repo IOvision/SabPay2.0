@@ -22,7 +22,7 @@ const AddressInputView: React.FC<Props> = ({user, state, setState}) => {
     const [colony, setColony] = useState("")
     const [city, setCity] = useState("")
     const addAddress = () => {
-        if (house == "" || colony == "" || city == "") return ToastAndroid.show("Enter details", ToastAndroid.SHORT)
+        if (flat == "" || colony == "" || city == "") return ToastAndroid.show("Enter details", ToastAndroid.SHORT)
         const address = flat + ", " + colony + ", " + city
         user.address.push(address)
         putUserData(user, (err, resp) => {

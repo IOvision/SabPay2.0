@@ -16,7 +16,9 @@ import { setDrawerState } from '../../redux/actions/app'
 export interface Props {
     setSignedOut: () => void,
     setDrawer: (a: boolean) => void,
-    isSignedIn: boolean
+    isSignedIn: boolean,
+    navigation: any,
+    setState: Function
 }
 
 const CustomDrawerContent: React.FC<Props> = (props) => {
@@ -32,6 +34,7 @@ const CustomDrawerContent: React.FC<Props> = (props) => {
             await Auth.signOut()
             await AsyncStorage.removeItem('@User')
             props.setSignedOut()
+            props.setState(false)
         } catch(error) {
             console.log('error signing out', error)
         }

@@ -59,8 +59,8 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
                 }
                 {/* <StoreSpecialList object={inventory.storeSp} /> */}
                 <Swipeable data={specialOffers2} />
-                <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
-                <HomePageOffers data={dealsOfTheDay}/>
+                {/* <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
+                <HomePageOffers data={dealsOfTheDay}/> */}
                 <View style={{height: 30}}></View>
             </ScrollView>
         </View>

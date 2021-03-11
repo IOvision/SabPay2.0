@@ -5,7 +5,6 @@ import { HeaderText, BodyText } from '../../components/atoms/Text'
 import CartItemListItem from '../../components/molecules/CartItemListItem'
 import DeliveryStatus from '../../components/atoms/DeliveryStatus'
 import CartPriceDetails from '../../components/molecules/CartPriceDetails'
-import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 import Order from '../../models/Order'
 
 export interface Props {
@@ -20,23 +19,33 @@ const OrderDetail: React.FC<Props> = ({route, navigation})=>  {
     return (
         <View style={{display: "flex", flex: 1, backgroundColor: colors.white}}>
         <View style={styles.container}>
-            <SearchWithBackground navigation={navigation}/>
-            <View>
-                <HeaderText>Delivered To:</HeaderText>
-                <BodyText>{route.params.data.user.address}</BodyText>
-            </View>
-            <View style={styles.end}></View>                
-            <View>
-                <HeaderText>Service Provider</HeaderText>
-                <BodyText>{route.params.data.merchant.name}</BodyText>
-            </View>
-            <View style={styles.end}></View>
-            <HeaderText>Order Id - {route.params.data.id}</HeaderText>
             <FlatList 
                 data={route.params.data.items}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item, index}) => {
-                    return <CartItemListItem style={{marginHorizontal: -10 }} item={item} history={true}/>
+                    return <CartItemListItem style={{marginHorizontal: -10, paddingVertical: 5 }} item={item} history={true}/>
+                }}
+                ListHeaderComponent={() => {
+                    return (
+                        <View>
+                            <View>
+                                <BodyText style={{color: colors.darkgrey}}>{route.params.data.id}</BodyText>
+                                <View style={styles.end}></View>
+                                <View>
+                                    <HeaderText style={{color: colors.darkgrey}}>Ordered From:</HeaderText>
+                                    <BodyText>{route.params.data.merchant.name}</BodyText>
+                                    <BodyText style={{fontSize: 10}}>{route.params.data.merchant.address.locality}</BodyText>
+                                    <BodyText style={{fontSize: 10}}>{route.params.data.merchant.phone}</BodyText>
+                                </View>
+                            </View>
+                            <View style={styles.end}></View>                
+                            <View>
+                                <HeaderText style={{color: colors.darkgrey}}>Delivered To:</HeaderText>
+                                <BodyText>{route.params.data.user.name}</BodyText>
+                                <BodyText style={{fontSize: 10}}>{route.params.data.user.address}</BodyText>
+                            </View>
+                        </View>
+                    )
                 }}
                 ListFooterComponent={() => {
                     return (

@@ -10,7 +10,7 @@ export interface Props {
 const Otp: React.FC<Props> = (props) => {
     return (
         <View style={styles.inputView}>
-            <InputText placeholder="OTP" style={styles.input} value={props.value} onChangeText={props.setValue} editable={true}/>
+            <InputText placeholder="OTP" style={styles.input} value={props.value} onChangeText={props.setValue} editable={true} keyboardType={"numeric"}/>
         </View>
     )
 }
