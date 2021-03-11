@@ -36,7 +36,6 @@ export interface Props {
 }
 
 const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, user, discount, route, quantity}) => {
-
     const [paymentMethod, setPaymentMethod] = React.useState("cod")
     const [isLoading, setIsLoading] = React.useState(false)
     const addressRef = React.useRef(null)
@@ -72,6 +71,10 @@ const OrderDetails: React.FC<Props> = ({items, navigation, total, inventory, use
             )
         try {
             const newOrder = await API.graphql(graphqlOperation(createOrder, {input: order}))
+            navigation.navigate("OrderPlacedScreen", {
+                qty: Object.keys(quantity).length,
+                order: order
+            })
         } catch(err) {
             console.log(err.errors)
         }

@@ -159,7 +159,7 @@ const MainStack: React.FC = () => {
                         header: ({ scene, previous, navigation}) => {
                             return (
                                 <Header 
-                                    back={() => navigation.pop()} 
+                                    back={() => navigation.popToTop()} 
                                     navigation={navigation}
                                     cart={false}
                                 />
