@@ -47,7 +47,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
                 console.log(user)
             } catch (error) {
                 if (error.code === "UsernameExistsException")
-                startSmsListener()
+                    startSmsListener()
             }
         } else {
             setError(true)
@@ -61,6 +61,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
             const registered = await SmsRetriever.startSmsRetriever()
             if (registered) {
                 SmsRetriever.addSmsListener(event => {
+                    console.log(event)
                     const a = /(\d{4})/g.exec(event.message)[1]
                     SmsRetriever.removeSmsListener()
                     confirmSignIn(a)

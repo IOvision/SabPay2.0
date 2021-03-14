@@ -4,7 +4,6 @@ import Swipeable from '../../components/molecules/Swipeable'
 import { CaptionText } from '../../components/atoms/Text'
 import HomePageCategoryList from '../../components/molecules/HomePageCategoryList'
 import StoreSpecialList from '../../components/molecules/StoreSpecialList'
-import HomePageOffers from '../../components/molecules/HomePageOffers'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground'
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
@@ -46,7 +45,7 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
             <SearchWithBackground home={true} navigation={navigation} name={inventory.shopName} address={inventory.address.locality}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
-                <HomePageCategoryList data={Object.keys(inventory.tags)} baseUrl={""} navigation={navigation}  isLoading={isLoading}/>
+                <HomePageCategoryList data={inventory.tags ? Object.keys(inventory.tags) : []} baseUrl={""} navigation={navigation}  isLoading={isLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
                 <Swipeable data={specialOffers1} />
                 {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { View, FlatList } from 'react-native'
 import ShopListItem from '../../components/molecules/ShopListItem'
-import testInventory from '../../models/testInventory'
 import Skeleton from "../../components/atoms/Skeleton";
 import { getMerchant } from '../../requests'
 import Background from '../../components/atoms/Background'
+import InventoryMetadata from '../../models/InventoryMetadata';
 
 
 export interface Props {
@@ -19,15 +19,13 @@ export interface Props {
 
 const ShopScreen: React.FC<Props> = ({navigation, route}) => {
     const [isLoading, setIsLoading] = useState(true)
-    const [inventories, setInventories] = useState(testInventory)
+    const [inventories, setInventories] = useState<InventoryMetadata[]>()
     
     useEffect(() => {
       getMerchant(25.599778, 85.134688, 5, (err, resp) => {
-
-    //   getMerchant(route.params.latitude, route.params.longitude, 5, (err, resp) => {
-        console.log("getMerchnat" + route.params.latitude + route.params.longitude)
         if(err) 
           return console.log(err)
+          console.log(resp)
           setInventories(resp)
           setIsLoading(false)
       })

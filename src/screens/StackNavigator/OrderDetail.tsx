@@ -50,7 +50,7 @@ const OrderDetail: React.FC<Props> = ({route, navigation})=>  {
                 ListFooterComponent={() => {
                     return (
                         <View>
-                            <DeliveryStatus style={{margin: 20}} counter={"order confirmed"}/>
+                            <DeliveryStatus style={{margin: 20}} counter={route.params.data.status}/>
                             <View style={styles.end}></View>
                             <CartPriceDetails price={route.params.data.total} discount={route.params.data.discount}/>
                         </View>

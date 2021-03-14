@@ -8,9 +8,10 @@ import { connect } from 'react-redux';
 import {HeaderText, BodyText} from '../atoms/Text'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setInventory } from '../../redux/actions/inventory';
+import InventoryMetadata from '../../models/InventoryMetadata';
 
 interface Props {
-    item: Inventory,
+    item: InventoryMetadata,
     set: (a: Inventory) => void,
     navigation: any,
     index: number

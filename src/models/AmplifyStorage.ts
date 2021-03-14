@@ -1,18 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const STORAGE_KEY_PREFIX = "@AmpStorage"
-
+const STORAGE_KEY_PREFIX = "@MerchantStorage"
 let dataMemory: any = {}
 
-export default class AmplifyStorage {
-    
-    static syncPromise: Promise<unknown>
+class AmplifyStorage {
+    static syncPromise: Promise<unknown> | null = null;
 
     static setItem(key: string, value: string) {
-        console.log('set', key)
-        AsyncStorage.setItem(STORAGE_KEY_PREFIX + key, value)
-        dataMemory[key] = value
-        return dataMemory[key]
+        AsyncStorage.setItem(STORAGE_KEY_PREFIX + key, value);
+        dataMemory[key] = value;
+        return dataMemory[key];
     }
 
     static getItem(key: string) {
@@ -21,33 +18,35 @@ export default class AmplifyStorage {
 
     static removeItem(key: string) {
         AsyncStorage.removeItem(STORAGE_KEY_PREFIX + key);
-        return delete dataMemory[key]
+        return delete dataMemory[key];
     }
 
     static clear() {
-        dataMemory = {}
-        return dataMemory
+        dataMemory = {};
+        return dataMemory;
     }
 
     static sync() {
         if (!AmplifyStorage.syncPromise) {
             AmplifyStorage.syncPromise = new Promise((res, rej) => {
                 AsyncStorage.getAllKeys((errKeys, keys) => {
-                    if (errKeys) rej(errKeys)
-                    const memoryKeys = keys!.filter((key) => key.startsWith(STORAGE_KEY_PREFIX));
+                    if (errKeys) rej(errKeys);
+                    const memoryKeys = keys?.filter((key) => key.startsWith(STORAGE_KEY_PREFIX));
                     AsyncStorage.multiGet(memoryKeys, (err, stores) => {
-                        if (err) rej(err)
+                        if (err) rej(err);
                         stores?.map((result, index, store) => {
                             const key = store[index][0];
                             const value = store[index][1];
-                            const memoryKey = key.replace(STORAGE_KEY_PREFIX, '')
-                            dataMemory[memoryKey] = value
+                            const memoryKey = key.replace(STORAGE_KEY_PREFIX, '');
+                            dataMemory[memoryKey] = value;
                         });
-                        res()
-                    })
+                        res();
+                    });
                 })
             })
-            return AmplifyStorage.syncPromise;
         }
+        return AmplifyStorage.syncPromise;
     }
 }
+
+export default AmplifyStorage;

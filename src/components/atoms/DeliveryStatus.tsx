@@ -28,11 +28,11 @@ const DeliveryStatus: React.FC<Props> = ({counter, style}) => {
     }
   ]
   let counterId;
-  if(counter === "order placed")
+  if(counter === "PLACED")
     counterId = 0
-  else if(counter === "order confirmed")
+  else if(counter === "CONFIRMED")
     counterId = 1
-  else if(counter === "Out for delivery")
+  else if(counter === "DELIVERED")
     counterId = 2
   else
     counterId = 3
