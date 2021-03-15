@@ -100,6 +100,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
             close()
         } catch (error) {
             console.log('error', error)
+            setIsLoading(false)
         }
     }
 
