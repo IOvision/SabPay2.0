@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import ProfileScreen from '../screens/DrawerNavigator/ProfileScreen'
 import MapScreen from '../screens/StackNavigator/MapScreen'
@@ -22,6 +22,9 @@ export interface Props {
 
 const RootDrawer: React.FC<Props> = ({inventory, isSignedIn}) => {
     const [state, setState] = useState(isSignedIn)
+    useEffect(() => {
+        setState(isSignedIn)
+    }, [isSignedIn])
     return (
         <Drawer.Navigator 
             drawerStyle={{

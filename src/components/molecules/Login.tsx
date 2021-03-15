@@ -29,6 +29,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
     const [phone, setPhone] = useState("")
     const [user, setUser] = useState('null')
     const [otp, setOTP] = useState("")
+    const [readingOtp, setReadingOtp] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(false)
     var temp: any
@@ -56,7 +57,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
 
     const startSmsListener = async () => {
         try {
-            setIsLoading(true)
+            setReadingOtp(true)
             signIn()
             const registered = await SmsRetriever.startSmsRetriever()
             if (registered) {
@@ -68,7 +69,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
                 })
             }
         } catch (error) {
-            setIsLoading(false)
+            setReadingOtp(false)
         }  
     }
 
@@ -82,6 +83,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
     }
 
     const confirmSignIn = async (otp: string) => {
+        setIsLoading(true)
         try {
             const data = await Auth.sendCustomChallengeAnswer(user, otp);
             getUserData(phone, data.signInUserSession.idToken.jwtToken, (err, resp) => {
@@ -104,10 +106,10 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
     const handleManual = async () => {
         SmsRetriever.removeSmsListener()
         setState(1)
-        setIsLoading(false)
+        setReadingOtp(false)
     }
 
-    if(isLoading) {
+    if(readingOtp) {
         return (
             <RoundView style={{ ...styles.container, justifyContent: 'center' }}>
                 <ActivityIndicator />
@@ -115,6 +117,14 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
                 <TouchableOpacity onPress={handleManual}>
                     <BodyText style={{fontSize: 14, alignSelf: 'flex-end', marginTop: 10, color: '#8021EB'}}>Enter OTP Manually</BodyText>
                 </TouchableOpacity>
+            </RoundView>
+        )
+    }
+
+    if(isLoading) {
+        return (
+            <RoundView style={{ ...styles.container, justifyContent: 'center' }}>
+                <ActivityIndicator />
             </RoundView>
         )
     }

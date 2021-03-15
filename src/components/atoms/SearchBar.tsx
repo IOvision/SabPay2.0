@@ -1,5 +1,6 @@
 import React from 'react'
 import { NativeSyntheticEvent, StyleProp, TextInput, TextInputFocusEventData, TextStyle, View } from 'react-native'
+// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import SearchBarStyle from '../../styles/SearchBarStyle'
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, ScrollView, StyleSheet } from 'react-native'
+import { View, ScrollView, StyleSheet, BackHandler } from 'react-native'
 import colors from '../../assets/colors'
 import LinearGradient from 'react-native-linear-gradient'
 import { HeaderText, BodyText } from '../../components/atoms/Text'
@@ -22,7 +22,17 @@ export interface Props {
 const OrderPlacedScreen: React.FC<Props> = ({route, navigation, clearCart}) => {
     console.log("Route ", route)
     useEffect(() => {
+        const backAction = () => {
+            navigation.popToTop()
+            return true
+        }
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            backAction
+        )
         clearCart()
+
+        return () => backHandler.remove()
     }, [])
     return (
         <ScrollView style={styles.container}>
@@ -36,7 +46,7 @@ const OrderPlacedScreen: React.FC<Props> = ({route, navigation, clearCart}) => {
             </View>
             <View style={styles.status}>
                 <HeaderText>Delivery Status</HeaderText>
-                <DeliveryStatus counter={"order placed"} style={{margin: 20}}/>
+                <DeliveryStatus counter={"PLACED"} style={{margin: 20}}/>
             </View>
             <View style={styles.innerView}>
                 <HeaderText>Thanks For Shopping</HeaderText>

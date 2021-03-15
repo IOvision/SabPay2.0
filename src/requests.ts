@@ -131,3 +131,21 @@ export const putUserData = (user: User, cb: (err: any, resp: User) => void) => {
         })
     })
 }
+
+export const searchItems = (text: string) => new Promise<Array<Item>>((resolve, reject) => {
+    axios.get('/item', {
+        params: {
+            q: text
+        }
+    })
+    .then(res => {
+        const items: Item[] = []
+        res.data.data.forEach(element => {
+            items.push(new Item(element._source))
+        });
+        resolve(items)
+    })
+    .catch(err => {
+        reject(err)
+    })
+})
