@@ -8,7 +8,6 @@ import Otp from './Otp';
 import { Auth } from 'aws-amplify'
 import colors from '../../assets/colors';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
-import SmsRetriever from 'react-native-sms-retriever'
 
 import { ActivityIndicator } from 'react-native-paper';
 import { connect } from 'react-redux';
@@ -29,54 +28,56 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
     const [phone, setPhone] = useState("")
     const [user, setUser] = useState('null')
     const [otp, setOTP] = useState("")
-    const [readingOtp, setReadingOtp] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(false)
     var temp: any
+
     //Hash - Xq5ZQIU2b5de
+
     const validateNumber = (number: string) => {
         return number.length == 10;
-      };
+    };
+
     const signUp = async () => {
         if(validateNumber(phone)) {
             try {
-                const { user } = await Auth.signUp({
+                await Auth.signUp({
                     username: `+91${phone}`,
                     password: Date.now().toString()
                 })
-                startSmsListener()
-                console.log(user)
+                signIn()
             } catch (error) {
                 if (error.code === "UsernameExistsException")
-                    startSmsListener()
+                    signIn()
             }
         } else {
             setError(true)
         }
     }
 
-    const startSmsListener = async () => {
-        try {
-            setReadingOtp(true)
-            signIn()
-            const registered = await SmsRetriever.startSmsRetriever()
-            if (registered) {
-                SmsRetriever.addSmsListener(event => {
-                    console.log(event)
-                    const a = /(\d{4})/g.exec(event.message)[1]
-                    SmsRetriever.removeSmsListener()
-                    confirmSignIn(a)
-                })
-            }
-        } catch (error) {
-            setReadingOtp(false)
-        }  
-    }
+    // const startSmsListener = async () => {
+    //     try {
+    //         setReadingOtp(true)
+    //         signIn()
+    //         const registered = await SmsRetriever.startSmsRetriever()
+    //         if (registered) {
+    //             SmsRetriever.addSmsListener(event => {
+    //                 console.log(event)
+    //                 const a = /(\d{4})/g.exec(event.message)[1]
+    //                 SmsRetriever.removeSmsListener()
+    //                 confirmSignIn(a)
+    //             })
+    //         }
+    //     } catch (error) {
+    //         setReadingOtp(false)
+    //     }  
+    // }
 
     const signIn = async () => {
         try {
             temp = await Auth.signIn(`+91${phone}`)
             setUser(temp)
+            setState(1)
         } catch (error) {
             console.log(error)
         }
@@ -104,23 +105,17 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
         }
     }
 
-    const handleManual = async () => {
-        SmsRetriever.removeSmsListener()
-        setState(1)
-        setReadingOtp(false)
-    }
-
-    if(readingOtp) {
-        return (
-            <RoundView style={{ ...styles.container, justifyContent: 'center' }}>
-                <ActivityIndicator />
-                <HeaderText style={{alignSelf: 'center', marginTop: 10}}>Reading OTP</HeaderText>
-                <TouchableOpacity onPress={handleManual}>
-                    <BodyText style={{fontSize: 14, alignSelf: 'flex-end', marginTop: 10, color: '#8021EB'}}>Enter OTP Manually</BodyText>
-                </TouchableOpacity>
-            </RoundView>
-        )
-    }
+    // if(readingOtp) {
+    //     return (
+    //         <RoundView style={{ ...styles.container, justifyContent: 'center' }}>
+    //             <ActivityIndicator />
+    //             <HeaderText style={{alignSelf: 'center', marginTop: 10}}>Reading OTP</HeaderText>
+    //             <TouchableOpacity>
+    //                 <BodyText style={{fontSize: 14, alignSelf: 'flex-end', marginTop: 10, color: '#8021EB'}}>Enter OTP Manually</BodyText>
+    //             </TouchableOpacity>
+    //         </RoundView>
+    //     )
+    // }
 
     if(isLoading) {
         return (
@@ -150,7 +145,7 @@ const Login: React.FC<Props> = ({navigation, setSignedIn, close}) => {
                     <View>
                         <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => setState(0)}>
                             <Icons name="arrow-left" color="black" size={18} />
-                            <HeaderText style={{marginLeft: 5, fontSize: 18}}>Enter the OTP:</HeaderText>
+                            <HeaderText style={{marginLeft: 5, fontSize: 16}}>Enter the verification code:</HeaderText>
                         </TouchableOpacity>
                         <Otp value={otp} setValue={setOTP} />
                         <PurpleRoundBtn style={{alignSelf: 'center', width: 100, borderRadius: 4}} mode="gradient" text="Next" onPress={() => confirmSignIn(otp)} />
@@ -185,7 +180,7 @@ export default connect(null, mapDispatchToProps)(Login)
 const styles = StyleSheet.create({
     container: {
         height: 250,
-        padding: 40,
+        padding: 20,
         shadowColor: 'rgba(0,0,0, .4)', // IOS
         shadowOffset: { height: 1, width: 1 }, // IOS
         shadowOpacity: 1, // IOS

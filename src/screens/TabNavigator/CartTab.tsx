@@ -15,6 +15,7 @@ import { connect } from 'react-redux'
 import CartItem from '../../models/CartItem'
 import { RootState } from '../../redux/store'
 import ButtonGroups from '../../components/molecules/ButtonGroups'
+import User from '../../models/User'
 
 export interface Props {
     cart: CartItem[],
