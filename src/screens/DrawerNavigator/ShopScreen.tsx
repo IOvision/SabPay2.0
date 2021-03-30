@@ -5,6 +5,9 @@ import Skeleton from "../../components/atoms/Skeleton";
 import { getMerchant } from '../../requests'
 import Background from '../../components/atoms/Background'
 import InventoryMetadata from '../../models/InventoryMetadata';
+import { Divider } from 'react-native-paper'
+import colors from '../../assets/colors';
+import { CaptionText } from '../../components/atoms/Text';
 
 
 export interface Props {
@@ -34,8 +37,11 @@ const ShopScreen: React.FC<Props> = ({navigation, route}) => {
     const sample = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
         <View style={{backgroundColor: "white", flex: 1}}>
-            <Background />
-            <View style={{height: 20}}></View>
+            {/* <Background />
+            <CaptionText style={{paddingHorizontal: 20, color: "white", marginTop: -38, alignSelf: "center"}}>Stores near you</CaptionText>
+            <View style={{height: 20}}></View> */}
+            <CaptionText style={{paddingHorizontal: 20, color: colors.primary, paddingVertical: 15, fontSize: 20}}>Stores near you</CaptionText>
+            <Divider />
             {
                 isLoading ? (
     

@@ -30,7 +30,6 @@ const displayRating = (number: number, index: number) => {
 }
 
 const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
-    console.log("data: ", Object.values(item))
     return (
         <TouchableOpacity style={shopListItemstyles.container} activeOpacity={0.9} onPress={() => {
             AsyncStorage.setItem('@Inventory', item.toJson())
@@ -47,7 +46,7 @@ const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
             </View>
             <View style={shopListItemstyles.shopInfo}>
                 <HeaderText>{item.shopName}</HeaderText>
-                <BodyText>{item.address.locality} {item.address.town} {item.address.city}</BodyText>
+                <BodyText style={{fontSize: 12, color: colors.darkgrey}}>{item.address.locality} {item.address.town} {item.address.city}</BodyText>
                 <View style={{flexDirection: "row"}}>
                 {displayRating(item.rating, index)}
                 </View>

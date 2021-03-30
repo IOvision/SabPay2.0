@@ -1,5 +1,6 @@
 import { StyleSheet, ViewStyle, TextStyle, ImageProps, ImageStyle } from 'react-native';
 import colors from '../assets/colors';
+import randomColor from '../assets/randomColor'
 
 interface StyleShopListItem {
   container: ViewStyle,
@@ -16,13 +17,13 @@ export const shopListItemstyles = StyleSheet.create<StyleShopListItem>({
     padding: 14,
     borderWidth: 1,
     borderColor: colors.mediumGrey,
-    marginTop: 5
+    marginTop: -4
   },
   shopImage: {
     display: 'flex',
     width: 72,
     height: 72,
-    backgroundColor: 'blue',
+    backgroundColor: randomColor[Math.floor(Math.random() * 10)],
     borderRadius: 10,
   },
   shopInfo: {
