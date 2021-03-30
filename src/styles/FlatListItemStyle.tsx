@@ -64,7 +64,8 @@ export const storeListItemStyle = StyleSheet.create<StyleStoreListItem>({
     width: 90,
     height: 90,
     backgroundColor: 'white',
-    borderRadius: 9
+    borderRadius: 9,
+    resizeMode: 'contain'
   },
   itemDetailsView: {
     marginLeft: 15,

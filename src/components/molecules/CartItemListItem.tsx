@@ -16,7 +16,7 @@ const CartItemListItem: React.FC<Props> = ({item, style, history}) => {
     return (
         <RoundView style={[CartItemListItemStyles.container, style]}>
             <View style={CartItemListItemStyles.infoView}>
-                <HeaderText>{item.name}</HeaderText>
+                <HeaderText style={{maxWidth: 225}}>{item.name}</HeaderText>
                 <View style={CartItemListItemStyles.subView}>
                     <BodyText>Rs. {item.price}</BodyText>
                     {
