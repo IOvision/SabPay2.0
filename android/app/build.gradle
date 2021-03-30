@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.a"
+        applicationId "com.visionio.sabpay"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
