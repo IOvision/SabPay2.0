@@ -15,14 +15,14 @@ const HeaderStyle = StyleSheet.create<Style>({
     justifyContent: 'center',
     backgroundColor: 'white',
     overflow: 'hidden',
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.00,
-    elevation: 24,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 12,
+    // },
+    // shadowOpacity: 0.58,
+    // shadowRadius: 16.00,
+    // elevation: 0,
   },
   logo: {
     height: 100,

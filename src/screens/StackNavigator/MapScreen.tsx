@@ -39,6 +39,8 @@ const MapScreen: React.FC<Props> = ({navigation}) => {
           _startUpdatingLocation();
         }
       });
+
+      return () => locationSubscription = null
     }, [])
 
     const _startUpdatingLocation = () => {

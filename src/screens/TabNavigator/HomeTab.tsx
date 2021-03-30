@@ -45,7 +45,7 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
             <SearchWithBackground home={true} navigation={navigation} name={inventory.shopName} address={inventory.address.locality}/>
             <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
-                <HomePageCategoryList data={inventory.tags ? Object.keys(inventory.tags) : []} baseUrl={""} navigation={navigation}  isLoading={isLoading}/>
+                <HomePageCategoryList data={inventory.tags ? Object.keys(inventory.tags) : []} baseUrl={"https://raw.githubusercontent.com/IOvision/assets/master/images/categories/"} navigation={navigation}  isLoading={isLoading}/>
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
                 <Swipeable data={specialOffers1} />
                 {

@@ -16,7 +16,7 @@ const HomePageCategoryListItem: React.FC<Props> = ({image, title, colour, onPres
         <TouchableOpacity style={HomePageCategoryListItemStyles.container} onPress={onPress} activeOpacity={0.9}>
             <Image source={{uri: image}} style={{...HomePageCategoryListItemStyles.image, backgroundColor: colour}} />
             <View style={HomePageCategoryListItemStyles.textView}>
-                <HeaderText style={{textAlign: 'center', fontSize: 14}}>{categoryNameFormat(title)}</HeaderText>
+                <HeaderText style={{textAlign: 'center', fontSize: 13}}>{categoryNameFormat(title)}</HeaderText>
             </View>
         </TouchableOpacity>
     )
