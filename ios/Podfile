@@ -8,6 +8,12 @@ target 'a' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
   target 'aTests' do
     inherit! :complete
     # Pods for testing
