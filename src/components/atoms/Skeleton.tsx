@@ -7,7 +7,7 @@ export interface Props {
     width: number, 
     height: number, 
     borderRadius: number,
-    style: any
+    style?: any
   }
 
 const Skeleton: React.FC<Props> = ({width, height, borderRadius, style}) => {

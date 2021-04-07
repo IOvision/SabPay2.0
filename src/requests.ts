@@ -76,7 +76,7 @@ export const getOrders = (phone: string, lastKey: string, cb: (err: any, resp: a
     })
 }
 
-export const getSpecialOffers = () => new Promise<Array<String>>((resolve, reject) => {
+export const getCarousel = () => new Promise<Array<string>>((resolve, reject) => {
     axios.get(`/graphics`)
     .then(res => {
         resolve(res.data.data)

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, ScrollView } from 'react-native'
+import { View, ScrollView, RefreshControl } from 'react-native'
 import Swipeable from '../../components/molecules/Swipeable'
 import { CaptionText } from '../../components/atoms/Text'
 import HomePageCategoryList from '../../components/molecules/HomePageCategoryList'
@@ -8,8 +8,16 @@ import SearchWithBackground from '../../components/molecules/SearchWithBackgroun
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
 import Inventory from '../../models/Inventory'
-import { getSpecialOffers, getMerchantDetails } from '../../requests'
+import { getCarousel, getMerchantDetails } from '../../requests'
 import { setInventory } from '../../redux/actions/inventory';
+import LottieView from 'lottie-react-native'
+
+const carousel = [
+    "https://raw.githubusercontent.com/IOvision/assets/master/images/carousel/carousel1.jpeg",
+    "https://raw.githubusercontent.com/IOvision/assets/master/images/carousel/carousel2.jpeg",
+    "https://raw.githubusercontent.com/IOvision/assets/master/images/carousel/carousel3.jpeg",
+    "https://raw.githubusercontent.com/IOvision/assets/master/images/carousel/carousel4.jpeg"
+]
 
 export interface Props {
     navigation: any,
@@ -18,36 +26,57 @@ export interface Props {
 }
 
 const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
+
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const [specialOffers1, setSpecialOffers1] = useState<Array<String>>([])
-    const [specialOffers2, setSpecialOffers2] = useState<Array<String>>([])
+    const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
+    const [specialOffers1, setSpecialOffers1] = useState<Array<string>>([])
+    const [specialOffers2, setSpecialOffers2] = useState<Array<string>>([])
+
+    const onRefresh = () => {
+        setIsRefreshing(false)
+    }
+
     useEffect(() => {
-        Promise.all([getSpecialOffers(), getMerchantDetails(inventory.SK)])
-        .then(data => {
-            const first = data[0]
-            const second = data[1]
-            let result = [];
-            for (let i = 2; i > 0; i--) {
-                result.push(first.splice(0, Math.ceil(first.length / i)));
-            }
-            setSpecialOffers1(result[0])
-            setSpecialOffers2(result[1])
-            inventory.storeSp = second.storeSp
-            inventory.offers = second.offers
-            inventory.exclude = second.exclude
-            inventory.tags = second.tags
-            setIsLoading(false)
-        })
-    }, [])
-    const dealsOfTheDay = [ "https://pngimg.com/uploads/dog/dog_PNG50348.png", "https://freepngimg.com/thumb/dog/23730-1-dog-file.png", "https://pngimg.com/uploads/dog/dog_PNG50360.png", "https://static.wixstatic.com/media/2cd43b_afa39a2ccac54a9b8122257b451a461f~mv2_d_1300_1639_s_2.png/v1/fill/w_174,h_219,fp_0.50_0.50/2cd43b_afa39a2ccac54a9b8122257b451a461f~mv2_d_1300_1639_s_2.png"]
+        if (isRefreshing || isLoading) {
+            Promise.all([getCarousel(), getMerchantDetails(inventory.SK)])
+            .then(data => {
+                const first = data[0]
+                console.log(first)
+                const second = data[1]
+                let result = [];
+                for (let i = 2; i > 0; i--) {
+                    result.push(first.splice(0, Math.ceil(first.length / i)));
+                }
+                setSpecialOffers1(result[0])
+                setSpecialOffers2(result[1])
+                inventory.storeSp = second.storeSp
+                inventory.offers = second.offers
+                inventory.exclude = second.exclude
+                inventory.tags = second.tags
+                setIsLoading(false)
+                setIsRefreshing(false)
+            })
+        }
+    }, [isRefreshing])
+
+    if(isLoading) {
+        return <LottieView style={{display: "flex", flex: 1, backgroundColor: "white"}} source={require('../../assets/animations/mainLoading.json')} autoPlay loop />
+    }
+
     return (
-        <View style={{flex: 1, backgroundColor: 'white'}}>
+        <View style={{flex: 1, backgroundColor: '#f5f5f5'}}>
             <SearchWithBackground home={true} navigation={navigation} name={inventory.shopName} address={inventory.address.locality}/>
-            <ScrollView style={{display: "flex", flex: 1, padding: 15, backgroundColor: "white"}}>
+            <ScrollView 
+                style={{display: "flex", flex: 1, padding: 15, backgroundColor: "#f5f5f5"}}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={isLoading}
+                        onRefresh={onRefresh}
+                    />
+                }
+            >
                 <CaptionText style={{marginBottom: 10, marginTop: 10}}>Shop By Category</CaptionText>
                 <HomePageCategoryList data={inventory.tags ? Object.keys(inventory.tags) : []} baseUrl={"https://raw.githubusercontent.com/IOvision/assets/master/images/categories/"} navigation={navigation}  isLoading={isLoading}/>
-                <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
-                <Swipeable data={specialOffers1} />
                 {
                     inventory.storeSp == null ? (
                         <View>
@@ -57,9 +86,11 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
                     ) : null
                 }
                 {/* <StoreSpecialList object={inventory.storeSp} /> */}
-                <Swipeable data={specialOffers2} />
+                <Swipeable data={carousel} />
                 {/* <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
                 <HomePageOffers data={dealsOfTheDay}/> */}
+                <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
+                <Swipeable data={specialOffers1} />
                 <View style={{height: 30}}></View>
             </ScrollView>
         </View>

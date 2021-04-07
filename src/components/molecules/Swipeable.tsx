@@ -1,25 +1,24 @@
 import React from 'react'
 import { View, StyleSheet, Image, Dimensions} from 'react-native'
 import { Pages } from 'react-native-pages'
-import Skeleton from "../atoms/Skeleton";
+// import Skeleton from "../atoms/Skeleton";
 
 const {width} = Dimensions.get('window')
 
 export interface Props {
-    data: []
-    isLoading: boolean
+    data: string[]
 }
 
-const Swipeable: React.FC<Props> = ({data, isLoading}) => {
-    if(isLoading) {
-        return (
-            <View style={styles.container}>
-                <View >
-                    <Skeleton borderRadius={10} height={150} width={width-30} />
-                </View> 
-            </View>
-        )
-    }
+const Swipeable: React.FC<Props> = ({data}) => {
+    // if(isLoading) {
+    //     return (
+    //         <View style={styles.container}>
+    //             <View >
+    //                 <Skeleton borderRadius={10} height={150} width={width-30} />
+    //             </View> 
+    //         </View>
+    //     )
+    // }
     const children = () => {
         return data.map((element) => {
             return (

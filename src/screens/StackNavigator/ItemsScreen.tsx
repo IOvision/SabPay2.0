@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, Text } from 'react-native'
 import SearchWithBackground from '../../components/molecules/SearchWithBackground';
 import StoreItemListItem from '../../components/molecules/StoreItemListItem'
 import Item from '../../models/Item';
 import { Divider } from 'react-native-paper'
 import { getItemsFromTag } from '../../requests';
 import Skeleton from '../../components/atoms/Skeleton';
+import LottieView from 'lottie-react-native'
+import colors from '../../assets/colors';
 
 export interface Props {
   navigation: any,
@@ -58,6 +60,20 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
 
   const example = [1,2,3,4,5,6,7,8,9,10]
 
+  if (data.length == 0 && !isLoading) {
+    return (
+      <View style={{backgroundColor: "white", display: "flex", flex: 1}}>
+        <SearchWithBackground navigation={navigation}/>
+        <View style={{flex: 1, marginTop: "20%"}}>
+          <View style={{flex: 1}}>
+            <LottieView style={{display: "flex", flex: 1, backgroundColor: "white"}} source={require('../../assets/animations/truck.json')} autoPlay loop />
+          </View>
+          <Text style={{flex: 1, textAlign: 'center', color: colors.grey, fontSize: 18}}>Bringing more items soon!</Text>
+        </View>
+      </View>
+    )
+  }
+
   return (
       <View style={{backgroundColor: "white", display: "flex", flex: 1}}>
         <SearchWithBackground navigation={navigation}/>
@@ -85,13 +101,13 @@ const ItemsScreen: React.FC<Props> = ({navigation, route}) => {
                   setLastKey(btoa(JSON.stringify(data[data?.length - 1])))
                 }
               }}
-              ListFooterComponent={() => {
-                return (
-                  <View style={{paddingHorizontal: 10, paddingBottom: 10}}>
-                    <ItemSkeleton />
-                  </View>
-                )
-              }}
+              // ListFooterComponent={() => {
+              //   return (
+              //     <View style={{paddingHorizontal: 10, paddingBottom: 10}}>
+              //       <ItemSkeleton />
+              //     </View>
+              //   )
+              // }}
           />
           )
         }
