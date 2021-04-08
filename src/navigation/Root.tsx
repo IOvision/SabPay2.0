@@ -8,7 +8,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 const Stack = createStackNavigator();
 
 import ShopScreen from '../screens/DrawerNavigator/ShopScreen'
-import MapScreen from '../screens/StackNavigator/MapScreen'
 import ItemsScreen from '../screens/StackNavigator/ItemsScreen'
 import ItemDetailScreen from '../screens/StackNavigator/ItemDetailScreen'
 import CategoryList from '../screens/StackNavigator/CategoryList'
@@ -64,7 +63,7 @@ const MainStack: React.FC = () => {
                 />
                 <Stack.Screen 
                     name="Map" 
-                    component={MapScreen}
+                    component={ShopScreen}
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (

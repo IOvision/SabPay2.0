@@ -12,13 +12,6 @@ import { getCarousel, getMerchantDetails } from '../../requests'
 import { setInventory } from '../../redux/actions/inventory';
 import LottieView from 'lottie-react-native'
 
-const carousel = [
-    "https://raw.githubusercontent.com/IOvision/assets/master/images/carousel/carousel1.jpeg",
-    "https://raw.githubusercontent.com/IOvision/assets/master/images/carousel/carousel2.jpeg",
-    "https://raw.githubusercontent.com/IOvision/assets/master/images/carousel/carousel3.jpeg",
-    "https://raw.githubusercontent.com/IOvision/assets/master/images/carousel/carousel4.jpeg"
-]
-
 export interface Props {
     navigation: any,
     inventory: Inventory,
@@ -41,7 +34,6 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
             Promise.all([getCarousel(), getMerchantDetails(inventory.SK)])
             .then(data => {
                 const first = data[0]
-                console.log(first)
                 const second = data[1]
                 let result = [];
                 for (let i = 2; i > 0; i--) {
@@ -86,11 +78,11 @@ const HomeTab: React.FC<Props> = ({navigation, inventory, set}) => {
                     ) : null
                 }
                 {/* <StoreSpecialList object={inventory.storeSp} /> */}
-                <Swipeable data={carousel} />
+                <Swipeable data={specialOffers1} />
                 {/* <CaptionText style={{marginBottom: 10}}>Deals of the Day</CaptionText>
                 <HomePageOffers data={dealsOfTheDay}/> */}
                 <CaptionText style={{marginBottom: 10}}>Special Offers</CaptionText>
-                <Swipeable data={specialOffers1} />
+                <Swipeable data={specialOffers2} />
                 <View style={{height: 30}}></View>
             </ScrollView>
         </View>

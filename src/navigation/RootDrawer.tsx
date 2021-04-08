@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import ProfileScreen from '../screens/DrawerNavigator/ProfileScreen'
-import MapScreen from '../screens/StackNavigator/MapScreen'
+import ShopScreen from '../screens/DrawerNavigator/ShopScreen'
 import OrderHistory from '../screens/DrawerNavigator/OrderHistoryScreen'
 import CartTab from '../screens/TabNavigator/CartTab'
 import OffersTab from '../screens/TabNavigator/OffersTab'
@@ -40,7 +40,7 @@ const RootDrawer: React.FC<Props> = ({inventory, isSignedIn}) => {
             <Drawer.Screen name="Dashboard" component={RootTab} />
             <Drawer.Screen name="My Cart" component={CartTab} />
             <Drawer.Screen name="Offer Zone" component={OffersTab} />
-            <Drawer.Screen name="Change Store" component={MapScreen} />
+            <Drawer.Screen name="Change Store" component={ShopScreen} />
             {
                 state ? (
                     <Drawer.Screen name="My Account" component={ProfileScreen} />

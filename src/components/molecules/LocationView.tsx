@@ -19,8 +19,8 @@ export interface Props {
 
 const AddressInputView: React.FC<Props> = ({user, state, setState}) => {
     const [flat, setFlat] = useState("")
-    const [colony, setColony] = useState("")
-    const [city, setCity] = useState("")
+    const [colony, setColony] = useState("Lotus zing")
+    const [city, setCity] = useState("Noida")
     const addAddress = () => {
         if (flat == "" || colony == "" || city == "") return ToastAndroid.show("Enter details", ToastAndroid.SHORT)
         const address = flat + ", " + colony + ", " + city

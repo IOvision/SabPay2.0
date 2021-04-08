@@ -3,7 +3,6 @@ import { View, FlatList } from 'react-native'
 import ShopListItem from '../../components/molecules/ShopListItem'
 import Skeleton from "../../components/atoms/Skeleton";
 import { getMerchant } from '../../requests'
-import Background from '../../components/atoms/Background'
 import InventoryMetadata from '../../models/InventoryMetadata';
 import { Divider } from 'react-native-paper'
 import colors from '../../assets/colors';
@@ -12,15 +11,15 @@ import { CaptionText } from '../../components/atoms/Text';
 
 export interface Props {
     navigation: any, 
-    route: {
-      params: {
-        latitude: number,
-        longitude: number
-      }
-    }
+    // route: {
+    //   params: {
+    //     latitude: number,
+    //     longitude: number
+    //   }
+    // }
 }
 
-const ShopScreen: React.FC<Props> = ({navigation, route}) => {
+const ShopScreen: React.FC<Props> = ({navigation}) => {
     const [isLoading, setIsLoading] = useState(true)
     const [inventories, setInventories] = useState<InventoryMetadata[]>()
     
@@ -32,7 +31,7 @@ const ShopScreen: React.FC<Props> = ({navigation, route}) => {
           setInventories(resp)
           setIsLoading(false)
       })
-    }, [])  
+    }, [])
 
     const sample = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (

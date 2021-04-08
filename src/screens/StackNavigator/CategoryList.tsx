@@ -74,7 +74,7 @@ const CategoryListTab: React.FC<Props> = (props) => {
                             return (
                                 <TouchableOpacity style={{padding: 15, flexDirection: 'row', justifyContent: 'space-between'}} activeOpacity={0.9} 
                                     onPress={() => props.navigation.navigate("Items", {
-                                        tag: item
+                                        tag: [item]
                                         })}>
                                     <BodyText>{item.replace(/_/gi, " ")}</BodyText>
                                     <Icon name='chevron-right' size={24} color='black' />
