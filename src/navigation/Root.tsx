@@ -17,11 +17,19 @@ import OrderPlacedScreen from '../screens/StackNavigator/OrderPlacedScreen'
 import RootDrawer from './RootDrawer'
 import Signup from '../screens/StackNavigator/Signup';
 import CartTab from '../screens/TabNavigator/CartTab';
+import Inventory from '../models/Inventory'
+import { connect } from 'react-redux'
+import { RootState } from '../redux/store'
 
-const MainStack: React.FC = () => {
+export interface Props {
+    inventory: Inventory
+}
+
+const MainStack: React.FC<Props> = ({inventory}) => {
     return (
         <NavigationContainer>
             <Stack.Navigator
+                initialRouteName={inventory ? "Main" : "Map"}
                 screenOptions={{
                     header: ({ scene, previous, navigation}) => {
                         return (
@@ -52,11 +60,7 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header 
-                                    back={() => navigation.pop()}
-                                    navigation={navigation}
-                                    cart={false}
-                                />
+                                null
                             )
                         }
                     }}
@@ -67,11 +71,7 @@ const MainStack: React.FC = () => {
                     options={{
                         header: ({ scene, previous, navigation}) => {
                             return (
-                                <Header 
-                                    back={() => navigation.pop()}
-                                    navigation={navigation}
-                                    cart={false}
-                                />
+                                null
                             )
                         }
                     }}
@@ -187,4 +187,10 @@ const MainStack: React.FC = () => {
     )
 }
 
-export default MainStack
+const mapStateToProps = (state: RootState) => {
+    return {
+        inventory: state.inventoryReducer.inventory
+    }
+}
+
+export default connect(mapStateToProps)(MainStack)

@@ -30,7 +30,7 @@ const RootDrawer: React.FC<Props> = ({inventory, isSignedIn}) => {
             drawerStyle={{
                 width: 240,
             }}
-            initialRouteName={ inventory ? "Dashboard" : "Change Store" } 
+            initialRouteName={"Dashboard"} 
             drawerContent={(props) => 
                 (
                     <CustomDrawerContent {...props} setState={setState}/>
@@ -40,7 +40,6 @@ const RootDrawer: React.FC<Props> = ({inventory, isSignedIn}) => {
             <Drawer.Screen name="Dashboard" component={RootTab} />
             <Drawer.Screen name="My Cart" component={CartTab} />
             <Drawer.Screen name="Offer Zone" component={OffersTab} />
-            <Drawer.Screen name="Change Store" component={ShopScreen} />
             {
                 state ? (
                     <Drawer.Screen name="My Account" component={ProfileScreen} />
