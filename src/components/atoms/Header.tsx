@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {View, Image, Text, ImageSourcePropType} from 'react-native';
+import {View, Image, Text, ImageSourcePropType, TouchableOpacity} from 'react-native';
 import HeaderStyle from '../../styles/HeaderStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Colors from '../../assets/colors'
@@ -81,8 +81,8 @@ const Header: React.FC<Props> = (props) => {
           <Image source={require('../../assets/images/logo.png')} style={HeaderStyle.logo} />
         </View>
         <View style={{flex: 1, justifyContent: 'center', marginRight: 10}}>
-          <View>
-            <Icon style={HeaderStyle.end_icon} name="cart" color={Colors.primary} size={24} onPress={() => props.navigation.navigate("Cart")} />
+          <TouchableOpacity onPress={() => props.navigation.navigate("Cart")}>
+            <Icon style={HeaderStyle.end_icon} name="cart" color={Colors.primary} size={24}  />
             {
               itemCount ? (
                 <View style={{
@@ -101,7 +101,7 @@ const Header: React.FC<Props> = (props) => {
                 </View>
               ) : null
             }
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

@@ -62,7 +62,6 @@ const ProfileScreen: React.FC<Props> = ({isSignedIn, user}) => {
             <InputText placeholder="name" value={name} editable={true} onChangeText={setName} />
             <InputText placeholder="phone" value={phone} editable={false} onChangeText={setPhone} />
             <InputText placeholder="address" value={address} editable={false} />
-            <PurpleRoundBtn text="Save" style={styles.btn} />
           </View>
         ) : (
           <View style={{flex: 1, margin: -20}}>

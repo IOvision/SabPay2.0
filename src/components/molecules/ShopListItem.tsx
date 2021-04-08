@@ -34,7 +34,7 @@ const ShopListItem: React.FC<Props> = ({navigation, item, set, index}) => {
         <TouchableOpacity style={shopListItemstyles.container} activeOpacity={0.9} onPress={() => {
             AsyncStorage.setItem('@Inventory', item.toJson())
             set(item)
-            navigation.navigate('Main', {
+            navigation.replace('Main', {
                 item: item
             })
         }}>
